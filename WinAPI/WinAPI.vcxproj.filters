@@ -52,6 +52,9 @@
     <Filter Include="GameObject\Stage01">
       <UniqueIdentifier>{f2ad0501-d505-4b88-af0d-880a4673ef5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\StageObject">
+      <UniqueIdentifier>{30afd244-13cf-4cbc-9eaf-7cef2171368d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -183,6 +186,24 @@
     <ClInclude Include="CSoundManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CStageObject.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CGround.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CWall.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneTool.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolButton.h">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CToolPanel.h">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -295,6 +316,24 @@
     </ClCompile>
     <ClCompile Include="CSoundManager.cpp">
       <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageObject.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CGround.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CWall.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneTool.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CToolPanel.cpp">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CToolButton.cpp">
+      <Filter>Engine\Asset\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

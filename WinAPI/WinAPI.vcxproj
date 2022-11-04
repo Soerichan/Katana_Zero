@@ -150,6 +150,7 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundTile.h" />
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
@@ -167,14 +168,19 @@
     <ClInclude Include="CSceneTileTool.h" />
     <ClInclude Include="CSceneTitle.h" />
     <ClInclude Include="CImage.h" />
+    <ClInclude Include="CSceneTool.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundManager.h" />
+    <ClInclude Include="CStageObject.h" />
     <ClInclude Include="CTile.h" />
     <ClInclude Include="CTileButton.h" />
     <ClInclude Include="CTilePanel.h" />
     <ClInclude Include="CTimeManager.h" />
+    <ClInclude Include="CToolButton.h" />
+    <ClInclude Include="CToolPanel.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIManager.h" />
+    <ClInclude Include="CWall.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Logger.h" />
     <ClInclude Include="Resource.h" />
@@ -195,6 +201,7 @@
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundTile.cpp" />
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
@@ -212,14 +219,19 @@
     <ClCompile Include="CSceneTileTool.cpp" />
     <ClCompile Include="CSceneTitle.cpp" />
     <ClCompile Include="CImage.cpp" />
+    <ClCompile Include="CSceneTool.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundManager.cpp" />
+    <ClCompile Include="CStageObject.cpp" />
     <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTileButton.cpp" />
     <ClCompile Include="CTilePanel.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
+    <ClCompile Include="CToolButton.cpp" />
+    <ClCompile Include="CToolPanel.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
+    <ClCompile Include="CWall.cpp" />
     <ClCompile Include="WinAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

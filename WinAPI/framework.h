@@ -63,10 +63,12 @@ using namespace FMOD;
 #include "CCameraManager.h"
 #include "CUIManager.h"
 #include "CSoundManager.h"
+#include "CSceneTool.h"
 
 // Asset
 #include "CGameObject.h"
 #include "CScene.h"
+#include "CStageObject.h"
 
 // Resource
 #include "CResource.h"

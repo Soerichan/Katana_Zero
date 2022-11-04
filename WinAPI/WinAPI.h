@@ -8,6 +8,8 @@
 
 extern HINSTANCE hInst;
 extern HWND hWnd;
+extern Vector vecToolMousePos;
+extern Vector vecToolMousePos2;
 
 //========================================
 //##			윈도우 설정				##
@@ -29,6 +31,8 @@ enum class GroupScene
 
 	TileTool,
 
+	Tool,
+
 	Stage01,
 
 	Size,
@@ -45,6 +49,7 @@ enum class Layer
 	Player,
 	Missile,
 	Monster,
+	StageObject,
 
 	Ui,
 	Size,
@@ -62,4 +67,23 @@ enum class TypeTile
 	Wall,
 
 	Size,
+};
+
+//========================================
+//##		 스테이지 오브젝트			##
+//========================================
+
+enum class TypeStageObject
+{
+	None,
+	Ground,
+	Wall,
+	Slope,
+	OnewayGround,
+	Door,
+	MonsterSpawn,
+	Throws,
+
+	Size,
+
 };
