@@ -37,7 +37,10 @@ class CSceneTool :
 
 	public:
 
-		
+		void SaveStageObject(const wstring& strPath);
+		void SaveStageObjectData();
+		void LoadStageObject(const wstring& strPath);
+		void LoadStageObjectData();
 		void SaveMap(const wstring& strPath);
 		void SaveMapData();
 		void LoadMap(const wstring& strPath);
