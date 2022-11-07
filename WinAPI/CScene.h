@@ -24,6 +24,7 @@ protected:
 	UINT m_iTileSizeX;
 	UINT m_iTileSizeY;
 
+	
 private:
 	// 씬 부모 전용 함수들 :
 	// 씬에 있는 모든 게임오브젝트들을 갱신

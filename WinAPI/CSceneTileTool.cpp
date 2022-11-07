@@ -27,41 +27,44 @@ CSceneTileTool::CSceneTileTool()
 	m_iTileSizeY = 0;
 	m_fScrollSpeed = 300;
 
-	m_uiTilePanelPage = 0;
+	//m_uiTilePanelPage = 0;
 	m_uiTileCountX = 0;
 	m_uiTileCountY = 0;
 	m_uiSelectedTileIndex = 0;
 	m_typeSelectedTileType = TypeTile::None;
+
+	toolMouse = {};
+	toolMouse2 = {};
 }
 
 CSceneTileTool::~CSceneTileTool()
 {
 }
-
-void CSceneTileTool::SetTile(UINT index, TypeTile type)
-{
-	Vector vecMousePos = MOUSEWORLDPOS;
-	float tilePosX = vecMousePos.x / CTile::TILESIZE;
-	float tilePosY = vecMousePos.y / CTile::TILESIZE;
-
-	// 타일이 없는 위치일 경우 무시
-	if (tilePosX < 0.f || (int)m_iTileSizeX <= tilePosX ||
-		tilePosY < 0.f || (int)m_iTileSizeY <= tilePosY)
-		return;
-
-	const list<CGameObject*>& listTile = GetLayerObject(Layer::Tile);
-	for (CGameObject* pGameObject : listTile)
-	{
-		CTile* pTile = dynamic_cast<CTile*>(pGameObject);
-		if (pTile->GetTilePosX() != (int)tilePosX ||
-			pTile->GetTilePosY() != (int)tilePosY)
-			continue;
-
-		pTile->SetTileIndex(index);
-		pTile->SetType(type);
-		return;
-	}
-}
+//
+//void CSceneTileTool::SetTile(UINT index, TypeTile type)
+//{
+//	Vector vecMousePos = MOUSEWORLDPOS;
+//	float tilePosX = vecMousePos.x / CTile::TILESIZE;
+//	float tilePosY = vecMousePos.y / CTile::TILESIZE;
+//
+//	// 타일이 없는 위치일 경우 무시
+//	if (tilePosX < 0.f || (int)m_iTileSizeX <= tilePosX ||
+//		tilePosY < 0.f || (int)m_iTileSizeY <= tilePosY)
+//		return;
+//
+//	const list<CGameObject*>& listTile = GetLayerObject(Layer::Tile);
+//	for (CGameObject* pGameObject : listTile)
+//	{
+//		CTile* pTile = dynamic_cast<CTile*>(pGameObject);
+//		if (pTile->GetTilePosX() != (int)tilePosX ||
+//			pTile->GetTilePosY() != (int)tilePosY)
+//			continue;
+//
+//		pTile->SetTileIndex(index);
+//		pTile->SetType(type);
+//		return;
+//	}
+//}
 
 void CSceneTileTool::CameraMove()
 {
@@ -84,23 +87,52 @@ void CSceneTileTool::CameraMove()
 	CAMERA->Scroll(dir, m_fScrollSpeed);
 }
 
-void CSceneTileTool::CreateTiles(UINT sizeX, UINT sizeY, bool line)
+void CSceneTileTool::ClickLButton()
 {
-	DeleteLayerObject(Layer::Tile);
+	toolMouse = MOUSEWORLDPOS;
+	m_IsClick = true;
 
-	m_iTileSizeX = sizeX;
-	m_iTileSizeY = sizeY;
-	for (UINT y = 0; y < sizeY; y++)
-	{
-		for (UINT x = 0; x < sizeX; x++)
-		{
-			CTile* pTile = new CTile();
-			pTile->SetTilePos(x, y);
-			pTile->SetLineRender(line);
-			AddGameObject(pTile);
-		}
-	}
 }
+
+void CSceneTileTool::DraggingLButton()
+{
+	RENDER->FrameRect(toolMouse.x, toolMouse.y, MOUSEWORLDPOS.x, MOUSEWORLDPOS.y);
+}
+
+void CSceneTileTool::UpLButton()
+{
+	toolMouse2 = MOUSEWORLDPOS;
+
+	float Startx = toolMouse.x > toolMouse2.x ?toolMouse2.x : toolMouse.x;
+	float Endx = toolMouse.x < toolMouse2.x ?toolMouse2.x : toolMouse.x;
+	float Starty = toolMouse.y > toolMouse2.y ?toolMouse2.y : toolMouse.y;
+	float Endy = toolMouse.y < toolMouse2.y ?toolMouse2.y : toolMouse.y;
+	CStageObject* newStageObject = new CStageObject;
+	newStageObject->SetPos(Startx,Starty);
+	newStageObject->SetScale(Endx-Startx,Endy-Starty);
+	//newStageObject->SetType();
+	ADDOBJECT(newStageObject);
+
+	m_IsClick = false;
+}
+
+//void CSceneTileTool::CreateTiles(UINT sizeX, UINT sizeY, bool line)
+//{
+//	DeleteLayerObject(Layer::Tile);
+//
+//	m_iTileSizeX = sizeX;
+//	m_iTileSizeY = sizeY;
+//	for (UINT y = 0; y < sizeY; y++)
+//	{
+//		for (UINT x = 0; x < sizeX; x++)
+//		{
+//			CTile* pTile = new CTile();
+//			pTile->SetTilePos(x, y);
+//			pTile->SetLineRender(line);
+//			AddGameObject(pTile);
+//		}
+//	}
+//}
 
 void CSceneTileTool::SaveTile(const wstring& strPath)
 {
@@ -109,28 +141,41 @@ void CSceneTileTool::SaveTile(const wstring& strPath)
 	_wfopen_s(&pFile, strPath.c_str(), L"wb");		// w : write, b : binary
 	assert(pFile);
 
-	UINT xCount = m_iTileSizeX;
-	UINT yCount = m_iTileSizeY;
-	UINT tileCount = 0;
+	//UINT xpos = m_iTileSizeX;
+	//UINT ypos = m_iTileSizeY;
+	//UINT xscale = 0;
+	//UINT xscale = 0;
 
-	for (CGameObject* pGameObject : m_listObj[(int)Layer::Tile])
+	//for (CGameObject* pGameObject : m_listObj[(int)Layer::Tile])
+	//{
+	//	CTile* pTile = (CTile*)pGameObject;
+	//	if (0 != pTile->GetTileIndex() ||
+	//		TypeTile::None != pTile->GetType())
+	//		tileCount++;
+	//}
+
+	//fwrite(&xCount, sizeof(UINT), 1, pFile);
+	//fwrite(&yCount, sizeof(UINT), 1, pFile);
+	//fwrite(&tileCount, sizeof(UINT), 1, pFile);
+
+	//for (CGameObject* pGameObject : m_listObj[(int)Layer::Tile])
+	//{
+	//	CTile* pTile = dynamic_cast<CTile*>(pGameObject);
+	//	if (0 != pTile->GetTileIndex() ||
+	//		TypeTile::None != pTile->GetType())
+	//		pTile->Save(pFile);
+	//}
+
+	UINT objCount = m_listObj[(int)Layer::StageObject].size();
+	fwrite(&objCount, sizeof(UINT), 1, pFile);
+
+	for (CGameObject* pGameObject : m_listObj[(int)Layer::StageObject])
 	{
-		CTile* pTile = (CTile*)pGameObject;
-		if (0 != pTile->GetTileIndex() ||
-			TypeTile::None != pTile->GetType())
-			tileCount++;
-	}
-
-	fwrite(&xCount, sizeof(UINT), 1, pFile);
-	fwrite(&yCount, sizeof(UINT), 1, pFile);
-	fwrite(&tileCount, sizeof(UINT), 1, pFile);
-
-	for (CGameObject* pGameObject : m_listObj[(int)Layer::Tile])
-	{
-		CTile* pTile = dynamic_cast<CTile*>(pGameObject);
-		if (0 != pTile->GetTileIndex() ||
-			TypeTile::None != pTile->GetType())
-			pTile->Save(pFile);
+		CStageObject* pStageObject = dynamic_cast<CStageObject*>(pGameObject);
+		
+		
+			pStageObject->Save(pFile);
+		
 	}
 
 	fclose(pFile);
@@ -162,41 +207,64 @@ void CSceneTileTool::SaveTileData()
 
 void CSceneTileTool::LoadTile(const wstring& strPath)
 {
-	DeleteLayerObject(Layer::Tile);
+	//DeleteLayerObject(Layer::Tile);
 
 	FILE* pFile = nullptr;
 
 	_wfopen_s(&pFile, strPath.c_str(), L"rb");      // w : write, b : binary
 	assert(pFile);
 
-	UINT xCount = 0;
-	UINT yCount = 0;
-	UINT tileCount = 0;
+	//UINT xCount = 0;
+	//UINT yCount = 0;
+	//UINT tileCount = 0;
 
-	fread(&xCount, sizeof(UINT), 1, pFile);
-	fread(&yCount, sizeof(UINT), 1, pFile);
-	fread(&tileCount, sizeof(UINT), 1, pFile);
+	//fread(&xCount, sizeof(UINT), 1, pFile);
+	//fread(&yCount, sizeof(UINT), 1, pFile);
+	//fread(&tileCount, sizeof(UINT), 1, pFile);
 
-	CreateTiles(xCount, yCount, true);
+	//CreateTiles(xCount, yCount, true);
 
-	CTile loadTile;
-	for (UINT count = 0; count < tileCount; count++)
+	//CTile loadTile;
+	//for (UINT count = 0; count < tileCount; count++)
+	//{
+	//	loadTile.Load(pFile);
+
+	//	for (CGameObject* pGameObject : m_listObj[(int)Layer::Tile])
+	//	{
+	//		CTile* pTile = (CTile*)pGameObject;
+	//		if (pTile->GetTilePosX() == loadTile.GetTilePosX() &&
+	//			pTile->GetTilePosY() == loadTile.GetTilePosY())
+	//		{
+	//			pTile->SetTileIndex(loadTile.GetTileIndex());
+	//			pTile->SetType(loadTile.GetType());
+	//		}
+	//	}
+	//}
+	UINT objCount = 0;
+	fread(&objCount, sizeof(UINT), 1, pFile);
+	CStageObject loadStageObject;
+	for (UINT count = 0; count < objCount; count++)
 	{
-		loadTile.Load(pFile);
+		loadStageObject.Load(pFile);
 
-		for (CGameObject* pGameObject : m_listObj[(int)Layer::Tile])
-		{
-			CTile* pTile = (CTile*)pGameObject;
-			if (pTile->GetTilePosX() == loadTile.GetTilePosX() &&
-				pTile->GetTilePosY() == loadTile.GetTilePosY())
-			{
-				pTile->SetTileIndex(loadTile.GetTileIndex());
-				pTile->SetType(loadTile.GetType());
-			}
-		}
-	}
+		CStageObject* pStageObject = new CStageObject;
+		pStageObject->SetPos(loadStageObject.GetPos());
+		pStageObject->SetScale(loadStageObject.GetScale());
+		pStageObject->SetType(loadStageObject.GetType());
+		ADDOBJECT(pStageObject);
 
+		
+    }
 	fclose(pFile);
+	/*for (CGameObject* pGameObject : m_listObj[(int)Layer::StageObject])
+	{
+		CStageObject* pStageObject = dynamic_cast<CStageObject*>(pGameObject);
+
+
+		pStageObject->Load(pFile);
+
+	}
+	fclose(pFile);*/
 }
 
 void CSceneTileTool::LoadTileData()
@@ -308,15 +376,15 @@ void CSceneTileTool::Enter()
 	MoveWindow(m_hWndTileTool, WINSTARTX + WINSIZEX, WINSTARTY,
 		rect.right - rect.left, rect.bottom - rect.top, true);
 
-	CreateTiles(10, 10, true);
+	//CreateTiles(10, 10, true);
 
 	m_pImageObj = new CImageObject;
 	AddGameObject(m_pImageObj);
 
-	CTilePanel* pTilePanel = new CTilePanel;
-	pTilePanel->SetScale(Vector(400.f, 600.f));
-	pTilePanel->SetPos(Vector(WINSIZEX - 450.f, 50.f));
-	AddGameObject(pTilePanel);
+	//CTilePanel* pTilePanel = new CTilePanel;
+	//pTilePanel->SetScale(Vector(400.f, 600.f));
+	//pTilePanel->SetPos(Vector(WINSIZEX - 450.f, 50.f));
+	//AddGameObject(pTilePanel);
 }
 
 void CSceneTileTool::Update()
@@ -326,13 +394,23 @@ void CSceneTileTool::Update()
 		CHANGESCENE(GroupScene::Title);
 	}
 
-	if (LMOUSESTAY(false))
+	/*if (LMOUSESTAY(false))
 	{
 		SetTile(m_uiSelectedTileIndex, m_typeSelectedTileType);
 	}
 	if (RMOUSESTAY(false))
 	{
 		SetTile(0, TypeTile::None);
+	}*/
+
+	if (LMOUSEDOWN(false))
+	{
+		ClickLButton();
+	}
+
+	if (LMOUSEUP(false))
+	{
+		UpLButton();
 	}
 
 	CameraMove();
@@ -340,6 +418,10 @@ void CSceneTileTool::Update()
 
 void CSceneTileTool::Render()
 {
+	if (m_IsClick == true)
+	{
+		DraggingLButton();
+	}
 }
 
 void CSceneTileTool::Exit()
@@ -370,7 +452,7 @@ LRESULT CALLBACK    WinTileToolProc(HWND hDlg, UINT message, WPARAM wParam, LPAR
 
 			CScene* pCurScene = SCENE->GetCurScene();
 			CSceneTileTool* pTileToolScene = dynamic_cast<CSceneTileTool*>(pCurScene);
-			pTileToolScene->CreateTiles(x, y, true);
+			//pTileToolScene->CreateTiles(x, y, true);
 		}
 		else if (LOWORD(wParam) == IDC_BUTTONTILESAVE)
 		{

@@ -52,6 +52,9 @@
     <Filter Include="GameObject\Stage01">
       <UniqueIdentifier>{f2ad0501-d505-4b88-af0d-880a4673ef5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\StageObject">
+      <UniqueIdentifier>{1aa953d2-baf9-4c3d-ba69-c410c4ee3df4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -183,6 +186,21 @@
     <ClInclude Include="CSoundManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="CStageObject.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CGround.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Platfoam.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Slope.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Wall.h">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -295,6 +313,21 @@
     </ClCompile>
     <ClCompile Include="CSoundManager.cpp">
       <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="CStageObject.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CGround.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Wall.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Slope.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Platfoam.cpp">
+      <Filter>Engine\Asset\StageObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

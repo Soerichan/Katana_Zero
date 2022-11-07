@@ -23,8 +23,8 @@ private:
 	UINT m_uiTileCountY;
 
 private:
-	void CreateTilePalette();
-	void CreatePageButton();
+	//void CreateTilePalette();
+	//void CreatePageButton();
 	void CreateTileTypeButton();
 	void SetPage(UINT page);
 	void SetPrevPage();

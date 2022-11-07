@@ -41,6 +41,7 @@ enum class GroupScene
 enum class Layer
 {
 	Default,
+	StageObject,
 	Tile,
 	Player,
 	Missile,
@@ -62,4 +63,23 @@ enum class TypeTile
 	Wall,
 
 	Size,
+};
+
+//========================================
+//##		 스테이지 오브젝트			##
+//========================================
+
+enum class TypeStageObject
+{
+	None,
+	Ground,
+	Wall,
+	Slope,
+	Platfoam,
+	Door,
+	MonsterSpawn,
+	Throws,
+
+	Size,
+
 };

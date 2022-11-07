@@ -150,6 +150,7 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundTile.h" />
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundManager.h" />
+    <ClInclude Include="CStageObject.h" />
     <ClInclude Include="CTile.h" />
     <ClInclude Include="CTileButton.h" />
     <ClInclude Include="CTilePanel.h" />
@@ -177,10 +179,13 @@
     <ClInclude Include="CUIManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Platfoam.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingleTon.h" />
+    <ClInclude Include="Slope.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Wall.h" />
     <ClInclude Include="WinAPI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +200,7 @@
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundTile.cpp" />
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
@@ -214,12 +220,16 @@
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundManager.cpp" />
+    <ClCompile Include="CStageObject.cpp" />
     <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTileButton.cpp" />
     <ClCompile Include="CTilePanel.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
+    <ClCompile Include="Platfoam.cpp" />
+    <ClCompile Include="Slope.cpp" />
+    <ClCompile Include="Wall.cpp" />
     <ClCompile Include="WinAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

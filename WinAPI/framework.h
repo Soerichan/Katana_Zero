@@ -67,6 +67,7 @@ using namespace FMOD;
 // Asset
 #include "CGameObject.h"
 #include "CScene.h"
+#include "CStageObject.h"
 
 // Resource
 #include "CResource.h"

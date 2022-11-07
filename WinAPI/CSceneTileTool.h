@@ -21,13 +21,22 @@ private:
 	UINT m_uiSelectedTileIndex;
 	TypeTile m_typeSelectedTileType;
 
+	bool m_IsClick;
+	Vector toolMouse;
+	Vector toolMouse2;
+
 private:
-	void SetTile(UINT index, TypeTile type);
+	//void SetTile(UINT index, TypeTile type);
 
 	void CameraMove();
 
 public:
-	void CreateTiles(UINT sizeX, UINT sizeY, bool line = false);
+
+	void ClickLButton();
+	void DraggingLButton();
+	void UpLButton();
+
+	//void CreateTiles(UINT sizeX, UINT sizeY, bool line = false);
 	void SaveTile(const wstring& strPath);
 	void SaveTileData();
 	void LoadTile(const wstring& strPath);

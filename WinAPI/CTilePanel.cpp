@@ -26,60 +26,60 @@ CTilePanel::~CTilePanel()
 {
 }
 
-void CTilePanel::CreateTilePalette()
-{
-	m_pImage = RESOURCE->LoadImg(L"Time", L"Image\\Tile.png");
-	m_uiTileCountX = m_pImage->GetWidth() / CTile::TILESIZE;
-	m_uiTileCountY = m_pImage->GetHeight() / CTile::TILESIZE;
+//void CTilePanel::CreateTilePalette()
+//{
+//	m_pImage = RESOURCE->LoadImg(L"Time", L"Image\\Tile.png");
+//	m_uiTileCountX = m_pImage->GetWidth() / CTile::TILESIZE;
+//	m_uiTileCountY = m_pImage->GetHeight() / CTile::TILESIZE;
+//
+//	m_uiPaletteX = (int)(m_vecScale.x / CTile::TILESIZE);
+//	m_uiPaletteY = (int)((m_vecScale.y - m_uiMenuHeight) / CTile::TILESIZE);
+//	int marginX = ((int)m_vecScale.x % CTile::TILESIZE) / 2;
+//	int marginY = ((int)m_vecScale.y % CTile::TILESIZE) / 2;
+//
+//	for (UINT y = 0; y < m_uiPaletteY; y++)
+//	{
+//		for (UINT x = 0; x < m_uiPaletteX; x++)
+//		{
+//			CTileButton* pTileButton = new CTileButton;
+//			pTileButton->SetImage(m_pImage);
+//			pTileButton->SetPos(Vector((float)x * CTile::TILESIZE, (float)y * CTile::TILESIZE));
+//			pTileButton->SetPos(Vector(pTileButton->GetPos() + Vector((float)marginX, (float)marginY)));
+//			AddChildUI(pTileButton);
+//			m_vecTileButton.push_back(pTileButton);
+//		}
+//	}
+//}
 
-	m_uiPaletteX = (int)(m_vecScale.x / CTile::TILESIZE);
-	m_uiPaletteY = (int)((m_vecScale.y - m_uiMenuHeight) / CTile::TILESIZE);
-	int marginX = ((int)m_vecScale.x % CTile::TILESIZE) / 2;
-	int marginY = ((int)m_vecScale.y % CTile::TILESIZE) / 2;
-
-	for (UINT y = 0; y < m_uiPaletteY; y++)
-	{
-		for (UINT x = 0; x < m_uiPaletteX; x++)
-		{
-			CTileButton* pTileButton = new CTileButton;
-			pTileButton->SetImage(m_pImage);
-			pTileButton->SetPos(Vector((float)x * CTile::TILESIZE, (float)y * CTile::TILESIZE));
-			pTileButton->SetPos(Vector(pTileButton->GetPos() + Vector((float)marginX, (float)marginY)));
-			AddChildUI(pTileButton);
-			m_vecTileButton.push_back(pTileButton);
-		}
-	}
-}
-
-void CTilePanel::CreatePageButton()
-{
-	auto prevClick = [](DWORD_PTR tilePanel, DWORD_PTR)
-	{
-		CTilePanel* pTilePanel = (CTilePanel*)tilePanel;
-		pTilePanel->SetPrevPage();
-	};
-
-	CButton* pPrevButton = new CButton;
-	pPrevButton->SetScale(50.f, 30);
-	pPrevButton->SetPos(Vector(10.f,
-		(float)(m_vecScale.y - m_uiMenuHeight)));
-	pPrevButton->SetText(L"<-");
-	pPrevButton->SetClickedCallback(prevClick, (DWORD_PTR)this, (DWORD_PTR)0);
-	AddChildUI(pPrevButton);
-
-	auto nextClick = [](DWORD_PTR tilePanel, DWORD_PTR)
-	{
-		CTilePanel* pTilePanel = (CTilePanel*)tilePanel;
-		pTilePanel->SetNextPage();
-	};
-	CButton* pNextButton = new CButton;
-	pNextButton->SetScale(50.f, 30);
-	pNextButton->SetPos(Vector((float)(m_vecScale.x - 60.f),
-		(float)(m_vecScale.y - m_uiMenuHeight)));
-	pPrevButton->SetText(L"->");
-	pNextButton->SetClickedCallback(nextClick, (DWORD_PTR)this, (DWORD_PTR)0);
-	AddChildUI(pNextButton);
-}
+//void CTilePanel::CreatePageButton()
+//{
+//	auto prevClick = [](DWORD_PTR tilePanel, DWORD_PTR)
+//	{
+//		CTilePanel* pTilePanel = (CTilePanel*)tilePanel;
+//		pTilePanel->SetPrevPage();
+//	};
+//
+//	CButton* pPrevButton = new CButton;
+//	pPrevButton->SetScale(50.f, 30);
+//	pPrevButton->SetPos(Vector(10.f,
+//		(float)(m_vecScale.y - m_uiMenuHeight)));
+//	pPrevButton->SetText(L"<-");
+//	pPrevButton->SetClickedCallback(prevClick, (DWORD_PTR)this, (DWORD_PTR)0);
+//	AddChildUI(pPrevButton);
+//
+//	auto nextClick = [](DWORD_PTR tilePanel, DWORD_PTR)
+//	{
+//		CTilePanel* pTilePanel = (CTilePanel*)tilePanel;
+//		pTilePanel->SetNextPage();
+//	};
+//	CButton* pNextButton = new CButton;
+//	pNextButton->SetScale(50.f, 30);
+//	pNextButton->SetPos(Vector((float)(m_vecScale.x - 60.f),
+//		(float)(m_vecScale.y - m_uiMenuHeight)));
+//	pPrevButton->SetText(L"->");
+//	pNextButton->SetClickedCallback(nextClick, (DWORD_PTR)this, (DWORD_PTR)0);
+//	AddChildUI(pNextButton);
+//}
 
 void CTilePanel::CreateTileTypeButton()
 {
@@ -143,8 +143,8 @@ void CTilePanel::SetNextPage()
 
 void CTilePanel::Init()
 {
-	CreateTilePalette();
-	CreatePageButton();
+	//CreateTilePalette();
+	//CreatePageButton();
 	CreateTileTypeButton();
 	SetPage(0);
 }
