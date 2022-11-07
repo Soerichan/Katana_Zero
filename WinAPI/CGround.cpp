@@ -12,7 +12,9 @@ CGround::~CGround()
 void CGround::Init()
 {
 	CStageObject::Init();
-
+	AddCollider(ColliderType::Rect,
+		Vector(m_vecPos),
+		Vector(m_vecScale));
 	
 }
 

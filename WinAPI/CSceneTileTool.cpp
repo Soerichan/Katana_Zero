@@ -87,7 +87,7 @@ void CSceneTileTool::CameraMove()
 	CAMERA->Scroll(dir, m_fScrollSpeed);
 }
 
-void CSceneTileTool::ClickLButton()
+void CSceneTileTool::CreateStageObject()
 {
 	toolMouse = MOUSEWORLDPOS;
 	m_IsClick = true;
@@ -114,6 +114,26 @@ void CSceneTileTool::UpLButton()
 	ADDOBJECT(newStageObject);
 
 	m_IsClick = false;
+}
+
+void CSceneTileTool::DeleteStageObject()
+{
+	toolMouse= MOUSEWORLDPOS;
+
+	for (CGameObject* newGameObject : m_listObj[(int)Layer::StageObject])
+	{
+		if (newGameObject->GetPos().x < toolMouse.x &&	
+			(newGameObject->GetPos().x+newGameObject->GetScale().x)>toolMouse.x &&
+			newGameObject->GetPos().y < toolMouse.y&&
+			(newGameObject->GetPos().y + newGameObject->GetScale().y)>toolMouse.y
+			)
+		{
+			DELETEOBJECT(newGameObject);
+		}
+	}
+
+
+	
 }
 
 //void CSceneTileTool::CreateTiles(UINT sizeX, UINT sizeY, bool line)
@@ -405,12 +425,17 @@ void CSceneTileTool::Update()
 
 	if (LMOUSEDOWN(false))
 	{
-		ClickLButton();
+		CreateStageObject();
 	}
 
 	if (LMOUSEUP(false))
 	{
 		UpLButton();
+	}
+
+	if (RMOUSEDOWN(false))
+	{
+		DeleteStageObject();
 	}
 
 	CameraMove();

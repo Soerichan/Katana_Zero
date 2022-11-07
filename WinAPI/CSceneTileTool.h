@@ -32,9 +32,10 @@ private:
 
 public:
 
-	void ClickLButton();
+	void CreateStageObject();
 	void DraggingLButton();
 	void UpLButton();
+	void DeleteStageObject();
 
 	//void CreateTiles(UINT sizeX, UINT sizeY, bool line = false);
 	void SaveTile(const wstring& strPath);
