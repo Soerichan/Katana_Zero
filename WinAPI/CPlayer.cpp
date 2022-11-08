@@ -26,6 +26,8 @@ CPlayer::CPlayer()
 	m_vecMoveDir = Vector(0, 0);
 	m_vecLookDir = Vector(0, -1);
 	m_bIsMove = false;
+
+	State = PlayerState::Idle;
 }
 
 CPlayer::~CPlayer()
@@ -64,15 +66,96 @@ void CPlayer::Init()
 void CPlayer::Update()
 {
 	m_bIsMove = false;
+	WhereAmI();
 
 	if (BUTTONSTAY(VK_LEFT))
 	{
+		switch ((int)State)
+		{
+			case 0:
+			{
+
+			}
+			case 1:
+			{
+
+			}
+			case 2:
+			{
+
+			}
+			case 3:
+			{
+
+
+			}
+			case 4:
+			{
+
+			}
+			case 5:
+			{
+
+			}
+			case 6:
+			{
+
+			}
+			case 7:
+			{
+
+			}
+			case 8:
+			{
+
+			}
+	    }
 		m_vecPos.x -= m_fSpeed * DT;
 		m_bIsMove = true;
 		m_vecMoveDir.x = -1;
 	}
 	else if (BUTTONSTAY(VK_RIGHT))
 	{
+	 switch ((int)State)
+	 {
+		case 0:
+		{
+
+		}
+		case 1:
+		{
+
+		}
+		case 2:
+		{
+
+		}
+		case 3:
+		{
+
+
+		}
+		case 4:
+		{
+
+		}
+		case 5:
+		{
+
+		}
+		case 6:
+		{
+
+		}
+		case 7:
+		{
+
+		}
+		case 8:
+		{
+
+		}
+	 }
 		m_vecPos.x += m_fSpeed * DT;
 		m_bIsMove = true;
 		m_vecMoveDir.x = +1;
@@ -84,6 +167,46 @@ void CPlayer::Update()
 
 	if (BUTTONSTAY(VK_UP))
 	{
+		switch ((int)State)
+		{
+		case 0:
+		{
+
+		}
+		case 1:
+		{
+
+		}
+		case 2:
+		{
+
+		}
+		case 3:
+		{
+
+
+		}
+		case 4:
+		{
+
+		}
+		case 5:
+		{
+
+		}
+		case 6:
+		{
+
+		}
+		case 7:
+		{
+
+		}
+		case 8:
+		{
+
+		}
+		}
 		m_vecPos.y -= m_fSpeed * DT;
 		m_bIsMove = true;
 		m_vecMoveDir.y = +1;
@@ -99,10 +222,10 @@ void CPlayer::Update()
 		m_vecMoveDir.y = 0;
 	}
 
-	if (BUTTONDOWN(VK_SPACE))
-	{
-		CreateMissile();
-	}
+	//if (BUTTONDOWN(VK_SPACE))
+	//{
+	//	CreateMissile();
+	//}
 
 	AnimatorUpdate();
 }
@@ -158,20 +281,73 @@ void CPlayer::CreateMissile()
 	pMissile3->SetDir(Vector(3, 1));
 	ADDOBJECT(pMissile3);
 
-	CMissile* pMissile4 = new CMissile();
-	pMissile4->SetPos(m_vecPos);
-	pMissile4->SetDir(Vector(3, -1));
-	ADDOBJECT(pMissile4);
+	//CMissile* pMissile4 = new CMissile();
+	//pMissile4->SetPos(m_vecPos);
+	//pMissile4->SetDir(Vector(3, -1));
+	//ADDOBJECT(pMissile4);
 }
 
 void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 {
+	wstring pTarget = pOtherCollider->GetObjName();
+	if (pTarget == L"Ground")
+	{
+		
+	}
+	if (pTarget == L"Wall")
+	{
+
+	}
+	if (pTarget == L"R_High_Slope")
+	{
+
+	}
+	if (pTarget == L"L_High_Slope")
+	{
+
+	}
+	if (pTarget == L"Platfoam")
+	{
+
+	}
 }
 
 void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 {
+	wstring pTarget = pOtherCollider->GetObjName();
+	if (pTarget == L"Ground")
+	{
+		Logger::Debug(L"그라운드");
+		m_vecPos.y = pOtherCollider->GetPos().y-4;
+	}
+	if (pTarget == L"Wall")
+	{
+		m_vecPos.x= pOtherCollider->GetPos().x;
+	}
+	if (pTarget == L"R_High_Slope")
+	{	
+		
+		m_vecPos.y = m_vecPos.x-pOtherCollider->GetPos().x-4;
+	}
+	if (pTarget == L"L_High_Slope")
+	{
+		m_vecPos.y = pOtherCollider->GetPos().x- m_vecPos.x-4;
+	}
+	if (pTarget == L"Platfoam")
+	{
+		m_vecPos.y = pOtherCollider->GetPos().y-4;
+	}
+
+
+
+
 }
 
 void CPlayer::OnCollisionExit(CCollider* pOtherCollider)
 {
+}
+
+void CPlayer::WhereAmI()
+{
+	PLAYERPOSITION= m_vecPos;
 }

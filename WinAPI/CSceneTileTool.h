@@ -19,7 +19,7 @@ private:
 	UINT m_uiTileCountY;
 
 	UINT m_uiSelectedTileIndex;
-	TypeTile m_typeSelectedTileType;
+	TypeStageObject m_typeSelectedStageObjectType;
 
 	bool m_IsClick;
 	Vector toolMouse;
@@ -48,7 +48,7 @@ public:
 	void LoadMapData();
 
 	void ClickTileButton(UINT index);
-	void ClickTileType(TypeTile type);
+	void ClickStageObjectType(TypeStageObject type);
 
 private:
 	void Init() override;

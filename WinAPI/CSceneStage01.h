@@ -8,7 +8,7 @@ class CSceneStage01 : public CScene
 public:
 	CSceneStage01();
 	virtual ~CSceneStage01();
-
+	CImage* m_BGImage;
 private:
 	CPlayer* pPlayer;
 

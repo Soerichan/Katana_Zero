@@ -16,6 +16,7 @@
 #include "CTileButton.h"
 #include "CTilePanel.h"
 #include "CImageObject.h"
+#include "CGround.h"
 
 LRESULT CALLBACK    WinTileToolProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -27,11 +28,11 @@ CSceneTileTool::CSceneTileTool()
 	m_iTileSizeY = 0;
 	m_fScrollSpeed = 300;
 
-	//m_uiTilePanelPage = 0;
+	m_uiTilePanelPage = 0;
 	m_uiTileCountX = 0;
 	m_uiTileCountY = 0;
 	m_uiSelectedTileIndex = 0;
-	m_typeSelectedTileType = TypeTile::None;
+	m_typeSelectedStageObjectType = TypeStageObject::None;
 
 	toolMouse = {};
 	toolMouse2 = {};
@@ -107,11 +108,70 @@ void CSceneTileTool::UpLButton()
 	float Endx = toolMouse.x < toolMouse2.x ?toolMouse2.x : toolMouse.x;
 	float Starty = toolMouse.y > toolMouse2.y ?toolMouse2.y : toolMouse.y;
 	float Endy = toolMouse.y < toolMouse2.y ?toolMouse2.y : toolMouse.y;
-	CStageObject* newStageObject = new CStageObject;
-	newStageObject->SetPos(Startx,Starty);
-	newStageObject->SetScale(Endx-Startx,Endy-Starty);
-	//newStageObject->SetType();
+
+	switch ((int)m_typeSelectedStageObjectType)
+
+	{
+	case 1:
+	{
+		CGround* newStageObject = new CGround;
+		newStageObject->SetPos(Startx, Starty);
+		newStageObject->SetScale(Endx - Startx, Endy - Starty);
+		newStageObject->SetType(m_typeSelectedStageObjectType);
+		ADDOBJECT(newStageObject);
+		break;
+	}
+
+	case 2:
+	{
+	CWall* newStageObject = new CWall;
+	newStageObject->SetPos(Startx, Starty);
+	newStageObject->SetScale(Endx - Startx, Endy - Starty);
+	newStageObject->SetType(m_typeSelectedStageObjectType);
 	ADDOBJECT(newStageObject);
+	break;
+	}
+
+	case 3:
+	{
+		CR_High_Slope* newStageObject = new CR_High_Slope;
+		newStageObject->SetPos(Startx, Starty);
+		newStageObject->SetScale(Endx - Startx, Endy - Starty);
+		newStageObject->SetType(m_typeSelectedStageObjectType);
+		ADDOBJECT(newStageObject);
+		break;
+	}
+
+	case 4:
+	{
+		CL_High_Slope* newStageObject = new CL_High_Slope;
+		newStageObject->SetPos(Startx, Starty);
+		newStageObject->SetScale(Endx - Startx, Endy - Starty);
+		newStageObject->SetType(m_typeSelectedStageObjectType);
+		ADDOBJECT(newStageObject);
+		break;
+	}
+
+	case 5:
+	{
+		CPlatfoam* newStageObject = new CPlatfoam;
+		newStageObject->SetPos(Startx, Starty);
+		newStageObject->SetScale(Endx - Startx, Endy - Starty);
+		newStageObject->SetType(m_typeSelectedStageObjectType);
+		ADDOBJECT(newStageObject);
+		break;
+	}
+
+
+
+
+
+	}
+	//CStageObject* newStageObject = new CStageObject;
+	//newStageObject->SetPos(Startx,Starty);
+	//newStageObject->SetScale(Endx-Startx,Endy-Starty);
+	//newStageObject->SetType(m_typeSelectedStageObjectType);
+	//ADDOBJECT(newStageObject);
 
 	m_IsClick = false;
 }
@@ -267,12 +327,66 @@ void CSceneTileTool::LoadTile(const wstring& strPath)
 	{
 		loadStageObject.Load(pFile);
 
+		switch (loadStageObject.GetType())
+		{
+		case TypeStageObject::Ground:
+		{
+			CGround* newStageObject = new CGround;
+			newStageObject->SetPos(loadStageObject.GetPos());
+			newStageObject->SetScale(loadStageObject.GetScale());
+			newStageObject->SetType(loadStageObject.GetType());
+			ADDOBJECT(newStageObject);
+			break;
+		}
+
+		case  TypeStageObject::Wall:
+		{
+			CWall* newStageObject = new CWall;
+			newStageObject->SetPos(loadStageObject.GetPos());
+			newStageObject->SetScale(loadStageObject.GetScale());
+			newStageObject->SetType(loadStageObject.GetType());
+			ADDOBJECT(newStageObject);
+			break;
+		}
+
+		case  TypeStageObject::R_Hihg_Slope:
+		{
+			CR_High_Slope* newStageObject = new CR_High_Slope;
+			newStageObject->SetPos(loadStageObject.GetPos());
+			newStageObject->SetScale(loadStageObject.GetScale());
+			newStageObject->SetType(loadStageObject.GetType());
+			ADDOBJECT(newStageObject);
+			break;
+		}
+
+		case TypeStageObject::L_Hihg_Slope:
+		{
+			CL_High_Slope* newStageObject = new CL_High_Slope;
+			newStageObject->SetPos(loadStageObject.GetPos());
+			newStageObject->SetScale(loadStageObject.GetScale());
+			newStageObject->SetType(loadStageObject.GetType());
+			ADDOBJECT(newStageObject);
+			break;
+		}
+
+		case TypeStageObject::Platfoam:
+		{
+			CPlatfoam* newStageObject = new CPlatfoam;
+			newStageObject->SetPos(loadStageObject.GetPos());
+			newStageObject->SetScale(loadStageObject.GetScale());
+			newStageObject->SetType(loadStageObject.GetType());
+			ADDOBJECT(newStageObject);
+			break;
+		}
+		/*
+
 		CStageObject* pStageObject = new CStageObject;
 		pStageObject->SetPos(loadStageObject.GetPos());
 		pStageObject->SetScale(loadStageObject.GetScale());
 		pStageObject->SetType(loadStageObject.GetType());
 		ADDOBJECT(pStageObject);
-
+		*/
+		}
 		
     }
 	fclose(pFile);
@@ -375,9 +489,9 @@ void CSceneTileTool::ClickTileButton(UINT index)
 	m_uiSelectedTileIndex = index;
 }
 
-void CSceneTileTool::ClickTileType(TypeTile type)
+void CSceneTileTool::ClickStageObjectType(TypeStageObject type)
 {
-	m_typeSelectedTileType = type;
+	m_typeSelectedStageObjectType = type;
 }
 
 void CSceneTileTool::Init()
@@ -401,10 +515,10 @@ void CSceneTileTool::Enter()
 	m_pImageObj = new CImageObject;
 	AddGameObject(m_pImageObj);
 
-	//CTilePanel* pTilePanel = new CTilePanel;
-	//pTilePanel->SetScale(Vector(400.f, 600.f));
-	//pTilePanel->SetPos(Vector(WINSIZEX - 450.f, 50.f));
-	//AddGameObject(pTilePanel);
+	CTilePanel* pTilePanel = new CTilePanel;
+	pTilePanel->SetScale(Vector(300.f, 400.f));
+	pTilePanel->SetPos(Vector(WINSIZEX - 450.f, 50.f));
+	AddGameObject(pTilePanel);
 }
 
 void CSceneTileTool::Update()

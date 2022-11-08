@@ -36,12 +36,18 @@ void CSceneStage01::Init()
 
 	CCameraController* pCamController = new CCameraController;
 	AddGameObject(pCamController);
+
+	//m_BGImage = RESOURCE->LoadImg(L"BG", L"Image\\KATANA_MAP_club.png");
+
+
+
 }
 
 void CSceneStage01::Enter()
 {
 	CAMERA->FadeIn(0.25f);
-	LoadTile(GETPATH + L"Tile\\Stage01.tile");
+	LoadStageObject(GETPATH + L"Tile\\ttsset.tile");
+	
 }
 
 void CSceneStage01::Update()

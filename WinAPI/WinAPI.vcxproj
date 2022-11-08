@@ -149,11 +149,13 @@
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CEventManager.h" />
+    <ClInclude Include="CGameManager.h" />
     <ClInclude Include="CGameObject.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundTile.h" />
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
+    <ClInclude Include="CL_High_Slope.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
     <ClInclude Include="CPanel.h" />
@@ -179,13 +181,13 @@
     <ClInclude Include="CUIManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Logger.h" />
-    <ClInclude Include="Platfoam.h" />
+    <ClInclude Include="CPlatfoam.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SingleTon.h" />
-    <ClInclude Include="Slope.h" />
+    <ClInclude Include="CR_High_Slope.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Wall.h" />
+    <ClInclude Include="CWall.h" />
     <ClInclude Include="WinAPI.h" />
   </ItemGroup>
   <ItemGroup>
@@ -199,11 +201,13 @@
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CEventManager.cpp" />
+    <ClCompile Include="CGameManager.cpp" />
     <ClCompile Include="CGameObject.cpp" />
     <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundTile.cpp" />
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
+    <ClCompile Include="CL_High_Slope.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
     <ClCompile Include="CPanel.cpp" />
@@ -227,9 +231,9 @@
     <ClCompile Include="CTimeManager.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
-    <ClCompile Include="Platfoam.cpp" />
-    <ClCompile Include="Slope.cpp" />
-    <ClCompile Include="Wall.cpp" />
+    <ClCompile Include="CPlatfoam.cpp" />
+    <ClCompile Include="CR_High_Slope.cpp" />
+    <ClCompile Include="CWall.cpp" />
     <ClCompile Include="WinAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

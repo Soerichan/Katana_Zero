@@ -4,6 +4,24 @@
 class CImage;
 class CAnimator;
 
+//========================================
+//##		 플레이어 상태			##
+//========================================
+
+enum class PlayerState
+{
+	Idle,
+	Run,
+	Attack,
+	Roll,
+	WallGrab,
+	Stun,
+	Flip,
+	Jump,
+	Die
+
+};
+
 class CPlayer : public CGameObject
 {
 public:
@@ -19,6 +37,9 @@ private:
 	Vector m_vecLookDir;
 	bool m_bIsMove;
 
+	float actionTimer;
+	PlayerState State;
+
 	float m_fSpeed = 200.0f;
 
 private:
@@ -33,4 +54,9 @@ private:
 	void OnCollisionEnter(CCollider* pOtherCollider) override;
 	void OnCollisionStay(CCollider* pOtherCollider) override;
 	void OnCollisionExit(CCollider* pOtherCollider) override;
+
+	void WhereAmI();
+
+
 };
+

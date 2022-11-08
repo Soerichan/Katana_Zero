@@ -4,7 +4,7 @@
 CStageObject::CStageObject()
 {
 	m_layer = Layer::StageObject;
-	m_type = TypeStageObject::None;
+	
 }
 
 CStageObject::~CStageObject()

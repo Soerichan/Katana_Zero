@@ -46,10 +46,10 @@ private:
 	virtual void Exit() = 0;		// Å»Ãâ
 	virtual void Release() = 0;		// ¸¶¹«¸®
 
-	void TileRender();
+	void StageObjectRender();
 
 public:
-	void LoadTile(const wstring& strPath);
+	void LoadStageObject(const wstring& strPath);
 
 protected:
 	list<CGameObject*>& GetLayerObject(Layer layer);

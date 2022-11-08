@@ -74,7 +74,8 @@ enum class TypeStageObject
 	None,
 	Ground,
 	Wall,
-	Slope,
+	R_Hihg_Slope,
+	L_Hihg_Slope,
 	Platfoam,
 	Door,
 	MonsterSpawn,
@@ -83,3 +84,4 @@ enum class TypeStageObject
 	Size,
 
 };
+

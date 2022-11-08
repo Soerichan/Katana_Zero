@@ -63,11 +63,13 @@ using namespace FMOD;
 #include "CCameraManager.h"
 #include "CUIManager.h"
 #include "CSoundManager.h"
+#include "CGameManager.h"
 
 // Asset
 #include "CGameObject.h"
 #include "CScene.h"
 #include "CStageObject.h"
+
 
 // Resource
 #include "CResource.h"
@@ -85,3 +87,11 @@ using namespace FMOD;
 #include "CComponent.h"
 #include "CAnimator.h"
 #include "CCollider.h"
+
+//StageObject
+
+#include "CGround.h"
+#include "CWall.h"
+#include "CPlatfoam.h"
+#include "CR_High_Slope.h"
+#include "CL_High_Slope.h"
