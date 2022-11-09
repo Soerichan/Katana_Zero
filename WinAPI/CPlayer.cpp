@@ -318,24 +318,53 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 	if (pTarget == L"Ground")
 	{
 		Logger::Debug(L"그라운드");
-		m_vecPos.y = pOtherCollider->GetPos().y-4;
+		if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
+		{
+			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+		}
+		else //천장에 머리박기
+		{
+			m_vecPos.y = pOtherCollider->GetPos().y+ pOtherCollider->GetScale().y/2 + m_vecScale.y / 2;
+		}
+
 	}
-	if (pTarget == L"Wall")
+	if (pTarget == L"Wall") 
 	{
-		m_vecPos.x= pOtherCollider->GetPos().x;
+		if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
+		{
+			m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2+4;
+		}
+		else//오른쪽에서 부딪히기
+		{
+			m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2-4;
+		}
 	}
 	if (pTarget == L"R_High_Slope")
 	{	
 		
-		m_vecPos.y = m_vecPos.x-pOtherCollider->GetPos().x-4;
+		//m_vecPos.y = (pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2) - (m_vecPos.x) - m_vecScale.y / 2 + 4;
+		float Slope;
+		Slope = (-(pOtherCollider->GetScale().y / pOtherCollider->GetScale().x) * (m_vecPos.x - pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2) + pOtherCollider->GetPos().y - pOtherCollider->GetScale().y / 2) - m_vecScale.y / 2;
+		if (Slope < m_vecPos.y)
+		{
+			m_vecPos.y = Slope;
+		}
 	}
 	if (pTarget == L"L_High_Slope")
-	{
-		m_vecPos.y = pOtherCollider->GetPos().x- m_vecPos.x-4;
+	{	
+		float Slope2;
+		Slope2 = ((pOtherCollider->GetScale().y / pOtherCollider->GetScale().x) * (m_vecPos.x - pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2) + pOtherCollider->GetPos().y - pOtherCollider->GetScale().y / 2)-m_vecScale.y/2;
+		if (Slope2 < m_vecPos.y)
+		{
+			m_vecPos.y = Slope2;
+		}
 	}
 	if (pTarget == L"Platfoam")
 	{
-		m_vecPos.y = pOtherCollider->GetPos().y-4;
+		if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
+		{
+			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+		}
 	}
 
 

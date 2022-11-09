@@ -20,7 +20,7 @@ void CStageObject::SetType(TypeStageObject type)
 
 TypeStageObject CStageObject::GetType()
 {
-	return TypeStageObject();
+	return m_type;
 }
 
 int CStageObject::GetStageObjectPosX()

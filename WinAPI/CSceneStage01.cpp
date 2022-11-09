@@ -27,7 +27,7 @@ CSceneStage01::~CSceneStage01()
 void CSceneStage01::Init()
 {
 	pPlayer = new CPlayer();
-	pPlayer->SetPos(200, WINSIZEY * 0.5f);
+	pPlayer->SetPos(0, 0);
 	AddGameObject(pPlayer);
 
 	CMonster* pMonster = new CMonster();
@@ -46,7 +46,7 @@ void CSceneStage01::Init()
 void CSceneStage01::Enter()
 {
 	CAMERA->FadeIn(0.25f);
-	LoadStageObject(GETPATH + L"Tile\\ttsset.tile");
+	LoadStageObject(GETPATH + L"Tile\\111.tile");
 	
 }
 
