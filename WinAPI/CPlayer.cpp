@@ -26,8 +26,12 @@ CPlayer::CPlayer()
 	m_vecMoveDir = Vector(0, 0);
 	m_vecLookDir = Vector(0, -1);
 	m_bIsMove = false;
-
+	actionTimer = 0;
 	State = PlayerState::Idle;
+
+	gravity = true;
+	islanding = false;
+	unGravityTimer = 0;
 }
 
 CPlayer::~CPlayer()
@@ -36,18 +40,18 @@ CPlayer::~CPlayer()
 
 void CPlayer::Init()
 {
-	m_pIdleImage = RESOURCE->LoadImg(L"PlayerIdle", L"Image\\PlayerIdle.png");
+	m_pIdleImage = RESOURCE->LoadImg(L"PlayerIdle", L"Image\\NULL\\IDLE\\IDLE_x2.png");
 	m_pMoveImage = RESOURCE->LoadImg(L"PlayerMove", L"Image\\PlayerMove.png");
 
 	m_pAnimator = new CAnimator;
-	m_pAnimator->CreateAnimation(L"IdleUp", m_pIdleImage, Vector(8.f, 0.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleRightUp", m_pIdleImage, Vector(8.f, 70.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleRight", m_pIdleImage, Vector(8.f, 140.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleRightDown", m_pIdleImage, Vector(8.f, 210.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleDown", m_pIdleImage, Vector(8.f, 280.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleLeftDown", m_pIdleImage, Vector(8.f, 350.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleLeft", m_pIdleImage, Vector(8.f, 420.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleLeftUp", m_pIdleImage, Vector(8.f, 490.f), Vector(80.f, 70.f), Vector(80.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleUp",			 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleRight",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleRightDown",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleDown",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleLeftDown",	 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 500.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleLeft",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 500.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 500.f), Vector(300.f, 0.f), 0.1f, 7);
 
 	m_pAnimator->CreateAnimation(L"MoveUp", m_pMoveImage, Vector(0.f, 0.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
 	m_pAnimator->CreateAnimation(L"MoveRightUp", m_pMoveImage, Vector(0.f, 79.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
@@ -65,151 +69,201 @@ void CPlayer::Init()
 
 void CPlayer::Update()
 {
-	m_bIsMove = false;
-	WhereAmI();
+	m_bIsMove = false;//움직임 여부
+
+	WhereAmI();//GAME에 좌표 기록
+	unGravityTimer -= DT;
+
+	if (unGravityTimer <= 0)
+	{
+		unGravityTimer = -1;
+	}
+
+	if (unGravityTimer >= 0)
+	{
+		gravityPower = 0;
+	}
+
+	gravityPower = 10 * flyTimer * flyTimer; //중력
+	if (gravityPower >= 100)
+	{
+		gravityPower = 100;
+	}
+
+	if (islanding == true)//체공여부
+	{
+		flyTimer = 0;
+	}
+	else
+	{
+		flyTimer += DT;
+	
+		m_vecPos.y +=  gravityPower;
+	}
+	
 
 	if (BUTTONSTAY(VK_LEFT))
 	{
-		switch ((int)State)
+		switch (State)
 		{
-			case 0:
+			case PlayerState::Idle:
 			{
-
+				State = PlayerState::Run;
+				break;
 			}
-			case 1:
+			case PlayerState::Run:
 			{
-
+				m_vecPos.x -= m_fSpeed * DT;
+				m_bIsMove = true;
+				m_vecMoveDir.x = -1;
+				break;
 			}
-			case 2:
+			case PlayerState::Attack:
 			{
-
+				break;
 			}
-			case 3:
+			case PlayerState::Roll:
 			{
-
-
+				break;
 			}
-			case 4:
+			case PlayerState::WallGrab:
 			{
-
+				break;
 			}
-			case 5:
+			case PlayerState::Stun:
 			{
-
+				break;
 			}
-			case 6:
+			case PlayerState::Flip:
 			{
-
+				break;
 			}
-			case 7:
+			case PlayerState::Jump:
 			{
-
+				m_vecMoveDir.x = -1;
+				break;
 			}
-			case 8:
+			case PlayerState::Dance:
 			{
-
+				State = PlayerState::Run;
+				break;
 			}
 	    }
-		m_vecPos.x -= m_fSpeed * DT;
-		m_bIsMove = true;
-		m_vecMoveDir.x = -1;
+	
 	}
 	else if (BUTTONSTAY(VK_RIGHT))
 	{
-	 switch ((int)State)
-	 {
-		case 0:
+		switch (State)
 		{
-
-		}
-		case 1:
+		case PlayerState::Idle:
 		{
-
+			State = PlayerState::Run;
+			break;
 		}
-		case 2:
+		case PlayerState::Run:
 		{
-
+			m_vecPos.x += m_fSpeed * DT;
+			m_bIsMove = true;
+			m_vecMoveDir.x = +1;
+			break;
 		}
-		case 3:
+		case PlayerState::Attack:
 		{
-
-
+			break;
 		}
-		case 4:
+		case PlayerState::Roll:
 		{
-
+			break;
 		}
-		case 5:
+		case PlayerState::WallGrab:
 		{
-
+			break;
 		}
-		case 6:
+		case PlayerState::Stun:
 		{
-
+			break;
 		}
-		case 7:
+		case PlayerState::Flip:
 		{
-
+			break;
 		}
-		case 8:
+		case PlayerState::Jump:
 		{
-
+			m_vecMoveDir.x = +1;
+			break;
 		}
+		case PlayerState::Dance:
+		{
+			State = PlayerState::Run;
+			break;
+		}
+	
 	 }
-		m_vecPos.x += m_fSpeed * DT;
-		m_bIsMove = true;
-		m_vecMoveDir.x = +1;
+	
 	}
 	else
 	{
 		m_vecMoveDir.x = 0;
 	}
 
-	if (BUTTONSTAY(VK_UP))
+	if (BUTTONDOWN(VK_UP))
 	{
-		switch ((int)State)
+		switch (State)
 		{
-		case 0:
+		case PlayerState::Idle:
 		{
+			islanding = false;
+			m_vecMoveDir.y = -1;
+			m_vecPos.y -= 100 * DT;
+			unGravityTimer = 10;
+			m_bIsMove = true;
+			State = PlayerState::Jump;
+			break;
+		}
+		case PlayerState::Run:
+		{
+			islanding = false;
+			m_vecMoveDir.y = -1;
+			m_vecPos.y -= 100 * DT;
+			m_bIsMove = true;
+			State = PlayerState::Jump;
+			break;
+		}
+		case PlayerState::Attack:
+		{
+			break;
+		}
+		case PlayerState::Roll:
+		{
+			break;
+		}
+		case PlayerState::WallGrab:
+		{
+			break;
+		}
+		case PlayerState::Stun:
+		{
+			break;
+		}
+		case PlayerState::Flip:
+		{
+			break;
+		}
+		case PlayerState::Jump:
+		{	
+		
+			break;
+		}
+		case PlayerState::Dance:
+		{
+			State = PlayerState::Run;
+			break;
+		}
 
 		}
-		case 1:
-		{
-
-		}
-		case 2:
-		{
-
-		}
-		case 3:
-		{
-
-
-		}
-		case 4:
-		{
-
-		}
-		case 5:
-		{
-
-		}
-		case 6:
-		{
-
-		}
-		case 7:
-		{
-
-		}
-		case 8:
-		{
-
-		}
-		}
-		m_vecPos.y -= m_fSpeed * DT;
-		m_bIsMove = true;
-		m_vecMoveDir.y = +1;
+		
+		
+		
 	}
 	else if (BUTTONSTAY(VK_DOWN))
 	{
@@ -292,23 +346,23 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	wstring pTarget = pOtherCollider->GetObjName();
 	if (pTarget == L"Ground")
 	{
-		
+		islanding = true;
 	}
 	if (pTarget == L"Wall")
 	{
-
+		islanding = true;
 	}
 	if (pTarget == L"R_High_Slope")
 	{
-
+		
 	}
 	if (pTarget == L"L_High_Slope")
 	{
-
+		
 	}
 	if (pTarget == L"Platfoam")
 	{
-
+		islanding = true;
 	}
 }
 
@@ -317,10 +371,22 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 	wstring pTarget = pOtherCollider->GetObjName();
 	if (pTarget == L"Ground")
 	{
-		Logger::Debug(L"그라운드");
-		if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
+		//if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
+		//{
+		//	m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2 + 4;
+		//}
+		//else//오른쪽에서 부딪히기
+		//{
+		//	m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
+		//}
+
+		if (islanding == true)
 		{
-			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+			Logger::Debug(L"그라운드");
+			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
+			{
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+			}
 		}
 		else //천장에 머리박기
 		{
@@ -328,16 +394,33 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		}
 
 	}
-	if (pTarget == L"Wall") 
-	{
-		if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
+	if (pTarget == L"Wall")
+	{	
+		if (m_vecPos.y < pOtherCollider->GetPos().y - pOtherCollider->GetScale().y/2)
 		{
-			m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2+4;
+
+
+			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+
 		}
-		else//오른쪽에서 부딪히기
+		else if (m_vecPos.y > pOtherCollider->GetPos().y + pOtherCollider->GetScale().y/2) //천장에 머리박기
 		{
-			m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2-4;
+			m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
 		}
+		else
+		{
+			if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
+			{
+				m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2 + 4;
+			}
+			else//오른쪽에서 부딪히기
+			{
+				m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
+			}
+		}
+
+
+		
 	}
 	if (pTarget == L"R_High_Slope")
 	{	
@@ -348,6 +431,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		if (Slope < m_vecPos.y)
 		{
 			m_vecPos.y = Slope;
+			
 		}
 	}
 	if (pTarget == L"L_High_Slope")
@@ -357,6 +441,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		if (Slope2 < m_vecPos.y)
 		{
 			m_vecPos.y = Slope2;
+			
 		}
 	}
 	if (pTarget == L"Platfoam")
@@ -374,6 +459,27 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 
 void CPlayer::OnCollisionExit(CCollider* pOtherCollider)
 {
+	wstring pTarget = pOtherCollider->GetObjName();
+	if (pTarget == L"Ground")
+	{
+		islanding = false;
+	}
+	if (pTarget == L"Wall")
+	{
+		islanding = false;
+	}
+	if (pTarget == L"R_High_Slope")
+	{
+		islanding = false;
+	}
+	if (pTarget == L"L_High_Slope")
+	{
+		islanding = false;
+	}
+	if (pTarget == L"Platfoam")
+	{
+		islanding = false;
+	}
 }
 
 void CPlayer::WhereAmI()

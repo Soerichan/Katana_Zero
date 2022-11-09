@@ -37,6 +37,9 @@ void CSceneStage01::Init()
 	CCameraController* pCamController = new CCameraController;
 	AddGameObject(pCamController);
 
+	//CImage* pImg= new CImage;
+	//pImg->Load(GETPATH + L"Image\\KATANA_MAP_club.png");
+	//AddGameObject(pImg);
 	//m_BGImage = RESOURCE->LoadImg(L"BG", L"Image\\KATANA_MAP_club.png");
 
 

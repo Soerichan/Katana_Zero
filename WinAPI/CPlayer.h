@@ -18,6 +18,7 @@ enum class PlayerState
 	Stun,
 	Flip,
 	Jump,
+	Dance,
 	Die
 
 };
@@ -40,7 +41,14 @@ private:
 	float actionTimer;
 	PlayerState State;
 
-	float m_fSpeed = 200.0f;
+	float m_fSpeed = 600.0f;
+
+	bool gravity;
+	float gravityPower;
+	bool islanding;
+	bool jumpAction;
+	float flyTimer;
+	float unGravityTimer;
 
 private:
 	void Init() override;
@@ -56,7 +64,7 @@ private:
 	void OnCollisionExit(CCollider* pOtherCollider) override;
 
 	void WhereAmI();
-
+	
 
 };
 
