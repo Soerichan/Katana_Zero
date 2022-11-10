@@ -16,7 +16,7 @@
 CPlayer::CPlayer()
 {
 	m_vecPos = Vector(0, 0);
-	m_vecScale = Vector(100, 100);
+	m_vecScale = Vector(38, 55);
 	m_layer = Layer::Player;
 	m_strName = L"플레이어";
 
@@ -28,6 +28,8 @@ CPlayer::CPlayer()
 	m_bIsMove = false;
 	actionTimer = 0;
 	State = PlayerState::Idle;
+
+	OnSlope = false;
 
 	gravity = true;
 	islanding = false;
@@ -41,30 +43,36 @@ CPlayer::~CPlayer()
 void CPlayer::Init()
 {
 	m_pIdleImage = RESOURCE->LoadImg(L"PlayerIdle", L"Image\\NULL\\IDLE\\IDLE_x2.png");
-	m_pMoveImage = RESOURCE->LoadImg(L"PlayerMove", L"Image\\PlayerMove.png");
+	m_pMoveImage = RESOURCE->LoadImg(L"PlayerMove", L"Image\\NULL\\RUN\\RUN_x2.png");
+	m_pJumpImage = RESOURCE->LoadImg(L"PlayerJump", L"Image\\NULL\\JUMP\\JUMP_x2.png");
+	m_pFallImage = RESOURCE->LoadImg(L"PlayerFall", L"Image\\NULL\\FALL\\FALL_x2.png");
+	
 
 	m_pAnimator = new CAnimator;
-	m_pAnimator->CreateAnimation(L"IdleUp",			 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleRight",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleRightDown",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleDown",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleLeftDown",	 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 500.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleLeft",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 500.f), Vector(300.f, 0.f), 0.1f, 7);
-	m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 500.f), Vector(300.f, 0.f), 0.1f, 7);
+	m_pAnimator->CreateAnimation(L"IdleUp",			 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleRight",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleRightDown",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleDown",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleLeftDown",	 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleLeft",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
+	m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
 
-	m_pAnimator->CreateAnimation(L"MoveUp", m_pMoveImage, Vector(0.f, 0.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveRightUp", m_pMoveImage, Vector(0.f, 79.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveRight", m_pMoveImage, Vector(0.f, 158.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveRightDown", m_pMoveImage, Vector(0.f, 237.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveDown", m_pMoveImage, Vector(0.f, 316.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveLeftDown", m_pMoveImage, Vector(0.f, 395.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveLeft", m_pMoveImage, Vector(0.f, 474.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
-	m_pAnimator->CreateAnimation(L"MoveLeftUp", m_pMoveImage, Vector(0.f, 553.f), Vector(80.f, 75.f), Vector(84.f, 0.f), 0.05f, 16);
+	m_pAnimator->CreateAnimation(L"MoveUp",		   m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveLeftUp",    m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+    m_pAnimator->CreateAnimation(L"MoveRightUp",   m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	
+	m_pAnimator->CreateAnimation(L"MoveLeft",	   m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveRight",	   m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+
+	m_pAnimator->CreateAnimation(L"MoveDown",	   m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveLeftDown",  m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveRightDown", m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+
 	m_pAnimator->Play(L"IdleDown", false);
 	AddComponent(m_pAnimator);
 
-	AddCollider(ColliderType::Rect, Vector(90, 90), Vector(0, 0));
+	AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
 }
 
 void CPlayer::Update()
@@ -74,20 +82,20 @@ void CPlayer::Update()
 	WhereAmI();//GAME에 좌표 기록
 	unGravityTimer -= DT;
 
-	if (unGravityTimer <= 0)
-	{
-		unGravityTimer = -1;
-	}
+	//if (unGravityTimer <= 0)
+	//{
+	//	unGravityTimer = -1;
+	//}
 
-	if (unGravityTimer >= 0)
-	{
-		gravityPower = 0;
-	}
+	//if (unGravityTimer >= 0)
+	//{
+	//	gravityPower = 0;
+	//}
 
-	gravityPower = 10 * flyTimer * flyTimer; //중력
-	if (gravityPower >= 100)
+	gravityPower = 5+ flyTimer * flyTimer; //중력
+	if (gravityPower >= 30)
 	{
-		gravityPower = 100;
+		gravityPower = 30;
 	}
 
 	if (islanding == true)//체공여부
@@ -358,7 +366,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"L_High_Slope")
 	{
-		
+
 	}
 	if (pTarget == L"Platfoam")
 	{
@@ -380,14 +388,14 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		//	m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
 		//}
 
-		if (islanding == true)
-		{
+		
+		
 			Logger::Debug(L"그라운드");
 			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
-				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2+2 ;
 			}
-		}
+		
 		else //천장에 머리박기
 		{
 			m_vecPos.y = pOtherCollider->GetPos().y+ pOtherCollider->GetScale().y/2 + m_vecScale.y / 2;
@@ -396,28 +404,28 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Wall")
 	{	
-		if (m_vecPos.y < pOtherCollider->GetPos().y - pOtherCollider->GetScale().y/2)
-		{
+		//if (m_vecPos.y < pOtherCollider->GetPos().y - pOtherCollider->GetScale().y/2)
+		//{
 
 
-			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+		//	m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
 
-		}
-		else if (m_vecPos.y > pOtherCollider->GetPos().y + pOtherCollider->GetScale().y/2) //천장에 머리박기
-		{
-			m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
-		}
-		else
-		{
+		//}
+		//else if (m_vecPos.y > pOtherCollider->GetPos().y + pOtherCollider->GetScale().y/2) //천장에 머리박기
+		//{
+		//	m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
+		//}
+		/*else
+		{*/
 			if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
 			{
-				m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2 + 4;
+				m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2 ;
 			}
 			else//오른쪽에서 부딪히기
 			{
-				m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
+				m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 ;
 			}
-		}
+		/*}*/
 
 
 		
@@ -448,7 +456,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 	{
 		if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
 		{
-			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 8;
+			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2+2 ;
 		}
 	}
 
@@ -470,11 +478,11 @@ void CPlayer::OnCollisionExit(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"R_High_Slope")
 	{
-		islanding = false;
+		
 	}
 	if (pTarget == L"L_High_Slope")
 	{
-		islanding = false;
+		
 	}
 	if (pTarget == L"Platfoam")
 	{

@@ -18,6 +18,7 @@ enum class PlayerState
 	Stun,
 	Flip,
 	Jump,
+	fall,
 	Dance,
 	Die
 
@@ -33,6 +34,15 @@ private:
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
 	CImage* m_pMoveImage;
+	CImage* m_pAttackImage;
+	CImage* m_pRollImage;
+	CImage* m_pWallGrabImage;
+	CImage* m_pStunImage;
+	CImage* m_pFlipImage;
+	CImage* m_pJumpImage;
+	CImage* m_pFallImage;
+	CImage* m_pDanceImage;
+	CImage* m_pDieImage;
 
 	Vector m_vecMoveDir;
 	Vector m_vecLookDir;
@@ -42,6 +52,8 @@ private:
 	PlayerState State;
 
 	float m_fSpeed = 600.0f;
+
+	bool OnSlope;
 
 	bool gravity;
 	float gravityPower;

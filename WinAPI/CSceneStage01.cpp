@@ -35,6 +35,7 @@ void CSceneStage01::Init()
 	AddGameObject(pMonster);
 
 	CCameraController* pCamController = new CCameraController;
+	
 	AddGameObject(pCamController);
 
 	//CImage* pImg= new CImage;
@@ -58,6 +59,7 @@ void CSceneStage01::Enter()
 
 void CSceneStage01::Update()
 {
+	CAMERA->SetTargetObj(pPlayer);
 	if (BUTTONDOWN(VK_ESCAPE))
 	{
 		CAMERA->FadeOut(0.25f);
