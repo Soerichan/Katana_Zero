@@ -86,6 +86,7 @@ private:
 	void OnCollisionExit(CCollider* pOtherCollider) override;
 
 	void WhereAmI();
+	void WhereWasI();
 	
 
 };

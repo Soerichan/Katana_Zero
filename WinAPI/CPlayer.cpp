@@ -87,11 +87,11 @@ void CPlayer::Update()
 	WhereAmI();//GAME에 좌표 기록
 
 	
-
+#pragma region Jump관련
 	if (jumpAction == true)
 	{
-		velocity +=  100*(accel * DT)-resistance;//속력의 가속
-		accel -= 500*DT;//힘의 감소
+		velocity +=  (accel * DT)-resistance;//속력의 가속
+		accel -= 650*DT;//힘의 감소
 		m_vecPos.y -= velocity * DT; //변위
 		resistance += gravityPower * DT;//중력
 
@@ -106,22 +106,29 @@ void CPlayer::Update()
 	}
 	else
 	{
-		velocity = 100;
+		velocity = 300;
 		accel = 0;
 		resistance = 0;
+		m_vecPos.y += 1;
 		
 	}
 
 	if (islanding == true)
 	{
 		jumpAction = false;
+		//m_vecMoveDir.y = 0;
 	}
 
+#pragma endregion
 
-	if (islanding == true && m_vecMoveDir.x == 0 && m_vecMoveDir.y == 0)
+#pragma region State관련
+	if (islanding == true)
 	{
 		State = PlayerState::Idle;
+		m_vecMoveDir.y = 0;
+		m_bIsMove = false;
 	}
+#pragma endregion
 	//if (unGravityTimer <= 0)
 	//{
 	//	unGravityTimer = -1;
@@ -135,7 +142,7 @@ void CPlayer::Update()
 
 
 	
-
+#pragma region Key입력관련
 	if (BUTTONSTAY(VK_LEFT))
 	{
 		switch (State)
@@ -176,7 +183,9 @@ void CPlayer::Update()
 				break;
 			}
 			case PlayerState::Jump:
-			{
+			{	
+				m_vecPos.x -= 0.35f * m_fSpeed * DT;
+				m_bIsMove = true;
 				m_vecMoveDir.x = -1;
 				break;
 			}
@@ -228,7 +237,9 @@ void CPlayer::Update()
 			break;
 		}
 		case PlayerState::Jump:
-		{
+		{	
+			m_vecPos.x += 0.35f*m_fSpeed * DT;
+			m_bIsMove = true;
 			m_vecMoveDir.x = +1;
 			break;
 		}
@@ -252,7 +263,7 @@ void CPlayer::Update()
 		{
 		case PlayerState::Idle:
 		{	
-			m_vecMoveDir.y = -1;
+		
 			State = PlayerState::Jump;
 			Jump();
 			
@@ -260,7 +271,7 @@ void CPlayer::Update()
 		}
 		case PlayerState::Run:
 		{
-			m_vecMoveDir.y = -1;
+			
 			State = PlayerState::Jump;
 			Jump();
 
@@ -319,7 +330,10 @@ void CPlayer::Update()
 	//}
 
 	AnimatorUpdate();
+	WhereWasI();
 }
+
+#pragma endregion
 
 void CPlayer::Render()
 {
@@ -333,7 +347,8 @@ void CPlayer::Jump()
 {	
 	jumpAction = true;
 	islanding = false;
-	accel = 500;
+	accel = 600;
+	m_vecMoveDir.y = +1;
 	
 }
 
@@ -352,7 +367,8 @@ void CPlayer::AnimatorUpdate()
 
 	if (m_vecLookDir.y > 0) str += L"Up";
 	else if (m_vecLookDir.y < 0) str += L"Down";
-
+	//if (GAME->PrevPlayerPos.y - PLAYERPOSITION.y > 0) str += L"Up";
+	//else if (GAME->PrevPlayerPos.y - PLAYERPOSITION.y < 0) str += L"Down";
 	m_pAnimator->Play(str, false);
 }
 
@@ -385,7 +401,7 @@ void CPlayer::CreateMissile()
 	//pMissile4->SetDir(Vector(3, -1));
 	//ADDOBJECT(pMissile4);
 }
-
+#pragma region 충돌
 void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	wstring pTarget = pOtherCollider->GetObjName();
@@ -395,7 +411,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Wall")
 	{
-		islanding = true;
+		
 	}
 	if (pTarget == L"R_High_Slope")
 	{
@@ -482,6 +498,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		{
 			m_vecPos.y = Slope;
 			jumpAction = false;
+			islanding = true;
 			
 		}
 	}
@@ -493,6 +510,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		{
 			m_vecPos.y = Slope2;
 			jumpAction = false;
+			islanding = true;
 			
 		}
 	}
@@ -537,8 +555,13 @@ void CPlayer::OnCollisionExit(CCollider* pOtherCollider)
 		islanding = false;
 	}
 }
-
+#pragma endregion
 void CPlayer::WhereAmI()
 {
 	PLAYERPOSITION= m_vecPos;
+}
+
+void CPlayer::WhereWasI()
+{
+	GAME->PrevPlayerPos = m_vecPos;
 }

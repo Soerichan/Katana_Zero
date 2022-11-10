@@ -13,6 +13,7 @@ class CGameManager:  public SingleTon<CGameManager>
 
 public: 
 	Vector PlayerPos;
+	Vector PrevPlayerPos;
 };
 
 #define GAME			CGameManager::GetInstance()
