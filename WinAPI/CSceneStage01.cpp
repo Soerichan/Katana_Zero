@@ -27,7 +27,7 @@ CSceneStage01::~CSceneStage01()
 void CSceneStage01::Init()
 {
 	pPlayer = new CPlayer();
-	pPlayer->SetPos(0, 0);
+	pPlayer->SetPos(2000, 1000);
 	AddGameObject(pPlayer);
 
 	CMonster* pMonster = new CMonster();
@@ -49,8 +49,11 @@ void CSceneStage01::Init()
 void CSceneStage01::Enter()
 {
 	CAMERA->FadeIn(0.25f);
-	LoadStageObject(GETPATH + L"Tile\\111.tile");
-	
+	LoadStageObject(GETPATH + L"Tile\\club01.tile");
+
+	m_pbackGround = new CBackGround;
+	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround01", L"Image\\KATANA_MAP_club_last1.png"));
+	AddGameObject(m_pbackGround);
 }
 
 void CSceneStage01::Update()

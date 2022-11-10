@@ -8,9 +8,11 @@ class CSceneStage01 : public CScene
 public:
 	CSceneStage01();
 	virtual ~CSceneStage01();
-	CImage* m_BGImage;
+	
+	CBackGround* m_pbackGround;
 private:
 	CPlayer* pPlayer;
+
 
 private:
 	void Init()		override;

@@ -1,5 +1,6 @@
 #pragma once
 #include "CGameObject.h"
+class CImage;
 class CBackGround :
     public CGameObject
 {
@@ -9,7 +10,9 @@ public:
 
 	CBackGround* m_BackGround;
 
-	void Load(wstring Key, wstring Path);
+	CImage* m_pImage;
+	void SetImage(CImage* image);
+	CImage* GetImage();
 
 private:
 	void Init() override;

@@ -41,8 +41,9 @@ enum class GroupScene
 enum class Layer
 {
 	Default,
-	StageObject,
+	
 	Tile,
+	StageObject,
 	Player,
 	Missile,
 	Monster,
