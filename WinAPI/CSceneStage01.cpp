@@ -59,7 +59,7 @@ void CSceneStage01::Enter()
 
 void CSceneStage01::Update()
 {
-	CAMERA->SetTargetObj(pPlayer);
+	//CAMERA->SetTargetObj(pPlayer);
 	if (BUTTONDOWN(VK_ESCAPE))
 	{
 		CAMERA->FadeOut(0.25f);

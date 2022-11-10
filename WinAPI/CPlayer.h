@@ -55,18 +55,28 @@ private:
 
 	bool OnSlope;
 
+	
 	bool gravity;
 	float gravityPower;
+	float resistance;
 	bool islanding;
-	bool jumpAction;
+	
 	float flyTimer;
+	
 	float unGravityTimer;
+
+	float velocity;
+	float accel;
+	float JumpTimer;
+	bool jumpAction;
 
 private:
 	void Init() override;
 	void Update() override;
 	void Render() override;
 	void Release() override;
+
+	void Jump();
 
 	void AnimatorUpdate();
 	void CreateMissile();

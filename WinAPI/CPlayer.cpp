@@ -34,6 +34,11 @@ CPlayer::CPlayer()
 	gravity = true;
 	islanding = false;
 	unGravityTimer = 0;
+
+	accel = 0;
+	velocity = 0;
+	gravityPower = 3;
+	resistance = 0;
 }
 
 CPlayer::~CPlayer()
@@ -49,25 +54,25 @@ void CPlayer::Init()
 	
 
 	m_pAnimator = new CAnimator;
-	m_pAnimator->CreateAnimation(L"IdleUp",			 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
-	m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
 	m_pAnimator->CreateAnimation(L"IdleRight",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
-	m_pAnimator->CreateAnimation(L"IdleRightDown",	 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
-	m_pAnimator->CreateAnimation(L"IdleDown",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
-	m_pAnimator->CreateAnimation(L"IdleLeftDown",	 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
 	m_pAnimator->CreateAnimation(L"IdleLeft",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
-	m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
 
-	m_pAnimator->CreateAnimation(L"MoveUp",		   m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
-	m_pAnimator->CreateAnimation(L"MoveLeftUp",    m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
-    m_pAnimator->CreateAnimation(L"MoveRightUp",   m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"IdleUp",			 m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4,false);
+	m_pAnimator->CreateAnimation(L"MoveUp",		     m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	m_pAnimator->CreateAnimation(L"MoveLeftUp",      m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+    m_pAnimator->CreateAnimation(L"MoveRightUp",     m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
 	
-	m_pAnimator->CreateAnimation(L"MoveLeft",	   m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
-	m_pAnimator->CreateAnimation(L"MoveRight",	   m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveLeft",	     m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveRight",	     m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
 
-	m_pAnimator->CreateAnimation(L"MoveDown",	   m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
-	m_pAnimator->CreateAnimation(L"MoveLeftDown",  m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
-	m_pAnimator->CreateAnimation(L"MoveRightDown", m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
+	m_pAnimator->CreateAnimation(L"MoveDown",	     m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	m_pAnimator->CreateAnimation(L"IdleDown",		 m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	m_pAnimator->CreateAnimation(L"MoveLeftDown",    m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	m_pAnimator->CreateAnimation(L"IdleLeftDown",	 m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	m_pAnimator->CreateAnimation(L"MoveRightDown",   m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	m_pAnimator->CreateAnimation(L"IdleRightDown",	 m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
 
 	m_pAnimator->Play(L"IdleDown", false);
 	AddComponent(m_pAnimator);
@@ -80,8 +85,43 @@ void CPlayer::Update()
 	m_bIsMove = false;//움직임 여부
 
 	WhereAmI();//GAME에 좌표 기록
-	unGravityTimer -= DT;
 
+	
+
+	if (jumpAction == true)
+	{
+		velocity +=  100*(accel * DT)-resistance;//속력의 가속
+		accel -= 500*DT;//힘의 감소
+		m_vecPos.y -= velocity * DT; //변위
+		resistance += gravityPower * DT;//중력
+
+		if (accel <= 0)
+		{
+			accel = 0;
+		}
+		if (resistance >= 5)
+		{
+			resistance = 5;
+		}
+	}
+	else
+	{
+		velocity = 100;
+		accel = 0;
+		resistance = 0;
+		
+	}
+
+	if (islanding == true)
+	{
+		jumpAction = false;
+	}
+
+
+	if (islanding == true && m_vecMoveDir.x == 0 && m_vecMoveDir.y == 0)
+	{
+		State = PlayerState::Idle;
+	}
 	//if (unGravityTimer <= 0)
 	//{
 	//	unGravityTimer = -1;
@@ -92,22 +132,8 @@ void CPlayer::Update()
 	//	gravityPower = 0;
 	//}
 
-	gravityPower = 5+ flyTimer * flyTimer; //중력
-	if (gravityPower >= 30)
-	{
-		gravityPower = 30;
-	}
 
-	if (islanding == true)//체공여부
-	{
-		flyTimer = 0;
-	}
-	else
-	{
-		flyTimer += DT;
-	
-		m_vecPos.y +=  gravityPower;
-	}
+
 	
 
 	if (BUTTONSTAY(VK_LEFT))
@@ -115,7 +141,10 @@ void CPlayer::Update()
 		switch (State)
 		{
 			case PlayerState::Idle:
-			{
+			{	
+				m_vecPos.x -= m_fSpeed * DT;
+				m_bIsMove = true;
+				m_vecMoveDir.x = -1;
 				State = PlayerState::Run;
 				break;
 			}
@@ -165,6 +194,9 @@ void CPlayer::Update()
 		{
 		case PlayerState::Idle:
 		{
+			m_vecPos.x += m_fSpeed * DT;
+			m_bIsMove = true;
+			m_vecMoveDir.x = +1;
 			State = PlayerState::Run;
 			break;
 		}
@@ -219,22 +251,19 @@ void CPlayer::Update()
 		switch (State)
 		{
 		case PlayerState::Idle:
-		{
-			islanding = false;
+		{	
 			m_vecMoveDir.y = -1;
-			m_vecPos.y -= 100 * DT;
-			unGravityTimer = 10;
-			m_bIsMove = true;
 			State = PlayerState::Jump;
+			Jump();
+			
 			break;
 		}
 		case PlayerState::Run:
 		{
-			islanding = false;
 			m_vecMoveDir.y = -1;
-			m_vecPos.y -= 100 * DT;
-			m_bIsMove = true;
 			State = PlayerState::Jump;
+			Jump();
+
 			break;
 		}
 		case PlayerState::Attack:
@@ -298,6 +327,14 @@ void CPlayer::Render()
 
 void CPlayer::Release()
 {
+}
+
+void CPlayer::Jump()
+{	
+	jumpAction = true;
+	islanding = false;
+	accel = 500;
+	
 }
 
 void CPlayer::AnimatorUpdate()
@@ -388,19 +425,24 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		//	m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
 		//}
 
+		if(State!=PlayerState::Jump)
+		{
 		
-		
-			Logger::Debug(L"그라운드");
+
+
+		Logger::Debug(L"그라운드");
 			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
-				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2+2 ;
+				islanding = true;
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 2;
 			}
-		
-		else //천장에 머리박기
-		{
-			m_vecPos.y = pOtherCollider->GetPos().y+ pOtherCollider->GetScale().y/2 + m_vecScale.y / 2;
-		}
 
+			else //천장에 머리박기
+			{
+			m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
+			}
+
+		}
 	}
 	if (pTarget == L"Wall")
 	{	
@@ -439,6 +481,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		if (Slope < m_vecPos.y)
 		{
 			m_vecPos.y = Slope;
+			jumpAction = false;
 			
 		}
 	}
@@ -449,14 +492,19 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		if (Slope2 < m_vecPos.y)
 		{
 			m_vecPos.y = Slope2;
+			jumpAction = false;
 			
 		}
 	}
 	if (pTarget == L"Platfoam")
 	{
-		if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
+		if (State != PlayerState::Jump)
 		{
-			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2+2 ;
+			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y)//땅밟고 서있기
+			{
+				islanding = true;
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 2;
+			}
 		}
 	}
 
