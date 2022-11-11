@@ -34,6 +34,7 @@ CPlayer::CPlayer()
 	gravity = true;
 	islanding = false;
 	unGravityTimer = 0;
+	WallGrabTimer = 0;
 
 	accel = 0;
 	velocity = 0;
@@ -51,30 +52,85 @@ void CPlayer::Init()
 	m_pMoveImage = RESOURCE->LoadImg(L"PlayerMove", L"Image\\NULL\\RUN\\RUN_x2.png");
 	m_pJumpImage = RESOURCE->LoadImg(L"PlayerJump", L"Image\\NULL\\JUMP\\JUMP_x2.png");
 	m_pFallImage = RESOURCE->LoadImg(L"PlayerFall", L"Image\\NULL\\FALL\\FALL_x2.png");
+	m_pAttackImage = RESOURCE->LoadImg(L"PlayerAttack", L"Image\\NULL\\ATTACK\\ATTACK_x2.png");
+	m_pCrouchImage = RESOURCE->LoadImg(L"PlayerCrouch", L"Image\\NULL\\CROUCH\\CROUCH_x2.png");
+	m_pDanceImage = RESOURCE->LoadImg(L"PlayerDance", L"Image\\NULL\\DANCE\\DANCE_x2.png");
+	m_pDoor_KickImage = RESOURCE->LoadImg(L"PlayerDoor_Kick", L"Image\\NULL\\DOOR_KICK\\DOOR_KICK_x2.png");
+	m_pEarPhoneImage = RESOURCE->LoadImg(L"PlayerEarPhone", L"Image\\NULL\\EARPHONE\\EARPHONE_x2.png");
+	m_pFlipImage = RESOURCE->LoadImg(L"PlayerFlip", L"Image\\NULL\\FLIP\\FLIP_x2.png");
+	m_pHurtCoverImage = RESOURCE->LoadImg(L"PlayerHurtCover", L"Image\\NULL\\HURTCOVER\\HURTCOVER_x2.png");
+	m_pHurtFlyImage = RESOURCE->LoadImg(L"PlayerHurtFly", L"Image\\NULL\\HURTFLY\\HURTFLY_x2.png");
+	m_pHurtGroundImage = RESOURCE->LoadImg(L"PlayerHurtGround", L"Image\\NULL\\HURTFLY\\HURTFLY_x2.png");
+ 	m_pRollImage = RESOURCE->LoadImg(L"PlayerRoll", L"Image\\NULL\\ROLL\\ROLL_x2.png");
+	m_pWallGrabImage = RESOURCE->LoadImg(L"PlayerWallGrab", L"Image\\NULL\\WALLGRAB\\WALLGRAB_x2.png");
 	
 
 	m_pAnimator = new CAnimator;
+	
 	m_pAnimator->CreateAnimation(L"IdleRight",		 m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
 	m_pAnimator->CreateAnimation(L"IdleLeft",		 m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 11);
-
-	m_pAnimator->CreateAnimation(L"IdleUp",			 m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4,false);
-	m_pAnimator->CreateAnimation(L"MoveUp",		     m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
-	m_pAnimator->CreateAnimation(L"MoveLeftUp",      m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
-	m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
-    m_pAnimator->CreateAnimation(L"MoveRightUp",     m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
-	m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	m_pAnimator->CreateAnimation(L"IdleCrouch",		 m_pCrouchImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 3,false);
+	m_pAnimator->CreateAnimation(L"IdleLeftCrouch",	 m_pCrouchImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 3,false);
+	m_pAnimator->CreateAnimation(L"IdleRightCrouch",	 m_pCrouchImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 3,false);
+	//m_pAnimator->CreateAnimation(L"IdleUp",			 m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4,false);
+	//m_pAnimator->CreateAnimation(L"MoveUp",		     m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	//m_pAnimator->CreateAnimation(L"MoveLeftUp",      m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	//m_pAnimator->CreateAnimation(L"IdleLeftUp",		 m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+   
+	//m_pAnimator->CreateAnimation(L"MoveRightUp",     m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
+	//m_pAnimator->CreateAnimation(L"IdleRightUp",	 m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4, false);
 	
 	m_pAnimator->CreateAnimation(L"MoveLeft",	     m_pMoveImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
 	m_pAnimator->CreateAnimation(L"MoveRight",	     m_pMoveImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 10);
 
-	m_pAnimator->CreateAnimation(L"MoveDown",	     m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
-	m_pAnimator->CreateAnimation(L"IdleDown",		 m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
-	m_pAnimator->CreateAnimation(L"MoveLeftDown",    m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
-	m_pAnimator->CreateAnimation(L"IdleLeftDown",	 m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
-	m_pAnimator->CreateAnimation(L"MoveRightDown",   m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
-	m_pAnimator->CreateAnimation(L"IdleRightDown",	 m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
 
-	m_pAnimator->Play(L"IdleDown", false);
+	m_pAnimator->CreateAnimation(L"JumpLeft", m_pJumpImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 4);
+	m_pAnimator->CreateAnimation(L"JumpRight", m_pJumpImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 4);
+
+	m_pAnimator->CreateAnimation(L"FallLeft", m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 4);
+	m_pAnimator->CreateAnimation(L"FallRight", m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 4);
+
+	m_pAnimator->CreateAnimation(L"AttackLeft", m_pAttackImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.03f, 7,false);
+	m_pAnimator->CreateAnimation(L"AttackRight", m_pAttackImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.03f, 7,false);
+
+	m_pAnimator->CreateAnimation(L"Door_KickLeft", m_pDoor_KickImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.05f, 10,false);
+	m_pAnimator->CreateAnimation(L"Door_KickRight", m_pDoor_KickImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.05f, 10,false);
+
+	m_pAnimator->CreateAnimation(L"DanceLeft", m_pDanceImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 12);
+	m_pAnimator->CreateAnimation(L"DanceRight", m_pDanceImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 12);
+
+	m_pAnimator->CreateAnimation(L"HurtCoverLeft", m_pHurtCoverImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 9,false);
+	m_pAnimator->CreateAnimation(L"HurtCoverRight", m_pHurtCoverImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 9,false);
+
+	m_pAnimator->CreateAnimation(L"HurtFlyLeft", m_pHurtFlyImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6,false);
+	m_pAnimator->CreateAnimation(L"HurtFlyRight", m_pHurtFlyImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6, false);
+
+	m_pAnimator->CreateAnimation(L"HurtGroundLeft", m_pHurtGroundImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6, false);
+	m_pAnimator->CreateAnimation(L"HurtGroundRight", m_pHurtGroundImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6, false);
+
+
+	m_pAnimator->CreateAnimation(L"WallGrabLeft", m_pWallGrabImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 2,false);
+	m_pAnimator->CreateAnimation(L"WallGrabRight", m_pWallGrabImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 2,false);
+
+
+	m_pAnimator->CreateAnimation(L"RollLeft", m_pRollImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 7,false);
+	m_pAnimator->CreateAnimation(L"RollRight", m_pRollImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 7,false);
+
+
+	m_pAnimator->CreateAnimation(L"EarPhoneLeft", m_pEarPhoneImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 3,false);
+	m_pAnimator->CreateAnimation(L"EarPhoneRight", m_pEarPhoneImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 3,false);
+
+	m_pAnimator->CreateAnimation(L"FlipLeft", m_pFlipImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.03f, 11,false);
+	m_pAnimator->CreateAnimation(L"FlipRight", m_pFlipImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.03f, 11,false);
+
+	//m_pAnimator->CreateAnimation(L"MoveDown",	     m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	//m_pAnimator->CreateAnimation(L"MoveLeftDown",    m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	//m_pAnimator->CreateAnimation(L"MoveRightDown",   m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 4);
+	
+	
+
+
+	m_pAnimator->Play(L"IdleRight", false);
 	AddComponent(m_pAnimator);
 
 	AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
@@ -91,7 +147,7 @@ void CPlayer::Update()
 	if (jumpAction == true)
 	{
 		velocity +=  (accel * DT)-resistance;//속력의 가속
-		accel -= 650*DT;//힘의 감소
+		accel -= 700*DT;//힘의 감소
 		m_vecPos.y -= velocity * DT; //변위
 		resistance += gravityPower * DT;//중력
 
@@ -121,6 +177,20 @@ void CPlayer::Update()
 
 #pragma endregion
 
+#pragma region WallGrab관련
+
+	if (State == PlayerState::WallGrab)
+	{
+		WallGrabTimer -= DT;
+	}
+
+	if (WallGrabTimer > 0)
+	{
+		velocity = 0;
+	}
+
+#pragma endregion
+
 #pragma region State관련
 	if (islanding == true)
 	{
@@ -128,6 +198,13 @@ void CPlayer::Update()
 		m_vecMoveDir.y = 0;
 		m_bIsMove = false;
 	}
+
+	if (velocity <= 0 && State==PlayerState::Jump)
+	{
+		State = PlayerState::Fall;
+	}
+
+
 #pragma endregion
 	//if (unGravityTimer <= 0)
 	//{
@@ -180,6 +257,14 @@ void CPlayer::Update()
 			}
 			case PlayerState::Flip:
 			{
+				break;
+			}
+			case PlayerState::Fall:
+			{
+
+				m_vecPos.x -= 0.45f * m_fSpeed * DT;
+				m_bIsMove = true;
+				m_vecMoveDir.x = -1;
 				break;
 			}
 			case PlayerState::Jump:
@@ -236,9 +321,17 @@ void CPlayer::Update()
 		{
 			break;
 		}
+		case PlayerState::Fall:
+		{
+			m_vecPos.x += 0.45f * m_fSpeed * DT;
+			m_bIsMove = true;
+			m_vecMoveDir.x = +1;
+
+			break;
+		}
 		case PlayerState::Jump:
 		{	
-			m_vecPos.x += 0.35f*m_fSpeed * DT;
+			m_vecPos.x += 0.45f*m_fSpeed * DT;
 			m_bIsMove = true;
 			m_vecMoveDir.x = +1;
 			break;
@@ -254,7 +347,7 @@ void CPlayer::Update()
 	}
 	else
 	{
-		m_vecMoveDir.x = 0;
+		//m_vecMoveDir.x = 0;
 	}
 
 	if (BUTTONDOWN(VK_UP))
@@ -286,7 +379,8 @@ void CPlayer::Update()
 			break;
 		}
 		case PlayerState::WallGrab:
-		{
+		{	
+
 			break;
 		}
 		case PlayerState::Stun:
@@ -295,6 +389,12 @@ void CPlayer::Update()
 		}
 		case PlayerState::Flip:
 		{
+			break;
+		}
+		case PlayerState::Fall:
+		{
+
+
 			break;
 		}
 		case PlayerState::Jump:
@@ -315,9 +415,15 @@ void CPlayer::Update()
 	}
 	else if (BUTTONSTAY(VK_DOWN))
 	{
-		m_vecPos.y += m_fSpeed * DT;
-		m_bIsMove = true;
+		//m_vecPos.y += m_fSpeed * DT;
+		
 		m_vecMoveDir.y = -1;
+	}
+	else if (BUTTONUP(VK_DOWN))
+	{
+		//m_vecPos.y += m_fSpeed * DT;
+
+		m_vecMoveDir.y = 0;
 	}
 	else
 	{
@@ -352,6 +458,8 @@ void CPlayer::Jump()
 	
 }
 
+
+#pragma region 애니메이터 업데이트
 void CPlayer::AnimatorUpdate()
 {
 	if (m_vecMoveDir.Length() > 0)
@@ -359,18 +467,108 @@ void CPlayer::AnimatorUpdate()
 
 	wstring str = L"";
 
-	if (m_bIsMove)	str += L"Move";
-	else			str += L"Idle";
+	//if (m_bIsMove)	str += L"Move";
+	//else			str += L"Idle";
 
-	if (m_vecLookDir.x > 0) str += L"Right";
-	else if (m_vecLookDir.x < 0) str += L"Left";
+	//if (m_vecLookDir.x > 0) str += L"Right";
+	//else if (m_vecLookDir.x < 0) str += L"Left";
 
-	if (m_vecLookDir.y > 0) str += L"Up";
-	else if (m_vecLookDir.y < 0) str += L"Down";
+
+	//if (m_vecLookDir.y > 0) str += L"Up";
+	//else if (m_vecLookDir.y < 0) str += L"Down";
 	//if (GAME->PrevPlayerPos.y - PLAYERPOSITION.y > 0) str += L"Up";
 	//else if (GAME->PrevPlayerPos.y - PLAYERPOSITION.y < 0) str += L"Down";
+
+	switch (State)
+	{
+	case PlayerState::Idle:
+
+		str += L"Idle";
+
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		if (m_vecLookDir.y < 0) str += L"Crouch";
+
+		break;
+
+	case PlayerState::Run:
+
+		str += L"Move";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+
+	case PlayerState::Attack:
+
+		str += L"Attack";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::Roll:
+
+		str += L"Roll";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::WallGrab:
+
+		str += L"WallGrab";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::Stun:
+
+		str += L"Stun";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::Flip:
+
+		str += L"Flip";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::Jump:
+
+		str += L"Jump";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+
+		break;
+	case PlayerState::Fall:
+
+		str += L"Fall";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::Dance:
+
+		str += L"Dance";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+
+		break;
+	case PlayerState::Die:
+
+		str += L"Die";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+		break;
+	}
+
 	m_pAnimator->Play(str, false);
 }
+
+#pragma endregion
 
 void CPlayer::CreateMissile()
 {
@@ -405,13 +603,23 @@ void CPlayer::CreateMissile()
 void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	wstring pTarget = pOtherCollider->GetObjName();
-	if (pTarget == L"Ground")
-	{
+	if (pTarget == L"Ground"&&pOtherCollider->GetPos().y>m_vecPos.y)
+	{	
+
 		islanding = true;
 	}
 	if (pTarget == L"Wall")
 	{
-		
+		if ((State == PlayerState::Jump || State == PlayerState::Fall || State == PlayerState::Flip))
+		{
+			State = PlayerState::WallGrab;
+			Isgrabed = pOtherCollider;
+			WallGrabTimer = 1;
+		}
+		else
+		{
+
+		}
 	}
 	if (pTarget == L"R_High_Slope")
 	{
@@ -421,7 +629,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	{
 
 	}
-	if (pTarget == L"Platfoam")
+	if (pTarget == L"Platfoam" && pOtherCollider->GetPos().y > m_vecPos.y)
 	{
 		islanding = true;
 	}
@@ -475,14 +683,24 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		//}
 		/*else
 		{*/
+
+		if ((State ==PlayerState::WallGrab))
+		{
+			State = PlayerState::WallGrab;
+
+		}
+		else
+		{
 			if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
 			{
-				m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2 ;
+				m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2;
 			}
 			else//오른쪽에서 부딪히기
 			{
-				m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 ;
+				m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2;
 			}
+		}
+		
 		/*}*/
 
 

@@ -18,7 +18,7 @@ enum class PlayerState
 	Stun,
 	Flip,
 	Jump,
-	fall,
+	Fall,
 	Dance,
 	Die
 
@@ -42,6 +42,12 @@ private:
 	CImage* m_pJumpImage;
 	CImage* m_pFallImage;
 	CImage* m_pDanceImage;
+	CImage* m_pCrouchImage;
+	CImage* m_pDoor_KickImage;
+	CImage* m_pHurtCoverImage;
+	CImage* m_pHurtFlyImage;
+	CImage* m_pHurtGroundImage;
+	CImage* m_pEarPhoneImage;
 	CImage* m_pDieImage;
 
 	Vector m_vecMoveDir;
@@ -69,6 +75,9 @@ private:
 	float accel;
 	float JumpTimer;
 	bool jumpAction;
+
+	float WallGrabTimer;
+	CCollider* Isgrabed;
 
 private:
 	void Init() override;
