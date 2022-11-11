@@ -75,9 +75,11 @@ private:
 	float accel;
 	float JumpTimer;
 	bool jumpAction;
-
+	
+	bool FlipAction;
 	float WallGrabTimer;
 	CCollider* Isgrabed;
+	float FlipDir;
 
 private:
 	void Init() override;
@@ -86,6 +88,8 @@ private:
 	void Release() override;
 
 	void Jump();
+
+	void Flip();
 
 	void AnimatorUpdate();
 	void CreateMissile();

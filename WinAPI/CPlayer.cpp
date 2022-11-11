@@ -40,6 +40,9 @@ CPlayer::CPlayer()
 	velocity = 0;
 	gravityPower = 3;
 	resistance = 0;
+
+	Isgrabed = nullptr;
+	FlipDir = 0;
 }
 
 CPlayer::~CPlayer()
@@ -165,7 +168,7 @@ void CPlayer::Update()
 		velocity = 300;
 		accel = 0;
 		resistance = 0;
-		m_vecPos.y += 1;
+		m_vecPos.y += 1; //기본중력
 		
 	}
 
@@ -190,6 +193,29 @@ void CPlayer::Update()
 	}
 
 #pragma endregion
+
+
+#pragma region Flip관련
+
+	if (State == PlayerState::Flip)
+	{	
+		WallGrabTimer = 0;
+		velocity = 300;
+
+		m_vecPos.x += m_fSpeed * DT * FlipDir;
+	}
+	else
+	{
+		FlipDir = 0;
+	}
+
+
+
+
+#pragma endregion
+
+
+
 
 #pragma region State관련
 	if (islanding == true)
@@ -380,6 +406,8 @@ void CPlayer::Update()
 		}
 		case PlayerState::WallGrab:
 		{	
+			State = PlayerState::Flip;
+			Flip();
 
 			break;
 		}
@@ -456,6 +484,21 @@ void CPlayer::Jump()
 	accel = 600;
 	m_vecMoveDir.y = +1;
 	
+}
+
+void CPlayer::Flip()
+{	
+	if (Isgrabed->GetPos().x < m_vecPos.x)
+	{
+		FlipDir = 1;
+		Jump();
+	}
+	else
+	{
+		FlipDir = -1;
+		Jump();
+	}
+
 }
 
 
