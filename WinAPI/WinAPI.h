@@ -87,6 +87,23 @@ enum class TypeStageObject
 	Throws,
 
 	Size,
+};
+
+enum class PlayerState
+{
+	Idle,
+	Run,
+	Attack,
+	Roll,
+	WallGrab,
+	Stun,
+	Flip,
+	Jump,
+	Fall,
+	Dance,
+	Die
 
 };
+
+
 

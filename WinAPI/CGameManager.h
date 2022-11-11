@@ -14,6 +14,10 @@ class CGameManager:  public SingleTon<CGameManager>
 public: 
 	Vector PlayerPos;
 	Vector PrevPlayerPos;
+
+
+
+	PlayerState PlayerNowState;
 };
 
 #define GAME			CGameManager::GetInstance()

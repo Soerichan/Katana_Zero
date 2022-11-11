@@ -43,6 +43,9 @@ CPlayer::CPlayer()
 
 	Isgrabed = nullptr;
 	FlipDir = 0;
+	FlipTimer = 0;
+	
+	RollTimer = 0;
 }
 
 CPlayer::~CPlayer()
@@ -144,7 +147,9 @@ void CPlayer::Update()
 	m_bIsMove = false;//움직임 여부
 
 	WhereAmI();//GAME에 좌표 기록
-
+	WhatIsMyState();//GAME에 상태 기록
+	
+	
 	
 #pragma region Jump관련
 	if (jumpAction == true)
@@ -185,12 +190,19 @@ void CPlayer::Update()
 	if (State == PlayerState::WallGrab)
 	{
 		WallGrabTimer -= DT;
+
+		if (WallGrabTimer > 0)
+		{
+			velocity = 0;
+		}
+
+		if (islanding == true)
+		{
+			State = PlayerState::Idle;
+		}
 	}
 
-	if (WallGrabTimer > 0)
-	{
-		velocity = 0;
-	}
+
 
 #pragma endregion
 
@@ -198,11 +210,25 @@ void CPlayer::Update()
 #pragma region Flip관련
 
 	if (State == PlayerState::Flip)
-	{	
+	{		
 		WallGrabTimer = 0;
-		velocity = 300;
+		
 
-		m_vecPos.x += m_fSpeed * DT * FlipDir;
+		if (FlipTimer >= 1)
+		{
+			velocity = 350;
+		}
+		FlipTimer -= DT;
+		
+		
+		
+			m_vecPos.x += m_fSpeed * DT * FlipDir;
+		
+			if (jumpAction == false)
+			{
+				State = PlayerState::Idle;
+			}
+
 	}
 	else
 	{
@@ -212,18 +238,62 @@ void CPlayer::Update()
 
 
 
+
+#pragma endregion
+
+
+#pragma region Fall관련
+	if (State == PlayerState::Fall)
+	{
+		FlipTimer -= DT;
+
+		if (jumpAction == false)
+		{
+			State = PlayerState::Idle;
+		}
+	}
+#pragma endregion
+
+#pragma region Roll관련
+	if (State == PlayerState::Roll)
+	{	
+		RollTimer -= DT;
+
+		if (RollTimer >= 0)
+		{
+			m_vecPos.x += 1.5*m_fSpeed * DT * m_vecMoveDir.x;
+		}
+		else
+		{
+			
+			State = PlayerState::Idle;
+		}
+	}
+#pragma endregion
+
+#pragma region Run관련
+	if (State == PlayerState::Run)
+	{
+		if (BUTTONUP(VK_LEFT))
+		{
+			State = PlayerState::Idle;
+		}
+		else if (BUTTONUP(VK_RIGHT))
+		{
+			State = PlayerState::Idle;
+		}
+	}
 #pragma endregion
 
 
 
-
 #pragma region State관련
-	if (islanding == true)
-	{
-		State = PlayerState::Idle;
-		m_vecMoveDir.y = 0;
-		m_bIsMove = false;
-	}
+	//if (islanding == true)
+	//{
+	//	State = PlayerState::Idle;
+	//	m_vecMoveDir.y = 0;
+	//	m_bIsMove = false;
+	//}
 
 	if (velocity <= 0 && State==PlayerState::Jump)
 	{
@@ -246,7 +316,7 @@ void CPlayer::Update()
 
 	
 #pragma region Key입력관련
-	if (BUTTONSTAY(VK_LEFT))
+	if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_LEFT))
 	{
 		switch (State)
 		{
@@ -308,7 +378,7 @@ void CPlayer::Update()
 	    }
 	
 	}
-	else if (BUTTONSTAY(VK_RIGHT))
+	else if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_RIGHT))
 	{
 		switch (State)
 		{
@@ -453,6 +523,81 @@ void CPlayer::Update()
 
 		m_vecMoveDir.y = 0;
 	}
+	else if (BUTTONSTAY(VK_F1))
+	{	
+		switch (State)
+		{
+		case PlayerState::Idle:
+			State = PlayerState::Roll;
+			m_vecMoveDir.x = -1;
+			Roll();
+			break;
+		case PlayerState::Run:
+			State = PlayerState::Roll;
+			m_vecMoveDir.x = -1;
+			Roll();
+			break;
+		case PlayerState::Attack:
+			break;
+		case PlayerState::Roll:
+			break;
+		case PlayerState::WallGrab:
+			break;
+		case PlayerState::Stun:
+			break;
+		case PlayerState::Flip:
+			break;
+		case PlayerState::Jump:
+			break;
+		case PlayerState::Fall:
+			break;
+		case PlayerState::Dance:
+			break;
+		case PlayerState::Die:
+			break;
+		
+		}
+		
+	}
+	else if (BUTTONSTAY(VK_F2))
+	{
+		switch (State)
+		{
+		case PlayerState::Idle:
+			State = PlayerState::Roll;
+			m_vecMoveDir.x = +1;
+			Roll();
+			break;
+		case PlayerState::Run:
+			State = PlayerState::Roll;
+			m_vecMoveDir.x = +1;
+			Roll();
+			break;
+		case PlayerState::Attack:
+			break;
+		case PlayerState::Roll:
+			break;
+		case PlayerState::WallGrab:
+			break;
+		case PlayerState::Stun:
+			break;
+		case PlayerState::Flip:
+			break;
+		case PlayerState::Jump:
+			break;
+		case PlayerState::Fall:
+			break;
+		case PlayerState::Dance:
+			break;
+		case PlayerState::Die:
+			break;
+
+		}
+	}
+	else if (BUTTONSTAY(VK_F3))
+	{ 
+	Dance();
+	}
 	else
 	{
 		m_vecMoveDir.y = 0;
@@ -489,16 +634,31 @@ void CPlayer::Jump()
 void CPlayer::Flip()
 {	
 	if (Isgrabed->GetPos().x < m_vecPos.x)
-	{
+	{	
+		
 		FlipDir = 1;
+		FlipTimer = 1.1;
 		Jump();
 	}
 	else
 	{
 		FlipDir = -1;
+		FlipTimer = 1.1;
 		Jump();
 	}
 
+}
+
+void CPlayer::Roll()
+{
+	RollTimer = 0.5;
+	
+
+}
+
+void CPlayer::Dance()
+{
+	State = PlayerState::Dance;
 }
 
 
@@ -560,8 +720,8 @@ void CPlayer::AnimatorUpdate()
 	case PlayerState::WallGrab:
 
 		str += L"WallGrab";
-		if (m_vecLookDir.x > 0) str += L"Right";
-		else if (m_vecLookDir.x < 0) str += L"Left";
+		if (Isgrabed->GetPos().x>m_vecPos.x) str += L"Right";
+		else if (Isgrabed->GetPos().x < m_vecPos.x) str += L"Left";
 
 		break;
 	case PlayerState::Stun:
@@ -825,4 +985,9 @@ void CPlayer::WhereAmI()
 void CPlayer::WhereWasI()
 {
 	GAME->PrevPlayerPos = m_vecPos;
+}
+
+void CPlayer::WhatIsMyState()
+{
+	GAME->PlayerNowState = State;
 }

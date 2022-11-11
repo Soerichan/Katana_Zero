@@ -8,27 +8,15 @@ class CAnimator;
 //##		 플레이어 상태			##
 //========================================
 
-enum class PlayerState
-{
-	Idle,
-	Run,
-	Attack,
-	Roll,
-	WallGrab,
-	Stun,
-	Flip,
-	Jump,
-	Fall,
-	Dance,
-	Die
 
-};
 
 class CPlayer : public CGameObject
 {
 public:
 	CPlayer();
 	virtual ~CPlayer();
+
+
 
 private:
 	CAnimator* m_pAnimator;
@@ -77,9 +65,14 @@ private:
 	bool jumpAction;
 	
 	bool FlipAction;
+	float FlipTimer;
 	float WallGrabTimer;
 	CCollider* Isgrabed;
 	float FlipDir;
+
+	bool IsRolling;
+	float RollTimer;
+
 
 private:
 	void Init() override;
@@ -91,6 +84,10 @@ private:
 
 	void Flip();
 
+	void Roll();
+
+	void Dance();
+
 	void AnimatorUpdate();
 	void CreateMissile();
 
@@ -100,6 +97,7 @@ private:
 
 	void WhereAmI();
 	void WhereWasI();
+	void WhatIsMyState();
 	
 
 };
