@@ -511,19 +511,14 @@ void CPlayer::Update()
 		
 		
 	}
-	else if (BUTTONSTAY(VK_DOWN))
-	{
-		//m_vecPos.y += m_fSpeed * DT;
-		
-		m_vecMoveDir.y = -1;
-	}
+	
 	else if (BUTTONUP(VK_DOWN))
 	{
 		//m_vecPos.y += m_fSpeed * DT;
 
 		m_vecMoveDir.y = 0;
 	}
-	else if (BUTTONSTAY(VK_F1))
+	else if (BUTTONSTAY(VK_DOWN) && BUTTONDOWN(VK_LEFT))
 	{	
 		switch (State)
 		{
@@ -559,7 +554,7 @@ void CPlayer::Update()
 		}
 		
 	}
-	else if (BUTTONSTAY(VK_F2))
+	else if (BUTTONSTAY(VK_DOWN)&&BUTTONDOWN(VK_RIGHT))
 	{
 		switch (State)
 		{
@@ -593,6 +588,12 @@ void CPlayer::Update()
 			break;
 
 		}
+	}
+	else if (BUTTONSTAY(VK_DOWN))
+	{
+	//m_vecPos.y += m_fSpeed * DT;
+
+	m_vecMoveDir.y = -1;
 	}
 	else if (BUTTONSTAY(VK_F3))
 	{ 
