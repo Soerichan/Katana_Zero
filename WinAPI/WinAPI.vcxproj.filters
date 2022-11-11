@@ -210,6 +210,9 @@
     <ClInclude Include="CBackGround.h">
       <Filter>GameObject\Common</Filter>
     </ClInclude>
+    <ClInclude Include="CCursor.h">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -346,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="CBackGround.cpp">
       <Filter>GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="CCursor.cpp">
+      <Filter>Engine\Asset\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

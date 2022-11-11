@@ -8,7 +8,7 @@ public:
 	CBackGround();
 	virtual ~CBackGround();
 
-	CBackGround* m_BackGround;
+	
 
 	CImage* m_pImage;
 	void SetImage(CImage* image);

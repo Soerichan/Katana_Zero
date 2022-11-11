@@ -26,6 +26,7 @@
 #define IDC_BUTTONMAPSAVE               1008
 #define IDC_LIST2                       1028
 #define IDC_STATIC                      -1
+//#define IDC_CURSOR1 101
 
 // Next default values for new objects
 // 

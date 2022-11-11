@@ -51,6 +51,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_WINAPI, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
+    //커서
+    //HWND.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(spr_cursor_0));
+
+
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
     {

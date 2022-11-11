@@ -38,6 +38,15 @@ void CSceneStage01::Init()
 	
 	AddGameObject(pCamController);
 
+	m_pbackGround = new CBackGround;
+	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround01", L"Image\\KATANA_MAP_club_last1.png"));
+	AddGameObject(m_pbackGround);
+
+	ShowCursor(false);
+	m_pCursor = new CCursor;
+	m_pCursor->SetImage(RESOURCE->LoadImg(L"Cursor01", L"Image\\spr_cursor_0.png"));
+	AddGameObject(m_pCursor);
+
 	//CImage* pImg= new CImage;
 	//pImg->Load(GETPATH + L"Image\\KATANA_MAP_club.png");
 	//AddGameObject(pImg);
@@ -52,9 +61,7 @@ void CSceneStage01::Enter()
 	CAMERA->FadeIn(0.25f);
 	LoadStageObject(GETPATH + L"Tile\\club01.tile");
 
-	m_pbackGround = new CBackGround;
-	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround01", L"Image\\KATANA_MAP_club_last1.png"));
-	AddGameObject(m_pbackGround);
+	
 }
 
 void CSceneStage01::Update()

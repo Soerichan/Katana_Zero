@@ -47,8 +47,12 @@ enum class Layer
 	Player,
 	Missile,
 	Monster,
+	
 
 	Ui,
+
+	Cursor,
+
 	Size,
 };
 
