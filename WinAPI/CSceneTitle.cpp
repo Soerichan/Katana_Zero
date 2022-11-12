@@ -7,6 +7,8 @@
 #include "CEventManager.h"
 #include "CCameraManager.h"
 
+#include "CTitle_Layer01.h"
+
 CSceneTitle::CSceneTitle()
 {
 }
@@ -17,6 +19,23 @@ CSceneTitle::~CSceneTitle()
 
 void CSceneTitle::Init()
 {
+	m_pbackGround = new CBackGround;
+	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround00", L"Image\\TITLE_BG_ZERO.png"));
+	AddGameObject(m_pbackGround);
+
+	m_pLayer01 = new CTitle_Layer01;
+	m_pLayer01->SetPos(577, 310);	
+	AddGameObject(m_pLayer01);
+
+	m_pLayer02 = new CTitle_Layer02;
+	m_pLayer02->SetPos(805, 310);
+	AddGameObject(m_pLayer02);
+
+	m_pLayer03 = new CTitle_Layer03;
+	m_pLayer03->SetPos(640, 465);
+	AddGameObject(m_pLayer03);
+
+
 }
 
 void CSceneTitle::Enter()

@@ -52,6 +52,37 @@ void CAnimation::Create(CImage* pImg, Vector lt, Vector slice, Vector step, floa
 	}
 }
 
+void CAnimation::Create2(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, UINT floor, UINT floorcount, bool repeat)
+{
+	m_pImage = pImg;	// 프레임 이미지가 모여있는 이미지 파일
+	m_bRepeat = repeat;	// 반복여부
+
+	// 바둑판식 프레임 이미지를 가리킬 위치를 저장
+	// lt		: 프레임 이미지의 좌측상단 좌표
+	// step		: 프레임 이미지의 간격
+	// slice	: 프레임 이미지의 크기
+	// duration : 프레임 이미지의 지속시간
+	AniFrame frame;
+	for (UINT A = 0; A < floor; A++)
+	{
+
+
+		for (UINT i = 0; i < floorcount; i++)
+		{
+			frame.lt.x = lt.x + step.x * i;
+			frame.lt.y = lt.y + step.y * i+(slice.y*A);
+			frame.slice = slice;
+			frame.duration = duration;
+
+			m_vecFrame.push_back(frame);
+		}
+
+
+	}
+
+	
+}
+
 void CAnimation::Replay()
 {
 	// 애니메이션 재시작 : 현재 프레임과 누적시간을 초기화

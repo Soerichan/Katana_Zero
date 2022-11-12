@@ -9,7 +9,7 @@ public:
 	CImageObject();
 	virtual ~CImageObject();
 
-private:
+protected:
 	CImage* m_pImage;
 
 public:

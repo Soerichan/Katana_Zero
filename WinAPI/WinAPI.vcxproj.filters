@@ -55,6 +55,9 @@
     <Filter Include="Engine\Asset\StageObject">
       <UniqueIdentifier>{1aa953d2-baf9-4c3d-ba69-c410c4ee3df4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Title">
+      <UniqueIdentifier>{025b72ae-dc9b-49b3-94c2-ee13a88ba758}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -213,6 +216,21 @@
     <ClInclude Include="CCursor.h">
       <Filter>Engine\Asset\UI</Filter>
     </ClInclude>
+    <ClInclude Include="CTitle_BG.h">
+      <Filter>GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitle_Layer01.h">
+      <Filter>GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitle_Layer02.h">
+      <Filter>GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitle_Layer03.h">
+      <Filter>GameObject\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitle_Layer04.h">
+      <Filter>GameObject\Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -352,6 +370,21 @@
     </ClCompile>
     <ClCompile Include="CCursor.cpp">
       <Filter>Engine\Asset\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle_BG.cpp">
+      <Filter>GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle_Layer01.cpp">
+      <Filter>GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle_Layer02.cpp">
+      <Filter>GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle_Layer03.cpp">
+      <Filter>GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitle_Layer04.cpp">
+      <Filter>GameObject\Title</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

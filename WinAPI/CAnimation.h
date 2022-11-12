@@ -34,6 +34,7 @@ private:
 	void SetName(const wstring& name);
 
 	void Create(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat);	// 애니메이션 생성
+	void Create2(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, UINT floor, UINT floorcount, bool repeat);	// 애니메이션 생성2
 	void Replay();	// 애니메이션 처음부터 다시 시작
 
 private:

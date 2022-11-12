@@ -52,6 +52,22 @@ void CAnimator::CreateAnimation(const wstring& aniName, CImage* pImg, Vector lt,
 	m_mapAni.insert(make_pair(aniName, pAni));
 }
 
+void CAnimator::CreateAnimation2(const wstring& aniName, CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, UINT floor, UINT floorcount, bool repeat)
+{
+	// 같은 이름의 애니메이션이 이미 있을 경우 프로그램 경고
+	CAnimation* pAni = FindAnimation(aniName);
+	assert(nullptr == pAni && L"Animation already exist");
+
+	// 애니메이션의 이름과 생성 후 자료구조에 보관
+	pAni = new CAnimation;
+	pAni->SetName(aniName);
+	pAni->Create2(pImg, lt, slice, step, duration, count,floor,floorcount, repeat);
+	pAni->m_pAnimator = this;
+
+	m_mapAni.insert(make_pair(aniName, pAni));
+
+}
+
 void CAnimator::RemoveAnimation(const wstring& aniName)
 {
 	// 같은 이름의 애니메이션을 찾았을 경우 제거

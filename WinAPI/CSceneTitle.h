@@ -1,5 +1,8 @@
 #pragma once
 #include "CScene.h"
+#include "CTitle_Layer01.h"
+#include "CTitle_Layer02.h"
+#include "CTitle_Layer03.h"
 
 class CSceneTitle : public CScene
 {
@@ -14,4 +17,8 @@ private:
 	void Render()	override;
 	void Exit()		override;
 	void Release()	override;
+
+	CTitle_Layer01* m_pLayer01;
+	CTitle_Layer02* m_pLayer02;
+	CTitle_Layer03* m_pLayer03;
 };

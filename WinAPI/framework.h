@@ -69,6 +69,7 @@ using namespace FMOD;
 #include "CGameObject.h"
 #include "CScene.h"
 #include "CBackGround.h"
+#include "CImageObject.h"
 
 
 
