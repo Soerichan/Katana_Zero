@@ -14,6 +14,7 @@ CCameraController::~CCameraController()
 
 void CCameraController::Init()
 {
+	
 }
 
 void CCameraController::Update()
@@ -41,7 +42,15 @@ void CCameraController::Update()
 
 	CAMERA->Scroll(dir, m_fScrollSpeed);
 
-	CAMERA->CameraWalk();
+	if (CAMERA->readyTimer >= 0)
+	{
+		CAMERA->readyTimer -= DT;
+	}
+	
+	if (CAMERA->readyTimer <= 0)
+	{
+		CAMERA->CameraWalk();
+	}
 }
 
 void CCameraController::Render()

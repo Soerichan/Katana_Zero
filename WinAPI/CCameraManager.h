@@ -42,6 +42,8 @@ public:
 	void FadeIn(float duration);		// ¾À ÁøÀÔ È¿°ú
 	void FadeOut(float duration);		// ¾À Å»Ãâ È¿°ú
 
+	float readyTimer;
+
 private:
 	void Init();
 	void Update();

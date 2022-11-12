@@ -58,14 +58,19 @@ void CSceneStage01::Init()
 
 void CSceneStage01::Enter()
 {
-	CAMERA->FadeIn(0.25f);
+	CAMERA->readyTimer = 1.f;
+
+	CAMERA->FadeIn(1.f);
+
+
 	LoadStageObject(GETPATH + L"Tile\\club01.tile");
 
-	
+	CAMERA->SetTargetPos({ 1560,790 });
 }
 
 void CSceneStage01::Update()
 {
+	
 	//CAMERA->SetTargetObj(pPlayer);
 	if (BUTTONDOWN(VK_ESCAPE))
 	{

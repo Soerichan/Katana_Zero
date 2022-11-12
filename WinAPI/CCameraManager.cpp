@@ -17,6 +17,8 @@ CCameraManager::CCameraManager()
 	m_fTimeToBright = 0.f;
 
 	Focus = {};
+
+	readyTimer = 0;
 }
 
 CCameraManager::~CCameraManager()
@@ -105,7 +107,7 @@ void CCameraManager::CameraWalk()
 			PreFocus.y = 2 + (WINSIZEY * 0.5);
 		}
 		Focus = PreFocus;
-		SetTargetPos(Focus, 1);
+		SetTargetPos(Focus, 1.f);
 	}
 	else
 	{
@@ -142,7 +144,7 @@ void CCameraManager::CameraWalk()
 		}
 
 		Focus = PreFocus;
-		SetTargetPos(Focus, 0.1);
+		SetTargetPos(Focus, 0.1f);
 	}
 
 
