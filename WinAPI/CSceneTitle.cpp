@@ -59,12 +59,12 @@ void CSceneTitle::Update()
 void CSceneTitle::Render()
 {
 	RENDER->Text(L" Press SapceBar to Start",
-		WINSIZEX * 0.5f - 100,
-		WINSIZEY * 0.5f - 10,
-		WINSIZEX * 0.5f + 100,
-		WINSIZEY * 0.5f + 10,
+		WINSIZEX * 0.5f - 150,
+		WINSIZEY * 0.5f + 80,
+		WINSIZEX * 0.5f + 150,
+		WINSIZEY * 0.5f + 140,
 		Color(255, 255, 255, 1.f),
-		20.f);
+		30.f);
 }
 
 void CSceneTitle::Exit()
