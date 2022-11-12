@@ -15,6 +15,8 @@ CCameraManager::CCameraManager()
 	m_fTargetBright = 1.f;
 	m_fCurBright = 1.f;
 	m_fTimeToBright = 0.f;
+
+	Focus = {};
 }
 
 CCameraManager::~CCameraManager()
@@ -67,6 +69,86 @@ void CCameraManager::Scroll(Vector dir, float velocity)
 	m_vecTargetPos = m_vecLookAt;
 	m_vecTargetPos += dir.Normalized() * velocity * DT;
 	m_fTimeToTarget = 0;	// 스크롤은 시간차를 두지 않은 즉각 이동
+}
+
+void CCameraManager::CameraWalk()
+{	
+	Vector Player = PLAYERPOSITION;
+	Vector Cursor = MOUSEWORLDPOS;
+	Vector PreFocus = {};
+
+	PreFocus.x = (Cursor.x + Player.x) * 0.5f;
+	PreFocus.y = (Player.y + Cursor.y) * 0.5f;
+
+
+
+	if (GAME->PlayerNowState == PlayerState::Idle)
+	{	
+		
+		if (PreFocus.x + (WINSIZEX * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - 2)
+		{
+			PreFocus.x = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - (WINSIZEX * 0.5) - 2;
+		}
+
+		if (PreFocus.y + (WINSIZEY * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - 2)
+		{
+			PreFocus.y = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - (WINSIZEY * 0.5) - 2;
+		}
+
+		if (PreFocus.x - (WINSIZEX * 0.5) < 2)
+		{
+			PreFocus.x = 2 + (WINSIZEX * 0.5);
+		}
+
+		if (PreFocus.y - (WINSIZEY * 0.5) < 2)
+		{
+			PreFocus.y = 2 + (WINSIZEY * 0.5);
+		}
+		Focus = PreFocus;
+		SetTargetPos(Focus, 1);
+	}
+	else
+	{
+		while (abs(Player.x - PreFocus.x) > 30)
+		{
+			PreFocus.x = (PreFocus.x + Player.x) * 0.5f;
+			
+		}
+
+		while (abs(Player.y - PreFocus.y) > 30)
+		{
+			
+			PreFocus.y = (PreFocus.y + Player.y) * 0.5f;
+		}
+
+		if (PreFocus.x + (WINSIZEX * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - 2)
+		{
+			PreFocus.x = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - (WINSIZEX * 0.5) - 2;
+		}
+
+		if (PreFocus.y + (WINSIZEY * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - 2)
+		{
+			PreFocus.y = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - (WINSIZEY * 0.5) - 2;
+		}
+
+		if (PreFocus.x - (WINSIZEX * 0.5) < 2)
+		{
+			PreFocus.x = 2 + (WINSIZEX * 0.5);
+		}
+
+		if (PreFocus.y - (WINSIZEY * 0.5) < 2)
+		{
+			PreFocus.y = 2+ (WINSIZEY * 0.5);
+		}
+
+		Focus = PreFocus;
+		SetTargetPos(Focus, 0.1);
+	}
+
+
+	
+
+	
 }
 
 void CCameraManager::FadeIn(float duration)

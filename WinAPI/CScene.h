@@ -1,6 +1,9 @@
 #pragma once
 #include "WinAPI.h"
 
+class CBackGround;
+class CCursor;
+
 class CSceneManager;
 class CEventManager;
 class CCollisionManager;
@@ -19,6 +22,9 @@ protected:
 public:
 	CScene();
 	virtual ~CScene();
+
+	CBackGround* m_pbackGround;
+	CCursor* m_pCursor;
 
 protected:
 	UINT m_iTileSizeX;

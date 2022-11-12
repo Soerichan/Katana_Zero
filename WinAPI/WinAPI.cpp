@@ -134,7 +134,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WINAPI));	// 프로그램 아이콘
 	wcex.hIconSm		= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_SMALL));	// 프로그램 작은사이즈 아이콘
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);	// 커서 지정
-    wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW);	// 윈도우 작업영역에 칠한 배경 브러시
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);//GetStockObject(BLACK_BRUSH);	// 윈도우 작업영역에 칠한 배경 브러시
     wcex.lpszMenuName   = nullptr;	// 윈도우에서 사용할 메뉴 지정. nullptr로 없앰
     wcex.lpszClassName  = szWindowClass;	// 윈도우 클래스의 이름
 

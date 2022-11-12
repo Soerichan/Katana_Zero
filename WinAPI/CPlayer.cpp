@@ -216,7 +216,7 @@ void CPlayer::Update()
 
 		if (FlipTimer >= 1)
 		{
-			velocity = 350;
+			velocity = 450;
 		}
 		FlipTimer -= DT;
 		

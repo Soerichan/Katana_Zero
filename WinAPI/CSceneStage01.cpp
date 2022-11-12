@@ -72,6 +72,8 @@ void CSceneStage01::Update()
 		CAMERA->FadeOut(0.25f);
 		DELAYCHANGESCENE(GroupScene::Title, 0.25f);
 	}
+
+	
 }
 
 void CSceneStage01::Render()

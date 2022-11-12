@@ -81,7 +81,7 @@ void CRenderManager::Init()
 
 	// 텍스트 포맷 생성
 	hResult = m_pWriteFactory->CreateTextFormat(
-		L"굴림",
+		L"마비옛체_OTF",
 		NULL,
 		DWRITE_FONT_WEIGHT_NORMAL,
 		DWRITE_FONT_STYLE_NORMAL,
@@ -106,7 +106,7 @@ void CRenderManager::BeginDraw()
 {
 	m_pRenderTarget->BeginDraw();
 	Vector screenPos = CAMERA->ScreenToWorldPoint(Vector(0, 0));
-	FillRect(screenPos.x, screenPos.y, screenPos.x + WINSIZEX, screenPos.y + WINSIZEY, Color(255, 255, 255, 1.f));
+	FillRect(screenPos.x, screenPos.y, screenPos.x + WINSIZEX, screenPos.y + WINSIZEY, Color(0, 0, 0, 1.f));
 }
 
 void CRenderManager::EndDraw()

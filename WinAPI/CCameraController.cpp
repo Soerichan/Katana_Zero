@@ -18,10 +18,10 @@ void CCameraController::Init()
 
 void CCameraController::Update()
 {
-	if (LMOUSEDOWN(false))
+	/*if (LMOUSEDOWN(false))
 	{
 		CAMERA->SetTargetPos(MOUSEWORLDPOS, 1);
-	}
+	}*/
 
 	Vector dir;
 	if (BUTTONSTAY('A'))
@@ -40,6 +40,8 @@ void CCameraController::Update()
 		dir.y = 0;
 
 	CAMERA->Scroll(dir, m_fScrollSpeed);
+
+	CAMERA->CameraWalk();
 }
 
 void CCameraController::Render()

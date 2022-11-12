@@ -36,6 +36,9 @@ public:
 
 	void Scroll(Vector dir, float velocity);		// 카메라 스크롤
 
+	void CameraWalk(); //게임에서의 카메라 시점
+	Vector Focus;
+
 	void FadeIn(float duration);		// 씬 진입 효과
 	void FadeOut(float duration);		// 씬 탈출 효과
 

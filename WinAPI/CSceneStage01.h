@@ -9,8 +9,7 @@ public:
 	CSceneStage01();
 	virtual ~CSceneStage01();
 	
-	CBackGround* m_pbackGround;
-	CCursor* m_pCursor;
+
 
 private:
 	CPlayer* pPlayer;

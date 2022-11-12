@@ -39,12 +39,12 @@ void CSceneTitle::Update()
 
 void CSceneTitle::Render()
 {
-	RENDER->Text(L"press space to start",
+	RENDER->Text(L"¸¶ºñ¿¾Ã¼",
 		WINSIZEX * 0.5f - 100,
 		WINSIZEY * 0.5f - 10,
 		WINSIZEX * 0.5f + 100,
 		WINSIZEY * 0.5f + 10,
-		Color(0, 0, 0, 1.f),
+		Color(255, 255, 255, 1.f),
 		20.f);
 }
 
