@@ -39,7 +39,7 @@ void CSceneTitle::Update()
 
 void CSceneTitle::Render()
 {
-	RENDER->Text(L"¸¶ºñ¿¾Ã¼",
+	RENDER->Text(L" Press SapceBar to Start",
 		WINSIZEX * 0.5f - 100,
 		WINSIZEY * 0.5f - 10,
 		WINSIZEX * 0.5f + 100,
