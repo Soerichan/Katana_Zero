@@ -64,27 +64,27 @@ void CSceneTitle::Render()
 {
 	
 
-	RENDER->Text(L" Press SapceBar to Start",
-		WINSIZEX * 0.5f - 151,
-		WINSIZEY * 0.5f + 80,
-		WINSIZEX * 0.5f + 149,
-		WINSIZEY * 0.5f + 140,
+	RENDER->Text(L" Press  SpaceBar  to  Start",
+		WINSIZEX * 0.5f - 167,
+		WINSIZEY * 0.5f + 100,
+		WINSIZEX * 0.5f + 163,
+		WINSIZEY * 0.5f + 180,
 		Color(255, 0, 255, 1.f),
 		30.f);
 
-	RENDER->Text(L" Press SapceBar to Start",
-		WINSIZEX * 0.5f - 148,
-		WINSIZEY * 0.5f + 80,
-		WINSIZEX * 0.5f + 152,
-		WINSIZEY * 0.5f + 140,
+	RENDER->Text(L" Press  SpaceBar  to  Start",
+		WINSIZEX * 0.5f - 163,
+		WINSIZEY * 0.5f + 100,
+		WINSIZEX * 0.5f + 167,
+		WINSIZEY * 0.5f + 180,
 		Color(0, 255, 255, 1.f),
 		30.f);
 
-	RENDER->Text(L" Press SapceBar to Start",
-		WINSIZEX * 0.5f - 150,
-		WINSIZEY * 0.5f + 80,
-		WINSIZEX * 0.5f + 150,
-		WINSIZEY * 0.5f + 140,
+	RENDER->Text(L" Press  SpaceBar  to  Start",
+		WINSIZEX * 0.5f - 165,
+		WINSIZEY * 0.5f + 100,
+		WINSIZEX * 0.5f + 165,
+		WINSIZEY * 0.5f + 180,
 		Color(255, 255, 255, 1.f),
 		30.f);
 }

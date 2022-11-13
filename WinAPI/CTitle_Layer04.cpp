@@ -16,7 +16,7 @@ void CTitle_Layer04::Init()
 {
 	m_pImage = RESOURCE->LoadImg(L"KATANA", L"Image\\KATANA.png");
 	m_pAnimator = new CAnimator;
-	m_pAnimator->CreateAnimation(L"KATANA", m_pImage, Vector(0.f, 0.f), Vector(340.f, 222.f), Vector(340.f, 0.f), 100.f, 1);
+	m_pAnimator->CreateAnimation(L"KATANA", m_pImage, Vector(0.f, 0.f), Vector(340.f, 222.f), Vector(340.f, 0.f), 100.f,1,false);
 	m_pAnimator->Play(L"KATANA", true);
 	AddComponent(m_pAnimator);
 }

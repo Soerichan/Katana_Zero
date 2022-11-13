@@ -46,6 +46,11 @@ CPlayer::CPlayer()
 	FlipTimer = 0;
 	
 	RollTimer = 0;
+
+	AttackTimer = 0;
+	AttackPos = {};
+	IsHit = false;
+	IsAttacking = false;
 }
 
 CPlayer::~CPlayer()
@@ -96,8 +101,8 @@ void CPlayer::Init()
 	m_pAnimator->CreateAnimation(L"FallLeft", m_pFallImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 4);
 	m_pAnimator->CreateAnimation(L"FallRight", m_pFallImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 4);
 
-	m_pAnimator->CreateAnimation(L"AttackLeft", m_pAttackImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.03f, 7,false);
-	m_pAnimator->CreateAnimation(L"AttackRight", m_pAttackImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.03f, 7,false);
+	m_pAnimator->CreateAnimation(L"AttackLeft", m_pAttackImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.08f, 7,false);
+	m_pAnimator->CreateAnimation(L"AttackRight", m_pAttackImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.08f, 7,false);
 
 	m_pAnimator->CreateAnimation(L"Door_KickLeft", m_pDoor_KickImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.05f, 10,false);
 	m_pAnimator->CreateAnimation(L"Door_KickRight", m_pDoor_KickImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.05f, 10,false);
@@ -170,7 +175,7 @@ void CPlayer::Update()
 	}
 	else
 	{
-		velocity = 300;
+		velocity = 0;
 		accel = 0;
 		resistance = 0;
 		m_vecPos.y += 1; //기본중력
@@ -181,6 +186,12 @@ void CPlayer::Update()
 	{
 		jumpAction = false;
 		//m_vecMoveDir.y = 0;
+	}
+
+
+	if (velocity <= 0 && State == PlayerState::Jump)
+	{
+		State = PlayerState::Fall;
 	}
 
 #pragma endregion
@@ -286,6 +297,21 @@ void CPlayer::Update()
 #pragma endregion
 
 
+#pragma region Attack관련
+	if (State == PlayerState::Attack)
+	{
+		AttackTimer -= DT;
+		m_vecPos += AttackPos * 300 *DT;
+
+		if (AttackTimer <= 0)
+		{	
+			IsAttacking = false;
+			State = PlayerState::Fall;
+		}
+	}
+
+
+#pragma endregion
 
 #pragma region State관련
 	//if (islanding == true)
@@ -295,10 +321,6 @@ void CPlayer::Update()
 	//	m_bIsMove = false;
 	//}
 
-	if (velocity <= 0 && State==PlayerState::Jump)
-	{
-		State = PlayerState::Fall;
-	}
 
 
 #pragma endregion
@@ -316,7 +338,62 @@ void CPlayer::Update()
 
 	
 #pragma region Key입력관련
-	if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_LEFT))
+
+	if (LMOUSEDOWN(false))
+	{	
+		switch (State)
+		{
+		case PlayerState::Idle:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::Run:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::Attack:
+			//if (IsHit == false)
+			//{
+			//	State = PlayerState::Attack;
+			//	Attack();
+			//}
+			break;
+		case PlayerState::Roll:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::WallGrab:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::Stun:
+			break;
+		case PlayerState::Flip:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::Jump:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::Fall:
+			if (IsHit == false)
+			{
+				State = PlayerState::Attack;
+				Attack();
+			}
+			break;
+		case PlayerState::Dance:
+			State = PlayerState::Attack;
+			Attack();
+			break;
+		case PlayerState::Die:
+			break;
+		
+		}
+		
+	}
+	else if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_LEFT))
 	{
 		switch (State)
 		{
@@ -592,7 +669,7 @@ void CPlayer::Update()
 	else if (BUTTONSTAY(VK_DOWN))
 	{
 	//m_vecPos.y += m_fSpeed * DT;
-
+	
 	m_vecMoveDir.y = -1;
 	}
 	else if (BUTTONSTAY(VK_F3))
@@ -627,7 +704,8 @@ void CPlayer::Jump()
 {	
 	jumpAction = true;
 	islanding = false;
-	accel = 600;
+	accel = 500;
+	velocity = 300;
 	m_vecMoveDir.y = +1;
 	
 }
@@ -637,8 +715,8 @@ void CPlayer::Flip()
 	if (Isgrabed->GetPos().x < m_vecPos.x)
 	{	
 		
-		FlipDir = 1;
-		FlipTimer = 1.1;
+		FlipDir = 1.f;
+		FlipTimer = 1.1f;
 		Jump();
 	}
 	else
@@ -652,9 +730,27 @@ void CPlayer::Flip()
 
 void CPlayer::Roll()
 {
-	RollTimer = 0.5;
+	RollTimer = 0.5f;
 	
 
+}
+
+void CPlayer::Attack()
+{	
+	AttackTimer = 0.5f;
+	AttackPos = (MOUSEWORLDPOS-m_vecPos).Normalized();
+	IsAttacking = true;
+	if (MOUSEWORLDPOS.x < m_vecPos.x)
+	{
+		m_vecMoveDir.x = -1;
+	}
+	else
+	{
+		m_vecMoveDir.x = +1;
+	}
+	m_vecPos.y -= 50;
+
+	
 }
 
 void CPlayer::Dance()
@@ -853,7 +949,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		//	m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
 		//}
 
-		if(State!=PlayerState::Jump)
+		if((State!=PlayerState::Jump)&& (State != PlayerState::Attack))
 		{
 		
 
@@ -938,7 +1034,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Platfoam")
 	{
-		if (State != PlayerState::Jump)
+		if (State != PlayerState::Jump&&!BUTTONSTAY(VK_DOWN))
 		{
 			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
@@ -975,6 +1071,12 @@ void CPlayer::OnCollisionExit(CCollider* pOtherCollider)
 	if (pTarget == L"Platfoam")
 	{
 		islanding = false;
+		if (State != PlayerState::Jump&&State!=PlayerState::Attack)
+		{
+			jumpAction = true;
+			velocity = -500;
+			State = PlayerState::Fall;
+		}
 	}
 }
 #pragma endregion

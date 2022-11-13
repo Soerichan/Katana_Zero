@@ -73,6 +73,10 @@ private:
 	bool IsRolling;
 	float RollTimer;
 
+	bool IsAttacking;
+	bool IsHit;
+	float AttackTimer;
+	Vector AttackPos;
 
 private:
 	void Init() override;
@@ -85,6 +89,8 @@ private:
 	void Flip();
 
 	void Roll();
+
+	void Attack();
 
 	void Dance();
 
