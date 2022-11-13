@@ -145,6 +145,9 @@ void CPlayer::Init()
 	AddComponent(m_pAnimator);
 
 	AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
+
+	m_vecMoveDir.x = -1;
+	m_vecMoveDir.y = +1;
 }
 
 void CPlayer::Update()
@@ -301,11 +304,13 @@ void CPlayer::Update()
 	if (State == PlayerState::Attack)
 	{
 		AttackTimer -= DT;
-		m_vecPos += AttackPos * 300 *DT;
+		m_vecPos.x += AttackPos.x * 500 *DT;
+		m_vecPos.y += AttackPos.y * 400 *DT;
 
 		if (AttackTimer <= 0)
 		{	
 			IsAttacking = false;
+			m_vecPos.x += AttackPos.x * 600 * DT;
 			State = PlayerState::Fall;
 		}
 	}
@@ -705,7 +710,7 @@ void CPlayer::Jump()
 	jumpAction = true;
 	islanding = false;
 	accel = 500;
-	velocity = 300;
+	velocity = 200;
 	m_vecMoveDir.y = +1;
 	
 }
@@ -739,6 +744,7 @@ void CPlayer::Attack()
 {	
 	AttackTimer = 0.5f;
 	AttackPos = (MOUSEWORLDPOS-m_vecPos).Normalized();
+
 	IsAttacking = true;
 	if (MOUSEWORLDPOS.x < m_vecPos.x)
 	{
@@ -748,7 +754,7 @@ void CPlayer::Attack()
 	{
 		m_vecMoveDir.x = +1;
 	}
-	m_vecPos.y -= 50;
+	m_vecPos.y -= 10;
 
 	
 }
@@ -903,11 +909,15 @@ void CPlayer::CreateMissile()
 void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	wstring pTarget = pOtherCollider->GetObjName();
+
 	if (pTarget == L"Ground"&&pOtherCollider->GetPos().y>m_vecPos.y)
 	{	
+		
 
-		islanding = true;
+			islanding = true;
+		
 	}
+
 	if (pTarget == L"Wall")
 	{
 		if ((State == PlayerState::Jump || State == PlayerState::Fall || State == PlayerState::Flip))
@@ -949,12 +959,28 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		//	m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2 - 4;
 		//}
 
-		if((State!=PlayerState::Jump)&& (State != PlayerState::Attack))
+		if((State!=PlayerState::Jump))
 		{
 		
 
 
 		Logger::Debug(L"그라운드");
+
+		if ((State == PlayerState::Attack))
+		{
+			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
+			{
+				islanding = true;
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 ;
+			}
+
+			else //천장에 머리박기
+			{
+				m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
+			}
+		}
+		else
+		{
 			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
 				islanding = true;
@@ -963,8 +989,9 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 
 			else //천장에 머리박기
 			{
-			m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
+				m_vecPos.y = pOtherCollider->GetPos().y + pOtherCollider->GetScale().y / 2 + m_vecScale.y / 2;
 			}
+		}
 
 		}
 	}
