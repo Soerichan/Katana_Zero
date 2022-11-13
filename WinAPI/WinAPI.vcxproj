@@ -157,6 +157,9 @@
     <ClInclude Include="CGroundTile.h" />
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
+    <ClInclude Include="CKatanaSlash.h" />
+    <ClInclude Include="CKatanaSlashHigh.h" />
+    <ClInclude Include="CKatanaSlashLow.h" />
     <ClInclude Include="CL_High_Slope.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
@@ -215,6 +218,9 @@
     <ClCompile Include="CGroundTile.cpp" />
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
+    <ClCompile Include="CKatanaSlash.cpp" />
+    <ClCompile Include="CKatanaSlashHigh.cpp" />
+    <ClCompile Include="CKatanaSlashLow.cpp" />
     <ClCompile Include="CL_High_Slope.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />

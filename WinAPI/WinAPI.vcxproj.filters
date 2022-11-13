@@ -228,6 +228,15 @@
     <ClInclude Include="CTitle_Layer04.h">
       <Filter>GameObject\Title</Filter>
     </ClInclude>
+    <ClInclude Include="CKatanaSlash.h">
+      <Filter>GameObject\Stage01</Filter>
+    </ClInclude>
+    <ClInclude Include="CKatanaSlashHigh.h">
+      <Filter>GameObject\Stage01</Filter>
+    </ClInclude>
+    <ClInclude Include="CKatanaSlashLow.h">
+      <Filter>GameObject\Stage01</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -379,6 +388,15 @@
     </ClCompile>
     <ClCompile Include="CTitle_Layer04.cpp">
       <Filter>GameObject\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="CKatanaSlash.cpp">
+      <Filter>GameObject\Stage01</Filter>
+    </ClCompile>
+    <ClCompile Include="CKatanaSlashHigh.cpp">
+      <Filter>GameObject\Stage01</Filter>
+    </ClCompile>
+    <ClCompile Include="CKatanaSlashLow.cpp">
+      <Filter>GameObject\Stage01</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

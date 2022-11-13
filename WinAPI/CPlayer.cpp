@@ -11,7 +11,11 @@
 #include "CImage.h"
 #include "CAnimator.h"
 
+
 #include "CMissile.h"
+#include "CKatanaSlash.h"
+#include "CKatanaSlashHigh.h"
+#include "CKatanaSlashLow.h"
 
 CPlayer::CPlayer()
 {
@@ -755,7 +759,7 @@ void CPlayer::Attack()
 		m_vecMoveDir.x = +1;
 	}
 	m_vecPos.y -= 10;
-
+	CreateMissile();
 	
 }
 
@@ -880,12 +884,12 @@ void CPlayer::CreateMissile()
 {
 	Logger::Debug(L"미사일 생성");
 
-	CMissile* pMissile = new CMissile();
-	pMissile->SetPos(m_vecPos);
-	pMissile->SetDir(Vector(1, 0));
-	ADDOBJECT(pMissile);
+	CKatanaSlash* pKatanaSlash = new CKatanaSlash();
+	pKatanaSlash->SetPos(m_vecPos);
+	pKatanaSlash->SetDir(Vector(1, 0));
+	ADDOBJECT(pKatanaSlash);
 
-	CMissile* pMissile1 = new CMissile();
+	/*CMissile* pMissile1 = new CMissile();
 	pMissile1->SetPos(m_vecPos);
 	pMissile1->SetDir(Vector(1, -1));
 	ADDOBJECT(pMissile1);
@@ -898,7 +902,7 @@ void CPlayer::CreateMissile()
 	CMissile* pMissile3 = new CMissile();
 	pMissile3->SetPos(m_vecPos);
 	pMissile3->SetDir(Vector(3, 1));
-	ADDOBJECT(pMissile3);
+	ADDOBJECT(pMissile3);*/
 
 	//CMissile* pMissile4 = new CMissile();
 	//pMissile4->SetPos(m_vecPos);
