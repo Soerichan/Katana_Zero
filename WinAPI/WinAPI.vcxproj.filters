@@ -216,9 +216,6 @@
     <ClInclude Include="CCursor.h">
       <Filter>Engine\Asset\UI</Filter>
     </ClInclude>
-    <ClInclude Include="CTitle_BG.h">
-      <Filter>GameObject\Title</Filter>
-    </ClInclude>
     <ClInclude Include="CTitle_Layer01.h">
       <Filter>GameObject\Title</Filter>
     </ClInclude>
@@ -370,9 +367,6 @@
     </ClCompile>
     <ClCompile Include="CCursor.cpp">
       <Filter>Engine\Asset\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="CTitle_BG.cpp">
-      <Filter>GameObject\Title</Filter>
     </ClCompile>
     <ClCompile Include="CTitle_Layer01.cpp">
       <Filter>GameObject\Title</Filter>

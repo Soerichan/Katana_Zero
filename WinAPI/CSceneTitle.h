@@ -3,6 +3,7 @@
 #include "CTitle_Layer01.h"
 #include "CTitle_Layer02.h"
 #include "CTitle_Layer03.h"
+#include "CTitle_Layer04.h"
 
 class CSceneTitle : public CScene
 {
@@ -21,4 +22,5 @@ private:
 	CTitle_Layer01* m_pLayer01;
 	CTitle_Layer02* m_pLayer02;
 	CTitle_Layer03* m_pLayer03;
+	CTitle_Layer04* m_pLayer04;
 };

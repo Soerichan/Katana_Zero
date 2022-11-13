@@ -179,7 +179,6 @@
     <ClInclude Include="CTileButton.h" />
     <ClInclude Include="CTilePanel.h" />
     <ClInclude Include="CTimeManager.h" />
-    <ClInclude Include="CTitle_BG.h" />
     <ClInclude Include="CTitle_Layer01.h" />
     <ClInclude Include="CTitle_Layer02.h" />
     <ClInclude Include="CTitle_Layer03.h" />
@@ -238,7 +237,6 @@
     <ClCompile Include="CTileButton.cpp" />
     <ClCompile Include="CTilePanel.cpp" />
     <ClCompile Include="CTimeManager.cpp" />
-    <ClCompile Include="CTitle_BG.cpp" />
     <ClCompile Include="CTitle_Layer01.cpp" />
     <ClCompile Include="CTitle_Layer02.cpp" />
     <ClCompile Include="CTitle_Layer03.cpp" />
