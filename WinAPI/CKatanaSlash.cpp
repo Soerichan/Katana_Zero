@@ -8,6 +8,7 @@ CKatanaSlash::CKatanaSlash()
 	m_layer = Layer::Missile;
 	m_strName = L"KatanaSlash";
 	m_pTimer = 0;
+	m_fDegree = 90;
 }
 
 CKatanaSlash::~CKatanaSlash()
@@ -15,19 +16,32 @@ CKatanaSlash::~CKatanaSlash()
 }
 
 void CKatanaSlash::Init()
-{
+{	
+	
+
 	m_pImage = RESOURCE->LoadImg(L"KatanaSlash", L"Image\\KatanaSlash.png");
 	
 	
 
 	m_pAnimator = new CAnimator;
 
-	m_pAnimator->CreateAnimation(L"KatanaSlash", m_pImage, Vector(0.f, 0.f), Vector(300.f, 200.f), Vector(300.f, 0.f), 0.02f, 5,false);
+	
+	m_pAnimator->CreateAnimation(L"KatanaSlashRight", m_pImage, Vector(0.f, 0.f), Vector(300.f, 200.f), Vector(300.f, 0.f), 0.07f, 5,false);
+	m_pAnimator->CreateAnimation(L"KatanaSlashLeft", m_pImage, Vector(0.f, 300.f), Vector(300.f, 200.f), Vector(300.f, 0.f), 0.07f, 5,false);
 	
 	
-	m_pAnimator->Play(L"KatanaSlash", true);
+	
+	if (GAME->RightAttack == true)
+	{
+		m_pAnimator->Play(L"KatanaSlashRight", true);
+	}
+	else
+	{
+		m_pAnimator->Play(L"KatanaSlashLeft", true);
+	}
+
 	AddComponent(m_pAnimator);
-	m_pTimer = 1.f;
+	m_pTimer = 0.35f;
 
 }
 
@@ -52,6 +66,15 @@ void CKatanaSlash::Release()
 void CKatanaSlash::AnimatorUpdate()
 {
 	wstring str = L"KatanaSlash";
+	
+	if (GAME->RightAttack == true)
+	{
+		str += L"Right";
+	}
+	else
+	{
+		str += L"Left";
+	}
 	m_pAnimator->Play(str, false);
 }
 

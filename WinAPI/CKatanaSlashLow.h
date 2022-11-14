@@ -9,7 +9,7 @@ public:
 
 private:
 
-
+	float m_pTimer;
 	void Init() override;
 	void Update() override;
 	void Render() override;

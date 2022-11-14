@@ -76,6 +76,9 @@ private:
 	bool IsAttacking;
 	bool IsHit;
 	float AttackTimer;
+	float AfterAttackTimer;
+	bool RightAttack;
+	float AttackHeight;
 	Vector AttackPos;
 
 private:

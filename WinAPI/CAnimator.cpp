@@ -37,7 +37,7 @@ void CAnimator::Release()
 	m_mapAni.clear();
 }
 
-void CAnimator::CreateAnimation(const wstring& aniName, CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat)
+void CAnimator::CreateAnimation(const wstring& aniName, CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat,float dgree)
 {
 	// 같은 이름의 애니메이션이 이미 있을 경우 프로그램 경고
 	CAnimation* pAni = FindAnimation(aniName);

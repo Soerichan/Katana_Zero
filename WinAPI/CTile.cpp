@@ -68,7 +68,7 @@ void CTile::Render()
 
 	int tileIndexX = (m_uiTileIndex % m_uiImageXCount);
 	int tileIndexY = (m_uiTileIndex / m_uiImageXCount);
-
+	
 	RENDER->FrameImage(
 		m_pImage,
 		m_vecPos.x,

@@ -13,6 +13,7 @@ CGameObject::CGameObject()
 	m_bSafeToDelete = false;
 
 	m_pCollider = nullptr;
+	m_fDegree = 0;
 }
 
 CGameObject::~CGameObject()

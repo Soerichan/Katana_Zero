@@ -27,6 +27,7 @@ protected:
 	Vector m_vecScale;	// 게임오브젝트의 크기
 	Layer m_layer;		// 게임오브젝트의 레이어
 	wstring m_strName;	// 게임오브젝트의 이름
+	float m_fDegree;
 
 public:
 	Vector GetPos();
@@ -39,6 +40,8 @@ public:
 	void SetLayer(Layer layer);
 	wstring GetName();
 	void SetName(wstring name);
+	float GetAngle() { return m_fDegree; }
+	void SetAngle(float degree) { m_fDegree = degree; }
 
 private:
 	bool m_bReservedDelete;		// 게임오브젝트가 삭제예정인지 여부

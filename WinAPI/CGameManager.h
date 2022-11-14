@@ -18,6 +18,7 @@ public:
 
 
 	PlayerState PlayerNowState;
+	bool RightAttack;
 };
 
 #define GAME			CGameManager::GetInstance()

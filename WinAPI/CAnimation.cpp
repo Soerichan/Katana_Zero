@@ -15,6 +15,7 @@ CAnimation::CAnimation()
 	m_iCurFrame = 0;
 	m_fAccTime = 0;
 	m_bRepeat = true;
+	
 }
 
 CAnimation::~CAnimation()
@@ -31,7 +32,7 @@ void CAnimation::SetName(const wstring& name)
 	m_strName = name;
 }
 
-void CAnimation::Create(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat)
+void CAnimation::Create(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat,float dgree)
 {
 	m_pImage = pImg;	// 프레임 이미지가 모여있는 이미지 파일
 	m_bRepeat = repeat;	// 반복여부
@@ -41,7 +42,9 @@ void CAnimation::Create(CImage* pImg, Vector lt, Vector slice, Vector step, floa
 	// step		: 프레임 이미지의 간격
 	// slice	: 프레임 이미지의 크기
 	// duration : 프레임 이미지의 지속시간
+	//dgree: 회전각도 0~360
 	AniFrame frame;
+	frame.dgree = dgree;
 	for (UINT i = 0; i < count; i++)
 	{
 		frame.lt = lt + step * i;
@@ -119,7 +122,10 @@ void CAnimation::Update()
 void CAnimation::Render()
 {
 	Vector pos = m_pAnimator->GetOwner()->GetPos();	// 애니메이션이 그려질 위치 확인
+	float angle = m_pAnimator->GetOwner()->GetAngle();	// 애니메이션이 그려질 위치 확인
 	AniFrame frame = m_vecFrame[m_iCurFrame];		// 애니메이션이 그려질 프레임 확인
+
+	Vector screen = CAMERA->WorldToScreenPoint(pos);
 
 	// 프레임 이미지 그리기
 	RENDER->FrameImage(
@@ -131,7 +137,9 @@ void CAnimation::Render()
 		frame.lt.x,
 		frame.lt.y,
 		frame.lt.x + frame.slice.x,
-		frame.lt.y + frame.slice.y
+		frame.lt.y + frame.slice.y,
+		1,
+		angle
 	);
 }
 

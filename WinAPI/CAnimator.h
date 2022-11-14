@@ -22,7 +22,7 @@ private:
 
 public:
 	void CreateAnimation(const wstring& aniName, CImage* pImg,	// 局聪皋捞记 积己
-		Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat = true);
+		Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat = true,float dgree=0);
 	void CreateAnimation2(const wstring& aniName, CImage* pImg,	// 局聪皋捞记 积己
 		Vector lt, Vector slice, Vector step, float duration, UINT count,UINT floor, UINT floorcount, bool repeat = true);
 	void RemoveAnimation(const wstring& aniName);				// 局聪皋捞记 昏力

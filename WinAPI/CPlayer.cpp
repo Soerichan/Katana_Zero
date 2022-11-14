@@ -55,6 +55,7 @@ CPlayer::CPlayer()
 	AttackPos = {};
 	IsHit = false;
 	IsAttacking = false;
+	AfterAttackTimer = 0;
 }
 
 CPlayer::~CPlayer()
@@ -164,43 +165,49 @@ void CPlayer::Update()
 	
 	
 #pragma region Jump관련
-	if (jumpAction == true)
-	{
-		velocity +=  (accel * DT)-resistance;//속력의 가속
-		accel -= 700*DT;//힘의 감소
-		m_vecPos.y -= velocity * DT; //변위
-		resistance += gravityPower * DT;//중력
 
-		if (accel <= 0)
+	
+		if (jumpAction == true)
 		{
+			velocity += (accel * DT) - resistance;//속력의 가속
+			accel -= 700 * DT;//힘의 감소
+			m_vecPos.y -= velocity * DT; //변위
+			resistance += gravityPower * DT;//중력
+
+			if (accel <= 0)
+			{
+				accel = 0;
+			}
+			if (resistance >= 5)
+			{
+				resistance = 5;
+			}
+		}
+		else
+		{
+			velocity = 0;
 			accel = 0;
+			resistance = 0;
+			if (State != PlayerState::Attack)
+			{
+				m_vecPos.y += 0.8f; //기본중력
+			}
 		}
-		if (resistance >= 5)
+
+
+
+		if (velocity <= 0  && State == PlayerState::Jump)
 		{
-			resistance = 5;
+			State = PlayerState::Fall;
 		}
-	}
-	else
-	{
-		velocity = 0;
-		accel = 0;
-		resistance = 0;
-		m_vecPos.y += 1; //기본중력
-		
-	}
+
+	
 
 	if (islanding == true)
 	{
 		jumpAction = false;
 		//m_vecMoveDir.y = 0;
 	}
-
-
-	if (velocity <= 0 && State == PlayerState::Jump)
-	{
-		State = PlayerState::Fall;
-	}
-
 #pragma endregion
 
 #pragma region WallGrab관련
@@ -262,10 +269,12 @@ void CPlayer::Update()
 
 #pragma region Fall관련
 	if (State == PlayerState::Fall)
-	{
+	{	
+		//m_vecPos.x += m_vecLookDir.x *10*DT;
+
 		FlipTimer -= DT;
 
-		if (jumpAction == false)
+		if (islanding==true)
 		{
 			State = PlayerState::Idle;
 		}
@@ -306,16 +315,22 @@ void CPlayer::Update()
 
 #pragma region Attack관련
 	if (State == PlayerState::Attack)
-	{
+	{	
 		AttackTimer -= DT;
+		
 		m_vecPos.x += AttackPos.x * 500 *DT;
 		m_vecPos.y += AttackPos.y * 400 *DT;
 
 		if (AttackTimer <= 0)
 		{	
+			AfterAttackTimer -= DT;
 			IsAttacking = false;
-			m_vecPos.x += AttackPos.x * 600 * DT;
-			State = PlayerState::Fall;
+			m_vecPos.x += AttackPos.x * 100 * DT;
+			m_vecPos.y += 100 * DT;
+			if (AfterAttackTimer <= 0)
+			{
+				State = PlayerState::Fall;
+			}
 		}
 	}
 
@@ -746,19 +761,41 @@ void CPlayer::Roll()
 
 void CPlayer::Attack()
 {	
-	AttackTimer = 0.5f;
-	AttackPos = (MOUSEWORLDPOS-m_vecPos).Normalized();
+	AttackTimer = 0.25f;
+	AfterAttackTimer = 0.25f;
 
+	AttackPos = (MOUSEWORLDPOS-m_vecPos).Normalized();
+	if (AttackPos.y < 0)
+	{
+		//AttackPos.y = 0;
+	}
+	//jumpAction = true;
 	IsAttacking = true;
 	if (MOUSEWORLDPOS.x < m_vecPos.x)
 	{
 		m_vecMoveDir.x = -1;
+		GAME->RightAttack = false;
+
 	}
 	else
 	{
 		m_vecMoveDir.x = +1;
+		GAME->RightAttack = true;
 	}
-	m_vecPos.y -= 10;
+
+	if (MOUSEWORLDPOS.y<m_vecPos.y-20)
+	{
+		AttackHeight = 1; //high
+	}
+	else if (MOUSEWORLDPOS.y > m_vecPos.y + 20)
+	{
+		AttackHeight = 2; //
+	}
+	else
+	{
+		AttackHeight = 3; //low
+	}
+	
 	CreateMissile();
 	
 }
@@ -883,11 +920,65 @@ void CPlayer::AnimatorUpdate()
 void CPlayer::CreateMissile()
 {
 	Logger::Debug(L"미사일 생성");
-
 	CKatanaSlash* pKatanaSlash = new CKatanaSlash();
-	pKatanaSlash->SetPos(m_vecPos);
+	if (GAME->RightAttack == true)
+	{
+		pKatanaSlash->SetPos(m_vecPos.x + 120, m_vecPos.y - 30);
+	}
+	else
+	{
+		pKatanaSlash->SetPos(m_vecPos.x - 120, m_vecPos.y - 30);
+	}
+
 	pKatanaSlash->SetDir(Vector(1, 0));
 	ADDOBJECT(pKatanaSlash);
+
+	/*if (AttackHeight == 1)
+	{
+		CKatanaSlashHigh* pKatanaSlashHigh = new CKatanaSlashHigh();
+		if (GAME->RightAttack == true)
+		{
+			pKatanaSlashHigh->SetPos(m_vecPos.x + 120, m_vecPos.y - 90);
+		}
+		else
+		{
+			pKatanaSlashHigh->SetPos(m_vecPos.x - 120, m_vecPos.y - 90);
+		}
+
+		pKatanaSlashHigh->SetDir(Vector(1, 0));
+		ADDOBJECT(pKatanaSlashHigh);
+	}
+	else if (AttackHeight == 2)
+	{
+
+		CKatanaSlash* pKatanaSlash = new CKatanaSlash();
+		if (GAME->RightAttack == true)
+		{
+			pKatanaSlash->SetPos(m_vecPos.x + 120, m_vecPos.y - 30);
+		}
+		else
+		{
+			pKatanaSlash->SetPos(m_vecPos.x - 120, m_vecPos.y - 30);
+		}
+
+		pKatanaSlash->SetDir(Vector(1, 0));
+		ADDOBJECT(pKatanaSlash);
+	}
+	else
+	{
+		CKatanaSlashLow* pKatanaSlashLow = new CKatanaSlashLow();
+		if (GAME->RightAttack == true)
+		{
+			pKatanaSlashLow->SetPos(m_vecPos.x + 120, m_vecPos.y + 60);
+		}
+		else
+		{
+			pKatanaSlashLow->SetPos(m_vecPos.x - 120, m_vecPos.y + 60);
+		}
+
+		pKatanaSlashLow->SetDir(Vector(1, 0));
+		ADDOBJECT(pKatanaSlashLow);
+	}*/
 
 	/*CMissile* pMissile1 = new CMissile();
 	pMissile1->SetPos(m_vecPos);
@@ -975,7 +1066,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
 				islanding = true;
-				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 ;
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2-20 ;
 			}
 
 			else //천장에 머리박기

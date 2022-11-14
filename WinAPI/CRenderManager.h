@@ -65,7 +65,7 @@ public:
 
 	void Image(CImage* pImg, float startX, float startY, float endX, float endY, float alpha = 1.f);
 	void FrameImage(CImage* pImg, float dstX, float dstY, float dstW, float dstH,
-		float srcX, float srcY, float srcW, float srcH, float alpha = 1.f);
+		float srcX, float srcY, float srcW, float srcH, float alpha =1.f,float dgree=0);
 
 public:
 	IWICImagingFactory*		GetImageFactory();

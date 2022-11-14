@@ -14,6 +14,7 @@ private:
 	void Update() override;
 	void Render() override;
 	void Release() override;
+	
 
 	void AnimatorUpdate() override;
 

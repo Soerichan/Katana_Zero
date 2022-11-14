@@ -59,7 +59,7 @@ void CRenderManager::Init()
 
 	// 텍스트 포맷 생성
 	hResult = m_pWriteFactory->CreateTextFormat(
-		L"마비옛체_OTF",
+		L"마비옛체",
 		NULL,
 		DWRITE_FONT_WEIGHT_NORMAL,
 		DWRITE_FONT_STYLE_NORMAL,
@@ -81,7 +81,7 @@ void CRenderManager::Init()
 
 	// 텍스트 포맷 생성
 	hResult = m_pWriteFactory->CreateTextFormat(
-		L"마비옛체_OTF",
+		L"마비옛체",
 		NULL,
 		DWRITE_FONT_WEIGHT_NORMAL,
 		DWRITE_FONT_STYLE_NORMAL,
@@ -512,10 +512,13 @@ void CRenderManager::Image(CImage* pImg, float startX, float startY, float endX,
 	endY = end.y;
 
 	D2D1_RECT_F imgRect = { startX, startY, endX, endY };
+
+	Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(0, D2D1::Point2F((startX + endX) * 0.5f, (startY + endY) * 0.5f));
+	m_pRenderTarget->SetTransform(matrot);
 	m_pRenderTarget->DrawBitmap(pImg->GetImage(), imgRect);
 }
 
-void CRenderManager::FrameImage(CImage* pImg, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float alpha)
+void CRenderManager::FrameImage(CImage* pImg, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float alpha,float dgree)
 {
 	Vector dstStart = CAMERA->WorldToScreenPoint(Vector(dstX, dstY));
 	dstX = dstStart.x;
@@ -526,7 +529,10 @@ void CRenderManager::FrameImage(CImage* pImg, float dstX, float dstY, float dstW
 
 	D2D1_RECT_F imgRect = { dstX, dstY, dstW, dstH };
 	D2D1_RECT_F srcRect = { srcX, srcY, srcW, srcH };
-
+	
+	//m_pRenderTarget->SetTransform(Matrix3x2F::Rotation(dgree, D2D1::Point2F();
+	Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(dgree, D2D1::Point2F((dstX + dstW) * 0.5f, (dstY + dstH) * 0.5f));
+	m_pRenderTarget->SetTransform(matrot);
 	m_pRenderTarget->DrawBitmap(pImg->GetImage(), imgRect, 1.0f, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR, srcRect);
 }
 

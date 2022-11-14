@@ -8,6 +8,7 @@ struct AniFrame
 	Vector	lt;
 	Vector	slice;
 	float	duration;
+	float dgree;
 };
 
 class CAnimation
@@ -27,13 +28,15 @@ private:
 	float				m_fAccTime;		// 현재 플레이중인 프레임의 축적시간
 	bool				m_bRepeat;		// 애니메이션의 반복 여부
 
+	
+
 public:
 	const wstring& GetName();
 
 private:
 	void SetName(const wstring& name);
 
-	void Create(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat);	// 애니메이션 생성
+	void Create(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, bool repeat,float dgree=0);	// 애니메이션 생성
 	void Create2(CImage* pImg, Vector lt, Vector slice, Vector step, float duration, UINT count, UINT floor, UINT floorcount, bool repeat);	// 애니메이션 생성2
 	void Replay();	// 애니메이션 처음부터 다시 시작
 
