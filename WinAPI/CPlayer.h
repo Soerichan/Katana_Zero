@@ -78,7 +78,7 @@ private:
 	float AttackTimer;
 	float AfterAttackTimer;
 	bool RightAttack;
-	float AttackHeight;
+	float AttackAngle;
 	Vector AttackPos;
 
 private:

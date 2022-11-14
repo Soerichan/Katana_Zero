@@ -25,6 +25,7 @@
 #include <cassert>
 #include <queue>
 #include <stack>
+#include <math.h>
 
 using namespace std;
 

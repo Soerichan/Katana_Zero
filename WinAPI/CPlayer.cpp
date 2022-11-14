@@ -288,7 +288,7 @@ void CPlayer::Update()
 
 		if (RollTimer >= 0)
 		{
-			m_vecPos.x += 1.5*m_fSpeed * DT * m_vecMoveDir.x;
+			m_vecPos.x += 1.5f*m_fSpeed * DT * m_vecMoveDir.x;
 		}
 		else
 		{
@@ -325,8 +325,8 @@ void CPlayer::Update()
 		{	
 			AfterAttackTimer -= DT;
 			IsAttacking = false;
-			m_vecPos.x += AttackPos.x * 100 * DT;
-			m_vecPos.y += 100 * DT;
+			m_vecPos.x += AttackPos.x * 50*(AfterAttackTimer) * DT;
+			m_vecPos.y += 50*(3-AfterAttackTimer)*(3 - AfterAttackTimer) *DT;
 			if (AfterAttackTimer <= 0)
 			{
 				State = PlayerState::Fall;
@@ -745,8 +745,8 @@ void CPlayer::Flip()
 	}
 	else
 	{
-		FlipDir = -1;
-		FlipTimer = 1.1;
+		FlipDir = -1.f;
+		FlipTimer = 1.1f;
 		Jump();
 	}
 
@@ -765,10 +765,10 @@ void CPlayer::Attack()
 	AfterAttackTimer = 0.25f;
 
 	AttackPos = (MOUSEWORLDPOS-m_vecPos).Normalized();
-	if (AttackPos.y < 0)
-	{
+	//if (AttackPos.y < 0)
+	//{
 		//AttackPos.y = 0;
-	}
+	//}
 	//jumpAction = true;
 	IsAttacking = true;
 	if (MOUSEWORLDPOS.x < m_vecPos.x)
@@ -782,20 +782,9 @@ void CPlayer::Attack()
 		m_vecMoveDir.x = +1;
 		GAME->RightAttack = true;
 	}
-
-	if (MOUSEWORLDPOS.y<m_vecPos.y-20)
-	{
-		AttackHeight = 1; //high
-	}
-	else if (MOUSEWORLDPOS.y > m_vecPos.y + 20)
-	{
-		AttackHeight = 2; //
-	}
-	else
-	{
-		AttackHeight = 3; //low
-	}
 	
+	
+
 	CreateMissile();
 	
 }
@@ -849,7 +838,9 @@ void CPlayer::AnimatorUpdate()
 
 	case PlayerState::Attack:
 
-		str += L"Attack";
+		
+			str += L"Attack";
+		
 		if (m_vecLookDir.x > 0) str += L"Right";
 		else if (m_vecLookDir.x < 0) str += L"Left";
 
@@ -921,16 +912,24 @@ void CPlayer::CreateMissile()
 {
 	Logger::Debug(L"미사일 생성");
 	CKatanaSlash* pKatanaSlash = new CKatanaSlash();
+	float angle = atan2(AttackPos.y, AttackPos.x) * 180.f / 3.141592f;
+
+	float Slashx = 180 * AttackPos.x + m_vecPos.x;
+
+	float Slashy = 180 * AttackPos.y + m_vecPos.y;
+
 	if (GAME->RightAttack == true)
 	{
-		pKatanaSlash->SetPos(m_vecPos.x + 120, m_vecPos.y - 30);
+		pKatanaSlash->SetPos(Slashx, Slashy);
 	}
 	else
 	{
-		pKatanaSlash->SetPos(m_vecPos.x - 120, m_vecPos.y - 30);
+		pKatanaSlash->SetPos(Slashx, Slashy);
 	}
-
+	
+	pKatanaSlash->SetAngle(angle);
 	pKatanaSlash->SetDir(Vector(1, 0));
+	
 	ADDOBJECT(pKatanaSlash);
 
 	/*if (AttackHeight == 1)
@@ -1066,7 +1065,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 			if (m_vecPos.y < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
 				islanding = true;
-				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2-20 ;
+				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 ;
 			}
 
 			else //천장에 머리박기

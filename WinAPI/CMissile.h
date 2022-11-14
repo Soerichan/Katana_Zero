@@ -9,6 +9,7 @@ public:
 	CMissile();
 	virtual ~CMissile();
 
+	
 protected:
 	Vector m_vecDir;
 	float m_fVelocity;
