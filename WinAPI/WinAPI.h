@@ -44,6 +44,7 @@ enum class Layer
 	
 	Tile,
 	StageObject,
+	Sensor,
 	Player,
 	Missile,
 	Monster,
@@ -103,6 +104,17 @@ enum class PlayerState
 	Dance,
 	Die
 
+};
+
+enum class MonsterState
+{
+	Idle,
+	Attention,
+	Chase,
+	Attack,
+	Aim,
+	Laser,
+	Die
 };
 
 

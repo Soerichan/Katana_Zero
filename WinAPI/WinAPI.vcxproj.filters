@@ -58,6 +58,12 @@
     <Filter Include="GameObject\Title">
       <UniqueIdentifier>{025b72ae-dc9b-49b3-94c2-ee13a88ba758}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Player">
+      <UniqueIdentifier>{c2488309-58c9-42f5-ae5f-e01c32c8fdbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Monster">
+      <UniqueIdentifier>{fe247d6e-2104-4154-a7ca-953e9f674057}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -171,12 +177,6 @@
     <ClInclude Include="CMissile.h">
       <Filter>GameObject\Stage01</Filter>
     </ClInclude>
-    <ClInclude Include="CMonster.h">
-      <Filter>GameObject\Stage01</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayer.h">
-      <Filter>GameObject\Stage01</Filter>
-    </ClInclude>
     <ClInclude Include="CTilePanel.h">
       <Filter>Engine\Asset\UI</Filter>
     </ClInclude>
@@ -229,13 +229,25 @@
       <Filter>GameObject\Title</Filter>
     </ClInclude>
     <ClInclude Include="CKatanaSlash.h">
-      <Filter>GameObject\Stage01</Filter>
+      <Filter>GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="CKatanaSlashHigh.h">
-      <Filter>GameObject\Stage01</Filter>
+      <Filter>GameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="CKatanaSlashLow.h">
-      <Filter>GameObject\Stage01</Filter>
+      <Filter>GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="CMonster.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CGrunt.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CGruntSlash.h">
+      <Filter>GameObject\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,12 +344,6 @@
     <ClCompile Include="CMissile.cpp">
       <Filter>GameObject\Stage01</Filter>
     </ClCompile>
-    <ClCompile Include="CMonster.cpp">
-      <Filter>GameObject\Stage01</Filter>
-    </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>GameObject\Stage01</Filter>
-    </ClCompile>
     <ClCompile Include="CTileButton.cpp">
       <Filter>Engine\Asset\UI</Filter>
     </ClCompile>
@@ -390,13 +396,25 @@
       <Filter>GameObject\Title</Filter>
     </ClCompile>
     <ClCompile Include="CKatanaSlash.cpp">
-      <Filter>GameObject\Stage01</Filter>
+      <Filter>GameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="CKatanaSlashHigh.cpp">
-      <Filter>GameObject\Stage01</Filter>
+      <Filter>GameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="CKatanaSlashLow.cpp">
-      <Filter>GameObject\Stage01</Filter>
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CGrunt.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CGruntSlash.cpp">
+      <Filter>GameObject\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
