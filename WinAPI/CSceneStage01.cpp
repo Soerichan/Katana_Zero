@@ -13,6 +13,9 @@
 #include "CMonster.h"
 #include "CGrunt.h"
 #include "CPomp.h"
+#include "CGangster.h"
+
+
 #include "CCameraController.h"
 #include "CButton.h"
 #include "CPanel.h"
@@ -41,6 +44,11 @@ void CSceneStage01::Init()
 	pPomp->SetPos(1000, WINSIZEY * 0.8f);
 	/*pPomp->SetStair(Vector(439, 782));*/
 	AddGameObject(pPomp);
+
+	CGangster* pGangster = new CGangster;
+	pGangster->SetPos(1000, WINSIZEY * 1.f);
+	AddGameObject(pGangster);
+	
 
 
 	CCameraController* pCamController = new CCameraController;

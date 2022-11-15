@@ -143,6 +143,8 @@
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CBluntEffect.h" />
+    <ClInclude Include="CBullet.h" />
+    <ClInclude Include="CBulletReflect.h" />
     <ClInclude Include="CButton.h" />
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="CCameraManager.h" />
@@ -154,10 +156,12 @@
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CGameManager.h" />
     <ClInclude Include="CGameObject.h" />
+    <ClInclude Include="CGangster.h" />
     <ClInclude Include="CGround.h" />
     <ClInclude Include="CGroundTile.h" />
     <ClInclude Include="CGrunt.h" />
     <ClInclude Include="CGruntSlash.h" />
+    <ClInclude Include="CGunSpark.h" />
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CKatanaSlash.h" />
@@ -207,6 +211,8 @@
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CBluntEffect.cpp" />
+    <ClCompile Include="CBullet.cpp" />
+    <ClCompile Include="CBulletReflect.cpp" />
     <ClCompile Include="CButton.cpp" />
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="CCameraManager.cpp" />
@@ -218,10 +224,12 @@
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CGameManager.cpp" />
     <ClCompile Include="CGameObject.cpp" />
+    <ClCompile Include="CGangster.cpp" />
     <ClCompile Include="CGround.cpp" />
     <ClCompile Include="CGroundTile.cpp" />
     <ClCompile Include="CGrunt.cpp" />
     <ClCompile Include="CGruntSlash.cpp" />
+    <ClCompile Include="CGunSpark.cpp" />
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CKatanaSlash.cpp" />

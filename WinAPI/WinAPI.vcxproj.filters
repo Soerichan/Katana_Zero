@@ -255,6 +255,18 @@
     <ClInclude Include="CBluntEffect.h">
       <Filter>Engine\Asset\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="CGangster.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CBulletReflect.h">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CGunSpark.h">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -424,6 +436,18 @@
     </ClCompile>
     <ClCompile Include="CBluntEffect.cpp">
       <Filter>Engine\Asset\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CGangster.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CBulletReflect.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CGunSpark.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
+      <Filter>GameObject\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

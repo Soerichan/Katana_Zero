@@ -1,11 +1,11 @@
 #pragma once
 #include "CMonster.h"
-class CGrunt :
+class CGangster :
     public CMonster
 {
 public:
-	CGrunt();
-	virtual ~CGrunt();
+	CGangster();
+	virtual ~CGangster();
 
 private:
 
@@ -14,12 +14,12 @@ private:
 	CImage* m_pWalkImage;
 	CImage* m_pRunImage;
 	CImage* m_pAttackImage;
-	CImage* m_pAimImage;
 	CImage* m_pDieImage;
-	
-	
+
+
 	float m_fAimTimer;
 	float m_fAttackTimer;
+
 
 	void Attack()	override;
 	void Init() override;
@@ -32,6 +32,5 @@ private:
 	void OnCollisionEnter(CCollider* pOtherCollider) override;
 	void OnCollisionStay(CCollider* pOtherCollider) override;
 	void OnCollisionExit(CCollider* pOtherCollider) override;
-
 };
 
