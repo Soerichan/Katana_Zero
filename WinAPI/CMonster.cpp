@@ -59,7 +59,7 @@ void CMonster::VisualSensor()
 
 	if (m_vecLookDir.x == 1)//¿ìÃøº½
 	{
-		if ((PLAYERPOSITION.x > m_vecPos.x) && m_bPlayerIsSameFloor)
+		if ((PLAYERPOSITION.x > m_vecPos.x) && (PLAYERPOSITION.x < m_vecPos.x + 700) && m_bPlayerIsSameFloor)
 		{	
 			m_mState = MonsterState::Chase;
 			Sight();
@@ -67,7 +67,7 @@ void CMonster::VisualSensor()
 	}
 	else//ÁÂÃøº½
 	{
-		if ((PLAYERPOSITION.x > m_vecPos.x) && (PLAYERPOSITION.x < m_vecPos.x + 700) && m_bPlayerIsSameFloor)
+		if ((PLAYERPOSITION.x < m_vecPos.x) && (PLAYERPOSITION.x > m_vecPos.x - 700) && m_bPlayerIsSameFloor)
 		{
 			m_mState = MonsterState::Chase;
 			Sight();

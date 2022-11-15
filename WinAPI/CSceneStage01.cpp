@@ -49,7 +49,7 @@ void CSceneStage01::Init()
 	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround01", L"Image\\KATANA_MAP_club_last1.png"));
 	AddGameObject(m_pbackGround);
 
-	ShowCursor(false);
+	//ShowCursor(false);
 	m_pCursor = new CCursor;
 	m_pCursor->SetImage(RESOURCE->LoadImg(L"Cursor01", L"Image\\spr_cursor_0.png"));
 	AddGameObject(m_pCursor);

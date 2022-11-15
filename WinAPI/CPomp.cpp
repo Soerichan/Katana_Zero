@@ -58,7 +58,7 @@ void CPomp::Update()
 {
 	
 
-		m_vecPos.y += 0.8f;//기본중력
+	m_vecPos.y += 0.8f;//기본중력
 
 		m_vecWhereIsPlayer = PLAYERPOSITION;//플레이어의 위치를 계속 수신한다
 
@@ -124,7 +124,7 @@ void CPomp::Update()
 			if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
 			{	
 				m_mState = MonsterState::Attack;
-
+				Attack();
 			}
 		}
 
