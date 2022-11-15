@@ -64,6 +64,9 @@
     <Filter Include="GameObject\Monster">
       <UniqueIdentifier>{fe247d6e-2104-4154-a7ca-953e9f674057}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\Effect">
+      <UniqueIdentifier>{da18dc1e-991a-4214-876b-2cc5bf899215}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -249,6 +252,9 @@
     <ClInclude Include="CPompSlash.h">
       <Filter>GameObject\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CBluntEffect.h">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -415,6 +421,9 @@
     </ClCompile>
     <ClCompile Include="CPompSlash.cpp">
       <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CBluntEffect.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

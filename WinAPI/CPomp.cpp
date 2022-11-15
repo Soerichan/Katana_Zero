@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "CPomp.h"
 #include "CPompSlash.h"
+#include "CBluntEffect.h"
 
 
 void CPomp::Init()
@@ -318,12 +319,31 @@ void CPomp::OnCollisionEnter(CCollider* pOtherCollider)
 
 	if (pTarget == L"KatanaSlash")
 	{
-		if (m_bIsDie == false)
+		if (m_mState != MonsterState::Attack)
 		{
+			if (m_bIsDie == false)
+			{
 
-			m_mState = MonsterState::Die;
-			m_bIsDie = true;
+				
+				m_bIsDie = true;
+			}
 		}
+		else
+		{
+			CBluntEffect* pBluntEffect = new CBluntEffect;
+			if (GAME->RightAttack)
+			{
+				pBluntEffect->SetPos(m_vecPos.x+60,m_vecPos.y);
+			}
+			else
+			{
+				pBluntEffect->SetPos(m_vecPos.x -60, m_vecPos.y);
+			}
+			
+			ADDOBJECT(pBluntEffect);
+		}
+	
+		m_mState = MonsterState::Down;
 	}
 }
 
@@ -332,14 +352,14 @@ void CPomp::OnCollisionStay(CCollider* pOtherCollider)
 	CMonster::OnCollisionStay(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
+	/*if (pTarget == L"KatanaSlash")
 	{
 		if (m_bIsDie == false)
 		{
 			m_mState = MonsterState::Die;
 			m_bIsDie = true;
 		}
-	}
+	}*/
 }
 
 void CPomp::OnCollisionExit(CCollider* pOtherCollider)

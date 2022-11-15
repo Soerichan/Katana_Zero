@@ -81,4 +81,10 @@ void CPompSlash::AnimatorUpdate()
 
 void CPompSlash::OnCollisionEnter(CCollider* pOtherCollider)
 {
+	wstring pTarget = pOtherCollider->GetObjName();
+
+	if (pTarget == L"KatanaSlash")
+	{
+		DELETEOBJECT(this);
+	}
 }
