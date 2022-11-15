@@ -160,8 +160,6 @@
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CKatanaSlash.h" />
-    <ClInclude Include="CKatanaSlashHigh.h" />
-    <ClInclude Include="CKatanaSlashLow.h" />
     <ClInclude Include="CL_High_Slope.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
@@ -169,6 +167,7 @@
     <ClInclude Include="CPathManager.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPomp.h" />
+    <ClInclude Include="CPompSlash.h" />
     <ClInclude Include="CRenderManager.h" />
     <ClInclude Include="CResource.h" />
     <ClInclude Include="CResourceManager.h" />
@@ -224,8 +223,6 @@
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CKatanaSlash.cpp" />
-    <ClCompile Include="CKatanaSlashHigh.cpp" />
-    <ClCompile Include="CKatanaSlashLow.cpp" />
     <ClCompile Include="CL_High_Slope.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />
@@ -233,6 +230,7 @@
     <ClCompile Include="CPathManager.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPomp.cpp" />
+    <ClCompile Include="CPompSlash.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
     <ClCompile Include="CResource.cpp" />
     <ClCompile Include="CResourceManager.cpp" />

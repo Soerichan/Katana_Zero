@@ -12,6 +12,7 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CGrunt.h"
+#include "CPomp.h"
 #include "CCameraController.h"
 #include "CButton.h"
 #include "CPanel.h"
@@ -34,6 +35,11 @@ void CSceneStage01::Init()
 	CGrunt* pGrunt = new CGrunt();
 	pGrunt->SetPos(1000, WINSIZEY * 0.5f);
 	AddGameObject(pGrunt);
+
+	CPomp* pPomp = new CPomp();
+	pPomp->SetPos(1000, WINSIZEY * 0.8f);
+	AddGameObject(pPomp);
+
 
 	CCameraController* pCamController = new CCameraController;
 	

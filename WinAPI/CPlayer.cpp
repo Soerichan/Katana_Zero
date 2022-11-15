@@ -14,8 +14,7 @@
 
 #include "CMissile.h"
 #include "CKatanaSlash.h"
-#include "CKatanaSlashHigh.h"
-#include "CKatanaSlashLow.h"
+
 
 CPlayer::CPlayer()
 {

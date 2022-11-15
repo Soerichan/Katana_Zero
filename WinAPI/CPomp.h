@@ -8,12 +8,14 @@ class CPomp :
 	CImage* m_pWalkImage;
 	CImage* m_pRunImage;
 	CImage* m_pAttackImage;
-	CImage* m_pAimImage;
-	CImage* m_pDieImage;
 	CImage* m_pDownImage;
+	CImage* m_pStandUpImage;
+	CImage* m_pDieImage;
 
 	float m_fAimTimer;
 	float m_fAttackTimer;
+	float m_fDownTimer;
+	float m_fStandUpTimer;
 
 	void Attack()	override;
 	void Init() override;

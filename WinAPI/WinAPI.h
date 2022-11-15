@@ -114,6 +114,8 @@ enum class MonsterState
 	Attack,
 	Aim,
 	Fire,
+	Down,
+	StandUp,
 	Laser,
 	Die
 };

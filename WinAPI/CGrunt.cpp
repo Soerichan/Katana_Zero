@@ -158,16 +158,7 @@ void CGrunt::Update()
 			}
 		}
 
-		if (m_mState == MonsterState::Fire)
-		{
-			m_fAfterAttackTimer -= DT;
-
-			if (m_fAfterAttackTimer<=0)
-			{
-				m_mState = MonsterState::Chase;
-				m_fAttackTimer = 0.2f;
-			}
-		}
+	
 	}
 	else
 	{
@@ -224,7 +215,7 @@ void CGrunt::AnimatorUpdate()
 		}
 		else
 		{
-			str += L"Walk";
+			str += L"Run";
 		}
 
 		break;

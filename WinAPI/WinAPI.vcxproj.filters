@@ -231,12 +231,6 @@
     <ClInclude Include="CKatanaSlash.h">
       <Filter>GameObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="CKatanaSlashHigh.h">
-      <Filter>GameObject\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="CKatanaSlashLow.h">
-      <Filter>GameObject\Player</Filter>
-    </ClInclude>
     <ClInclude Include="CPlayer.h">
       <Filter>GameObject\Player</Filter>
     </ClInclude>
@@ -250,6 +244,9 @@
       <Filter>GameObject\Monster</Filter>
     </ClInclude>
     <ClInclude Include="CPomp.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CPompSlash.h">
       <Filter>GameObject\Monster</Filter>
     </ClInclude>
   </ItemGroup>
@@ -401,12 +398,6 @@
     <ClCompile Include="CKatanaSlash.cpp">
       <Filter>GameObject\Player</Filter>
     </ClCompile>
-    <ClCompile Include="CKatanaSlashHigh.cpp">
-      <Filter>GameObject\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="CKatanaSlashLow.cpp">
-      <Filter>GameObject\Player</Filter>
-    </ClCompile>
     <ClCompile Include="CPlayer.cpp">
       <Filter>GameObject\Player</Filter>
     </ClCompile>
@@ -420,6 +411,9 @@
       <Filter>GameObject\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CPomp.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CPompSlash.cpp">
       <Filter>GameObject\Monster</Filter>
     </ClCompile>
   </ItemGroup>
