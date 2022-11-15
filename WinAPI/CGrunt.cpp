@@ -62,17 +62,32 @@ void CGrunt::Update()
 	if (m_bIsDie == false)
 	{
 			
-		m_vecPos.y += 0.8f;//기본중력
+		m_vecPos.y += 1.f;//기본중력
 
 		m_vecWhereIsPlayer = PLAYERPOSITION;//플레이어의 위치를 계속 수신한다
 
-		if ((PLAYERPOSITION.y > m_vecPos.y - 30) && (PLAYERPOSITION.y < m_vecPos.y + 30))//플레이어와 같은 층인지 확인한다
+		if ((PLAYERPOSITION.y > m_vecPos.y - 30) && (PLAYERPOSITION.y < m_vecPos.y + 60))//플레이어와 같은 층인지 확인한다
 		{
 			m_bPlayerIsSameFloor = true;
+			/*m_bPlayerIsDownFloor = false;
+			m_bPlayerIsUpFloor = false;*/
+
 		}
 		else
 		{
 			m_bPlayerIsSameFloor = false;
+
+			/*if ((PLAYERPOSITION.y < m_vecPos.y - 30))
+			{
+				m_bPlayerIsDownFloor = true;
+				m_bPlayerIsUpFloor = false;
+
+			}
+			else
+			{
+				m_bPlayerIsUpFloor = true;
+				m_bPlayerIsDownFloor = false;
+			}*/
 		}
 
 		if (m_mState == MonsterState::Idle)
@@ -109,26 +124,77 @@ void CGrunt::Update()
 
 		if (m_mState == MonsterState::Chase)
 		{
-			m_fAttackTimer = 2.f;
-			m_bIsMove = true;
-			m_fAfterAttackTimer -= DT;
+			/*if (m_bPlayerIsSameFloor == true)
+			{*/
+				m_fAttackTimer = 2.f;
+				m_bIsMove = true;
+				m_fAfterAttackTimer -= DT;
 
-			if (PLAYERPOSITION.x < m_vecPos.x)
-			{
-				m_vecLookDir.x = -1;
-				m_vecPos.x -= m_fSpeed * 2 * DT;
-			}
+				if (PLAYERPOSITION.x < m_vecPos.x)
+				{
+					m_vecLookDir.x = -1;
+					m_vecPos.x -= m_fSpeed * 2 * DT;
+				}
+				else
+				{
+					m_vecLookDir.x = +1;
+					m_vecPos.x += m_fSpeed * 2 * DT;
+				}
+
+				if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
+				{
+					m_mState = MonsterState::Aim;
+
+				}
+			/*}
 			else
 			{
-				m_vecLookDir.x = +1;
-				m_vecPos.x += m_fSpeed * 2 * DT;
-			}
+				if (m_bEnterStair == false)
+				{
+					if (m_vecWhereIsStair.x < m_vecPos.x)
+					{
+						m_vecLookDir.x = -1;
+						m_vecPos.x -= m_fSpeed * 2 * DT;
 
-			if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor&&m_fAfterAttackTimer<=0)
-			{
-				m_mState = MonsterState::Aim;
+						if (m_vecWhereIsStair.x > m_vecPos.x-10.f)
+						{
+							m_bEnterStair = true;
+						}
+					}
+					else
+					{
+						m_vecLookDir.x = 1;
+						m_vecPos.x += m_fSpeed * 2 * DT;
+
+						if (m_vecWhereIsStair.x < m_vecPos.x + 10.f)
+						{
+							m_bEnterStair = true;
+						}
+					}
+
 				
-			}
+				}
+				else
+				{
+
+					if (PLAYERPOSITION.x < m_vecPos.x)
+					{
+						m_vecLookDir.x = -1;
+						m_vecPos.x -= m_fSpeed * 2 * DT;
+					}
+					else
+					{
+						m_vecLookDir.x = +1;
+						m_vecPos.x += m_fSpeed * 2 * DT;
+					}
+
+					if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
+					{
+						m_mState = MonsterState::Attack;
+						Attack();
+					}
+				}
+			}*/
 		}
 
 		if (m_mState == MonsterState::Aim)

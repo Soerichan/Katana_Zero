@@ -34,10 +34,12 @@ void CSceneStage01::Init()
 
 	CGrunt* pGrunt = new CGrunt();
 	pGrunt->SetPos(1000, WINSIZEY * 0.5f);
+	/*pGrunt->SetStair(Vector(1922, 500));*/
 	AddGameObject(pGrunt);
 
 	CPomp* pPomp = new CPomp();
 	pPomp->SetPos(1000, WINSIZEY * 0.8f);
+	/*pPomp->SetStair(Vector(439, 782));*/
 	AddGameObject(pPomp);
 
 

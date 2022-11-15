@@ -46,7 +46,7 @@ void CPomp::Init()
 
 	m_vecLookDir.x = -1;
 	m_vecLookDir.y = +1;
-	m_fRange = 35.f;
+	m_fRange = 50.f;
 	m_fAimTimer = 0.4f;
 	m_fAttackTimer = 0.6f;
 	m_fAfterAttackTimer = 0.f;
@@ -58,7 +58,7 @@ void CPomp::Update()
 {
 	
 
-	m_vecPos.y += 0.8f;//기본중력
+	m_vecPos.y += 1.f;//기본중력
 
 		m_vecWhereIsPlayer = PLAYERPOSITION;//플레이어의 위치를 계속 수신한다
 
@@ -109,23 +109,72 @@ void CPomp::Update()
 			m_bIsMove = true;
 			m_fAfterAttackTimer -= DT;
 
+		/*	if (m_bPlayerIsSameFloor == true)
+			{*/
+				if (PLAYERPOSITION.x < m_vecPos.x)
+				{
+					m_vecLookDir.x = -1;
+					m_vecPos.x -= m_fSpeed * 2 * DT;
+				}
+				else
+				{
+					m_vecLookDir.x = +1;
+					m_vecPos.x += m_fSpeed * 2 * DT;
+				}
 
-			if (PLAYERPOSITION.x < m_vecPos.x)
+				if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
+				{
+					m_mState = MonsterState::Attack;
+					Attack();
+				}
+			/*}*/
+			/*else
 			{
-				m_vecLookDir.x = -1;
-				m_vecPos.x -= m_fSpeed * 2 * DT;
-			}
-			else
-			{
-				m_vecLookDir.x = +1;
-				m_vecPos.x += m_fSpeed * 2 * DT;
-			}
+				if (m_bEnterStair == false)
+				{
+					if (m_vecWhereIsStair.x < m_vecPos.x)
+					{
+						m_vecLookDir.x = -1;
+						m_vecPos.x -= m_fSpeed * 2 * DT;
 
-			if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
-			{	
-				m_mState = MonsterState::Attack;
-				Attack();
-			}
+						if (m_vecWhereIsStair.x > m_vecPos.x - 10.f)
+						{
+							m_bEnterStair = true;
+						}
+					}
+					else
+					{
+						m_vecLookDir.x = 1;
+						m_vecPos.x += m_fSpeed * 2 * DT;
+
+						if (m_vecWhereIsStair.x < m_vecPos.x + 10.f)
+						{
+							m_bEnterStair = true;
+						}
+					}
+
+				}
+				else
+				{
+					
+					if (PLAYERPOSITION.x < m_vecPos.x)
+					{
+						m_vecLookDir.x = -1;
+						m_vecPos.x -= m_fSpeed * 2 * DT;
+					}
+					else
+					{
+						m_vecLookDir.x = +1;
+						m_vecPos.x += m_fSpeed * 2 * DT;
+					}
+
+					if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
+					{
+						m_mState = MonsterState::Attack;
+						Attack();
+					}
+				}
+			}*/
 		}
 
 	

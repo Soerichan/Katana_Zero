@@ -9,7 +9,10 @@ public:
 
 
 	
-	
+	//Vector GetStair();
+	//Vector GetStair2();
+	//void SetStair(Vector Stair);
+	//void SetStair2(Vector Stair);
 
 protected:
 	void Init() override;
@@ -23,10 +26,16 @@ protected:
 
 	bool m_bIsMove;
 	bool m_bPlayerIsSameFloor;
+	/*bool m_bPlayerIsUpFloor;
+	bool m_bPlayerIsDownFloor;*/
 	bool m_bIsDie;
+	/*bool m_bEnterStair;*/
+
 	float m_fSpeed = 500.0f;
-	Vector m_vecWhereIsStair;
-	Vector m_vecWhereIsStair2;
+	//Vector m_vecWhereIsStairUp;
+	//Vector m_vecWhereIsStairDown;
+	//Vector m_vecWhereIsStair2Up;
+	//Vector m_vecWhereIsStair2Down;
 	Vector m_vecWhereIsPlayer;
 
 	float m_fIdleTimer;
@@ -35,6 +44,7 @@ protected:
 	float m_fAttackTimer;
 	float m_fAfterAttackTimer;
 	float m_fDieTimer;
+	/*float m_fEnterStairTimer;*/
 	
 	float m_fAttentionTimer;
 	//float IdleTimer;

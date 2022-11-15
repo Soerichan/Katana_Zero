@@ -9,8 +9,8 @@ CMonster::CMonster()
 	m_vecScale = Vector(100, 60);
 	m_strName = L"∏ÛΩ∫≈Õ";
 	m_layer = Layer::Monster;
-	m_vecWhereIsStair = {};
-	m_vecWhereIsStair2 = {};
+	//m_vecWhereIsStair = {};
+	//m_vecWhereIsStair2 = {};
 	m_vecLookDir.x = +1;
 	m_bIsMove = false;
 	m_bIsDie = false;
@@ -28,6 +28,26 @@ CMonster::CMonster()
 CMonster::~CMonster()
 {
 }
+
+//Vector CMonster::GetStair()
+//{
+//	return m_vecWhereIsStair;
+//}
+//
+//Vector CMonster::GetStair2()
+//{
+//	return m_vecWhereIsStair2;
+//}
+//
+//void CMonster::SetStair(Vector Stair)
+//{
+//	m_vecWhereIsStair = Stair;
+//}
+//
+//void CMonster::SetStair2(Vector Stair)
+//{
+//	m_vecWhereIsStair2 = Stair;
+//}
 
 void CMonster::Init()
 {
@@ -144,7 +164,7 @@ void CMonster::OnCollisionStay(CCollider* pOtherCollider)
 	if (pTarget == L"Platfoam")
 	{
 		
-			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y)//∂•π‚∞Ì º≠¿÷±‚
+			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y/*&&m_bEnterStair==false*/)//∂•π‚∞Ì º≠¿÷±‚
 			{
 				
 				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 2;
