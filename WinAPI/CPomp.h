@@ -1,14 +1,8 @@
 #pragma once
 #include "CMonster.h"
-class CGrunt :
+class CPomp :
     public CMonster
 {
-public:
-	CGrunt();
-	virtual ~CGrunt();
-
-private:
-
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
 	CImage* m_pWalkImage;
@@ -16,8 +10,8 @@ private:
 	CImage* m_pAttackImage;
 	CImage* m_pAimImage;
 	CImage* m_pDieImage;
-	CImage* m_pLaserImage;
-	
+	CImage* m_pDownImage;
+
 	float m_fAimTimer;
 	float m_fAttackTimer;
 
@@ -32,6 +26,5 @@ private:
 	void OnCollisionEnter(CCollider* pOtherCollider) override;
 	void OnCollisionStay(CCollider* pOtherCollider) override;
 	void OnCollisionExit(CCollider* pOtherCollider) override;
-
 };
 

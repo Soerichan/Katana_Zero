@@ -44,10 +44,10 @@ enum class Layer
 	
 	Tile,
 	StageObject,
-	Sensor,
-	Player,
-	Missile,
 	Monster,
+	Player,
+	EnemyMissile,
+	Missile,
 	
 
 	Ui,
@@ -113,6 +113,7 @@ enum class MonsterState
 	Chase,
 	Attack,
 	Aim,
+	Fire,
 	Laser,
 	Die
 };

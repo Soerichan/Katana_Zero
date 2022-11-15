@@ -33,6 +33,7 @@ protected:
 	float m_fWalkTimer;
 	float m_fWalkTimer2;
 	float m_fAttackTimer;
+	float m_fAfterAttackTimer;
 	float m_fDieTimer;
 	
 	float m_fAttentionTimer;

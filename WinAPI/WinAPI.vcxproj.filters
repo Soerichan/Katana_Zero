@@ -249,6 +249,9 @@
     <ClInclude Include="CGruntSlash.h">
       <Filter>GameObject\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CPomp.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -414,6 +417,9 @@
       <Filter>GameObject\Monster</Filter>
     </ClCompile>
     <ClCompile Include="CGruntSlash.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CPomp.cpp">
       <Filter>GameObject\Monster</Filter>
     </ClCompile>
   </ItemGroup>

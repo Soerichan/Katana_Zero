@@ -16,7 +16,7 @@ CMonster::CMonster()
 	m_bIsDie = false;
 	m_fIdleTimer = 16.f;
 	m_fWalkTimer = 4.f;
-	m_fAttackTimer = 2.f;
+
 	m_fRange = 0.f;
 	m_bPlayerIsSameFloor = false;
 	m_mState = MonsterState::Idle;
@@ -36,103 +36,7 @@ void CMonster::Init()
 
 void CMonster::Update()
 {	
-	if (m_bIsDie == false)
-	{
-		m_vecWhereIsPlayer = PLAYERPOSITION;//플레이어의 위치를 계속 수신한다
-
-		if ((PLAYERPOSITION.y > m_vecPos.y - 30) && (PLAYERPOSITION.y < m_vecPos.y + 30))//플레이어와 같은 층인지 확인한다
-		{
-			m_bPlayerIsSameFloor = true;
-		}
-		else
-		{
-			m_bPlayerIsSameFloor = false;
-		}
-
-		if (m_mState == MonsterState::Idle)
-		{
-			m_fIdleTimer -= DT;
-			VisualSensor();
-
-			if (m_fIdleTimer >= 12.f)
-			{
-				m_bIsMove = false;
-
-			}
-			else if (m_fIdleTimer >= 8.f && m_fIdleTimer <= 12.f)
-			{
-				m_vecLookDir.x = +1;
-				m_vecPos.x += 0.5f * m_fSpeed * DT;
-				m_bIsMove = true;
-			}
-			else if (m_fIdleTimer >= 4.f && m_fIdleTimer <= 8.f)
-			{
-				m_bIsMove = false;
-			}
-			else if (m_fIdleTimer >= 0.f && m_fIdleTimer <= 4.f)
-			{
-				m_vecLookDir.x = -1;
-				m_vecPos.x -= 0.5f * m_fSpeed * DT;
-				m_bIsMove = true;
-			}
-			else
-			{
-				m_fIdleTimer = 16.f;
-			}
-		}
-
-		if (m_mState == MonsterState::Chase)
-		{
-			m_fAttackTimer = 2.f;
-			m_bIsMove = true;
-
-			if (PLAYERPOSITION.x < m_vecPos.x)
-			{
-				m_vecLookDir.x = -1;
-				m_vecPos.x -= m_fSpeed * 2 * DT;
-			}
-			else
-			{
-				m_vecLookDir.x = +1;
-				m_vecPos.x += m_fSpeed * 2 * DT;
-			}
-
-			if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor)
-			{
-				m_mState = MonsterState::Attack;
-				Attack();
-			}
-		}
-
-		if (m_mState == MonsterState::Attack)
-		{
-			m_fAttackTimer -= DT;
-			if (m_fAttackTimer <= 0)
-			{
-				m_mState = MonsterState::Chase;
-				m_fAttackTimer = 2.f;
-			}
-		}
-	}
-	else
-	{
-		
-
-		if (m_fDieTimer >= 0)
-		{
-			m_fDieTimer -= DT;
-
-			if (GAME->RightAttack == true)
-			{
-				m_vecPos.x += 600 * m_fDieTimer * m_fDieTimer * DT;
-			}
-			else
-			{
-				m_vecPos.x -= 600 * m_fDieTimer * m_fDieTimer * DT;
-			}
-		}
-
-	}
+	
 }
 
 void CMonster::Render()
