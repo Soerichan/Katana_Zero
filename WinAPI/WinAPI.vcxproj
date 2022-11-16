@@ -142,6 +142,7 @@
     <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CAnimator.h" />
+    <ClInclude Include="CBattery.h" />
     <ClInclude Include="CBluntEffect.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBulletReflect.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="CGrunt.h" />
     <ClInclude Include="CGruntSlash.h" />
     <ClInclude Include="CGunSpark.h" />
+    <ClInclude Include="CHUD.h" />
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CKatanaSlash.h" />
@@ -210,6 +212,7 @@
     <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
+    <ClCompile Include="CBattery.cpp" />
     <ClCompile Include="CBluntEffect.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBulletReflect.cpp" />
@@ -230,6 +233,7 @@
     <ClCompile Include="CGrunt.cpp" />
     <ClCompile Include="CGruntSlash.cpp" />
     <ClCompile Include="CGunSpark.cpp" />
+    <ClCompile Include="CHUD.cpp" />
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CKatanaSlash.cpp" />

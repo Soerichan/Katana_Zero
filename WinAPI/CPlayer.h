@@ -81,6 +81,9 @@ private:
 	float AttackAngle;
 	Vector AttackPos;
 
+	float m_fBatteryTimer;
+	int m_iBattery;
+
 private:
 	void Init() override;
 	void Update() override;
@@ -107,6 +110,7 @@ private:
 	void WhereAmI();
 	void WhereWasI();
 	void WhatIsMyState();
+	void MyBattery();
 	
 
 };

@@ -21,10 +21,17 @@ private:
 	void Init();
 	void Update();
 	void Release();
+	float m_fTimeScale;
+
 
 public:
 	UINT GetFPS();
 	float GetDT();
+
+	void SetTimeScale(float Scale);
+	float GetTimeScale();
+
+
 };
 
 #define	TIME	CTimeManager::GetInstance()

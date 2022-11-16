@@ -10,6 +10,8 @@ CTimeManager::CTimeManager()
 
 	prevTime = {};
 	curTime = {};
+
+	m_fTimeScale = 1.f;
 }
 
 CTimeManager::~CTimeManager()
@@ -54,5 +56,15 @@ UINT CTimeManager::GetFPS()
 
 float CTimeManager::GetDT()
 {
-	return m_fDT;
+	return m_fDT*m_fTimeScale;
+}
+
+void CTimeManager::SetTimeScale(float Scale)
+{
+	m_fTimeScale = Scale;
+}
+
+float CTimeManager::GetTimeScale()
+{
+	return m_fTimeScale;
 }

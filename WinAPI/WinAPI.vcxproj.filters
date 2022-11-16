@@ -267,6 +267,12 @@
     <ClInclude Include="CBullet.h">
       <Filter>GameObject\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CHUD.h">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CBattery.h">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -448,6 +454,12 @@
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CHUD.cpp">
+      <Filter>Engine\Asset\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CBattery.cpp">
+      <Filter>Engine\Asset\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

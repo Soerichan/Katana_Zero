@@ -11,9 +11,14 @@ class CGameManager:  public SingleTon<CGameManager>
 	void Update();
 	void Release();
 
+	
+
 public: 
 	Vector PlayerPos;
 	Vector PrevPlayerPos;
+	int Battery;
+	
+
 
 
 

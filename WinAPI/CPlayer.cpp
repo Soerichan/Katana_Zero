@@ -55,6 +55,9 @@ CPlayer::CPlayer()
 	IsHit = false;
 	IsAttacking = false;
 	AfterAttackTimer = 0;
+
+	m_fBatteryTimer = 4.4f;
+	m_iBattery = 11;
 }
 
 CPlayer::~CPlayer()
@@ -160,7 +163,29 @@ void CPlayer::Update()
 
 	WhereAmI();//GAME에 좌표 기록
 	WhatIsMyState();//GAME에 상태 기록
-	
+	MyBattery();//GAME에 배터리 기록
+
+#pragma region Cronos관련
+
+	if (BUTTONSTAY(VK_SHIFT)&&m_fBatteryTimer>0)
+	{	
+		m_fBatteryTimer -=  10*DT;
+		TIME->SetTimeScale(0.1f);
+	}
+	else
+	{
+		m_fBatteryTimer += DT;
+	}
+
+	if (BUTTONUP(VK_SHIFT))
+	{
+		
+		TIME->SetTimeScale(1.f);
+	}
+
+	m_iBattery = m_fBatteryTimer *2.5f;
+
+#pragma endregion
 	
 	
 #pragma region Jump관련
@@ -1213,4 +1238,9 @@ void CPlayer::WhereWasI()
 void CPlayer::WhatIsMyState()
 {
 	GAME->PlayerNowState = State;
+}
+
+void CPlayer::MyBattery()
+{
+	GAME->Battery = m_iBattery;
 }

@@ -20,6 +20,8 @@
 #include "CButton.h"
 #include "CPanel.h"
 
+#include "CHUD.h"
+
 CSceneStage01::CSceneStage01()
 {
 	pPlayer = nullptr;
@@ -74,7 +76,12 @@ void CSceneStage01::Init()
 }
 
 void CSceneStage01::Enter()
-{
+{	
+	CHUD* pHUD = new CHUD;
+	pHUD->SetPos(0,0);
+	pHUD->SetScale(1280,46);
+	ADDOBJECT(pHUD);
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);
