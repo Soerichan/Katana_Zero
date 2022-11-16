@@ -26,6 +26,11 @@ public:
 	CImage* pDischargedBattery10Image;
 	CImage* pDischargedBattery11Image;
 
+	CImage* pTimerImage;
+	CImage* pTimerTimeImage;
+
+	float m_fTimer;
+
 	int Dischared;
 
 private:

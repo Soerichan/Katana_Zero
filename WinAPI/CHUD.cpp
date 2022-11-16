@@ -7,6 +7,7 @@ CHUD::CHUD()
 	pFullBatteryImage = nullptr;
 	//pDischargedBatteryImage = nullptr;
 	Dischared = 0;
+	m_fTimer = 90.f;
 }
 
 CHUD::~CHUD()
@@ -16,6 +17,7 @@ CHUD::~CHUD()
 void CHUD::Init()
 {
 	pImage= RESOURCE->LoadImg(L"HUD", L"Image\\UI\\HUD.png");
+
 	pFullBatteryImage = RESOURCE->LoadImg(L"FullBattery", L"Image\\UI\\Battery.png");
 	pDischargedBatteryImage = RESOURCE->LoadImg(L"DischargedBattery", L"Image\\UI\\Battery_Discharged.png");
 	pDischargedBattery1Image = RESOURCE->LoadImg(L"DischargedBattery1", L"Image\\UI\\Battery_Discharged_1.png");
@@ -29,6 +31,10 @@ void CHUD::Init()
 	pDischargedBattery9Image = RESOURCE->LoadImg(L"DischargedBattery9", L"Image\\UI\\Battery_Discharged_9.png");
 	pDischargedBattery10Image = RESOURCE->LoadImg(L"DischargedBattery10", L"Image\\UI\\Battery_Discharged_10.png");
 	pDischargedBattery11Image = RESOURCE->LoadImg(L"DischargedBattery11", L"Image\\UI\\Battery_Discharged_11.png");
+
+	pTimerImage = RESOURCE->LoadImg(L"Timer", L"Image\\UI\\Timer.png");
+	pTimerTimeImage = RESOURCE->LoadImg(L"TimerTime", L"Image\\UI\\Timer_Time.png");
+
 	
 
 
@@ -39,14 +45,20 @@ void CHUD::Init()
 void CHUD::Update()
 {
 	Dischared = 11 - GAME->Battery;
+	m_fTimer -= TIME->GetRealTime();
 }
 
 void CHUD::Render()
 {
-	RENDER->Image(pImage, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x+1280, m_vecRenderPos.y+46);
+	
 	
 	//RENDER->FrameImage(pDischargedBatteryImage, 130 - 20*Dischared, m_vecRenderPos.y, m_vecRenderPos.x + 154, m_vecRenderPos.y + 38
 	//	, 130 - 20*Dischared, 0, 154,38);
+
+	RENDER->Image(pImage, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x + 1280, m_vecRenderPos.y + 46);
+
+	RENDER->Image(pTimerImage, m_vecRenderPos.x + 529, m_vecRenderPos.y + 4, m_vecRenderPos.x + 751, m_vecRenderPos.y + 42);
+	RENDER->FrameImage(pTimerTimeImage, m_vecRenderPos.x + 529, m_vecRenderPos.y + 4, m_vecRenderPos.x + 751-(2*(90.f-m_fTimer)), m_vecRenderPos.y + 42, 0, 0, 223 - (2 * (90.f - m_fTimer)), 38);
 
 
 	switch (Dischared)
