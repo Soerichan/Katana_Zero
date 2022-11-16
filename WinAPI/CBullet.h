@@ -7,7 +7,7 @@ public:
 	CBullet();
 	virtual ~CBullet();
 
-	void SetDir(bool Dir);
+	void SetxDir(bool Dir);
 private:
 
 	bool m_bRight;

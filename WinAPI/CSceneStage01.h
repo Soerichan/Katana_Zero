@@ -14,6 +14,8 @@ public:
 private:
 	CPlayer* pPlayer;
 
+	//CImage* pSubWeapon_Bottle;
+
 
 private:
 	void Init()		override;

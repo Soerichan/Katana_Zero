@@ -187,6 +187,8 @@
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundManager.h" />
     <ClInclude Include="CStageObject.h" />
+    <ClInclude Include="CSubWeapon.h" />
+    <ClInclude Include="CSubWeapon_Bottle01.h" />
     <ClInclude Include="CTile.h" />
     <ClInclude Include="CTileButton.h" />
     <ClInclude Include="CTilePanel.h" />
@@ -257,6 +259,8 @@
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundManager.cpp" />
     <ClCompile Include="CStageObject.cpp" />
+    <ClCompile Include="CSubWeapon.cpp" />
+    <ClCompile Include="CSubWeapon_Bottle01.cpp" />
     <ClCompile Include="CTile.cpp" />
     <ClCompile Include="CTileButton.cpp" />
     <ClCompile Include="CTilePanel.cpp" />

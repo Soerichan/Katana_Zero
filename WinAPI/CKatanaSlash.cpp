@@ -88,12 +88,12 @@ void CKatanaSlash::OnCollisionEnter(CCollider* pOtherCollider)
 	if (pTarget == L"Bullet")
 	{
 		CBulletReflect* pBulletReflect = new CBulletReflect;
-		pBulletReflect->SetPos(m_vecPos.x, m_vecPos.y-15);
+		pBulletReflect->SetPos(m_vecPos.x, PLAYERPOSITION.y-15);
 		ADDOBJECT(pBulletReflect);
 
 		CBullet* pBullet = new CBullet;
-		pBullet->SetPos(m_vecPos.x, m_vecPos.y - 15);
-		pBullet->SetDir(GAME->RightAttack);
+		pBullet->SetPos(m_vecPos.x, PLAYERPOSITION.y - 15);
+		pBullet->SetxDir(GAME->RightAttack);
 		pBullet->SetLayer(Layer::Missile);
 		ADDOBJECT(pBullet);
 	}

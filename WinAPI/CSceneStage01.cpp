@@ -15,6 +15,7 @@
 #include "CPomp.h"
 #include "CGangster.h"
 
+#include "CSubWeapon.h"
 
 #include "CCameraController.h"
 #include "CButton.h"
@@ -64,7 +65,39 @@ void CSceneStage01::Init()
 	CGangster* pGangster = new CGangster;
 	pGangster->SetPos(1000, WINSIZEY * 1.f);
 	AddGameObject(pGangster);
+
+	CSubWeapon* pSubWeapon = new CSubWeapon;
+	pSubWeapon->SetName(L"SubWeapon_Bottle");
+	pSubWeapon->SetPos(280,730);
+	pSubWeapon->SetScale(24, 48);
+	CImage* newSubWeaponImage = new CImage;
+	pSubWeapon->SetImage(newSubWeaponImage = RESOURCE->LoadImg(L"SubWeapon_Bottle", L"Image\\SubWeapon\\spr_beer_bottle_3_0.png"));
+	AddGameObject(pSubWeapon);
 	
+	CSubWeapon* pSubWeapon2 = new CSubWeapon;
+	pSubWeapon2->SetName(L"SubWeapon_Butcher");
+	pSubWeapon2->SetPos(180, 723);
+	pSubWeapon2->SetScale(42, 42);
+	CImage* newSubWeaponImage2 = new CImage;
+	pSubWeapon2->SetImage(newSubWeaponImage2 = RESOURCE->LoadImg(L"SubWeapon_Butcher", L"Image\\SubWeapon\\spr_butcher_knife_0.png"));
+	AddGameObject(pSubWeapon2);
+
+	CSubWeapon* pSubWeapon3 = new CSubWeapon;
+	pSubWeapon3->SetName(L"SubWeapon_Bottle2");
+	pSubWeapon3->SetPos(150, 768);
+	pSubWeapon3->SetScale(24, 48);
+	pSubWeapon3->SetAngle(90);
+	CImage* newSubWeaponImage3 = new CImage;
+	pSubWeapon3->SetImage(newSubWeaponImage3 = RESOURCE->LoadImg(L"SubWeapon_Bottle2", L"Image\\SubWeapon\\spr_beer_bottle_2_0.png"));
+	AddGameObject(pSubWeapon3);
+	
+	CSubWeapon* pSubWeapon4 = new CSubWeapon;
+	pSubWeapon4->SetName(L"SubWeapon_Knife");
+	pSubWeapon4->SetPos(130, 780);
+	pSubWeapon4->SetScale(50, 16);
+	CImage* newSubWeaponImage4 = new CImage;
+	pSubWeapon4->SetImage(newSubWeaponImage4 = RESOURCE->LoadImg(L"SubWeapon_Knife", L"Image\\SubWeapon\\spr_knife_0.png"));
+	AddGameObject(pSubWeapon4);
 
 
 	CCameraController* pCamController = new CCameraController;

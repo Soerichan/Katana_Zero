@@ -283,12 +283,12 @@ void CGangster::Attack()
 	pBullet->SetPos(m_vecPos.x, m_vecPos.y - 15);
 	if (m_vecLookDir.x == +1)
 	{
-		pBullet->SetDir(1);
+		pBullet->SetxDir(1);
 		
 	}
 	else
 	{
-		pBullet->SetDir(0);
+		pBullet->SetxDir(0);
 		
 	}
 	ADDOBJECT(pBullet);

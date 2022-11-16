@@ -63,7 +63,7 @@ public:
 	void FillCircle(float pointX, float pointY, float radius);
 	void FillCircle(float pointX, float pointY, float radius, Color color);
 
-	void Image(CImage* pImg, float startX, float startY, float endX, float endY, float alpha = 1.f);
+	void Image(CImage* pImg, float startX, float startY, float endX, float endY, float alpha = 1.f,float degree=0.f);
 	void FrameImage(CImage* pImg, float dstX, float dstY, float dstW, float dstH,
 		float srcX, float srcY, float srcW, float srcH, float alpha =1.f,float dgree=0);
 

@@ -13,7 +13,7 @@ CBullet::~CBullet()
 {
 }
 
-void CBullet::SetDir(bool Dir)
+void CBullet::SetxDir(bool Dir)
 {
 	m_bRight = Dir;
 }
