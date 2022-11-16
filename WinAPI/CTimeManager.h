@@ -27,6 +27,7 @@ private:
 public:
 	UINT GetFPS();
 	float GetDT();
+	float GetRealTime();
 
 	void SetTimeScale(float Scale);
 	float GetTimeScale();

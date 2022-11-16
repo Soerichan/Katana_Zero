@@ -11,6 +11,23 @@ public:
 	
 	CImage* pImage;
 
+
+	CImage* pFullBatteryImage;
+	CImage* pDischargedBatteryImage;
+	CImage* pDischargedBattery1Image;
+	CImage* pDischargedBattery2Image;
+	CImage* pDischargedBattery3Image;
+	CImage* pDischargedBattery4Image;
+	CImage* pDischargedBattery5Image;
+	CImage* pDischargedBattery6Image;
+	CImage* pDischargedBattery7Image;
+	CImage* pDischargedBattery8Image;
+	CImage* pDischargedBattery9Image;
+	CImage* pDischargedBattery10Image;
+	CImage* pDischargedBattery11Image;
+
+	int Dischared;
+
 private:
 	void Init() override;
 	void Update() override;

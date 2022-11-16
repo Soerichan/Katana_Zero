@@ -21,6 +21,7 @@
 #include "CPanel.h"
 
 #include "CHUD.h"
+#include "CBattery.h"
 
 CSceneStage01::CSceneStage01()
 {
@@ -33,6 +34,19 @@ CSceneStage01::~CSceneStage01()
 
 void CSceneStage01::Init()
 {
+	
+
+	CHUD* pHUD = new CHUD;
+	pHUD->SetPos(0, 0);
+	pHUD->SetScale(1280, 46);
+	AddGameObject(pHUD);
+
+	/*CBattery* pBattery = new CBattery;
+	pBattery->SetPos(0, 0);
+	pBattery->SetScale(154, 38);
+	AddGameObject(pBattery);*/
+	
+
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(2000, 1000);
 	AddGameObject(pPlayer);
@@ -77,10 +91,7 @@ void CSceneStage01::Init()
 
 void CSceneStage01::Enter()
 {	
-	CHUD* pHUD = new CHUD;
-	pHUD->SetPos(0,0);
-	pHUD->SetScale(1280,46);
-	ADDOBJECT(pHUD);
+	
 
 	CAMERA->readyTimer = 1.f;
 

@@ -59,6 +59,11 @@ float CTimeManager::GetDT()
 	return m_fDT*m_fTimeScale;
 }
 
+float CTimeManager::GetRealTime()
+{
+	return m_fDT;
+}
+
 void CTimeManager::SetTimeScale(float Scale)
 {
 	m_fTimeScale = Scale;

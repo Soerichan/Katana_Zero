@@ -83,6 +83,7 @@ private:
 
 	float m_fBatteryTimer;
 	int m_iBattery;
+	bool IsCronos;
 
 private:
 	void Init() override;

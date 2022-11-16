@@ -20,11 +20,14 @@ void CBattery::Init()
 
 void CBattery::Update()
 {
+	Dischared = 11-GAME->Battery;
 }
 
 void CBattery::Render()
 {
-	RENDER->Image(pFullImage, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x + 1280, m_vecRenderPos.y + 46);
+	RENDER->Image(pFullImage, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x + 154, m_vecRenderPos.y + 38);
+	RENDER->FrameImage(pDischargedImage, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x + 154, m_vecRenderPos.y + 38
+		, 120 - Dischared, 120, 0, 30);
 
 }
 

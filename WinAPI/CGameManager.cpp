@@ -4,6 +4,7 @@
 CGameManager::CGameManager()
 {
 	PlayerPos = {};
+	Battery = 0;
 }
 
 CGameManager::~CGameManager()

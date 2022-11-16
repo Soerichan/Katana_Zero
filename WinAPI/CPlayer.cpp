@@ -167,20 +167,27 @@ void CPlayer::Update()
 
 #pragma region Cronos°ü·Ã
 
-	if (BUTTONSTAY(VK_SHIFT)&&m_fBatteryTimer>0)
+	if (BUTTONDOWN(VK_SHIFT)&&m_fBatteryTimer>0)
 	{	
-		m_fBatteryTimer -=  10*DT;
+		
 		TIME->SetTimeScale(0.1f);
-	}
-	else
-	{
-		m_fBatteryTimer += DT;
+		IsCronos = true;
 	}
 
-	if (BUTTONUP(VK_SHIFT))
+	if (IsCronos)
 	{
-		
+		m_fBatteryTimer -= 10.f * DT;
+	}
+
+	if (BUTTONUP(VK_SHIFT)||m_fBatteryTimer<=0)
+	{
+		IsCronos = false;
 		TIME->SetTimeScale(1.f);
+	}
+
+	if (m_fBatteryTimer <= 4.4f&&IsCronos==false)
+	{
+		m_fBatteryTimer += DT;
 	}
 
 	m_iBattery = m_fBatteryTimer *2.5f;
