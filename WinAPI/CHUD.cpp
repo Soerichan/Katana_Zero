@@ -35,6 +35,9 @@ void CHUD::Init()
 	pTimerImage = RESOURCE->LoadImg(L"Timer", L"Image\\UI\\Timer.png");
 	pTimerTimeImage = RESOURCE->LoadImg(L"TimerTime", L"Image\\UI\\Timer_Time.png");
 
+	pSubWeaponImage = RESOURCE->LoadImg(L"SubWeapon", L"Image\\UI\\SubWeapon.png");
+	pSubWeapon_NoneImage = RESOURCE->LoadImg(L"SubWeapon_None", L"Image\\UI\\SubWeapon_None.png");
+
 	
 
 
@@ -60,6 +63,7 @@ void CHUD::Render()
 	RENDER->Image(pTimerImage, m_vecRenderPos.x + 529, m_vecRenderPos.y + 4, m_vecRenderPos.x + 751, m_vecRenderPos.y + 42);
 	RENDER->FrameImage(pTimerTimeImage, m_vecRenderPos.x + 529, m_vecRenderPos.y + 4, m_vecRenderPos.x + 751-(2*(90.f-m_fTimer)), m_vecRenderPos.y + 42, 0, 0, 223 - (2 * (90.f - m_fTimer)), 38);
 
+	RENDER->Image(pSubWeapon_NoneImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
 
 	switch (Dischared)
 	{

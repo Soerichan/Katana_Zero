@@ -29,6 +29,9 @@ public:
 	CImage* pTimerImage;
 	CImage* pTimerTimeImage;
 
+	CImage* pSubWeaponImage;
+	CImage* pSubWeapon_NoneImage;
+
 	float m_fTimer;
 
 	int Dischared;
