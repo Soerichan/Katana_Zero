@@ -17,7 +17,7 @@ void CBulletReflect::Init()
 	m_pImage = RESOURCE->LoadImg(L"BulletReflect", L"Image\\EFFECT\\BULLETREFLECT.png");
 	m_pAnimator = new CAnimator;
 	m_pAnimator->CreateAnimation(L"BulletReflectLeft", m_pImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 5);
-	m_pAnimator->CreateAnimation(L"BulletReflectRight", m_pImage, Vector(300.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 5);
+	m_pAnimator->CreateAnimation(L"BulletReflectRight", m_pImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 5);
 
 	if (GAME->RightAttack)
 	{

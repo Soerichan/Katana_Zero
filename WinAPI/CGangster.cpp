@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "CGangster.h"
 #include "CBullet.h"
+#include"CGunSpark.h"
 
 CGangster::CGangster()
 {
@@ -261,7 +262,23 @@ void CGangster::AnimatorUpdate()
 
 
 void CGangster::Attack()
-{
+{	
+	CGunSpark* pGunSpark = new CGunSpark;
+	if (m_vecLookDir.x == +1)
+	{
+		pGunSpark->SetPos(m_vecPos.x+80, m_vecPos.y - 15);
+		pGunSpark->SetxDir(true);
+
+	}
+	else
+	{
+		pGunSpark->SetPos(m_vecPos.x -80, m_vecPos.y - 15);
+		pGunSpark->SetxDir(false);
+
+	}
+	ADDOBJECT(pGunSpark);
+
+
 	CBullet* pBullet = new CBullet;
 	pBullet->SetPos(m_vecPos.x, m_vecPos.y - 15);
 	if (m_vecLookDir.x == +1)
