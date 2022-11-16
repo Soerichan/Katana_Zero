@@ -13,12 +13,14 @@ private:
 	CImage* m_pIdleImage;
 	CImage* m_pWalkImage;
 	CImage* m_pRunImage;
-	CImage* m_pAttackImage;
+	//CImage* m_pAttackImage;
 	CImage* m_pDieImage;
 
 
 	float m_fAimTimer;
 	float m_fAttackTimer;
+
+	int m_iBulletCount;
 
 
 	void Attack()	override;

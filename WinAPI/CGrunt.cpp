@@ -332,6 +332,16 @@ void CGrunt::OnCollisionEnter(CCollider* pOtherCollider)
 		}
 	}
 
+	if (pTarget == L"Bullet")
+	{
+		if (m_bIsDie == false)
+		{
+
+			m_mState = MonsterState::Die;
+			m_bIsDie = true;
+		}
+	}
+
 }
 
 void CGrunt::OnCollisionStay(CCollider* pOtherCollider)
@@ -339,7 +349,7 @@ void CGrunt::OnCollisionStay(CCollider* pOtherCollider)
 	CMonster::OnCollisionStay(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
+	if (pTarget == L"KatanaSlash"|| pTarget == L"Bullet")
 	{
 		if (m_bIsDie == false)
 		{
@@ -347,6 +357,8 @@ void CGrunt::OnCollisionStay(CCollider* pOtherCollider)
 			m_bIsDie = true;
 		}
 	}
+
+
 }
 
 void CGrunt::OnCollisionExit(CCollider* pOtherCollider)

@@ -27,7 +27,7 @@ void CBullet::Init()
 	m_pAnimator = new CAnimator;
 
 
-	m_pAnimator->CreateAnimation(L"Bullet", m_pImage, Vector(0.f, 0.f), Vector(34.f, 2.f), Vector(300.f, 0.f), 10.f, 1, false);
+	m_pAnimator->CreateAnimation(L"Bullet", m_pImage, Vector(0.f, 0.f), Vector(15.f, 2.f), Vector(300.f, 0.f), 10.f, 1, false);
 	
 
 
@@ -51,11 +51,11 @@ void CBullet::Update()
 
 	if (m_bRight)
 	{
-		m_vecPos.x += 1000 * DT;
+		m_vecPos.x += 300 * m_pTimer* DT;
 	}
 	else
 	{
-		m_vecPos.x -= 1000 * DT;
+		m_vecPos.x -= 300 * m_pTimer* DT;
 	}
 }
 
@@ -77,8 +77,8 @@ void CBullet::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
-	{
+	//if (pTarget == L"KatanaSlash"||)
+	//{
 		DELETEOBJECT(this);
-	}
+	//}
 }

@@ -317,7 +317,7 @@ void CPomp::OnCollisionEnter(CCollider* pOtherCollider)
 	CMonster::OnCollisionEnter(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
+	if (pTarget == L"KatanaSlash"|| pTarget == L"Bullet")
 	{
 		if (m_mState != MonsterState::Attack)
 		{
@@ -345,6 +345,8 @@ void CPomp::OnCollisionEnter(CCollider* pOtherCollider)
 	
 		m_mState = MonsterState::Down;
 	}
+
+	
 }
 
 void CPomp::OnCollisionStay(CCollider* pOtherCollider)

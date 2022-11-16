@@ -4,6 +4,11 @@
 
 CGangster::CGangster()
 {
+	m_pIdleImage = nullptr;
+	m_pWalkImage = nullptr;
+	m_pRunImage = nullptr;
+	m_pDieImage = nullptr;
+	m_pAnimator = nullptr;
 }
 
 CGangster::~CGangster()
@@ -13,11 +18,11 @@ CGangster::~CGangster()
 void CGangster::Init()
 {
 	CMonster::Init();
-	m_pIdleImage = RESOURCE->LoadImg(L"GangsterIdle", L"Image\\Gangster\\IDLE\\IDLE.png");
-	m_pWalkImage = RESOURCE->LoadImg(L"GangsterWalk", L"Image\\Gangster\\WALK\\WALK.png");
-	m_pRunImage = RESOURCE->LoadImg(L"GangsterRun", L"Image\\Gangster\\RUN\\RUN.png");
-	m_pAttackImage = RESOURCE->LoadImg(L"GangsterAttack", L"Image\\Gangster\\ATTACK\\ATTACK.png");
-	m_pDieImage = RESOURCE->LoadImg(L"GangsterDie", L"Image\\Gangster\\DIE\\DIE.png");
+	m_pIdleImage = RESOURCE->LoadImg(L"GangsterIdle", L"Image\\GANGSTER\\IDLE\\IDLE.png");
+	m_pWalkImage = RESOURCE->LoadImg(L"GangsterWalk", L"Image\\GANGSTER\\WALK\\WALK.png");
+	m_pRunImage = RESOURCE->LoadImg(L"GangsterRun", L"Image\\GANGSTER\\RUN\\RUN.png");
+	//m_pAttackImage = RESOURCE->LoadImg(L"GangsterAttack", L"Image\\GANGSTER\\ATTACK\\ATTACK.png");
+	m_pDieImage = RESOURCE->LoadImg(L"GangsterDie", L"Image\\GANGSTER\\DIE\\DIE.png");
 	
 	m_pAnimator = new CAnimator;
 
@@ -26,17 +31,17 @@ void CGangster::Init()
 	m_pAnimator->CreateAnimation(L"GangsterIdleRight", m_pIdleImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 8);
 	m_pAnimator->CreateAnimation(L"GangsterIdleLeft", m_pIdleImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 8);
 
-	m_pAnimator->CreateAnimation(L"GangsterWalkRight", m_pWalkImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 10);
-	m_pAnimator->CreateAnimation(L"GangsterWalkLeft", m_pWalkImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 10);
+	m_pAnimator->CreateAnimation(L"GangsterWalkRight", m_pWalkImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 8);
+	m_pAnimator->CreateAnimation(L"GangsterWalkLeft", m_pWalkImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 8);
 
 	m_pAnimator->CreateAnimation(L"GangsterRunRight", m_pRunImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.08f, 10);
 	m_pAnimator->CreateAnimation(L"GangsterRunLeft", m_pRunImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.08f, 10);
 
-	m_pAnimator->CreateAnimation(L"GangsterAttackRight", m_pAttackImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 6, false);
-	m_pAnimator->CreateAnimation(L"GangsterAttackLeft", m_pAttackImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 6, false);
+//	m_pAnimator->CreateAnimation(L"GangsterAttackRight", m_pAttackImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 6, false);
+//	m_pAnimator->CreateAnimation(L"GangsterAttackLeft", m_pAttackImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 6, false);
 
-	m_pAnimator->CreateAnimation(L"GangsterDieRight", m_pDieImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 5, false);
-	m_pAnimator->CreateAnimation(L"GangsterDieLeft", m_pDieImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 5, false);
+	m_pAnimator->CreateAnimation(L"GangsterDieRight", m_pDieImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 14, false);
+	m_pAnimator->CreateAnimation(L"GangsterDieLeft", m_pDieImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 14, false);
 
 	m_pAnimator->Play(L"GangsterIdleRight", false);
 	AddComponent(m_pAnimator);
@@ -49,6 +54,7 @@ void CGangster::Init()
 	m_fAimTimer = 0.1f;
 	m_fAttackTimer = 0.1f;
 	m_fAfterAttackTimer = 0.1f;
+	m_iBulletCount = 0;
 
 }
 
@@ -120,8 +126,8 @@ void CGangster::Update()
 
 		if ((abs(PLAYERPOSITION.x - m_vecPos.x) <= m_fRange) && m_bPlayerIsSameFloor && m_fAfterAttackTimer <= 0)
 		{
-			m_mState = MonsterState::Attack;
-			Attack();
+			m_mState = MonsterState::Aim;
+			
 		}
 	}
 
@@ -134,6 +140,7 @@ void CGangster::Update()
 		{
 
 			Attack();
+			m_iBulletCount++;
 			m_fAttackTimer = 0.1f;
 			m_mState = MonsterState::Attack;
 		}
@@ -146,9 +153,17 @@ void CGangster::Update()
 
 		if (m_fAttackTimer <= 0)
 		{
-			m_fAimTimer = 0.1f;
+			m_fAimTimer = 0.5f;
 			m_fAfterAttackTimer = 0.1f;
-			m_mState = MonsterState::Aim;
+			if (m_iBulletCount > 3)
+			{	
+				m_iBulletCount = 0;
+				m_mState = MonsterState::Chase;
+			}
+			else
+			{
+				m_mState = MonsterState::Aim;
+			}
 		}
 	}
 
@@ -215,10 +230,10 @@ void CGangster::AnimatorUpdate()
 		str += L"Run";
 		break;
 	case MonsterState::Aim:
-		str += L"Attack";
+		str += L"Idle";
 		break;
 	case MonsterState::Attack:
-		str += L"Attack";
+		str += L"Idle";
 		break;
 	case MonsterState::Fire:
 		str += L"Attack";
@@ -248,7 +263,7 @@ void CGangster::AnimatorUpdate()
 void CGangster::Attack()
 {
 	CBullet* pBullet = new CBullet;
-
+	pBullet->SetPos(m_vecPos.x, m_vecPos.y - 15);
 	if (m_vecLookDir.x == +1)
 	{
 		pBullet->SetDir(1);
@@ -268,7 +283,7 @@ void CGangster::OnCollisionEnter(CCollider* pOtherCollider)
 	CMonster::OnCollisionEnter(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
+	if (pTarget == L"KatanaSlash"||pTarget == L"Bullet")
 	{
 		if (m_bIsDie == false)
 		{
@@ -284,7 +299,7 @@ void CGangster::OnCollisionStay(CCollider* pOtherCollider)
 	CMonster::OnCollisionStay(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
+	if (pTarget == L"KatanaSlash"|| pTarget == L"Bullet")
 	{
 		if (m_bIsDie == false)
 		{

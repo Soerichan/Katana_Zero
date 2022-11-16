@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "CKatanaSlash.h"
+#include "CBulletReflect.h"
+#include"CBullet.h"
 
 
 
@@ -81,4 +83,18 @@ void CKatanaSlash::AnimatorUpdate()
 
 void CKatanaSlash::OnCollisionEnter(CCollider* pOtherCollider)
 {
+	wstring pTarget = pOtherCollider->GetObjName();
+
+	if (pTarget == L"Bullet")
+	{
+		CBulletReflect* pBulletReflect = new CBulletReflect;
+		pBulletReflect->SetPos(m_vecPos.x, m_vecPos.y-15);
+		ADDOBJECT(pBulletReflect);
+
+		CBullet* pBullet = new CBullet;
+		pBullet->SetPos(m_vecPos.x, m_vecPos.y - 15);
+		pBullet->SetDir(GAME->RightAttack);
+		pBullet->SetLayer(Layer::Missile);
+		ADDOBJECT(pBullet);
+	}
 }
