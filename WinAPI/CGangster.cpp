@@ -170,10 +170,10 @@ void CGangster::Update()
 
 
 
-	else
+	
+	if(m_mState==MonsterState::Die)
+
 	{
-
-
 	if (m_fDieTimer >= 0)
 	{
 		m_fDieTimer -= DT;

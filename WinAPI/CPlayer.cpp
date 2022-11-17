@@ -12,6 +12,7 @@
 #include "CAnimator.h"
 
 
+
 #include "CMissile.h"
 #include "CKatanaSlash.h"
 #include "CSubWeapon.h"
@@ -181,6 +182,7 @@ void CPlayer::Update()
 	if (IsCronos)
 	{
 		m_fBatteryTimer -= 10.f * DT;
+	
 	}
 
 	if (BUTTONUP(VK_SHIFT)||m_fBatteryTimer<=0)

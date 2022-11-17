@@ -63,7 +63,7 @@ void CSceneStage01::Init()
 	AddGameObject(pPomp);
 
 	CGangster* pGangster = new CGangster;
-	pGangster->SetPos(1000, WINSIZEY * 1.f);
+	pGangster->SetPos(1200, WINSIZEY * 1.f);
 	AddGameObject(pGangster);
 
 	CSubWeapon* pSubWeapon = new CSubWeapon;

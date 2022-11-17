@@ -186,6 +186,7 @@
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundManager.h" />
+    <ClInclude Include="CSpark.h" />
     <ClInclude Include="CStageObject.h" />
     <ClInclude Include="CSubWeapon.h" />
     <ClInclude Include="CSubWeapon_Bottle01.h" />
@@ -258,6 +259,7 @@
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundManager.cpp" />
+    <ClCompile Include="CSpark.cpp" />
     <ClCompile Include="CStageObject.cpp" />
     <ClCompile Include="CSubWeapon.cpp" />
     <ClCompile Include="CSubWeapon_Bottle01.cpp" />

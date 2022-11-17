@@ -45,6 +45,8 @@ public:
 
 	float m_fTimer;
 
+	
+
 	int Dischared;
 
 private:

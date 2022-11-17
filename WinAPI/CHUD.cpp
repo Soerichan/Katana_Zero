@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CHUD.h"
+#include "CSpark.h"
 
 CHUD::CHUD()
 {
@@ -53,13 +54,21 @@ void CHUD::Init()
 
 
 	m_bScreenFixed = true;
-	
+
 }
 
 void CHUD::Update()
 {
 	Dischared = 11 - GAME->Battery;
 	m_fTimer -= TIME->GetRealTime();
+
+	/*if (Dischared < 10)
+	{
+		CSpark* pSpark = new CSpark;
+		pSpark->SetPos(m_vecRenderPos.x + 154, m_vecRenderPos.y + 42);
+		pSpark->SetxDir(1);
+		ADDOBJECT(pSpark);
+	}*/
 }
 
 void CHUD::Render()
