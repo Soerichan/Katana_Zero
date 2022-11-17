@@ -31,6 +31,17 @@ public:
 
 	CImage* pSubWeaponImage;
 	CImage* pSubWeapon_NoneImage;
+	CImage* pSubWeapon_Bottle01Image;
+	CImage* pSubWeapon_Bottle02Image;
+	CImage* pSubWeapon_Bottle03Image;
+	CImage* pSubWeapon_BucherImage;
+	CImage* pSubWeapon_KnifeImage;
+	CImage* pSubWeapon_PotImage;
+	CImage* pSubWeapon_StatueImage;
+	CImage* pSubWeapon_SmokeImage;
+	CImage* pSubWeapon_LampImage;
+	CImage* pSubWeapon_Mine01Image;
+	CImage* pSubWeapon_Mine02Image;
 
 	float m_fTimer;
 

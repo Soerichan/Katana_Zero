@@ -85,6 +85,8 @@ private:
 	int m_iBattery;
 	bool IsCronos;
 
+	wstring m_strSubWeapon;
+
 private:
 	void Init() override;
 	void Update() override;
@@ -99,6 +101,8 @@ private:
 
 	void Attack();
 
+	void Throw();
+
 	void Dance();
 
 	void AnimatorUpdate();
@@ -112,6 +116,7 @@ private:
 	void WhereWasI();
 	void WhatIsMyState();
 	void MyBattery();
+	void WhatIHave();
 	
 
 };

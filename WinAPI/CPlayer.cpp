@@ -14,6 +14,7 @@
 
 #include "CMissile.h"
 #include "CKatanaSlash.h"
+#include "CSubWeapon.h"
 
 
 CPlayer::CPlayer()
@@ -58,6 +59,8 @@ CPlayer::CPlayer()
 
 	m_fBatteryTimer = 4.4f;
 	m_iBattery = 11;
+
+	m_strSubWeapon = L"None";
 }
 
 CPlayer::~CPlayer()
@@ -164,6 +167,7 @@ void CPlayer::Update()
 	WhereAmI();//GAME에 좌표 기록
 	WhatIsMyState();//GAME에 상태 기록
 	MyBattery();//GAME에 배터리 기록
+	WhatIHave();//GAME에서 내 서브웨폰 정보를 갱신
 
 #pragma region Cronos관련
 
@@ -447,6 +451,41 @@ void CPlayer::Update()
 		
 		}
 		
+	}
+	else if (BUTTONDOWN(VK_RBUTTON))
+	{
+		switch (State)
+		{
+		case PlayerState::Idle:
+			Throw();
+			break;
+		case PlayerState::Run:
+			Throw();
+			break;
+		case PlayerState::Attack:
+			break;
+		case PlayerState::Roll:
+			Throw();
+			break;
+		case PlayerState::WallGrab:
+			break;
+		case PlayerState::Stun:
+			break;
+		case PlayerState::Flip:
+			break;
+		case PlayerState::Jump:
+			Throw();
+			break;
+		case PlayerState::Fall:
+			Throw();
+			break;
+		case PlayerState::Dance:
+			Throw();
+			break;
+		case PlayerState::Die:
+			break;
+
+		}
 	}
 	else if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_LEFT))
 	{
@@ -818,6 +857,37 @@ void CPlayer::Attack()
 
 	CreateMissile();
 	
+}
+
+void CPlayer::Throw()
+{
+
+	if(m_strSubWeapon == L"None")
+	{
+		GAME->PickUpProcess();
+	}
+	else
+	{
+		AttackPos = (MOUSEWORLDPOS - m_vecPos).Normalized();
+
+		wstring SubWPath = L"Image\\SubWeapon\\";
+		SubWPath += m_strSubWeapon;
+		SubWPath += L".png";
+		CImage* SubWImage;
+		SubWImage = RESOURCE->LoadImg(m_strSubWeapon, SubWPath);
+		CSubWeapon* pThrowingSubWeapon = new CSubWeapon;
+		pThrowingSubWeapon->SetName(m_strSubWeapon);
+		pThrowingSubWeapon->SetImage(SubWImage);
+		pThrowingSubWeapon->SetPos(m_vecPos.x, m_vecPos.y - 20);
+		pThrowingSubWeapon->SetAngle(45.f);
+		pThrowingSubWeapon->SetLayer(Layer::Missile);
+		pThrowingSubWeapon->SetDir(AttackPos);
+		ADDOBJECT(pThrowingSubWeapon);
+
+
+		GAME->SubWeaponThrow();
+	}
+
 }
 
 void CPlayer::Dance()
@@ -1250,4 +1320,9 @@ void CPlayer::WhatIsMyState()
 void CPlayer::MyBattery()
 {
 	GAME->Battery = m_iBattery;
+}
+
+void CPlayer::WhatIHave()
+{
+	m_strSubWeapon = GAME->SubWeaponName;
 }

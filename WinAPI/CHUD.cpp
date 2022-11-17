@@ -37,6 +37,17 @@ void CHUD::Init()
 
 	pSubWeaponImage = RESOURCE->LoadImg(L"SubWeapon", L"Image\\UI\\SubWeapon.png");
 	pSubWeapon_NoneImage = RESOURCE->LoadImg(L"SubWeapon_None", L"Image\\UI\\SubWeapon_None.png");
+	pSubWeapon_Bottle01Image = RESOURCE->LoadImg(L"SubWeapon_Bottle01", L"Image\\UI\\SubWeapon_Bottle01.png");
+	pSubWeapon_Bottle02Image = RESOURCE->LoadImg(L"SubWeapon_Bottle02", L"Image\\UI\\SubWeapon_Bottle02.png");
+	pSubWeapon_Bottle03Image = RESOURCE->LoadImg(L"SubWeapon_Bottle03", L"Image\\UI\\SubWeapon_Bottle03.png");
+	pSubWeapon_BucherImage = RESOURCE->LoadImg(L"SubWeapon_Butcher", L"Image\\UI\\SubWeapon_Butcher.png");
+	pSubWeapon_KnifeImage = RESOURCE->LoadImg(L"SubWeapon_Knife", L"Image\\UI\\SubWeapon_Knife.png");
+	pSubWeapon_PotImage = RESOURCE->LoadImg(L"SubWeapon_Pot", L"Image\\UI\\SubWeapon_Pot.png");
+	pSubWeapon_StatueImage = RESOURCE->LoadImg(L"SubWeapon_Statue", L"Image\\UI\\SubWeapon_Statue.png");
+	pSubWeapon_SmokeImage = RESOURCE->LoadImg(L"SubWeapon_Smoke", L"Image\\UI\\SubWeapon_Smoke.png");
+	pSubWeapon_LampImage = RESOURCE->LoadImg(L"SubWeapon_Lamp", L"Image\\UI\\SubWeapon_Lamp.png");
+	pSubWeapon_Mine01Image = RESOURCE->LoadImg(L"SubWeapon_Mine01", L"Image\\UI\\SubWeapon_Mine01.png");
+	pSubWeapon_Mine02Image = RESOURCE->LoadImg(L"SubWeapon_Mine02", L"Image\\UI\\SubWeapon_Mine02.png");
 
 	
 
@@ -58,13 +69,66 @@ void CHUD::Render()
 	//RENDER->FrameImage(pDischargedBatteryImage, 130 - 20*Dischared, m_vecRenderPos.y, m_vecRenderPos.x + 154, m_vecRenderPos.y + 38
 	//	, 130 - 20*Dischared, 0, 154,38);
 
+	//허브
 	RENDER->Image(pImage, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x + 1280, m_vecRenderPos.y + 46);
 
+	//시간타이머
 	RENDER->Image(pTimerImage, m_vecRenderPos.x + 529, m_vecRenderPos.y + 4, m_vecRenderPos.x + 751, m_vecRenderPos.y + 42);
 	RENDER->FrameImage(pTimerTimeImage, m_vecRenderPos.x + 529, m_vecRenderPos.y + 4, m_vecRenderPos.x + 751-(2*(90.f-m_fTimer)), m_vecRenderPos.y + 42, 0, 0, 223 - (2 * (90.f - m_fTimer)), 38);
 
-	RENDER->Image(pSubWeapon_NoneImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
 
+	//서브웨폰
+	if (GAME->SubWeaponName == L"None")
+	{
+		RENDER->Image(pSubWeapon_NoneImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Bottle01")
+	{
+		RENDER->Image(pSubWeapon_Bottle01Image, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Bottle02")
+	{
+		RENDER->Image(pSubWeapon_Bottle02Image, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Bottle03")
+	{
+		RENDER->Image(pSubWeapon_Bottle03Image, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Butcher")
+	{
+		RENDER->Image(pSubWeapon_BucherImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Knife")
+	{
+		RENDER->Image(pSubWeapon_KnifeImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Pot")
+	{
+		RENDER->Image(pSubWeapon_PotImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Statue")
+	{
+		RENDER->Image(pSubWeapon_StatueImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Smoke")
+	{
+		RENDER->Image(pSubWeapon_SmokeImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Lamp")
+	{
+		RENDER->Image(pSubWeapon_LampImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Mine01")
+	{
+		RENDER->Image(pSubWeapon_Mine01Image, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	else if (GAME->SubWeaponName == L"Mine02")
+	{
+		RENDER->Image(pSubWeapon_Mine02Image, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+	}
+	
+
+	//배터리
 	switch (Dischared)
 	{
 	case 0:

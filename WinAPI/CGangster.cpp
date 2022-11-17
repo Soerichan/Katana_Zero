@@ -316,11 +316,12 @@ void CGangster::OnCollisionStay(CCollider* pOtherCollider)
 	CMonster::OnCollisionStay(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash"|| pTarget == L"Bullet")
+	if (pOtherCollider->GetOwner()->GetLayer()==Layer::Missile)
 	{
 		if (m_bIsDie == false)
 		{
 			m_mState = MonsterState::Die;
+			RemoveCollider();
 			m_bIsDie = true;
 		}
 	}

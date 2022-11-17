@@ -515,7 +515,10 @@ void CRenderManager::Image(CImage* pImg, float startX, float startY, float endX,
 
 	Matrix3x2F matrot = D2D1::Matrix3x2F::Rotation(degree, D2D1::Point2F((startX + endX) * 0.5f, (startY + endY) * 0.5f));
 	m_pRenderTarget->SetTransform(matrot);
-	m_pRenderTarget->DrawBitmap(pImg->GetImage(), imgRect);
+	m_pRenderTarget->DrawBitmap(pImg->GetImage(), imgRect, alpha, D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR);
+
+
+	
 }
 
 void CRenderManager::FrameImage(CImage* pImg, float dstX, float dstY, float dstW, float dstH, float srcX, float srcY, float srcW, float srcH, float alpha,float dgree)

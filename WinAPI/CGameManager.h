@@ -1,5 +1,7 @@
 #pragma once
 #include "WinAPI.h"
+#include <queue>
+
 class CGameManager:  public SingleTon<CGameManager>
 {
 	friend SingleTon<CGameManager>;
@@ -17,8 +19,11 @@ public:
 	Vector PlayerPos;
 	Vector PrevPlayerPos;
 	int Battery;
+	wstring SubWeaponName;
 	
-
+	void PlayerSubWeapon();
+	void PickUpProcess();
+	void SubWeaponThrow();
 
 
 

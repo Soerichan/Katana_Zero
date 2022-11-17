@@ -15,6 +15,7 @@ class CScene
 	friend CSceneManager;
 	friend CEventManager;
 	friend CCollisionManager;
+	friend CGameManager;
 	friend CUIManager;
 protected:
 	list<CGameObject*> m_listObj[(int)Layer::Size];

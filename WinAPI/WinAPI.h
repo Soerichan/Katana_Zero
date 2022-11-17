@@ -44,6 +44,7 @@ enum class Layer
 	
 	Tile,
 	StageObject,
+	SubWeapon,
 	Monster,
 	Player,
 	EnemyMissile,

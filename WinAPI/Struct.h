@@ -80,6 +80,8 @@ struct Vector
 		return sqrtf(x * x + y * y);
 	}
 
+	
+
 	// 거리연산(피타고라스)의 루트연산이 굉장히 많은 시간을 요구하기 때문에
 	// 거리의 차이만 비교하고 싶을 경우 루트연산을 하지 않은 길이의 제곱끼리 비교
 	float SqrMagnitude()

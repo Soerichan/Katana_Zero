@@ -67,36 +67,37 @@ void CSceneStage01::Init()
 	AddGameObject(pGangster);
 
 	CSubWeapon* pSubWeapon = new CSubWeapon;
-	pSubWeapon->SetName(L"SubWeapon_Bottle");
+	pSubWeapon->SetName(L"Bottle03");
 	pSubWeapon->SetPos(280,730);
 	pSubWeapon->SetScale(24, 48);
 	CImage* newSubWeaponImage = new CImage;
-	pSubWeapon->SetImage(newSubWeaponImage = RESOURCE->LoadImg(L"SubWeapon_Bottle", L"Image\\SubWeapon\\spr_beer_bottle_3_0.png"));
+	pSubWeapon->SetImage(newSubWeaponImage = RESOURCE->LoadImg(L"Bottle01", L"Image\\SubWeapon\\Bottle03.png"));
 	AddGameObject(pSubWeapon);
 	
 	CSubWeapon* pSubWeapon2 = new CSubWeapon;
-	pSubWeapon2->SetName(L"SubWeapon_Butcher");
+	pSubWeapon2->SetName(L"Butcher");
 	pSubWeapon2->SetPos(180, 723);
 	pSubWeapon2->SetScale(42, 42);
 	CImage* newSubWeaponImage2 = new CImage;
-	pSubWeapon2->SetImage(newSubWeaponImage2 = RESOURCE->LoadImg(L"SubWeapon_Butcher", L"Image\\SubWeapon\\spr_butcher_knife_0.png"));
+	pSubWeapon2->SetImage(newSubWeaponImage2 = RESOURCE->LoadImg(L"Butcher", L"Image\\SubWeapon\\Butcher.png"));
 	AddGameObject(pSubWeapon2);
 
 	CSubWeapon* pSubWeapon3 = new CSubWeapon;
-	pSubWeapon3->SetName(L"SubWeapon_Bottle2");
-	pSubWeapon3->SetPos(150, 768);
+	pSubWeapon3->SetName(L"Bottle02");
+	pSubWeapon3->SetPos(150, 780);
 	pSubWeapon3->SetScale(24, 48);
-	pSubWeapon3->SetAngle(90);
+	pSubWeapon3->SetAngle(90.f);
 	CImage* newSubWeaponImage3 = new CImage;
-	pSubWeapon3->SetImage(newSubWeaponImage3 = RESOURCE->LoadImg(L"SubWeapon_Bottle2", L"Image\\SubWeapon\\spr_beer_bottle_2_0.png"));
+	pSubWeapon3->SetImage(newSubWeaponImage3 = RESOURCE->LoadImg(L"Bottle02", L"Image\\SubWeapon\\Bottle02.png"));
 	AddGameObject(pSubWeapon3);
 	
 	CSubWeapon* pSubWeapon4 = new CSubWeapon;
-	pSubWeapon4->SetName(L"SubWeapon_Knife");
-	pSubWeapon4->SetPos(130, 780);
+	pSubWeapon4->SetName(L"Knife");
+	pSubWeapon4->SetPos(130, 770);
 	pSubWeapon4->SetScale(50, 16);
+	pSubWeapon4->SetAngle(120.f);
 	CImage* newSubWeaponImage4 = new CImage;
-	pSubWeapon4->SetImage(newSubWeaponImage4 = RESOURCE->LoadImg(L"SubWeapon_Knife", L"Image\\SubWeapon\\spr_knife_0.png"));
+	pSubWeapon4->SetImage(newSubWeaponImage4 = RESOURCE->LoadImg(L"Knife", L"Image\\SubWeapon\\Knife.png"));
 	AddGameObject(pSubWeapon4);
 
 
