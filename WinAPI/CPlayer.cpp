@@ -62,6 +62,8 @@ CPlayer::CPlayer()
 	m_iBattery = 11;
 
 	m_strSubWeapon = L"None";
+
+	m_fDoorTimer = 1.f;
 }
 
 CPlayer::~CPlayer()
@@ -115,8 +117,8 @@ void CPlayer::Init()
 	m_pAnimator->CreateAnimation(L"AttackLeft", m_pAttackImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.08f, 7,false);
 	m_pAnimator->CreateAnimation(L"AttackRight", m_pAttackImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.08f, 7,false);
 
-	m_pAnimator->CreateAnimation(L"Door_KickLeft", m_pDoor_KickImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.05f, 10,false);
-	m_pAnimator->CreateAnimation(L"Door_KickRight", m_pDoor_KickImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.05f, 10,false);
+	m_pAnimator->CreateAnimation(L"Door_KickLeft", m_pDoor_KickImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 10,false);
+	m_pAnimator->CreateAnimation(L"Door_KickRight", m_pDoor_KickImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 10,false);
 
 	m_pAnimator->CreateAnimation(L"DanceLeft", m_pDanceImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 12);
 	m_pAnimator->CreateAnimation(L"DanceRight", m_pDanceImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 12);
@@ -374,6 +376,20 @@ void CPlayer::Update()
 
 #pragma endregion
 
+#pragma region DoorKick관련
+
+	if (State == PlayerState::DoorKick)
+	{
+		m_fDoorTimer -= DT;
+		if (m_fDoorTimer <= 0)
+		{
+			State = PlayerState::Idle;
+		}
+	}
+	
+#pragma endregion
+
+
 #pragma region State관련
 	//if (islanding == true)
 	//{
@@ -450,6 +466,9 @@ void CPlayer::Update()
 			break;
 		case PlayerState::Die:
 			break;
+		case PlayerState::DoorKick:
+
+			break;
 		
 		}
 		
@@ -485,6 +504,9 @@ void CPlayer::Update()
 			Throw();
 			break;
 		case PlayerState::Die:
+			break;
+		case PlayerState::DoorKick:
+
 			break;
 
 		}
@@ -548,6 +570,9 @@ void CPlayer::Update()
 				State = PlayerState::Run;
 				break;
 			}
+			case PlayerState::DoorKick:
+
+				break;
 	    }
 	
 	}
@@ -610,6 +635,9 @@ void CPlayer::Update()
 			State = PlayerState::Run;
 			break;
 		}
+		case PlayerState::DoorKick:
+
+			break;
 	
 	 }
 	
@@ -678,6 +706,9 @@ void CPlayer::Update()
 			State = PlayerState::Run;
 			break;
 		}
+		case PlayerState::DoorKick:
+
+			break;
 
 		}
 		
@@ -723,6 +754,9 @@ void CPlayer::Update()
 			break;
 		case PlayerState::Die:
 			break;
+		case PlayerState::DoorKick:
+
+			break;
 		
 		}
 		
@@ -758,6 +792,9 @@ void CPlayer::Update()
 		case PlayerState::Dance:
 			break;
 		case PlayerState::Die:
+			break;
+		case PlayerState::DoorKick:
+
 			break;
 
 		}
@@ -1004,6 +1041,12 @@ void CPlayer::AnimatorUpdate()
 		if (m_vecLookDir.x > 0) str += L"Right";
 		else if (m_vecLookDir.x < 0) str += L"Left";
 		break;
+
+	case PlayerState::DoorKick:
+		str += L"Door_Kick";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+		break;
 	}
 
 	m_pAnimator->Play(str, false);
@@ -1139,6 +1182,10 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	if (pTarget == L"Platfoam" && pOtherCollider->GetPos().y > m_vecPos.y)
 	{
 		islanding = true;
+	}
+	if (pTarget == L"Door")
+	{
+		State = PlayerState::DoorKick;
 	}
 }
 

@@ -23,6 +23,7 @@
 
 #include "CHUD.h"
 #include "CBattery.h"
+#include "CDoor.h"
 
 CSceneStage01::CSceneStage01()
 {
@@ -99,6 +100,14 @@ void CSceneStage01::Init()
 	CImage* newSubWeaponImage4 = new CImage;
 	pSubWeapon4->SetImage(newSubWeaponImage4 = RESOURCE->LoadImg(L"Knife", L"Image\\SubWeapon\\Knife.png"));
 	AddGameObject(pSubWeapon4);
+
+	CDoor* pDoor1 = new CDoor;
+	pDoor1->SetPos(1765, 999);
+	AddGameObject(pDoor1);
+
+	CDoor* pDoor2 = new CDoor;
+	pDoor2->SetPos(1267, 999);
+	AddGameObject(pDoor2);
 
 
 	CCameraController* pCamController = new CCameraController;

@@ -285,6 +285,9 @@
     <ClInclude Include="CSpark.h">
       <Filter>Engine\Asset\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="CDoor.h">
+      <Filter>GameObject\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="CSpark.cpp">
       <Filter>Engine\Asset\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CDoor.cpp">
+      <Filter>GameObject\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

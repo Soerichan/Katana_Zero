@@ -5,6 +5,7 @@
 #include "CGameObject.h"
 #include "CTile.h"
 #include "CGroundTile.h"
+#include"CDoor.h"
 
 CScene::CScene()
 {

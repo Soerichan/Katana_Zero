@@ -87,6 +87,8 @@ private:
 
 	wstring m_strSubWeapon;
 
+	float m_fDoorTimer;
+
 private:
 	void Init() override;
 	void Update() override;

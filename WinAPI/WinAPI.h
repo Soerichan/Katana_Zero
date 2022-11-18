@@ -45,6 +45,7 @@ enum class Layer
 	Tile,
 	StageObject,
 	SubWeapon,
+	Door,
 	Monster,
 	Player,
 	EnemyMissile,
@@ -105,7 +106,8 @@ enum class PlayerState
 	Jump,
 	Fall,
 	Dance,
-	Die
+	Die,
+	DoorKick
 
 };
 
