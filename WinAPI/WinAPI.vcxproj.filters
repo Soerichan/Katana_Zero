@@ -73,6 +73,9 @@
     <Filter Include="Engine\Asset\Laser">
       <UniqueIdentifier>{639a2b9d-a22a-4932-8d31-d76af46a0730}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\Cam">
+      <UniqueIdentifier>{ba48f0a1-6318-4507-984c-4d3aa243cd15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -310,10 +313,10 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CCam.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Engine\Asset\Cam</Filter>
     </ClInclude>
     <ClInclude Include="CSlidingDoor.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Engine\Asset\Cam</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -533,11 +536,11 @@
     <ClCompile Include="CSmokePipe.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CCam.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CSlidingDoor.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Engine\Asset\Cam</Filter>
+    </ClCompile>
+    <ClCompile Include="CCam.cpp">
+      <Filter>Engine\Asset\Cam</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

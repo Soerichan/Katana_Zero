@@ -1240,7 +1240,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 
 		}
 	}
-	if (pTarget == L"Wall")
+	if (pTarget == L"Wall"|| pTarget == L"SD")
 	{	
 		//if (m_vecPos.y < pOtherCollider->GetPos().y - pOtherCollider->GetScale().y/2)
 		//{

@@ -50,6 +50,7 @@ enum class Layer
 	Corpse,
 	SubWeapon,
 	Door,
+	SD,
 	Cam,
 	Monster,
 	Player,

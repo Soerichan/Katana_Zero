@@ -20,6 +20,7 @@
 #include "CLaserSwitch.h"
 #include "CCam.h"
 #include "CSlidingDoor.h"
+#include "CSmokePipe.h"
 
 #include "CCameraController.h"
 #include "CButton.h"
@@ -120,6 +121,10 @@ void CSceneStage01::Init()
 	CLaserSwitch* pLaserSwitch = new CLaserSwitch;
 	pLaserSwitch->SetPos(1477, 694);
 	AddGameObject(pLaserSwitch);
+
+	//CSmokePipe* pSmokePipe = new CSmokePipe;
+	//pSmokePipe->SetPos(527, 314);
+	//AddGameObject(pSmokePipe);
 
 	//CCam* pCam = new CCam;
 	//pCam->SetPos(453, 356);

@@ -3,8 +3,8 @@
 
 CSlidingDoor::CSlidingDoor()
 {
-	m_layer = Layer::Cam;
-	m_strName = L"Wall";
+	m_layer = Layer::SD;
+	m_strName = L"SD";
 	m_fTimer = 0.01f;
 }
 
