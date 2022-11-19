@@ -147,6 +147,7 @@
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBulletReflect.h" />
     <ClInclude Include="CButton.h" />
+    <ClInclude Include="CCam.h" />
     <ClInclude Include="CCameraController.h" />
     <ClInclude Include="CCameraManager.h" />
     <ClInclude Include="CCollider.h" />
@@ -188,6 +189,9 @@
     <ClInclude Include="CSceneTitle.h" />
     <ClInclude Include="CImage.h" />
     <ClInclude Include="CScene_file.h" />
+    <ClInclude Include="CSlidingDoor.h" />
+    <ClInclude Include="CSmoke.h" />
+    <ClInclude Include="CSmokePipe.h" />
     <ClInclude Include="CSound.h" />
     <ClInclude Include="CSoundManager.h" />
     <ClInclude Include="CSpark.h" />
@@ -225,6 +229,7 @@
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBulletReflect.cpp" />
     <ClCompile Include="CButton.cpp" />
+    <ClCompile Include="CCam.cpp" />
     <ClCompile Include="CCameraController.cpp" />
     <ClCompile Include="CCameraManager.cpp" />
     <ClCompile Include="CCollider.cpp" />
@@ -266,6 +271,9 @@
     <ClCompile Include="CSceneTitle.cpp" />
     <ClCompile Include="CImage.cpp" />
     <ClCompile Include="CScene_file.cpp" />
+    <ClCompile Include="CSlidingDoor.cpp" />
+    <ClCompile Include="CSmoke.cpp" />
+    <ClCompile Include="CSmokePipe.cpp" />
     <ClCompile Include="CSound.cpp" />
     <ClCompile Include="CSoundManager.cpp" />
     <ClCompile Include="CSpark.cpp" />

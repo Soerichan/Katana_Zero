@@ -301,6 +301,18 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="CZippo.h">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CSmoke.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CSmokePipe.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CCam.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CSlidingDoor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -513,6 +525,18 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="CZippo.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CSmoke.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CSmokePipe.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CCam.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CSlidingDoor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

@@ -50,9 +50,11 @@ enum class Layer
 	Corpse,
 	SubWeapon,
 	Door,
+	Cam,
 	Monster,
 	Player,
 	EnemyMissile,
+	Smoke,
 	Effect,
 	Missile,
 	

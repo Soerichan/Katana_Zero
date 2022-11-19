@@ -21,6 +21,7 @@ public:
 	int Battery;
 	wstring SubWeaponName;
 	bool LaserOff;
+	bool CamRed;
 	
 	void PlayerSubWeapon();
 	void PickUpProcess();
