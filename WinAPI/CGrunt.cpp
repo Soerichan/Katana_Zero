@@ -54,15 +54,17 @@ void CGrunt::Init()
 	m_fAimTimer = 0.4f;
 	m_fAttackTimer = 0.4f;
 	m_fAfterAttackTimer = 0.f;
+	m_fDisapearTimer = 0.01f;
 }
 
 void CGrunt::Update()
 {	
-	
+	m_vecPos.y += 1.f;//기본중력
+
 	if (m_bIsDie == false)
 	{
 			
-		m_vecPos.y += 1.f;//기본중력
+		
 
 		m_vecWhereIsPlayer = PLAYERPOSITION;//플레이어의 위치를 계속 수신한다
 
@@ -246,6 +248,15 @@ void CGrunt::Update()
 
 	}
 
+	if (m_mState == MonsterState::Die)
+	{
+		m_fDisapearTimer -= DT;
+		if (m_fDisapearTimer <= 0)
+		{
+			m_layer = Layer::Corpse;
+		}
+	}
+
 
 	AnimatorUpdate();
 }
@@ -322,7 +333,7 @@ void CGrunt::OnCollisionEnter(CCollider* pOtherCollider)
 	CMonster::OnCollisionEnter(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash")
+	if (pTarget == L"Laser" || pTarget == L"Door" || pOtherCollider->GetOwner()->GetLayer() == Layer::Missile)
 	{
 		if (m_bIsDie == false)
 		{	
@@ -332,15 +343,7 @@ void CGrunt::OnCollisionEnter(CCollider* pOtherCollider)
 		}
 	}
 
-	if (pTarget == L"Bullet")
-	{
-		if (m_bIsDie == false)
-		{
 
-			m_mState = MonsterState::Die;
-			m_bIsDie = true;
-		}
-	}
 
 }
 

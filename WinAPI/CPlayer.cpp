@@ -384,6 +384,7 @@ void CPlayer::Update()
 		if (m_fDoorTimer <= 0)
 		{
 			State = PlayerState::Idle;
+			m_fDoorTimer = 1.f;
 		}
 	}
 	

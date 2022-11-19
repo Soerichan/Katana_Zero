@@ -20,6 +20,8 @@ void CCollisionManager::Init()
 	CheckLayer(Layer::Monster, Layer::Missile);
 	CheckLayer(Layer::Monster, Layer::Door);
 	CheckLayer(Layer::Player, Layer::Door);
+	CheckLayer(Layer::Monster, Layer::Laser);
+	CheckLayer(Layer::Laser, Layer::Player);
 	//CheckLayer(Layer::Monster, Layer::Player);
 	CheckLayer(Layer::EnemyMissile, Layer::Player);
 	CheckLayer(Layer::EnemyMissile, Layer::Missile);
@@ -27,6 +29,7 @@ void CCollisionManager::Init()
 	CheckLayer(Layer::Tile, Layer::Player);
 	CheckLayer(Layer::StageObject, Layer::Player);
 	CheckLayer(Layer::StageObject, Layer::Monster);
+	CheckLayer(Layer::StageObject, Layer::Corpse);
 }
 
 void CCollisionManager::Update()

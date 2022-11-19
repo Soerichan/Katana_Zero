@@ -44,6 +44,8 @@ enum class Layer
 	
 	Tile,
 	StageObject,
+	Laser,
+	Corpse,
 	SubWeapon,
 	Door,
 	Monster,
@@ -51,6 +53,7 @@ enum class Layer
 	EnemyMissile,
 	Effect,
 	Missile,
+	
 	
 	
 

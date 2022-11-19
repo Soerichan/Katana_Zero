@@ -168,6 +168,8 @@
     <ClInclude Include="CImageObject.h" />
     <ClInclude Include="CInputManager.h" />
     <ClInclude Include="CKatanaSlash.h" />
+    <ClInclude Include="CLaser.h" />
+    <ClInclude Include="CLaserSwitch.h" />
     <ClInclude Include="CL_High_Slope.h" />
     <ClInclude Include="CMissile.h" />
     <ClInclude Include="CMonster.h" />
@@ -242,6 +244,8 @@
     <ClCompile Include="CImageObject.cpp" />
     <ClCompile Include="CInputManager.cpp" />
     <ClCompile Include="CKatanaSlash.cpp" />
+    <ClCompile Include="CLaser.cpp" />
+    <ClCompile Include="CLaserSwitch.cpp" />
     <ClCompile Include="CL_High_Slope.cpp" />
     <ClCompile Include="CMissile.cpp" />
     <ClCompile Include="CMonster.cpp" />

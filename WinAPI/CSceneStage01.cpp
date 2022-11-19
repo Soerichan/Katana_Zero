@@ -16,6 +16,8 @@
 #include "CGangster.h"
 
 #include "CSubWeapon.h"
+#include "CLaser.h"
+#include "CLaserSwitch.h"
 
 #include "CCameraController.h"
 #include "CButton.h"
@@ -102,12 +104,20 @@ void CSceneStage01::Init()
 	AddGameObject(pSubWeapon4);
 
 	CDoor* pDoor1 = new CDoor;
-	pDoor1->SetPos(1765, 999);
+	pDoor1->SetPos(1765, 998);
 	AddGameObject(pDoor1);
 
 	CDoor* pDoor2 = new CDoor;
-	pDoor2->SetPos(1267, 999);
+	pDoor2->SetPos(1267, 998);
 	AddGameObject(pDoor2);
+
+	CLaser* pLaser1 = new CLaser;
+	pLaser1->SetPos(1455, 407);
+	AddGameObject(pLaser1);
+
+	CLaserSwitch* pLaserSwitch = new CLaserSwitch;
+	pLaserSwitch->SetPos(1477, 694);
+	AddGameObject(pLaserSwitch);
 
 
 	CCameraController* pCamController = new CCameraController;

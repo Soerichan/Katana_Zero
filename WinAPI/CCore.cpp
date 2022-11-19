@@ -27,7 +27,6 @@ CCore::~CCore()
 void CCore::Init()
 {
 	TIME->Init();
-	GAME->Init();
 	RENDER->Init();
 	INPUT->Init();
 	EVENT->Init();
@@ -37,6 +36,7 @@ void CCore::Init()
 	CAMERA->Init();
 	UI->Init();
 	SOUND->Init();
+	GAME->Init();
 
 	SCENE->Init();
 }
@@ -47,12 +47,12 @@ void CCore::Update()
 	EVENT->Update();
 
 	TIME->Update();
-	GAME->Update();
 	INPUT->Update();
 	SCENE->Update();
 	CAMERA->Update();
 	UI->Update();
 	SOUND->Update();
+	GAME->Update();
 
 	// 게임 오브젝트들이 업데이트 된 후 충돌처리 진행
 	COLLISION->Update();

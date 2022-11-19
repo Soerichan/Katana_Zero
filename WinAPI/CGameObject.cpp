@@ -20,6 +20,11 @@ CGameObject::~CGameObject()
 {
 }
 
+void CGameObject::RemoveColliderProcess(CGameObject* pGameObject)
+{
+	pGameObject->RemoveCollider();
+}
+
 Vector CGameObject::GetPos()
 {
 	return m_vecPos;

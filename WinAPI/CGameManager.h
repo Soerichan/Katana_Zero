@@ -20,6 +20,7 @@ public:
 	Vector PrevPlayerPos;
 	int Battery;
 	wstring SubWeaponName;
+	bool LaserOff;
 	
 	void PlayerSubWeapon();
 	void PickUpProcess();

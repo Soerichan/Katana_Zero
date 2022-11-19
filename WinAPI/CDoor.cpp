@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "CDoor.h"
 
+
 CDoor::CDoor()
 {
 	m_fTimer = 1.65f;
@@ -9,8 +10,10 @@ CDoor::CDoor()
 	m_pCloseImage = nullptr;
 	m_layer = Layer::Door;
 	m_strName = L"Door";
-	m_vecScale = Vector(19, 64);
+	m_vecScale = Vector(38, 146);
 	m_bIsOpen = false;
+	m_fOpenTimer = 0.01f;
+	m_State = DoorState::Close;
 }
 
 CDoor::~CDoor()
@@ -24,24 +27,26 @@ bool CDoor::GetCheckOpen()
 
 void CDoor::Open()
 {
-	if (GAME->RightAttack)
+	if (PLAYERPOSITION.x>m_vecPos.x)
 	{
 		RemoveCollider();
-		AddCollider(ColliderType::Rect, Vector(100, 100), Vector(100, 0));
-		m_bIsOpen = true;
+		AddCollider(ColliderType::Rect, Vector(120, 120), Vector(-50, 0));
+		
 	}
 	else
 	{
 		RemoveCollider();
-		AddCollider(ColliderType::Rect, Vector(100, 100), Vector(-100, 0));
-		m_bIsOpen =true;
+		AddCollider(ColliderType::Rect, Vector(120, 120), Vector(50, 0));
+		
 	}
+
+	m_bIsOpen = true;
 }
 
 void CDoor::Init()
 {
 	m_pCloseImage=RESOURCE->LoadImg(L"ClosedDoor",L"Image\\Door\\spr_door_animation_club_0.png");
-	m_pAnimationImage=RESOURCE->LoadImg(L"DoorAnimation",L"Image\\Door\\DOOR.png");
+	m_pAnimationImage=RESOURCE->LoadImg(L"DoorAnimation",L"Image\\Door\\DOOR3.png");
 	m_pOpenImage = RESOURCE->LoadImg(L"OpenedDoor", L"Image\\Door\\spr_door_animation_club_16.png");
 
 	m_pAnimator = new CAnimator;
@@ -69,7 +74,24 @@ void CDoor::Init()
 void CDoor::Update()
 {
 	AnimatorUpdate();
-	if (m_bIsOpen)
+
+	
+
+	if (m_State == DoorState::Close)
+	{
+
+	}
+	if (m_State == DoorState::Opening)
+	{
+		m_fOpenTimer -= DT;
+
+		if (m_fOpenTimer <= 0)
+		{
+			Open();
+			m_State = DoorState::Open;
+		}
+	}
+	if(m_State == DoorState::Open)
 	{
 		m_fTimer -= DT;
 		if (m_fTimer <= 0)
@@ -77,31 +99,34 @@ void CDoor::Update()
 			RemoveCollider();
 		}
 	}
+
 }
 
 void CDoor::Render()
 {
 
-	if (m_bIsOpen == false)
-	{
+	
 
+	if (m_State == DoorState::Close)
+	{
 		RENDER->Image(m_pCloseImage,
 			m_vecPos.x - m_vecScale.x * 0.5f,
 			m_vecPos.y - m_vecScale.y * 0.5f,
 			m_vecPos.x + m_vecScale.x * 0.5f,
 			m_vecPos.y + m_vecScale.y * 0.5f);
 	}
-	/*else
+	if (m_State == DoorState::Opening)
 	{
-		if (m_fTimer <= 0)
-		{
-			RENDER->Image(m_pOpenImage,
-				m_vecPos.x - m_vecScale.x * 0.5f,
-				m_vecPos.y - m_vecScale.y * 0.5f,
-				m_vecPos.x + m_vecScale.x * 0.5f,
-				m_vecPos.y + m_vecScale.y * 0.5f);
-		}
-	}*/
+
+	}
+	if (m_State == DoorState::Open)
+	{
+		RENDER->Image(m_pOpenImage,
+			m_vecPos.x - m_vecScale.x * 0.5f,
+			m_vecPos.y - m_vecScale.y * 0.5f,
+			m_vecPos.x + m_vecScale.x * 0.5f,
+			m_vecPos.y + m_vecScale.y * 0.5f);
+	}
 }
 
 void CDoor::Release()
@@ -110,11 +135,11 @@ void CDoor::Release()
 
 void CDoor::AnimatorUpdate()
 {
-	if (m_bIsOpen)
+	if (m_State == DoorState::Opening)
 	{
 		wstring str = L"Door";
 
-		if (GAME->RightAttack)
+		if (PLAYERPOSITION.x < m_vecPos.x)
 		{
 			str += L"ToRight";
 		}
@@ -122,6 +147,8 @@ void CDoor::AnimatorUpdate()
 		{
 			str += L"ToLeft";
 		}
+
+		
 		m_pAnimator->Play(str, false);
 	}
 }
@@ -132,7 +159,7 @@ void CDoor::OnCollisionEnter(CCollider* pOtherCollider)
 
 	if (pTarget == L"플레이어")
 	{
-		if(m_bIsOpen==false)
-		Open();
+		if (m_State == DoorState::Close)
+			m_State = DoorState::Opening;
 	}
 }

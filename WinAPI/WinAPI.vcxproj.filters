@@ -288,6 +288,12 @@
     <ClInclude Include="CDoor.h">
       <Filter>GameObject\Common</Filter>
     </ClInclude>
+    <ClInclude Include="CLaser.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CLaserSwitch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -487,6 +493,12 @@
     </ClCompile>
     <ClCompile Include="CDoor.cpp">
       <Filter>GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="CLaser.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CLaserSwitch.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

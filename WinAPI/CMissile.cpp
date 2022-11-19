@@ -38,10 +38,10 @@ void CMissile::Update()
 
 void CMissile::Render()
 {
-	RENDER->FrameCircle(
-		m_vecPos.x,
-		m_vecPos.y,
-		m_vecScale.x);
+	//RENDER->FrameCircle(
+	//	m_vecPos.x,
+	//	m_vecPos.y,
+	//	m_vecScale.x);
 }
 
 void CMissile::Release()

@@ -20,6 +20,7 @@ private:
 	
 	float m_fAimTimer;
 	float m_fAttackTimer;
+	float m_fDisapearTimer;
 
 	void Attack()	override;
 	void Init() override;

@@ -26,6 +26,7 @@ public:
 	void EventDeleteObject(CGameObject* pObj);					// 삭제 예정인 오브젝트 이벤트 추가
 	void EventChangeScene(GroupScene scene, float delay = 0);	// 씬전환 이벤트 추가
 
+	void RemoveColliderTrigger(CGameObject* pObj);
 private:
 	void ProgressAddObject();					// 프레임 초기에 추가될 오브젝트를 추가
 	void ProgressDeleteObject();				// 삭제 예정인 오브젝트를 표시, 이후 씬에서 표시된 오브젝트를 제거

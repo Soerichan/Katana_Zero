@@ -10,6 +10,7 @@ CGangster::CGangster()
 	m_pRunImage = nullptr;
 	m_pDieImage = nullptr;
 	m_pAnimator = nullptr;
+	m_fDisapearTimer = 0.01f;
 }
 
 CGangster::~CGangster()
@@ -60,7 +61,8 @@ void CGangster::Init()
 }
 
 void CGangster::Update()
-{
+{	
+	
 	m_vecPos.y += 1.f;//기본중력
 
 	m_vecWhereIsPlayer = PLAYERPOSITION;//플레이어의 위치를 계속 수신한다
@@ -189,6 +191,15 @@ void CGangster::Update()
 	}
 
 	}
+
+	if (m_mState == MonsterState::Die)
+	{
+		m_fDisapearTimer -= DT;
+		if (m_fDisapearTimer <= 0)
+		{
+			m_layer = Layer::Corpse;
+		}
+	}
 	AnimatorUpdate();
 }
 
@@ -300,7 +311,7 @@ void CGangster::OnCollisionEnter(CCollider* pOtherCollider)
 	CMonster::OnCollisionEnter(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"KatanaSlash"||pTarget == L"Bullet")
+	if (pTarget == L"Laser" ||pTarget == L"Door" || pOtherCollider->GetOwner()->GetLayer() == Layer::Missile)
 	{
 		if (m_bIsDie == false)
 		{

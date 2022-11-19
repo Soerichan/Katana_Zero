@@ -65,5 +65,6 @@ void CSubWeapon::Release()
 
 void CSubWeapon::OnCollisionEnter(CCollider* pOtherCollider)
 {
+	if( pOtherCollider->GetOwner()->GetLayer() != Layer::Corpse)
 	DELETEOBJECT(this);
 }

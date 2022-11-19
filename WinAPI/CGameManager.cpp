@@ -10,6 +10,7 @@ CGameManager::CGameManager()
 	PlayerPos = {};
 	Battery = 0;
 	SubWeaponName = L"None";
+	LaserOff = false;
 }
 
 CGameManager::~CGameManager()

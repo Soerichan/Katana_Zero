@@ -19,6 +19,7 @@ private:
 
 	float m_fAimTimer;
 	float m_fAttackTimer;
+	float m_fDisapearTimer;
 
 	int m_iBulletCount;
 

@@ -16,6 +16,7 @@ class CPomp :
 	float m_fAttackTimer;
 	float m_fDownTimer;
 	float m_fStandUpTimer;
+	float m_fDisapearTimer;
 
 	void Attack()	override;
 	void Init() override;

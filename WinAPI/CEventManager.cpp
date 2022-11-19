@@ -62,6 +62,11 @@ void CEventManager::EventChangeScene(GroupScene scene, float delay)
 	}
 }
 
+void CEventManager::RemoveColliderTrigger(CGameObject* pObj)
+{
+	pObj->RemoveCollider();
+}
+
 void CEventManager::ProgressAddObject()
 {
 	// 프레임의 초기에 추가될 게임오브젝트를 추가

@@ -22,6 +22,7 @@ public:
 	CGameObject();
 	virtual ~CGameObject();
 
+	void RemoveColliderProcess(CGameObject* pGameObject);
 protected:
 	Vector m_vecPos;	// 게임오브젝트의 위치
 	Vector m_vecScale;	// 게임오브젝트의 크기
