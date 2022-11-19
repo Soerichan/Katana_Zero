@@ -13,6 +13,7 @@ private:
     CImage* pImage;
     CAnimator* m_pAnimator;
     bool m_bRed;
+    float m_fTimer;
 
     void Init() override;
     void Update() override;

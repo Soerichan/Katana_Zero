@@ -18,6 +18,8 @@
 #include "CSubWeapon.h"
 #include "CLaser.h"
 #include "CLaserSwitch.h"
+#include "CCam.h"
+#include "CSlidingDoor.h"
 
 #include "CCameraController.h"
 #include "CButton.h"
@@ -119,6 +121,13 @@ void CSceneStage01::Init()
 	pLaserSwitch->SetPos(1477, 694);
 	AddGameObject(pLaserSwitch);
 
+	//CCam* pCam = new CCam;
+	//pCam->SetPos(453, 356);
+	//AddGameObject(pCam);
+
+	//CSlidingDoor* pSD = new CSlidingDoor;
+	//pSD->SetPos(547, 356);
+	//AddGameObject(pSD);
 
 	CCameraController* pCamController = new CCameraController;
 	

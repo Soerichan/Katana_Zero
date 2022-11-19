@@ -13,17 +13,19 @@ CCam::~CCam()
 
 void CCam::Init()
 {
-	pImage = RESOURCE->LoadImg(L"Cam", L"Image\\cam\\cam.png");
+	pImage = RESOURCE->LoadImg(L"Cam", L"Image\\cam\\cam2.png");
 	m_pAnimator = new CAnimator;
-	m_pAnimator->CreateAnimation(L"GreenCam", pImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 1, false);
-	m_pAnimator->CreateAnimation(L"RedCam", pImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 1, false);
+	//m_pAnimator->CreateAnimation(L"GreenCam", pImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 1, false);
+	m_pAnimator->CreateAnimation(L"GreenCam", pImage, Vector(0.f, 0.f), Vector(500.f, 280.f), Vector(300.f, 0.f), 0.2f, 1, false);
+	//m_pAnimator->CreateAnimation(L"RedCam", pImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 1, false);
+	m_pAnimator->CreateAnimation(L"RedCam", pImage, Vector(600.f, 0.f), Vector(500.f, 280.f), Vector(300.f, 0.f), 0.2f, 1, false);
 	
 	m_pAnimator->Play(L"GreenCam", true);
 
 
 	AddComponent(m_pAnimator);
 
-	AddCollider(ColliderType::Rect, Vector(100, 100), Vector(0, 0));
+	AddCollider(ColliderType::Rect, Vector(500, 100), Vector(0, 100));
 }
 
 void CCam::Update()
