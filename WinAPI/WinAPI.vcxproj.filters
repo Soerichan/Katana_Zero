@@ -70,6 +70,9 @@
     <Filter Include="GameObject\SubWeapon">
       <UniqueIdentifier>{7854d433-598c-441e-b131-3a020fcdc9ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\Laser">
+      <UniqueIdentifier>{639a2b9d-a22a-4932-8d31-d76af46a0730}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -288,10 +291,16 @@
     <ClInclude Include="CDoor.h">
       <Filter>GameObject\Common</Filter>
     </ClInclude>
-    <ClInclude Include="CLaser.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CLaserSwitch.h">
+      <Filter>Engine\Asset\Laser</Filter>
+    </ClInclude>
+    <ClInclude Include="CLaser.h">
+      <Filter>Engine\Asset\Laser</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene_file.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CZippo.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -494,10 +503,16 @@
     <ClCompile Include="CDoor.cpp">
       <Filter>GameObject\Common</Filter>
     </ClCompile>
-    <ClCompile Include="CLaser.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CLaserSwitch.cpp">
+      <Filter>Engine\Asset\Laser</Filter>
+    </ClCompile>
+    <ClCompile Include="CLaser.cpp">
+      <Filter>Engine\Asset\Laser</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene_file.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CZippo.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

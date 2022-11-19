@@ -125,7 +125,7 @@ void CSceneStage01::Init()
 	AddGameObject(pCamController);
 
 	m_pbackGround = new CBackGround;
-	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround01", L"Image\\KATANA_MAP_club_last1.png"));
+	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround01", L"Image\\Stage\\KATANA_MAP_club_last1.png"));
 	AddGameObject(m_pbackGround);
 
 	//ShowCursor(false);

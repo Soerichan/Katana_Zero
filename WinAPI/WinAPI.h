@@ -29,6 +29,8 @@ enum class GroupScene
 
 	TileTool,
 
+	Scene_file,
+
 	Stage01,
 
 	Size,

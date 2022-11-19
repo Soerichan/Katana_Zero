@@ -1,0 +1,122 @@
+#include "framework.h"
+#include "CScene_file.h"
+#include "CCameraController.h"
+#include "CZippo.h"
+
+CScene_file::CScene_file()
+{
+	m_fFireTimer = 5.f;
+}
+
+CScene_file::~CScene_file()
+{
+}
+
+void CScene_file::Init()
+{
+	//CImageObject* pJobFolderImageObject01 = new CImageObject;
+	//CImage* pJobFolderImage01 = new CImage;
+	//pJobFolderImageObject01->SetImage(pJobFolderImage01 = RESOURCE->LoadImg(L"JobFolderImage01",L"Image\\JobFolder\\BG.png"));
+	//pJobFolderImageObject01->SetPos(640,360);
+	//pJobFolderImageObject01->SetLayer(Layer::Tile);
+	//pJobFolderImageObject01->SetName(L"JobFolder01");
+	//pJobFolderImageObject01->SetScale(1280,720);
+	//AddGameObject(pJobFolderImageObject01);
+
+	//
+
+	//CImageObject* pJobFolderImageObject02 = new CImageObject;
+	//CImage* pJobFolderImage02 = new CImage;
+	//pJobFolderImageObject02->SetImage(pJobFolderImage02 = RESOURCE->LoadImg(L"JobFolderImage02", L"Image\\JobFolder\\Folder01.png"));
+	//pJobFolderImageObject02->SetPos(WINSIZEX*0.5f-554.f,WINSIZEY*0.5f-345.f);
+	//pJobFolderImageObject02->SetLayer(Layer::Laser);
+	//pJobFolderImageObject02->SetName(L"JobFolder02");
+	//pJobFolderImageObject02->SetScale(1108,691);
+	//AddGameObject(pJobFolderImageObject02);
+
+	pImage01 = RESOURCE->LoadImg(L"JobFolderImage03", L"Image\\jobfolder\\BG.png");
+	pImage02 = RESOURCE->LoadImg(L"JobFolderImage04", L"Image\\jobfolder\\Folder01.png");
+	//pImage03
+
+	m_pbackGround = new CBackGround;
+	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround_file", L"Image\\JobFolder\\BG1.png"));
+	AddGameObject(m_pbackGround);
+
+	CCameraController* pCamController = new CCameraController;
+
+	AddGameObject(pCamController);
+}
+
+void CScene_file::Enter()
+{
+	CAMERA->readyTimer = 1.f;
+
+	CAMERA->FadeIn(1.f);
+	
+}
+
+void CScene_file::Update()
+{
+	if (BUTTONDOWN(VK_SPACE))
+	{
+		m_bFire = true;
+		/*CZippo* pZippo = new CZippo;
+		pZippo->SetPos(1000, 600);
+		ADDOBJECT(pZippo);*/
+	}
+
+	if (m_bFire)
+	{
+		m_fFireTimer -= DT;
+	}
+
+	if (m_fFireTimer<=0.f)
+	{
+		CAMERA->FadeOut(0.25f);
+		DELAYCHANGESCENE(GroupScene::Stage01, 0.25f);
+	}
+	CAMERA->SetTargetPos({ 640,360 });
+}
+
+void CScene_file::Render()
+{
+	
+  RENDER->Image(pImage02, 0,0, WINSIZEX, WINSIZEY);
+  
+  RENDER->FillCircle(1067, 686, 600.f*(5.f-m_fFireTimer)+4,Color(255,255,250,1.f));
+
+  RENDER->FillCircle(1067, 686, 600.f*(5.f-m_fFireTimer)+2,Color(255,205,050,1.f));
+
+
+  /*if (m_fFireTimer <= 4.5f)
+  {
+	  RENDER->FillCircle(1017, 686, 300.f * (5.f - m_fFireTimer)+4, Color(255, 255, 250, 1.f));
+	  RENDER->FillCircle(207, 656, 300.f * (5.f - m_fFireTimer)+4, Color(255, 255, 250, 1.f));
+	  RENDER->FillCircle(1067, 636, 300.f * (5.f - m_fFireTimer)+4, Color(255, 255, 250, 1.f));
+  }*/
+
+  RENDER->FillCircle(1067, 686, 600*(5.f-m_fFireTimer), Color(0, 0, 0, 1.f));
+
+
+  //if (m_fFireTimer <= 4.5f)
+  //{
+	 // RENDER->FillCircle(1017, 686, 300.f * (5.f - m_fFireTimer), Color(0, 0, 0, 1.f));
+	 // RENDER->FillCircle(207, 656, 300.f * (5.f - m_fFireTimer), Color(0, 0, 0, 1.f));
+	 // RENDER->FillCircle(1067, 636, 300.f * (5.f - m_fFireTimer), Color(0, 0, 0, 1.f));
+  //}
+
+  RENDER->Image(pImage01, 0, 0, WINSIZEX, WINSIZEY);
+
+  RENDER->Text(L"스페이스바를 눌러 문서를 파기", 900, 680, 1200, 710, Color(255, 255, 255, 1.f),20.f);
+
+
+
+}
+
+void CScene_file::Exit()
+{
+}
+
+void CScene_file::Release()
+{
+}
