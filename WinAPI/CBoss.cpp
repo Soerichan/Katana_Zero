@@ -31,7 +31,7 @@ void CBoss::Skill04()
 void CBoss::Throw()
 {
     CBossMissile01* pBMissile01 = new CBossMissile01;
-    if (m_vecLookDir.x)
+    if (m_vecLookDir.x==1)
     {
         pBMissile01->SetDir(Vector(1, 0));
 
@@ -114,7 +114,9 @@ void CBoss::Init()
 }
 
 void CBoss::Update()
-{
+{   
+    m_vecPos.y += 5 * DT;
+
     AnimatorUpdate();
     if (State == BossState::Idle)
     {
@@ -358,6 +360,10 @@ void CBoss::OnCollisionEnter(CCollider* pOtherCollider)
         else if (State == BossState::Hurt)
         {
             State = BossState::Struggle;
+        }
+        else if (State == BossState::Die)
+        {
+
         }
         else
         {
