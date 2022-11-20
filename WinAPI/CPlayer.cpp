@@ -1182,6 +1182,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Platfoam" && pOtherCollider->GetPos().y > m_vecPos.y)
 	{
+		if(State!=PlayerState::Flip)
 		islanding = true;
 	}
 	if (pTarget == L"Door")

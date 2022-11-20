@@ -6,6 +6,14 @@
 #include "CSceneTileTool.h"
 #include "CSceneStage01.h"
 #include "CScene_file.h"
+#include "CScene000.h"
+#include "CScene001.h"
+#include "CScene002.h"
+#include "CScene003.h"
+#include "CScene004.h"
+#include "CScene005.h"
+#include "CScene006.h"
+#include "CSceneEnding.h"
 
 CSceneManager::CSceneManager()
 {
@@ -28,6 +36,26 @@ void CSceneManager::Init()
 	m_mapScene.insert(make_pair(GroupScene::Stage01, pSceneStage01));
 	CScene* pScene_file = new CScene_file();
 	m_mapScene.insert(make_pair(GroupScene::Scene_file, pScene_file));
+	CScene* pScene000 = new CScene000();
+	m_mapScene.insert(make_pair(GroupScene::Scene000, pScene000));
+	CScene* pScene001 = new CScene001();
+	m_mapScene.insert(make_pair(GroupScene::Scene001, pScene001));
+	CScene* pScene002 = new CScene002();
+	m_mapScene.insert(make_pair(GroupScene::Scene002, pScene002));
+	CScene* pScene003 = new CScene003();
+	m_mapScene.insert(make_pair(GroupScene::Scene003, pScene003));
+	CScene* pScene004 = new CScene004();
+	m_mapScene.insert(make_pair(GroupScene::Scene004, pScene004));
+	CScene* pScene005 = new CScene005();
+	m_mapScene.insert(make_pair(GroupScene::Scene005, pScene005));
+	CScene* pScene006 = new CScene006();
+	m_mapScene.insert(make_pair(GroupScene::Scene006, pScene006));
+	CScene* pEnd = new CSceneEnding();
+	m_mapScene.insert(make_pair(GroupScene::SceneEnding, pEnd));
+
+
+
+
 
 	// 게임씬 자료구조를 순회하며 씬을 초기화
 	for (pair<GroupScene, CScene*> scene : m_mapScene)

@@ -3,7 +3,7 @@
 
 CEntrance::CEntrance()
 {
-	m_layer = Layer::StageObject;
+	m_layer = Layer::Entrance;
 	m_strName = L"Entrance";
 	m_vecPos = {};
 
@@ -47,4 +47,5 @@ void CEntrance::Release()
 void CEntrance::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	DELAYCHANGESCENE(pNextScene,0.25f);
+	CAMERA->FadeOut(0.25f);
 }

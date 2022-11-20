@@ -122,6 +122,12 @@ void CSceneStage01::Init()
 	pLaserSwitch->SetPos(1477, 694);
 	AddGameObject(pLaserSwitch);
 
+	CEntrance* pEntrans = new CEntrance;
+	pEntrans->SetPos(17,405);
+	pEntrans->SetNextScene(GroupScene::Scene005);
+	AddGameObject(pEntrans);
+
+
 	//CSmokePipe* pSmokePipe = new CSmokePipe;
 	//pSmokePipe->SetPos(527, 314);
 	//AddGameObject(pSmokePipe);

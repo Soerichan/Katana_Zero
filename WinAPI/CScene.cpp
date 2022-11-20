@@ -6,6 +6,13 @@
 #include "CTile.h"
 #include "CGroundTile.h"
 #include"CDoor.h"
+#include "CScene000.h"
+#include "CScene001.h"
+#include "CScene002.h"
+#include "CScene003.h"
+#include "CScene004.h"
+#include "CScene005.h"
+#include "CScene006.h"
 
 CScene::CScene()
 {

@@ -330,6 +330,30 @@
     <ClInclude Include="CDoor.h">
       <Filter>Engine\Asset\Door</Filter>
     </ClInclude>
+    <ClInclude Include="CScene000.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene001.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene003.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene002.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene004.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene005.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CScene006.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneEnding.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -559,6 +583,30 @@
     </ClCompile>
     <ClCompile Include="CDoor.cpp">
       <Filter>Engine\Asset\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene000.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene001.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene002.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene003.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene004.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene005.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CScene006.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneEnding.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

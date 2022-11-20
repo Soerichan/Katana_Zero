@@ -75,7 +75,7 @@ void CScene_file::Update()
 	if (m_fFireTimer<=0.f)
 	{
 		CAMERA->FadeOut(0.25f);
-		DELAYCHANGESCENE(GroupScene::Stage01, 0.25f);
+		DELAYCHANGESCENE(GroupScene::Scene000, 0.25f);
 	}
 	CAMERA->SetTargetPos({ 640,360 });
 }

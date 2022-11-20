@@ -31,7 +31,23 @@ enum class GroupScene
 
 	Scene_file,
 
+	Scene000,
+
+	Scene001,
+
+	Scene002,
+
+	Scene003,
+
+	Scene004,
+
+	Scene005,
+
+	Scene006,
+
 	Stage01,
+
+	SceneEnding,
 
 	Size,
 };
@@ -46,6 +62,7 @@ enum class Layer
 	
 	Tile,
 	StageObject,
+	Entrance,
 	Laser,
 	Corpse,
 	SubWeapon,

@@ -87,31 +87,31 @@ void CCameraManager::CameraWalk()
 	if (GAME->PlayerNowState == PlayerState::Idle)
 	{	
 		
-		if (PreFocus.x + (WINSIZEX * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - 2)
+		if (PreFocus.x + (WINSIZEX * 0.5f) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - 2.f)
 		{
-			PreFocus.x = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - (WINSIZEX * 0.5) - 2;
+			PreFocus.x = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - (WINSIZEX * 0.5f) - 2.f;
 		}
 
-		if (PreFocus.y + (WINSIZEY * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - 2)
+		if (PreFocus.y + (WINSIZEY * 0.5f) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - 2.f)
 		{
-			PreFocus.y = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - (WINSIZEY * 0.5) - 2;
+			PreFocus.y = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - (WINSIZEY * 0.5f) - 2.f;
 		}
 
-		if (PreFocus.x - (WINSIZEX * 0.5) < 2)
+		if (PreFocus.x - (WINSIZEX * 0.5f) < 2.f)
 		{
-			PreFocus.x = 2 + (WINSIZEX * 0.5);
+			PreFocus.x = 2 + (WINSIZEX * 0.5f);
 		}
 
-		if (PreFocus.y - (WINSIZEY * 0.5) < 2)
+		if (PreFocus.y - (WINSIZEY * 0.5f) < 2.f)
 		{
-			PreFocus.y = 2 + (WINSIZEY * 0.5);
+			PreFocus.y = 2 + (WINSIZEY * 0.5f);
 		}
 		Focus = PreFocus;
 		SetTargetPos(Focus, 1.f);
 	}
 	else
 	{
-		while (abs(Player.x - PreFocus.x) > 30)
+		while (abs(Player.x - PreFocus.x) > 30.f)
 		{
 			PreFocus.x = (PreFocus.x + Player.x) * 0.5f;
 			
@@ -123,24 +123,24 @@ void CCameraManager::CameraWalk()
 			PreFocus.y = (PreFocus.y + Player.y) * 0.5f;
 		}
 
-		if (PreFocus.x + (WINSIZEX * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - 2)
+		if (PreFocus.x + (WINSIZEX * 0.5f) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - 2.f)
 		{
-			PreFocus.x = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - (WINSIZEX * 0.5) - 2;
+			PreFocus.x = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetWidth() - (WINSIZEX * 0.5f) - 2.f;
 		}
 
-		if (PreFocus.y + (WINSIZEY * 0.5) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - 2)
+		if (PreFocus.y + (WINSIZEY * 0.5f) > SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - 2.f)
 		{
-			PreFocus.y = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - (WINSIZEY * 0.5) - 2;
+			PreFocus.y = SCENE->GetCurScene()->m_pbackGround->GetImage()->GetHeight() - (WINSIZEY * 0.5f) - 2.f;
 		}
 
-		if (PreFocus.x - (WINSIZEX * 0.5) < 2)
+		if (PreFocus.x - (WINSIZEX * 0.5f) < 2.f)
 		{
-			PreFocus.x = 2 + (WINSIZEX * 0.5);
+			PreFocus.x = 2 + (WINSIZEX * 0.5f);
 		}
 
-		if (PreFocus.y - (WINSIZEY * 0.5) < 2)
+		if (PreFocus.y - (WINSIZEY * 0.5f) < 2.f)
 		{
-			PreFocus.y = 2+ (WINSIZEY * 0.5);
+			PreFocus.y = 2+ (WINSIZEY * 0.5f);
 		}
 
 		Focus = PreFocus;
