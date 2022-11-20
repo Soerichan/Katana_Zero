@@ -31,6 +31,7 @@
 #include "CHUD.h"
 #include "CBattery.h"
 #include "CDoor.h"
+#include "CDanceFloor.h"
 
 CScene000::CScene000()
 {
@@ -59,6 +60,44 @@ void CScene000::Init()
 	CSlidingDoor* pSD = new CSlidingDoor;
 	pSD->SetPos(547, 356);
 	AddGameObject(pSD);*/
+
+	CDanceFloor* pDanceFloor = new CDanceFloor;
+	pDanceFloor->SetPos(696, 984);
+	AddGameObject(pDanceFloor);
+	CDanceFloor* pDanceFloor2 = new CDanceFloor;
+	pDanceFloor2->SetPos(1904, 984);
+	AddGameObject(pDanceFloor2);
+	CDanceFloor* pDanceFloor3 = new CDanceFloor;
+	pDanceFloor3->SetPos(891, 984);
+	pDanceFloor3->SetTwo(true);
+	AddGameObject(pDanceFloor3);
+	CDanceFloor* pDanceFloor4 = new CDanceFloor;
+	pDanceFloor4->SetPos(1392, 984);
+	AddGameObject(pDanceFloor4);
+	CDanceFloor* pDanceFloor5 = new CDanceFloor;
+	pDanceFloor5->SetPos(1651, 984);
+	pDanceFloor5->SetTwo(true);
+	AddGameObject(pDanceFloor5);
+	CDanceFloor* pDanceFloor6 = new CDanceFloor;
+	pDanceFloor6->SetPos(764, 553);
+	AddGameObject(pDanceFloor6);
+	CDanceFloor* pDanceFloor7 = new CDanceFloor;
+	pDanceFloor7->SetPos(2374, 553);
+	AddGameObject(pDanceFloor7);
+	CDanceFloor* pDanceFloor8 = new CDanceFloor;
+	pDanceFloor8->SetPos(1958, 553);
+	pDanceFloor8->SetTwo(true);
+	AddGameObject(pDanceFloor8);
+	CDanceFloor* pDanceFloor9 = new CDanceFloor;
+	pDanceFloor9->SetPos(1536, 553);
+	pDanceFloor9->SetTwo(true);
+	AddGameObject(pDanceFloor9);
+	CDanceFloor* pDanceFloor10 = new CDanceFloor;
+	pDanceFloor10->SetPos(1266, 553);
+	AddGameObject(pDanceFloor10);
+
+
+
 	CEntrance* pEntrance000 = new CEntrance;
 	pEntrance000->SetPos(546, 548);
 	pEntrance000->SetNextScene(GroupScene::Scene001);

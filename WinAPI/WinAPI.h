@@ -63,6 +63,7 @@ enum class Layer
 	Tile,
 	StageObject,
 	Entrance,
+	DanceFloor,
 	Laser,
 	Corpse,
 	SubWeapon,

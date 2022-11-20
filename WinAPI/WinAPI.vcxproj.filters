@@ -82,6 +82,9 @@
     <Filter Include="Engine\Asset\Door">
       <UniqueIdentifier>{2adec6d6-2bd2-43e7-984a-255580681da6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\DANCE">
+      <UniqueIdentifier>{5b7943f9-803c-428b-924d-058978e91355}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -315,9 +318,6 @@
     <ClInclude Include="CSlidingDoor.h">
       <Filter>Engine\Asset\Cam</Filter>
     </ClInclude>
-    <ClInclude Include="CTrruet.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CSmoke.h">
       <Filter>Engine\Asset\Smoke</Filter>
     </ClInclude>
@@ -352,7 +352,13 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="CSceneEnding.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CTrruet.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CDanceFloor.h">
+      <Filter>Engine\Asset\DANCE</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -569,9 +575,6 @@
     <ClCompile Include="CCam.cpp">
       <Filter>Engine\Asset\Cam</Filter>
     </ClCompile>
-    <ClCompile Include="CTrruet.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CSmokePipe.cpp">
       <Filter>Engine\Asset\Smoke</Filter>
     </ClCompile>
@@ -606,7 +609,13 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="CSceneEnding.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CTrruet.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CDanceFloor.cpp">
+      <Filter>Engine\Asset\DANCE</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

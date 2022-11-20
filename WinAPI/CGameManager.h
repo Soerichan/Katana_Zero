@@ -22,6 +22,7 @@ public:
 	wstring SubWeaponName;
 	bool LaserOff;
 	bool CamRed;
+	bool InDanceFloor;
 	
 	void PlayerSubWeapon();
 	void PickUpProcess();

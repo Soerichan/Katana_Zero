@@ -120,8 +120,8 @@ void CPlayer::Init()
 	m_pAnimator->CreateAnimation(L"Door_KickLeft", m_pDoor_KickImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 10,false);
 	m_pAnimator->CreateAnimation(L"Door_KickRight", m_pDoor_KickImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 10,false);
 
-	m_pAnimator->CreateAnimation(L"DanceLeft", m_pDanceImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 12);
-	m_pAnimator->CreateAnimation(L"DanceRight", m_pDanceImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 12);
+	m_pAnimator->CreateAnimation(L"DanceLeft", m_pDanceImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 12);
+	m_pAnimator->CreateAnimation(L"DanceRight", m_pDanceImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 12);
 
 	m_pAnimator->CreateAnimation(L"HurtCoverLeft", m_pHurtCoverImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 9,false);
 	m_pAnimator->CreateAnimation(L"HurtCoverRight", m_pHurtCoverImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 9,false);
@@ -390,6 +390,16 @@ void CPlayer::Update()
 	
 #pragma endregion
 
+#pragma region Dance관련
+
+	
+	if (GAME->InDanceFloor&&State==PlayerState::Idle)
+	{
+		Dance();
+	}
+
+
+#pragma endregion
 
 #pragma region State관련
 	//if (islanding == true)
@@ -810,10 +820,12 @@ void CPlayer::Update()
 	{ 
 	Dance();
 	}
+
 	else
 	{
-		m_vecMoveDir.y = 0;
-	}
+	m_vecMoveDir.y = 0;
+
+ }
 
 	//if (BUTTONDOWN(VK_SPACE))
 	//{

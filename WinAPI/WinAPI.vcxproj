@@ -155,6 +155,7 @@
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CCursor.h" />
+    <ClInclude Include="CDanceFloor.h" />
     <ClInclude Include="CDoor.h" />
     <ClInclude Include="CEntrance.h" />
     <ClInclude Include="CEventManager.h" />
@@ -247,6 +248,7 @@
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CCursor.cpp" />
+    <ClCompile Include="CDanceFloor.cpp" />
     <ClCompile Include="CDoor.cpp" />
     <ClCompile Include="CEntrance.cpp" />
     <ClCompile Include="CEventManager.cpp" />
