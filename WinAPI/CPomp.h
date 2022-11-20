@@ -3,6 +3,12 @@
 class CPomp :
     public CMonster
 {
+
+public:
+	CPomp();
+	virtual ~CPomp();
+
+	private:
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
 	CImage* m_pWalkImage;

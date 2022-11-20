@@ -7,7 +7,7 @@ public:
 	CMonster();
 	virtual ~CMonster();
 
-
+	void SetPatroller(bool Patroll);
 	
 	//Vector GetStair();
 	//Vector GetStair2();
@@ -29,6 +29,8 @@ protected:
 	/*bool m_bPlayerIsUpFloor;
 	bool m_bPlayerIsDownFloor;*/
 	bool m_bIsDie;
+	bool Patroller;
+
 	/*bool m_bEnterStair;*/
 
 	float m_fSpeed = 500.0f;

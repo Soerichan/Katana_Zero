@@ -144,6 +144,7 @@
     <ClInclude Include="CAnimator.h" />
     <ClInclude Include="CBattery.h" />
     <ClInclude Include="CBluntEffect.h" />
+    <ClInclude Include="CBoss.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBulletReflect.h" />
     <ClInclude Include="CButton.h" />
@@ -237,6 +238,7 @@
     <ClCompile Include="CAnimator.cpp" />
     <ClCompile Include="CBattery.cpp" />
     <ClCompile Include="CBluntEffect.cpp" />
+    <ClCompile Include="CBoss.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBulletReflect.cpp" />
     <ClCompile Include="CButton.cpp" />

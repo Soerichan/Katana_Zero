@@ -73,7 +73,7 @@ void CPomp::Update()
 			m_bPlayerIsSameFloor = false;
 		}
 
-		if (m_mState == MonsterState::Idle)
+		if (m_mState == MonsterState::Idle && !Patroller)
 		{
 			m_fIdleTimer -= DT;
 			VisualSensor();
@@ -377,6 +377,14 @@ void CPomp::OnCollisionExit(CCollider* pOtherCollider)
 {
 }
 
+
+CPomp::CPomp()
+{
+}
+
+CPomp::~CPomp()
+{
+}
 
 void CPomp::Attack()
 {

@@ -22,11 +22,17 @@ CMonster::CMonster()
 	m_mState = MonsterState::Idle;
 	m_fSpeed = 300.f;
 	m_fDieTimer = 1.f;
+	Patroller = false;
 	
 }
 
 CMonster::~CMonster()
 {
+}
+
+void CMonster::SetPatroller(bool Patroll)
+{
+	Patroller = Patroll;
 }
 
 //Vector CMonster::GetStair()
