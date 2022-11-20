@@ -363,6 +363,15 @@
     <ClInclude Include="CBoss.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CBossMissile01.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossCMissile02.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossCMissile03.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -621,6 +630,15 @@
       <Filter>Engine\Asset\DANCE</Filter>
     </ClCompile>
     <ClCompile Include="CBoss.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossMissile01.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossCMissile02.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossCMissile03.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

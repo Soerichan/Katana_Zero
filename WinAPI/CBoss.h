@@ -13,6 +13,7 @@ class CBoss :
         Skill04,
         Hurt,
         Struggle,
+        Recover,
         Die,
     };
 public:CBoss();
@@ -33,12 +34,20 @@ public:CBoss();
       float m_fTimerLundge;
       float m_fTimerJump;
       float m_fTimerBlock;
+      float m_fTimerHurt;
+      float m_fTimerRecover;
+      float m_fTimerStruggle;
       bool m_bCanHit;
+      int m_iStruggleCount;
+      BossState State;
 
       void Skill01();
       void Skill02();
       void Skill03();
       void Skill04();
+      void Throw();
+      void Lundge();
+      void Jump();
       void Attack()	override;
       void Init() override;
       void Update() override;

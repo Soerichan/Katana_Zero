@@ -145,6 +145,9 @@
     <ClInclude Include="CBattery.h" />
     <ClInclude Include="CBluntEffect.h" />
     <ClInclude Include="CBoss.h" />
+    <ClInclude Include="CBossCMissile02.h" />
+    <ClInclude Include="CBossCMissile03.h" />
+    <ClInclude Include="CBossMissile01.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CBulletReflect.h" />
     <ClInclude Include="CButton.h" />
@@ -239,6 +242,9 @@
     <ClCompile Include="CBattery.cpp" />
     <ClCompile Include="CBluntEffect.cpp" />
     <ClCompile Include="CBoss.cpp" />
+    <ClCompile Include="CBossCMissile02.cpp" />
+    <ClCompile Include="CBossCMissile03.cpp" />
+    <ClCompile Include="CBossMissile01.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CBulletReflect.cpp" />
     <ClCompile Include="CButton.cpp" />

@@ -16,6 +16,7 @@
 #include "CGrunt.h"
 #include "CPomp.h"
 #include "CGangster.h"
+#include "CBoss.h"
 
 #include "CSubWeapon.h"
 #include "CLaser.h"
@@ -52,6 +53,10 @@ void CScene000::Init()
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(85, 897);
 	AddGameObject(pPlayer);
+
+	CBoss* pB = new CBoss;
+	pB->SetPos(300, 897);
+	AddGameObject(pB);
 
 	/*CCam* pCam = new CCam;
 	pCam->SetPos(453, 356);

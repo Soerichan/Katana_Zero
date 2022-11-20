@@ -1323,7 +1323,9 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		{
 			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y)//¶¥¹â°í ¼­ÀÖ±â
 			{
+				if (State != PlayerState::Flip)
 				islanding = true;
+
 				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 2;
 			}
 		}
