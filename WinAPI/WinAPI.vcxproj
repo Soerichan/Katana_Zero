@@ -156,6 +156,7 @@
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CCursor.h" />
     <ClInclude Include="CDoor.h" />
+    <ClInclude Include="CEntrance.h" />
     <ClInclude Include="CEventManager.h" />
     <ClInclude Include="CGameManager.h" />
     <ClInclude Include="CGameObject.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="CTitle_Layer02.h" />
     <ClInclude Include="CTitle_Layer03.h" />
     <ClInclude Include="CTitle_Layer04.h" />
+    <ClInclude Include="CTrruet.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIManager.h" />
     <ClInclude Include="CZippo.h" />
@@ -238,6 +240,7 @@
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CCursor.cpp" />
     <ClCompile Include="CDoor.cpp" />
+    <ClCompile Include="CEntrance.cpp" />
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CGameManager.cpp" />
     <ClCompile Include="CGameObject.cpp" />
@@ -288,6 +291,7 @@
     <ClCompile Include="CTitle_Layer02.cpp" />
     <ClCompile Include="CTitle_Layer03.cpp" />
     <ClCompile Include="CTitle_Layer04.cpp" />
+    <ClCompile Include="CTrruet.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
     <ClCompile Include="CPlatfoam.cpp" />

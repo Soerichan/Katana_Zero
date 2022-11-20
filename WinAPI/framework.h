@@ -71,6 +71,7 @@ using namespace FMOD;
 #include "CScene.h"
 #include "CBackGround.h"
 #include "CImageObject.h"
+#include "CEntrance.h"
 
 
 

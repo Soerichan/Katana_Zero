@@ -76,6 +76,12 @@
     <Filter Include="Engine\Asset\Cam">
       <UniqueIdentifier>{ba48f0a1-6318-4507-984c-4d3aa243cd15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\Smoke">
+      <UniqueIdentifier>{0cf8ab32-f7a2-4e5d-a60d-4dfe81954348}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Asset\Door">
+      <UniqueIdentifier>{2adec6d6-2bd2-43e7-984a-255580681da6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -291,9 +297,6 @@
     <ClInclude Include="CSpark.h">
       <Filter>Engine\Asset\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="CDoor.h">
-      <Filter>GameObject\Common</Filter>
-    </ClInclude>
     <ClInclude Include="CLaserSwitch.h">
       <Filter>Engine\Asset\Laser</Filter>
     </ClInclude>
@@ -306,17 +309,26 @@
     <ClInclude Include="CZippo.h">
       <Filter>Engine\Asset\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="CSmoke.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CSmokePipe.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CCam.h">
       <Filter>Engine\Asset\Cam</Filter>
     </ClInclude>
     <ClInclude Include="CSlidingDoor.h">
       <Filter>Engine\Asset\Cam</Filter>
+    </ClInclude>
+    <ClInclude Include="CTrruet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CSmoke.h">
+      <Filter>Engine\Asset\Smoke</Filter>
+    </ClInclude>
+    <ClInclude Include="CSmokePipe.h">
+      <Filter>Engine\Asset\Smoke</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntrance.h">
+      <Filter>GameObject\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="CDoor.h">
+      <Filter>Engine\Asset\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -515,9 +527,6 @@
     <ClCompile Include="CSpark.cpp">
       <Filter>Engine\Asset\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="CDoor.cpp">
-      <Filter>GameObject\Common</Filter>
-    </ClCompile>
     <ClCompile Include="CLaserSwitch.cpp">
       <Filter>Engine\Asset\Laser</Filter>
     </ClCompile>
@@ -530,17 +539,26 @@
     <ClCompile Include="CZippo.cpp">
       <Filter>Engine\Asset\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="CSmoke.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CSmokePipe.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CSlidingDoor.cpp">
       <Filter>Engine\Asset\Cam</Filter>
     </ClCompile>
     <ClCompile Include="CCam.cpp">
       <Filter>Engine\Asset\Cam</Filter>
+    </ClCompile>
+    <ClCompile Include="CTrruet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CSmokePipe.cpp">
+      <Filter>Engine\Asset\Smoke</Filter>
+    </ClCompile>
+    <ClCompile Include="CSmoke.cpp">
+      <Filter>Engine\Asset\Smoke</Filter>
+    </ClCompile>
+    <ClCompile Include="CEntrance.cpp">
+      <Filter>GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="CDoor.cpp">
+      <Filter>Engine\Asset\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
