@@ -59,7 +59,7 @@ void CLaser::SwitchLaser()
 	}
 }
 
-void CLaser::SetMove()
+void CLaser::SetMove(bool move)
 {
 	m_bMove = true;
 }

@@ -20,7 +20,7 @@ public:
     void SetRight(bool Right);
     void TurnOff();
     void SwitchLaser();
-    void SetMove();
+    void SetMove(bool move);
 private:
     bool m_bMove;
     float m_fMoveTimer;

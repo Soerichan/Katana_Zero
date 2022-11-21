@@ -55,7 +55,7 @@ void CSceneTitle::Update()
 	}
 	if (BUTTONDOWN(VK_F2))
 	{
-		CHANGESCENE(GroupScene::Scene003);
+		CHANGESCENE(GroupScene::Scene004);
 	}
 	if (BUTTONDOWN(VK_SPACE))
 	{
