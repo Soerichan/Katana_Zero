@@ -48,6 +48,8 @@ using namespace FMOD;
 #include "SingleTon.h"
 #include "Struct.h"
 #include "Logger.h"
+#include "Memento.h"
+#include "CareTaker.h"
 
 // Engine 1.0
 #include "WinAPI.h"

@@ -1,6 +1,10 @@
 #pragma once
 #include "CGameObject.h"
+#include "framework.h"
 
+#include "WinAPI.h"
+
+class CareTaker;
 class CImage;
 class CAnimator;
 
@@ -17,7 +21,7 @@ public:
 	virtual ~CPlayer();
 
 
-
+	void SetMyPosition(Vector Pos);
 private:
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
@@ -81,6 +85,8 @@ private:
 	float AttackAngle;
 	Vector AttackPos;
 
+	float m_fDieTimer;
+
 	float m_fBatteryTimer;
 	int m_iBattery;
 	bool IsCronos;
@@ -120,6 +126,15 @@ private:
 	void MyBattery();
 	void WhatIHave();
 	
+
+	
+	//void SaveMemento(Vector  Playerpos);
+	void SaveMemento(Vector  Playerpos);
+	Memento* GetMemento();
+	bool m_bReplay;
+	float m_fMementoTimer;
+	float m_fReplayTimer;
+	Vector StartPos;
 
 };
 

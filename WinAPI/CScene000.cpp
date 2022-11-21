@@ -125,6 +125,7 @@ void CScene000::Init()
 
 void CScene000::Enter()
 {
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);

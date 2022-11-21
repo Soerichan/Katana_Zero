@@ -11,6 +11,7 @@ CGameManager::CGameManager()
 	Battery = 0;
 	SubWeaponName = L"None";
 	LaserOff = false;
+	
 }
 
 CGameManager::~CGameManager()
@@ -23,6 +24,8 @@ void CGameManager::Init()
 
 void CGameManager::Update()
 {
+
+
 }
 
 void CGameManager::Release()
@@ -80,3 +83,15 @@ void CGameManager::SubWeaponThrow()
 	SubWeaponName = L"None";
 	PickUpProcess();
 }
+
+//void CGameManager::SaveMemento(Vector  Playerpos)
+//{
+//	Memento* newMemento = new Memento;
+//	newMemento->SetPlayerVector(Playerpos);
+//	externCareTaker.Addplayer(newMemento);
+//}
+//
+//Memento* CGameManager::GetMemento()
+//{
+//	return externCareTaker.Popplayer();
+//}

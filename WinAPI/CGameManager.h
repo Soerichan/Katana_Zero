@@ -28,7 +28,10 @@ public:
 	void PickUpProcess();
 	void SubWeaponThrow();
 
-
+	//void SaveMemento(Vector Playerpos);
+	//Memento* GetMemento();
+	/*bool m_bReplay;
+	float m_fMementoTimer;*/
 
 	PlayerState PlayerNowState;
 	bool RightAttack;

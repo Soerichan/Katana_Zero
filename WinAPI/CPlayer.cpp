@@ -17,6 +17,7 @@
 #include "CKatanaSlash.h"
 #include "CSubWeapon.h"
 
+class CareTaker;
 
 CPlayer::CPlayer()
 {
@@ -64,6 +65,12 @@ CPlayer::CPlayer()
 	m_strSubWeapon = L"None";
 
 	m_fDoorTimer = 1.f;
+
+	m_fMementoTimer = 0.1f;
+
+	m_fDieTimer = 1.f;
+	m_fMementoTimer = 0.1f;
+	m_fReplayTimer = 0.05f;
 }
 
 CPlayer::~CPlayer()
@@ -129,8 +136,8 @@ void CPlayer::Init()
 	m_pAnimator->CreateAnimation(L"HurtFlyLeft", m_pHurtFlyImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6,false);
 	m_pAnimator->CreateAnimation(L"HurtFlyRight", m_pHurtFlyImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6, false);
 
-	m_pAnimator->CreateAnimation(L"HurtGroundLeft", m_pHurtGroundImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6, false);
-	m_pAnimator->CreateAnimation(L"HurtGroundRight", m_pHurtGroundImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 6, false);
+	m_pAnimator->CreateAnimation(L"HurtGroundLeft", m_pHurtGroundImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 6, false);
+	m_pAnimator->CreateAnimation(L"HurtGroundRight", m_pHurtGroundImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 6, false);
 
 
 	m_pAnimator->CreateAnimation(L"WallGrabLeft", m_pWallGrabImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 2,false);
@@ -229,6 +236,7 @@ void CPlayer::Update()
 			resistance = 0;
 			if (State != PlayerState::Attack)
 			{
+				if(!m_bReplay)
 				m_vecPos.y += 0.8f; //기본중력
 			}
 		}
@@ -401,15 +409,55 @@ void CPlayer::Update()
 
 #pragma endregion
 
-#pragma region State관련
-	//if (islanding == true)
-	//{
-	//	State = PlayerState::Idle;
-	//	m_vecMoveDir.y = 0;
-	//	m_bIsMove = false;
-	//}
+#pragma region Die관련
+
+	if (State == PlayerState::Die)
+	{
+		m_fDieTimer -= DT;
+		m_vecPos.x += m_vecLookDir.x * 50 * DT;
+		if (m_fDieTimer <= 0)
+		{
+			m_bReplay = true;
+			State = PlayerState::Replay;
+			RemoveCollider();
+		}
+	}
 
 
+#pragma endregion
+
+#pragma region Memento관련
+
+	m_fMementoTimer -= TIME->GetRealTime();
+
+	if (m_fMementoTimer <= 0 && m_bReplay==false)
+	{	
+		//StartPos = m_vecPos;
+		SaveMemento(m_vecPos);
+		m_fMementoTimer = 0.1f;
+	}
+
+	if (m_bReplay)
+	{	
+		m_fReplayTimer -= TIME->GetRealTime();
+
+		if (m_fReplayTimer <= 0 )
+		{
+			Vector MementoReplay = externCareTaker.Popplayer()->GetPlayerVector();
+			SetMyPosition(MementoReplay);
+
+			if (externCareTaker.IsEmpty())
+			{
+				m_bReplay = false;
+				State = PlayerState::Idle;
+				m_fDieTimer = 1.f;
+				AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
+			}
+
+			m_fReplayTimer = 0.05f;
+		}
+		
+	}
 
 #pragma endregion
 	//if (unGravityTimer <= 0)
@@ -426,6 +474,7 @@ void CPlayer::Update()
 
 	
 #pragma region Key입력관련
+
 
 	if (LMOUSEDOWN(false))
 	{	
@@ -818,7 +867,7 @@ void CPlayer::Update()
 	}
 	else if (BUTTONSTAY(VK_F3))
 	{ 
-	Dance();
+	State = PlayerState::Die;
 	}
 
 	else
@@ -1050,13 +1099,19 @@ void CPlayer::AnimatorUpdate()
 		break;
 	case PlayerState::Die:
 
-		str += L"Die";
+		str += L"HurtGround";
 		if (m_vecLookDir.x > 0) str += L"Right";
 		else if (m_vecLookDir.x < 0) str += L"Left";
 		break;
 
 	case PlayerState::DoorKick:
 		str += L"Door_Kick";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+		break;
+
+	case PlayerState::Replay:
+		str += L"HurtFly";
 		if (m_vecLookDir.x > 0) str += L"Right";
 		else if (m_vecLookDir.x < 0) str += L"Left";
 		break;
@@ -1194,7 +1249,7 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Platfoam" && pOtherCollider->GetPos().y > m_vecPos.y)
 	{
-		if(State!=PlayerState::Flip)
+		if(State!=PlayerState::Flip && State != PlayerState::WallGrab)
 		islanding = true;
 	}
 	if (pTarget == L"Door")
@@ -1323,7 +1378,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 		{
 			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y)//땅밟고 서있기
 			{
-				if (State != PlayerState::Flip)
+				if (State != PlayerState::Flip&& State != PlayerState::WallGrab)
 				islanding = true;
 
 				m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 2;
@@ -1390,4 +1445,21 @@ void CPlayer::MyBattery()
 void CPlayer::WhatIHave()
 {
 	m_strSubWeapon = GAME->SubWeaponName;
+}
+
+void CPlayer::SetMyPosition(Vector Pos)
+{
+	m_vecPos = Pos;
+}
+
+void CPlayer::SaveMemento(Vector Playerpos)
+{
+	Memento* newMemento = new Memento;
+	newMemento->SetPlayerVector(Playerpos);
+	externCareTaker.Addplayer(newMemento);
+}
+
+Memento* CPlayer::GetMemento()
+{
+	return externCareTaker.Popplayer();
 }

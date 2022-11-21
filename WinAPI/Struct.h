@@ -45,6 +45,19 @@ struct Vector
 		return *this;
 	}
 
+
+	bool operator==(const Vector& other)
+	{
+		if (this->x == other.x && this->y == other.y)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 	template <typename T>
 	Vector operator*(T num)
 	{

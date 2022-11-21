@@ -1,5 +1,5 @@
 #pragma once
-
+#include "framework.h"
 #include "resource.h"
 
 //========================================
@@ -8,6 +8,8 @@
 
 extern HINSTANCE hInst;
 extern HWND hWnd;
+extern CareTaker externCareTaker;
+extern Memento externMemento;
 
 //========================================
 //##			윈도우 설정				##
@@ -133,7 +135,8 @@ enum class PlayerState
 	Fall,
 	Dance,
 	Die,
-	DoorKick
+	DoorKick,
+	Replay
 
 };
 
