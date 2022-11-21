@@ -59,6 +59,11 @@ void CLaser::SwitchLaser()
 	}
 }
 
+void CLaser::SetMove()
+{
+	m_bMove = true;
+}
+
 void CLaser::OnCollisionEnter(CCollider* pOtherCollider)
 {
 }
@@ -79,6 +84,7 @@ void CLaser::Init()
 	m_pAnimator->Play(L"LaserRed", true);
 	AddComponent(m_pAnimator);
 	AddCollider(ColliderType::Rect, Vector(1, 200), Vector(0, 0));
+	m_fMoveTimer = 8.f;
 }
 
 void CLaser::Update()
@@ -94,6 +100,23 @@ void CLaser::Update()
 
 	if (m_State == LaserState::On)
 	{
+		if (m_bMove == true)
+		{
+			m_fMoveTimer -= DT;
+			if (m_fMoveTimer >= 4.f)
+			{
+				m_vecPos.x += 30 * DT;
+			}
+			else if(m_fMoveTimer < 4.f&& m_fMoveTimer >= 0)
+			{
+				m_vecPos.x -= 30 * DT;
+			}
+			else
+			{
+				m_fMoveTimer = 8.f;
+			}
+		}
+
 		AddCollider(ColliderType::Rect, Vector(1, 200), Vector(0, 0));
 		m_fTimer = 0.01f;
 		AnimatorUpdate();

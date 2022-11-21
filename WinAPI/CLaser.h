@@ -20,7 +20,10 @@ public:
     void SetRight(bool Right);
     void TurnOff();
     void SwitchLaser();
+    void SetMove();
 private:
+    bool m_bMove;
+    float m_fMoveTimer;
     void AnimatorUpdate();
     CAnimator* m_pAnimator;
     Vector m_vecSwitchPos;
