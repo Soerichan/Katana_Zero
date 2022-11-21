@@ -21,6 +21,8 @@ class CareTaker;
 
 CPlayer::CPlayer()
 {
+	
+
 	m_vecPos = Vector(0, 0);
 	m_vecScale = Vector(38, 55);
 	m_layer = Layer::Player;
@@ -426,48 +428,7 @@ void CPlayer::Update()
 
 #pragma endregion
 
-#pragma region Memento관련
 
-	m_fMementoTimer -= TIME->GetRealTime();
-
-	if (m_fMementoTimer <= 0 && m_bReplay==false)
-	{	
-		//StartPos = m_vecPos;
-		SaveMemento(this);
-		m_fMementoTimer = 0.05f;
-	}
-
-	if (m_bReplay)
-	{	
-		m_fReplayTimer -= TIME->GetRealTime();
-
-		if (m_fReplayTimer <= 0 )
-		{
-			if (externCareTaker.IsEmpty()==true)
-			{
-				m_bReplay = false;
-				State = PlayerState::Idle;
-				m_fDieTimer = 1.f;
-				AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
-			}
-			else
-			{
-
-				//CPlayer* MementoReplay = externCareTaker.Popplayer()->GetPlayerMemento();
-				Vector VectorMementoReplay = externCareTaker.Popplayer()->GetVectorMemento();
-				CAnimation* AnimationMementoReplay = externCareTaker.Popplayer()->GetAnimationMemento();
-				UINT CurFrameMementoReplay = externCareTaker.Popplayer()->GetCurFrameMemento();
-				SetMyPosition(VectorMementoReplay);
-				SetMyCurAnimation(AnimationMementoReplay);
-				SetMyCurFrame(CurFrameMementoReplay);
-
-			}
-			m_fReplayTimer = 0.01f;
-		}
-		
-	}
-
-#pragma endregion
 	//if (unGravityTimer <= 0)
 	//{
 	//	unGravityTimer = -1;
@@ -891,6 +852,49 @@ void CPlayer::Update()
 
 	AnimatorUpdate();
 	WhereWasI();
+#pragma region Memento관련
+
+	m_fMementoTimer -= TIME->GetRealTime();
+
+	if (m_fMementoTimer <= 0 && m_bReplay == false)
+	{
+		//StartPos = m_vecPos;
+		SaveMemento(this);
+		m_fMementoTimer = 0.05f;
+	}
+
+	if (m_bReplay)
+	{
+		m_fReplayTimer -= TIME->GetRealTime();
+
+		if (m_fReplayTimer <= 0)
+		{
+			if (externCareTaker.IsEmpty() == true)
+			{
+				m_bReplay = false;
+				State = PlayerState::Idle;
+				m_fDieTimer = 1.f;
+				AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
+			}
+			else
+			{
+
+				//CPlayer* MementoReplay = externCareTaker.Popplayer()->GetPlayerMemento();
+				Vector VectorMementoReplay = externCareTaker.Popplayer()->GetVectorMemento();
+				CAnimation* AnimationMementoReplay = externCareTaker.Popplayer()->GetAnimationMemento();
+				UINT CurFrameMementoReplay = externCareTaker.Popplayer()->GetCurFrameMemento();
+				externCareTaker.PopDelete();
+				SetMyPosition(VectorMementoReplay);
+				SetMyCurAnimation(AnimationMementoReplay);
+				SetMyCurFrame(CurFrameMementoReplay);
+
+			}
+			m_fReplayTimer = 0.01f;
+		}
+
+	}
+
+#pragma endregion
 }
 
 #pragma endregion
@@ -1464,14 +1468,17 @@ void CPlayer::WhatIHave()
 
 void CPlayer::SetMyPosition(Vector vec)
 {
+	m_vecPos = vec;
 }
 
 void CPlayer::SetMyCurAnimation(CAnimation* Ani)
 {
+	m_pAnimator->SetCurAnimation(Ani);
 }
 
 void CPlayer::SetMyCurFrame(UINT Frame)
 {
+	m_pAnimator->GetCurAnimation()->SetCurFrame(Frame);
 }
 
 CAnimator* CPlayer::GetAnimator()

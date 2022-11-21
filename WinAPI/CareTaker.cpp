@@ -17,9 +17,14 @@ void CareTaker::Addplayer(Memento* Vector)
 Memento* CareTaker::Popplayer()
 {	
 	
-	Memento* ret = m_vector_Player_Memento.back();
+	
+	
+	return m_vector_Player_Memento.back();
+}
+
+void CareTaker::PopDelete()
+{
 	m_vector_Player_Memento.pop_back();
-	return ret;
 }
 
 bool CareTaker::IsEmpty()

@@ -21,6 +21,7 @@ public: CareTaker();
  //}
 
  Memento* Popplayer();
+ void PopDelete();
 
 
  bool IsEmpty();
