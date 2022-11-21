@@ -13,7 +13,7 @@ CCam::~CCam()
 
 void CCam::Init()
 {
-	pImage = RESOURCE->LoadImg(L"Cam", L"Image\\cam\\cam2.png");
+	pImage = RESOURCE->LoadImg(L"Cam", L"Image\\cam\\cam3.png");
 	m_pAnimator = new CAnimator;
 	//m_pAnimator->CreateAnimation(L"GreenCam", pImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 1, false);
 	m_pAnimator->CreateAnimation(L"GreenCam", pImage, Vector(0.f, 0.f), Vector(500.f, 280.f), Vector(300.f, 0.f), 0.2f, 1, false);
@@ -25,7 +25,7 @@ void CCam::Init()
 
 	AddComponent(m_pAnimator);
 
-	AddCollider(ColliderType::Rect, Vector(500, 100), Vector(0, 100));
+	AddCollider(ColliderType::Rect, Vector(350, 120), Vector(0, 60));
 }
 
 void CCam::Update()
@@ -64,6 +64,22 @@ void CCam::OnCollisionEnter(CCollider* pOtherCollider)
 	if (pTarget == L"플레이어")
 	{
 		GAME->CamRed = true;
+	}
+
+	if (pTarget == L"Smoke")
+	{
+		
+		GAME->CamRed = false;
+	}
+}
+
+void CCam::OnCollisionStay(CCollider* pOtherCollider)
+{
+	wstring pTarget = pOtherCollider->GetObjName();
+	if (pTarget == L"Smoke")
+	{
+
+		GAME->CamRed = false;
 	}
 }
 

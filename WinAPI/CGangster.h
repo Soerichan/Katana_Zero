@@ -6,9 +6,9 @@ class CGangster :
 public:
 	CGangster();
 	virtual ~CGangster();
-
+	void SetReverse(bool Reverse);
 private:
-
+	bool m_bReverse;
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
 	CImage* m_pWalkImage;

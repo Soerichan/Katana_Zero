@@ -8,6 +8,7 @@ public:
 	virtual ~CMonster();
 
 	void SetPatroller(bool Patroll);
+	void SetState(MonsterState state);
 	
 	//Vector GetStair();
 	//Vector GetStair2();

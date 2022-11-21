@@ -125,6 +125,28 @@ void CScene000::Init()
 
 void CScene000::Enter()
 {
+	CGangster* newGangster01 = new CGangster;
+	newGangster01->SetPos(1550,944);
+	newGangster01->SetReverse(true);
+	AddGameObject(newGangster01);
+
+	CGangster* newGangster02 = new CGangster;
+	newGangster02->SetPos(1750, 944);
+	AddGameObject(newGangster02);
+
+	CGangster* newGangster03 = new CGangster;
+	newGangster03->SetPos(1950, 524);
+	AddGameObject(newGangster03);
+
+	//CGangster* newGangster04 = new CGangster;
+	//newGangster04->SetPos(1450, 524);
+	
+	//AddGameObject(newGangster04);
+
+	CGangster* newGangster05 = new CGangster;
+	newGangster05->SetPos(1050, 524);
+	newGangster05->SetReverse(true);
+	AddGameObject(newGangster05);
 
 	CAMERA->readyTimer = 1.f;
 

@@ -444,7 +444,7 @@ void CPlayer::Update()
 	
 #pragma region Key입력관련
 
-
+	//if(SCENE->GetCurScene()!= pScene000)
 	if (LMOUSEDOWN(false))
 	{	
 		switch (State)

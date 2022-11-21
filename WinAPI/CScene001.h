@@ -13,6 +13,7 @@ public:
 
 private:
 	CPlayer* pPlayer;
+	bool m_bOnce;
 
 	void Init()		override;
 	void Enter()	override;

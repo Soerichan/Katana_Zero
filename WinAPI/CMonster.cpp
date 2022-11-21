@@ -35,6 +35,11 @@ void CMonster::SetPatroller(bool Patroll)
 	Patroller = Patroll;
 }
 
+void CMonster::SetState(MonsterState state)
+{
+	m_mState = state;
+}
+
 //Vector CMonster::GetStair()
 //{
 //	return m_vecWhereIsStair;
@@ -82,21 +87,23 @@ void CMonster::VisualSensor()
 {
 	//충돌체를 가장한 시야 센서.
 	//자신의 시야쪽으로 사각형을 감지
-
-	if (m_vecLookDir.x == 1)//우측봄
+	if (GAME->PlayerNowState != PlayerState::Dance)
 	{
-		if ((PLAYERPOSITION.x > m_vecPos.x) && (PLAYERPOSITION.x < m_vecPos.x + 700) && m_bPlayerIsSameFloor)
-		{	
-			m_mState = MonsterState::Chase;
-			Sight();
-		}
-	}
-	else//좌측봄
-	{
-		if ((PLAYERPOSITION.x < m_vecPos.x) && (PLAYERPOSITION.x > m_vecPos.x - 700) && m_bPlayerIsSameFloor)
+		if (m_vecLookDir.x == 1)//우측봄
 		{
-			m_mState = MonsterState::Chase;
-			Sight();
+			if ((PLAYERPOSITION.x > m_vecPos.x) && (PLAYERPOSITION.x < m_vecPos.x + 600) && m_bPlayerIsSameFloor)
+			{
+				m_mState = MonsterState::Chase;
+				Sight();
+			}
+		}
+		else//좌측봄
+		{
+			if ((PLAYERPOSITION.x < m_vecPos.x) && (PLAYERPOSITION.x > m_vecPos.x - 600) && m_bPlayerIsSameFloor)
+			{
+				m_mState = MonsterState::Chase;
+				Sight();
+			}
 		}
 	}
 
@@ -134,9 +141,9 @@ void CMonster::OnCollisionStay(CCollider* pOtherCollider)
 
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"Smoke")
+	if (pTarget == L"Smoke"&&m_layer!=Layer::Corpse)
 	{
-		m_mState = MonsterState::Idle;
+		m_mState = MonsterState::Attention;
 		//물음표 이펙트
 	}
 

@@ -54,6 +54,27 @@ void CScene001::Init()
 	pPlayer->SetPos(38, 512);
 	AddGameObject(pPlayer);
 
+	CCam* newCam01 = new CCam;
+	newCam01->SetPos(503, 478);
+	AddGameObject(newCam01);
+
+	CCam* newCam02 = new CCam;
+	newCam02->SetPos(1751, 478);
+	AddGameObject(newCam02);
+
+	CSlidingDoor* newSD01 = new CSlidingDoor;
+	newSD01->SetPos(768, 471);
+	AddGameObject(newSD01);
+
+	CSlidingDoor* newSD02 = new CSlidingDoor;
+	newSD02->SetPos(1960, 471);
+	AddGameObject(newSD02);
+
+	CDoor* newDoor01 = new CDoor;
+	newDoor01->SetPos(1115, 487);
+	AddGameObject(newDoor01);
+
+
 	CEntrance* pEntrance001 = new CEntrance;
 	pEntrance001->SetPos(2242, 458);
 	pEntrance001->SetNextScene(GroupScene::Scene002);
@@ -75,6 +96,43 @@ void CScene001::Init()
 
 void CScene001::Enter()
 {
+
+	CGrunt* newGrunt01 = new CGrunt;
+	newGrunt01->SetPos(647, 512);
+	AddGameObject(newGrunt01);
+
+	CGrunt* newGrunt02 = new CGrunt;
+	newGrunt02->SetPos(1386, 512);
+	AddGameObject(newGrunt02);
+
+	CGrunt* newGrunt03 = new CGrunt;
+	newGrunt03->SetPos(1848, 512);
+	newGrunt03->SetPatroller(true);
+	AddGameObject(newGrunt03);
+
+	CPomp* newPomp01 = new CPomp;
+	newPomp01->SetPos(1592, 512);
+	newPomp01->SetPatroller(true);
+	AddGameObject(newPomp01);
+
+	CSubWeapon* pSubWeapon01 = new CSubWeapon;
+	pSubWeapon01->SetName(L"Butcher");
+	pSubWeapon01->SetPos(959, 508);
+	pSubWeapon01->SetScale(42, 42);
+	CImage* newSubWeaponImage01 = new CImage;
+	pSubWeapon01->SetImage(newSubWeaponImage01 = RESOURCE->LoadImg(L"Butcher", L"Image\\SubWeapon\\Butcher.png"));
+	AddGameObject(pSubWeapon01);
+
+	CSubWeapon* pSubWeapon02 = new CSubWeapon;
+	pSubWeapon02->SetName(L"Smoker");
+	pSubWeapon02->SetPos(1619, 508);
+	pSubWeapon02->SetScale(28, 42);
+	CImage* newSubWeaponImage02 = new CImage;
+	pSubWeapon02->SetImage(newSubWeaponImage02 = RESOURCE->LoadImg(L"Smoker", L"Image\\SubWeapon\\Smoker.png"));
+	AddGameObject(pSubWeapon02);
+
+
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);
@@ -87,6 +145,14 @@ void CScene001::Enter()
 
 void CScene001::Update()
 {
+	if (PLAYERPOSITION.x > 700 && m_bOnce == false)
+	{
+		CPomp* newPomp02 = new CPomp;
+		newPomp02->SetPos(62, 512);
+		newPomp02->SetState(MonsterState::Chase);
+		AddGameObject(newPomp02);
+		m_bOnce = true;
+	}
 }
 
 void CScene001::Render()

@@ -17,6 +17,11 @@ CGangster::~CGangster()
 {
 }
 
+void CGangster::SetReverse(bool Reverse)
+{
+	m_bReverse = Reverse;
+}
+
 void CGangster::Init()
 {
 	CMonster::Init();
@@ -76,35 +81,72 @@ void CGangster::Update()
 		m_bPlayerIsSameFloor = false;
 	}
 
-	if (m_mState == MonsterState::Idle&&!Patroller)
+	if (m_bReverse == false)
 	{
-		m_fIdleTimer -= DT;
-		VisualSensor();
+		if (m_mState == MonsterState::Idle && !Patroller)
+		{
+			m_fIdleTimer -= DT;
+			VisualSensor();
 
-		if (m_fIdleTimer >= 12.f)
-		{
-			m_bIsMove = false;
+			if (m_fIdleTimer >= 12.f)
+			{
+				m_bIsMove = false;
 
+			}
+			else if (m_fIdleTimer >= 8.f && m_fIdleTimer <= 12.f)
+			{
+				m_vecLookDir.x = +1;
+				m_vecPos.x += 0.5f * m_fSpeed * DT;
+				m_bIsMove = true;
+			}
+			else if (m_fIdleTimer >= 4.f && m_fIdleTimer <= 8.f)
+			{
+				m_bIsMove = false;
+			}
+			else if (m_fIdleTimer >= 0.f && m_fIdleTimer <= 4.f)
+			{
+				m_vecLookDir.x = -1;
+				m_vecPos.x -= 0.5f * m_fSpeed * DT;
+				m_bIsMove = true;
+			}
+			else
+			{
+				m_fIdleTimer = 16.f;
+			}
 		}
-		else if (m_fIdleTimer >= 8.f && m_fIdleTimer <= 12.f)
+	}
+	else
+	{
+		if (m_mState == MonsterState::Idle && !Patroller)
 		{
-			m_vecLookDir.x = +1;
-			m_vecPos.x += 0.5f * m_fSpeed * DT;
-			m_bIsMove = true;
-		}
-		else if (m_fIdleTimer >= 4.f && m_fIdleTimer <= 8.f)
-		{
-			m_bIsMove = false;
-		}
-		else if (m_fIdleTimer >= 0.f && m_fIdleTimer <= 4.f)
-		{
-			m_vecLookDir.x = -1;
-			m_vecPos.x -= 0.5f * m_fSpeed * DT;
-			m_bIsMove = true;
-		}
-		else
-		{
-			m_fIdleTimer = 16.f;
+			m_fIdleTimer -= DT;
+			VisualSensor();
+
+			if (m_fIdleTimer >= 12.f)
+			{
+				m_bIsMove = false;
+
+			}
+			else if (m_fIdleTimer >= 8.f && m_fIdleTimer <= 12.f)
+			{
+				m_vecLookDir.x = -1;
+				m_vecPos.x -= 0.5f * m_fSpeed * DT;
+				m_bIsMove = true;
+			}
+			else if (m_fIdleTimer >= 4.f && m_fIdleTimer <= 8.f)
+			{
+				m_bIsMove = false;
+			}
+			else if (m_fIdleTimer >= 0.f && m_fIdleTimer <= 4.f)
+			{
+				m_vecLookDir.x = +1;
+				m_vecPos.x += 0.5f * m_fSpeed * DT;
+				m_bIsMove = true;
+			}
+			else
+			{
+				m_fIdleTimer = 16.f;
+			}
 		}
 	}
 
@@ -229,14 +271,7 @@ void CGangster::AnimatorUpdate()
 		break;
 	case MonsterState::Attention:
 		if (m_bIsMove == false)
-		{
 			str += L"Idle";
-		}
-		else
-		{
-			str += L"Run";
-		}
-
 		break;
 	case MonsterState::Chase:
 		str += L"Run";
@@ -311,7 +346,7 @@ void CGangster::OnCollisionEnter(CCollider* pOtherCollider)
 	CMonster::OnCollisionEnter(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"Laser" ||pTarget == L"Door" || pOtherCollider->GetOwner()->GetLayer() == Layer::Missile)
+	if (pTarget == L"Laser" || pOtherCollider->GetOwner()->GetLayer() == Layer::Missile)
 	{
 		if (m_bIsDie == false)
 		{

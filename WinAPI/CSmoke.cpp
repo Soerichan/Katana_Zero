@@ -3,7 +3,7 @@
 
 CSmoke::CSmoke()
 {
-	m_layer = Layer::Monster;
+	m_layer = Layer::Smoke;
 	m_strName = L"Smoke";
 	m_fTimer = 0.6f;
 }
@@ -14,7 +14,7 @@ CSmoke::~CSmoke()
 
 void CSmoke::Init()
 {
-	pImage = RESOURCE->LoadImg(L"Smoke", L"Image\\Smoke\\Smoking.png");
+	pImage = RESOURCE->LoadImg(L"Smoke", L"Image\\Smoke\\Smoking1.png");
 	m_pAnimator = new CAnimator;
 
 	m_pAnimator->CreateAnimation(L"Smokebirth", pImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 3, false);

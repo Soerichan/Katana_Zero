@@ -104,6 +104,20 @@ void CPomp::Update()
 				m_fIdleTimer = 16.f;
 			}
 		}
+		else if(m_mState == MonsterState::Idle && Patroller)
+		{
+			if (PLAYERPOSITION.x < m_vecPos.x)
+			{
+				m_vecLookDir.x = -1;
+
+			}
+			else
+			{
+				m_vecLookDir.x = +1;
+
+			}
+			VisualSensor();
+		}
 
 		if (m_mState == MonsterState::Chase)
 		{
@@ -277,14 +291,9 @@ void CPomp::AnimatorUpdate()
 		}
 		break;
 	case MonsterState::Attention:
-		if (m_bIsMove == false)
-		{
+	
 			str += L"Idle";
-		}
-		else
-		{
-			str += L"Run";
-		}
+	
 		break;
 	case MonsterState::Chase:
 		str += L"Run";
@@ -326,7 +335,7 @@ void CPomp::OnCollisionEnter(CCollider* pOtherCollider)
 	CMonster::OnCollisionEnter(pOtherCollider);
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"Laser" || pTarget == L"Door"|| pOtherCollider->GetOwner()->GetLayer()==Layer::Missile	)
+	if (pTarget == L"Laser" || pOtherCollider->GetOwner()->GetLayer()==Layer::Missile	)
 	{
 		if (m_mState != MonsterState::Attack)
 		{

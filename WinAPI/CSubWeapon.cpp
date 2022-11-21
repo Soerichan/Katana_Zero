@@ -68,7 +68,7 @@ void CSubWeapon::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	if (pOtherCollider->GetOwner()->GetLayer() != Layer::Corpse)
 	{
-		if (m_strName == L"Smoke")
+		if (m_strName == L"Smoker")
 		{
 			CSmoke* pSmoke0 = new CSmoke;
 			pSmoke0->SetPos(m_vecPos.x , m_vecPos.y );

@@ -30,12 +30,14 @@ void CDoor::Open()
 	if (PLAYERPOSITION.x>m_vecPos.x)
 	{
 		RemoveCollider();
+		m_layer = Layer::Missile;
 		AddCollider(ColliderType::Rect, Vector(120, 120), Vector(-50, 0));
 		
 	}
 	else
 	{
 		RemoveCollider();
+		m_layer = Layer::Missile;
 		AddCollider(ColliderType::Rect, Vector(120, 120), Vector(50, 0));
 		
 	}
