@@ -21,7 +21,11 @@ public:
 	virtual ~CPlayer();
 
 
-	void SetMyPosition(Vector Pos);
+	/*void SetMyPosition(CPlayer* player);*/
+	void SetMyPosition(Vector vec);
+	void SetMyCurAnimation(CAnimation* Ani);
+	void SetMyCurFrame(UINT Frame);
+	CAnimator* GetAnimator();
 private:
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
@@ -129,12 +133,16 @@ private:
 
 	
 	//void SaveMemento(Vector  Playerpos);
-	void SaveMemento(Vector  Playerpos);
+	/*void SaveMemento(Vector  Playerpos);*/
+	void SaveMemento(CPlayer*  Player);
+	void SetMementoAnimation(CAnimation* Animation, UINT Frame);
+	void SetMementoPos(Vector pos);
 	Memento* GetMemento();
 	bool m_bReplay;
 	float m_fMementoTimer;
 	float m_fReplayTimer;
 	Vector StartPos;
+	CPlayer* StartPlayer;
 
 };
 

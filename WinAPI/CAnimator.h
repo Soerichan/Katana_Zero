@@ -9,6 +9,8 @@ class CAnimator : public CComponent
 public:
 	CAnimator();
 	virtual ~CAnimator();
+	CAnimation* GetCurAnimation();
+	void SetCurAnimation(CAnimation* Animation);
 
 private:
 	map<wstring, CAnimation*>	m_mapAni;	// 애니메이션들을 담기 위한 자료구조

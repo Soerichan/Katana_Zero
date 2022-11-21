@@ -238,6 +238,7 @@
     <ClInclude Include="WinAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CareTaker.cpp" />
     <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CAnimator.cpp" />
@@ -326,6 +327,7 @@
     <ClCompile Include="CR_High_Slope.cpp" />
     <ClCompile Include="CWall.cpp" />
     <ClCompile Include="CZippo.cpp" />
+    <ClCompile Include="Memento.cpp" />
     <ClCompile Include="WinAPI.cpp" />
   </ItemGroup>
   <ItemGroup>

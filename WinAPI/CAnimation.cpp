@@ -22,6 +22,16 @@ CAnimation::~CAnimation()
 {
 }
 
+UINT CAnimation::GetCurFrame()
+{
+	return this->m_iCurFrame;
+}
+
+void CAnimation::SetCurFrame(UINT Frame)
+{
+	m_iCurFrame = Frame;
+}
+
 const wstring& CAnimation::GetName()
 {
 	return m_strName;

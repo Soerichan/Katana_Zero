@@ -18,6 +18,8 @@ public:
 	CAnimation();
 	virtual ~CAnimation();
 
+	UINT GetCurFrame();
+	void SetCurFrame(UINT Frame);
 private:
 	CAnimator*			m_pAnimator;	// 애니메이터
 
@@ -32,7 +34,7 @@ private:
 
 public:
 	const wstring& GetName();
-
+	
 private:
 	void SetName(const wstring& name);
 

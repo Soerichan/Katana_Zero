@@ -9,7 +9,7 @@
 extern HINSTANCE hInst;
 extern HWND hWnd;
 extern CareTaker externCareTaker;
-extern Memento externMemento;
+//extern Memento externMemento;
 
 //========================================
 //##			윈도우 설정				##

@@ -12,6 +12,16 @@ CAnimator::~CAnimator()
 {
 }
 
+CAnimation* CAnimator::GetCurAnimation()
+{
+	return this->m_pCurAni;
+}
+
+void CAnimator::SetCurAnimation(CAnimation* Animation)
+{
+	m_pCurAni = Animation;
+}
+
 void CAnimator::Init()
 {
 }

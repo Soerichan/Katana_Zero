@@ -69,8 +69,8 @@ CPlayer::CPlayer()
 	m_fMementoTimer = 0.1f;
 
 	m_fDieTimer = 1.f;
-	m_fMementoTimer = 0.1f;
-	m_fReplayTimer = 0.05f;
+	m_fMementoTimer = 0.05f;
+	m_fReplayTimer = 0.01f;
 }
 
 CPlayer::~CPlayer()
@@ -433,8 +433,8 @@ void CPlayer::Update()
 	if (m_fMementoTimer <= 0 && m_bReplay==false)
 	{	
 		//StartPos = m_vecPos;
-		SaveMemento(m_vecPos);
-		m_fMementoTimer = 0.1f;
+		SaveMemento(this);
+		m_fMementoTimer = 0.05f;
 	}
 
 	if (m_bReplay)
@@ -443,18 +443,26 @@ void CPlayer::Update()
 
 		if (m_fReplayTimer <= 0 )
 		{
-			Vector MementoReplay = externCareTaker.Popplayer()->GetPlayerVector();
-			SetMyPosition(MementoReplay);
-
-			if (externCareTaker.IsEmpty())
+			if (externCareTaker.IsEmpty()==true)
 			{
 				m_bReplay = false;
 				State = PlayerState::Idle;
 				m_fDieTimer = 1.f;
 				AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
 			}
+			else
+			{
 
-			m_fReplayTimer = 0.05f;
+				//CPlayer* MementoReplay = externCareTaker.Popplayer()->GetPlayerMemento();
+				Vector VectorMementoReplay = externCareTaker.Popplayer()->GetVectorMemento();
+				CAnimation* AnimationMementoReplay = externCareTaker.Popplayer()->GetAnimationMemento();
+				UINT CurFrameMementoReplay = externCareTaker.Popplayer()->GetCurFrameMemento();
+				SetMyPosition(VectorMementoReplay);
+				SetMyCurAnimation(AnimationMementoReplay);
+				SetMyCurFrame(CurFrameMementoReplay);
+
+			}
+			m_fReplayTimer = 0.01f;
 		}
 		
 	}
@@ -1447,16 +1455,51 @@ void CPlayer::WhatIHave()
 	m_strSubWeapon = GAME->SubWeaponName;
 }
 
-void CPlayer::SetMyPosition(Vector Pos)
+//void CPlayer::SetMyPosition(CPlayer* player)
+//{
+//	this->m_pAnimator->SetCurAnimation(player->m_pAnimator->GetCurAnimation());
+//	this->m_pAnimator->GetCurAnimation()->SetCurFrame(player->m_pAnimator->GetCurAnimation()->GetCurFrame()) ;
+//	this->m_vecPos = player->m_vecPos;
+//}
+
+void CPlayer::SetMyPosition(Vector vec)
 {
-	m_vecPos = Pos;
 }
 
-void CPlayer::SaveMemento(Vector Playerpos)
+void CPlayer::SetMyCurAnimation(CAnimation* Ani)
+{
+}
+
+void CPlayer::SetMyCurFrame(UINT Frame)
+{
+}
+
+CAnimator* CPlayer::GetAnimator()
+{
+	return m_pAnimator;
+}
+
+//void CPlayer::SaveMemento(Vector Playerpos)
+//{
+//	Memento* newMemento = new Memento;
+//	newMemento->SetPlayerMemento(Playerpos);
+//	externCareTaker.Addplayer(newMemento);
+//}
+
+void CPlayer::SaveMemento(CPlayer* Player)
 {
 	Memento* newMemento = new Memento;
-	newMemento->SetPlayerVector(Playerpos);
+	newMemento->SetPlayerMemento(Player);
 	externCareTaker.Addplayer(newMemento);
+}
+
+void CPlayer::SetMementoAnimation(CAnimation* Animation, UINT Frame)
+{
+
+}
+
+void CPlayer::SetMementoPos(Vector pos)
+{
 }
 
 Memento* CPlayer::GetMemento()

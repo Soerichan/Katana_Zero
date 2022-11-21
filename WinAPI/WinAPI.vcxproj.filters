@@ -647,6 +647,12 @@
     <ClCompile Include="CBossCMissile03.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Memento.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="CareTaker.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc">
