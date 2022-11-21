@@ -850,6 +850,7 @@ void CPlayer::Update()
 	//	CreateMissile();
 	//}
 
+	if(State!=PlayerState::Replay)
 	AnimatorUpdate();
 	WhereWasI();
 #pragma region Memento°ü·Ã
