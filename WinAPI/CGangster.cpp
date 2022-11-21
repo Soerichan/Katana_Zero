@@ -284,7 +284,6 @@ void CGangster::AnimatorUpdate()
 
 		break;
 	case MonsterState::Attention:
-		if (m_bIsMove == false)
 			str += L"Idle";
 		break;
 	case MonsterState::Chase:
