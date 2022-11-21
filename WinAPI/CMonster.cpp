@@ -125,6 +125,8 @@ void CMonster::OnCollisionEnter(CCollider* pOtherCollider)
 	{
 		Logger::Debug(L"몬스터가 미사일과 충돌진입");
 	}
+
+	
 }
 
 void CMonster::OnCollisionStay(CCollider* pOtherCollider)
@@ -132,7 +134,11 @@ void CMonster::OnCollisionStay(CCollider* pOtherCollider)
 
 	wstring pTarget = pOtherCollider->GetObjName();
 
-
+	if (pTarget == L"Smoke")
+	{
+		m_mState = MonsterState::Idle;
+		//물음표 이펙트
+	}
 
 
 	if (pTarget == L"Ground")

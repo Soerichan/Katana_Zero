@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "CSubWeapon.h"
+#include "CSmoke.h"
 
 CSubWeapon::CSubWeapon()
 {
@@ -65,6 +66,14 @@ void CSubWeapon::Release()
 
 void CSubWeapon::OnCollisionEnter(CCollider* pOtherCollider)
 {
-	if( pOtherCollider->GetOwner()->GetLayer() != Layer::Corpse)
-	DELETEOBJECT(this);
+	if (pOtherCollider->GetOwner()->GetLayer() != Layer::Corpse)
+	{
+		if (m_strName == L"Smoke")
+		{
+			CSmoke* pSmoke0 = new CSmoke;
+			pSmoke0->SetPos(m_vecPos.x , m_vecPos.y );
+			ADDOBJECT(pSmoke0);
+		}
+		DELETEOBJECT(this);
+	}
 }
