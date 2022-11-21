@@ -47,6 +47,15 @@ void CScene002::Init()
 	pPlayer->SetPos(47, 325);
 	AddGameObject(pPlayer);
 
+	CCam* newCam01 = new CCam;
+	newCam01->SetPos(1394, 1690);
+	AddGameObject(newCam01);
+
+	CSlidingDoor* newSD01 = new CSlidingDoor;
+	newSD01->SetPos(1534, 1685);
+	AddGameObject(newSD01);
+
+
 	CEntrance* pEntrance001 = new CEntrance;
 	pEntrance001->SetPos(1691, 1702);
 	pEntrance001->SetNextScene(GroupScene::Scene003);
@@ -68,6 +77,56 @@ void CScene002::Init()
 
 void CScene002::Enter()
 {
+	CDoor* newDoor01 = new CDoor;
+	newDoor01->SetPos(881,761);
+	AddGameObject(newDoor01);
+
+	CDoor* newDoor02 = new CDoor;
+	newDoor02->SetPos(891,1226);
+	AddGameObject(newDoor02);
+
+
+	CGrunt* newGrunt01 = new CGrunt;
+	newGrunt01->SetPos(316,773);
+	AddGameObject(newGrunt01);
+
+	CGrunt* newGrunt02 = new CGrunt;
+	newGrunt02->SetPos(677,773);
+	AddGameObject(newGrunt02);
+
+	CPomp* newPomp01 = new CPomp;
+	newPomp01->SetPos(1096,1227);
+	newPomp01->SetPatroller(true);
+	AddGameObject(newPomp01);
+
+	CGangster* newGangster01 = new CGangster;
+	newGangster01->SetPos(1260,773);
+	newGangster01->SetPatroller(true);
+	//newGangster01->SetReverse(true);
+	AddGameObject(newGangster01);
+
+	CGangster* newGangster02 = new CGangster;
+	newGangster02->SetPos(1310,1206);
+	newGangster02->SetPatroller(true);
+	AddGameObject(newGangster02);
+
+	CGangster* newGangster03 = new CGangster;
+	newGangster03->SetPos(404,1222);
+	newGangster03->SetPatroller(true);
+	AddGameObject(newGangster03);
+
+	CSmokePipe* newSmokePipe01 = new CSmokePipe;
+	newSmokePipe01->SetPos(1199, 1509);
+	AddGameObject(newSmokePipe01);
+
+	CSubWeapon* pSubWeapon01 = new CSubWeapon;
+	pSubWeapon01->SetName(L"Butcher");
+	pSubWeapon01->SetPos(738,1763);
+	pSubWeapon01->SetScale(42, 42);
+	CImage* newSubWeaponImage01 = new CImage;
+	pSubWeapon01->SetImage(newSubWeaponImage01 = RESOURCE->LoadImg(L"Butcher", L"Image\\SubWeapon\\Butcher.png"));
+	AddGameObject(pSubWeapon01);
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);

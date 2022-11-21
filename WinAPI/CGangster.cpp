@@ -114,6 +114,20 @@ void CGangster::Update()
 				m_fIdleTimer = 16.f;
 			}
 		}
+		else if (m_mState == MonsterState::Idle && Patroller)
+		{
+			if (PLAYERPOSITION.x < m_vecPos.x)
+			{
+				m_vecLookDir.x = -1;
+
+			}
+			else
+			{
+				m_vecLookDir.x = +1;
+
+			}
+			VisualSensor();
+		}
 	}
 	else
 	{

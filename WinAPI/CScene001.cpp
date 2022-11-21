@@ -70,9 +70,7 @@ void CScene001::Init()
 	newSD02->SetPos(1960, 471);
 	AddGameObject(newSD02);
 
-	CDoor* newDoor01 = new CDoor;
-	newDoor01->SetPos(1115, 487);
-	AddGameObject(newDoor01);
+
 
 
 	CEntrance* pEntrance001 = new CEntrance;
@@ -96,6 +94,9 @@ void CScene001::Init()
 
 void CScene001::Enter()
 {
+	CDoor* newDoor01 = new CDoor;
+	newDoor01->SetPos(1115, 487);
+	AddGameObject(newDoor01);
 
 	CGrunt* newGrunt01 = new CGrunt;
 	newGrunt01->SetPos(647, 512);
