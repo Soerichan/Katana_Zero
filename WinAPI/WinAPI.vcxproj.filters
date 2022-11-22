@@ -671,6 +671,9 @@
     <ClCompile Include="CBossMissile01.cpp">
       <Filter>GameObject\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="CElectro.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinAPI.rc">

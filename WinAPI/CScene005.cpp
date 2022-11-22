@@ -29,6 +29,8 @@
 #include "CBattery.h"
 #include "CDoor.h"
 
+#include "CElectro.h"
+
 CScene005::CScene005()
 {
 }
@@ -45,10 +47,6 @@ void CScene005::Init()
 	pPlayer->SetPos(1250, 428);
 	AddGameObject(pPlayer);
 
-	CEntrance* pEntrance005 = new CEntrance;
-	pEntrance005->SetPos(358, 435);
-	pEntrance005->SetNextScene(GroupScene::Scene006);
-	AddGameObject(pEntrance005);
 
 	CCameraController* pCamController = new CCameraController;
 
@@ -62,6 +60,8 @@ void CScene005::Init()
 	m_pCursor = new CCursor;
 	m_pCursor->SetImage(RESOURCE->LoadImg(L"Cursor01", L"Image\\spr_cursor_0.png"));
 	AddGameObject(m_pCursor);
+
+	m_fDeadMonsterCount005 = 1;
 }
 
 void CScene005::Enter()
@@ -70,6 +70,10 @@ void CScene005::Enter()
 	pHUD->SetPos(0, 0);
 	pHUD->SetScale(1280, 46);
 	AddGameObject(pHUD);
+
+	CElectro* NEWElectro = new CElectro;
+	NEWElectro->SetPos(523, 462);
+	AddGameObject(NEWElectro);
 
 	CAMERA->readyTimer = 1.f;
 
@@ -85,6 +89,16 @@ void CScene005::Enter()
 
 void CScene005::Update()
 {
+	if (m_fDeadMonsterCount005 == GAME->m_iDeadMonster && GAME->m_bClear == false)
+	{
+		CEntrance* pEntrance005 = new CEntrance;
+		pEntrance005->SetPos(398, 435);
+		pEntrance005->SetNextScene(GroupScene::Scene006);
+		AddGameObject(pEntrance005);
+
+		SOUND->Play(m_pClearSound, 0.6f);
+		GAME->m_bClear = true;
+	}
 }
 
 void CScene005::Render()

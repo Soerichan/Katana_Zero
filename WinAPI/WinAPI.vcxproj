@@ -264,6 +264,7 @@
     <ClCompile Include="CCursor.cpp" />
     <ClCompile Include="CDanceFloor.cpp" />
     <ClCompile Include="CDoor.cpp" />
+    <ClCompile Include="CElectro.cpp" />
     <ClCompile Include="CEntrance.cpp" />
     <ClCompile Include="CEventManager.cpp" />
     <ClCompile Include="CGameManager.cpp" />

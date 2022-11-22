@@ -80,11 +80,11 @@ void CScene006::Enter()
 	AddGameObject(newPomp01);
 
 	CPomp* newPomp02 = new CPomp;
-	newPomp02->SetPos(1250, 524);
+	newPomp02->SetPos(1550, 524);
 	AddGameObject(newPomp02);
 
 	CPomp* newPomp03 = new CPomp;
-	newPomp03->SetPos(1350, 524);
+	newPomp03->SetPos(2350, 524);
 	AddGameObject(newPomp03);
 
 	CAMERA->readyTimer = 1.f;

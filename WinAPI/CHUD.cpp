@@ -50,7 +50,7 @@ void CHUD::Init()
 	pSubWeapon_Mine01Image = RESOURCE->LoadImg(L"SubWeapon_Mine01", L"Image\\UI\\SubWeapon_Mine01.png");
 	pSubWeapon_Mine02Image = RESOURCE->LoadImg(L"SubWeapon_Mine02", L"Image\\UI\\SubWeapon_Mine02.png");
 
-	CronosBG= RESOURCE->LoadImg(L"CronosBG", L"Image\\UI\\CronosBG.png");
+	CronosBG= RESOURCE->LoadImg(L"CronosBG", L"Image\\UI\\CronosBG2.png");
 	ReplayBG = RESOURCE->LoadImg(L"ReplayBG", L"Image\\UI\\ReplayBG.png");
 
 
