@@ -254,6 +254,7 @@ void CGangster::Update()
 		if (m_fDisapearTimer <= 0)
 		{
 			m_layer = Layer::Corpse;
+			//GAME->m_iDeadMonster++;
 		}
 	}
 	AnimatorUpdate();
@@ -363,7 +364,7 @@ void CGangster::OnCollisionEnter(CCollider* pOtherCollider)
 	{
 		if (m_bIsDie == false)
 		{
-
+			GAME->m_iDeadMonster++;
 			m_mState = MonsterState::Die;
 			m_bIsDie = true;
 		}

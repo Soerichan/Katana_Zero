@@ -14,6 +14,8 @@ public:
 private:
 	CPlayer* pPlayer;
 	bool m_bOnce;
+	float m_fDeadMonsterCount001;
+	
 
 	void Init()		override;
 	void Enter()	override;

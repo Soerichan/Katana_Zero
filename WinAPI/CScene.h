@@ -60,7 +60,7 @@ public:
 
 protected:
 	list<CGameObject*>& GetLayerObject(Layer layer);
-
+	//float m_fDeadMonsterCount;//클리어에 필요한 죽여야할 적 카운트
 	void AddGameObject(CGameObject* pGameObj);
 	// 삭제과정은 게임오브젝트 자료구조에서 삭제될 게임오브젝트를 찾아서 제거하는 방법을 채택하지 않음
 	// 1. 게임오브젝트를 탐색하여 삭제하는 것이 비효율적

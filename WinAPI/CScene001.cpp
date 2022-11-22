@@ -70,10 +70,7 @@ void CScene001::Init()
 
 
 
-	CEntrance* pEntrance001 = new CEntrance;
-	pEntrance001->SetPos(2242, 458);
-	pEntrance001->SetNextScene(GroupScene::Scene002);
-	AddGameObject(pEntrance001);
+	
 
 	CCameraController* pCamController = new CCameraController;
 
@@ -87,6 +84,8 @@ void CScene001::Init()
 	m_pCursor = new CCursor;
 	m_pCursor->SetImage(RESOURCE->LoadImg(L"Cursor01", L"Image\\spr_cursor_0.png"));
 	AddGameObject(m_pCursor);
+
+	m_fDeadMonsterCount001 = 5;
 }
 
 void CScene001::Enter()
@@ -155,6 +154,14 @@ void CScene001::Update()
 		newPomp02->SetState(MonsterState::Chase);
 		AddGameObject(newPomp02);
 		m_bOnce = true;
+	}
+
+	if (m_fDeadMonsterCount001 == GAME->m_iDeadMonster)
+	{
+		CEntrance* pEntrance001 = new CEntrance;
+		pEntrance001->SetPos(2242, 458);
+		pEntrance001->SetNextScene(GroupScene::Scene002);
+		AddGameObject(pEntrance001);
 	}
 }
 

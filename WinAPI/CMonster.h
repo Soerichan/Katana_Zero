@@ -21,6 +21,8 @@ protected:
 	void Render() override;
 	void Release() override;
 
+	void DieCount();
+
 	MonsterState m_mState;
 	Vector m_vecFixedPosition;
 	Vector m_vecLookDir;

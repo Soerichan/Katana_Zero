@@ -12,7 +12,7 @@ public:
 
 private:
 	CPlayer* pPlayer;
-
+	float m_fDeadMonsterCount005;
 	void Init()		override;
 	void Enter()	override;
 	void Update()	override;

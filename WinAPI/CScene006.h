@@ -13,6 +13,7 @@ public:
 
 private:
 	CPlayer* pPlayer;
+	float m_fDeadMonsterCount006;
 
 	void Init()		override;
 	void Enter()	override;

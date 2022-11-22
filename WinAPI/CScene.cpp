@@ -47,6 +47,7 @@ void CScene::SceneEnter()
 	CAMERA->SetTargetPos(Vector(WINSIZEX * 0.5f, WINSIZEY * 0.5f));
 	externCareTaker.PopClear();
 	GAME->LaserOff = false;
+	GAME->m_iDeadMonster = 0;
 	Enter();
 }
 

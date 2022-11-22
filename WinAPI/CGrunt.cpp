@@ -268,6 +268,7 @@ void CGrunt::Update()
 		if (m_fDisapearTimer <= 0)
 		{
 			m_layer = Layer::Corpse;
+			
 		}
 	}
 
@@ -348,6 +349,7 @@ void CGrunt::OnCollisionEnter(CCollider* pOtherCollider)
 
 			m_mState = MonsterState::Die;
 			m_bIsDie = true;
+			GAME->m_iDeadMonster++;
 		}
 	}
 

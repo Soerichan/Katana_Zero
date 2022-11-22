@@ -56,10 +56,7 @@ void CScene002::Init()
 	AddGameObject(newSD01);
 
 
-	CEntrance* pEntrance001 = new CEntrance;
-	pEntrance001->SetPos(1691, 1702);
-	pEntrance001->SetNextScene(GroupScene::Scene003);
-	AddGameObject(pEntrance001);
+	
 
 	CCameraController* pCamController = new CCameraController;
 
@@ -73,6 +70,8 @@ void CScene002::Init()
 	m_pCursor = new CCursor;
 	m_pCursor->SetImage(RESOURCE->LoadImg(L"Cursor01", L"Image\\spr_cursor_0.png"));
 	AddGameObject(m_pCursor);
+
+	m_fDeadMonsterCount002 = 6;
 }
 
 void CScene002::Enter()
@@ -139,6 +138,13 @@ void CScene002::Enter()
 
 void CScene002::Update()
 {
+	if (m_fDeadMonsterCount002 == GAME->m_iDeadMonster)
+	{
+		CEntrance* pEntrance001 = new CEntrance;
+		pEntrance001->SetPos(1691, 1702);
+		pEntrance001->SetNextScene(GroupScene::Scene003);
+		AddGameObject(pEntrance001);
+	}
 }
 
 void CScene002::Render()

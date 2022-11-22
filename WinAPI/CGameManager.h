@@ -23,6 +23,8 @@ public:
 	bool LaserOff;
 	bool CamRed;
 	bool InDanceFloor;
+	int m_iDeadMonster;
+
 	
 	void PlayerSubWeapon();
 	void PickUpProcess();

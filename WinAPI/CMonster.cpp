@@ -83,6 +83,11 @@ void CMonster::Release()
 {
 }
 
+void CMonster::DieCount()
+{
+	GAME->m_iDeadMonster++;
+}
+
 void CMonster::VisualSensor()
 {
 	//충돌체를 가장한 시야 센서.

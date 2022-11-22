@@ -28,6 +28,8 @@ private:
 	void Render() override;
 	void Release() override;
 
+	
+
 	void AnimatorUpdate();
 
 	void OnCollisionEnter(CCollider* pOtherCollider) override;

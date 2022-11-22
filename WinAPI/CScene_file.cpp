@@ -72,7 +72,7 @@ void CScene_file::Update()
 		m_fFireTimer -= DT;
 	}
 
-	if (m_fFireTimer<=0.f)
+	if (m_fFireTimer<=2.f)
 	{
 		CAMERA->FadeOut(0.25f);
 		DELAYCHANGESCENE(GroupScene::Scene000, 0.25f);

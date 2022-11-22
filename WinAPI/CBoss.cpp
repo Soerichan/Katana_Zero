@@ -265,6 +265,7 @@ void CBoss::Update()
     if (m_iStruggleCount > 4)
     {
         State = BossState::Die;
+        GAME->m_iDeadMonster++;
     }
 
 

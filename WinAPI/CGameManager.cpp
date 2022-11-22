@@ -12,6 +12,7 @@ CGameManager::CGameManager()
 	SubWeaponName = L"None";
 	LaserOff = false;
 	Remodeling = false;
+	m_iDeadMonster = 0;
 	
 }
 

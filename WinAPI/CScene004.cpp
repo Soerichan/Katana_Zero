@@ -64,6 +64,7 @@ void CScene004::Init()
 	m_pCursor = new CCursor;
 	m_pCursor->SetImage(RESOURCE->LoadImg(L"Cursor01", L"Image\\spr_cursor_0.png"));
 	AddGameObject(m_pCursor);
+	m_fDeadMonsterCount004 = 7;
 }
 
 void CScene004::Enter()
@@ -192,6 +193,14 @@ void CScene004::Enter()
 
 void CScene004::Update()
 {
+
+	if (m_fDeadMonsterCount004 == GAME->m_iDeadMonster)
+	{
+		CEntrance* pEntrance004 = new CEntrance;
+		pEntrance004->SetPos(62, 396);
+		pEntrance004->SetNextScene(GroupScene::Stage01);
+		AddGameObject(pEntrance004);
+	}
 }
 
 void CScene004::Render()
