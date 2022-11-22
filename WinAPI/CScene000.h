@@ -11,6 +11,7 @@ public:
 	CScene000();
 	virtual ~CScene000();
 
+
 	
 private:
 	CPlayer* pPlayer;

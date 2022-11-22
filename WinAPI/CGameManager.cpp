@@ -14,6 +14,7 @@ CGameManager::CGameManager()
 	Remodeling = false;
 	m_iDeadMonster = 0;
 	
+	
 }
 
 CGameManager::~CGameManager()
@@ -22,6 +23,13 @@ CGameManager::~CGameManager()
 
 void CGameManager::Init()
 {
+	 m_pBGM_Main_Sound= RESOURCE->LoadSound(L"BGM_Main", L"Sound\\BGM.mp3");
+	 m_pBGM_Start_Sound= RESOURCE->LoadSound(L"BGM_Start", L"Sound\\Start.mp3");
+	 m_pBGM_BOSS_Sound= RESOURCE->LoadSound(L"BGM_Boss", L"Sound\\Boss.mp3");
+
+	SOUND->Play(GAME->m_pBGM_Main_Sound,0.f);
+	
+	SOUND->Play(m_pBGM_Start_Sound);
 }
 
 void CGameManager::Update()
@@ -43,6 +51,7 @@ void CGameManager::Update()
 		nowScene->SceneEnter();
 		Remodeling = false;
 	}
+	
 
 }
 

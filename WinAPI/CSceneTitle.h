@@ -12,6 +12,7 @@ public:
 	virtual ~CSceneTitle();
 
 private:
+	CSound* m_pTitleSound;
 	void Init()		override;
 	void Enter()	override;
 	void Update()	override;

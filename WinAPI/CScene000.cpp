@@ -45,7 +45,7 @@ CScene000::~CScene000()
 
 void CScene000::Init()
 {
-
+	
 
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(85, 897);
@@ -122,6 +122,10 @@ void CScene000::Init()
 
 void CScene000::Enter()
 {
+
+	
+
+
 	CHUD* pHUD = new CHUD;
 	pHUD->SetPos(0, 0);
 	pHUD->SetScale(1280, 46);
@@ -158,6 +162,8 @@ void CScene000::Enter()
 	LoadStageObject(GETPATH + L"Tile\\Tile000.tile");
 
 	CAMERA->SetTargetPos({ 85,897 });
+
+	SOUND->Resume2(GAME->m_pBGM_Main_Sound,0.5f);
 }
 
 void CScene000::Update()

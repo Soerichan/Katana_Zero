@@ -59,6 +59,7 @@ public:
 	void LoadStageObject(const wstring& strPath);
 
 protected:
+	
 	list<CGameObject*>& GetLayerObject(Layer layer);
 	//float m_fDeadMonsterCount;//클리어에 필요한 죽여야할 적 카운트
 	void AddGameObject(CGameObject* pGameObj);

@@ -25,7 +25,10 @@ public:
 	bool InDanceFloor;
 	int m_iDeadMonster;
 
-	
+	CSound* m_pBGM_Start_Sound;
+	CSound* m_pBGM_Main_Sound;
+	CSound* m_pBGM_BOSS_Sound;
+
 	void PlayerSubWeapon();
 	void PickUpProcess();
 	void SubWeaponThrow();

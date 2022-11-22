@@ -139,6 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BGM_Boss.h" />
+    <ClInclude Include="BGM_Main.h" />
+    <ClInclude Include="BGM_Start.h" />
     <ClInclude Include="CareTaker.h" />
     <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CAnimation.h" />
@@ -238,6 +241,9 @@
     <ClInclude Include="WinAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BGM_Boss.cpp" />
+    <ClCompile Include="BGM_Main.cpp" />
+    <ClCompile Include="BGM_Start.cpp" />
     <ClCompile Include="CareTaker.cpp" />
     <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CAnimation.cpp" />

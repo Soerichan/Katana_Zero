@@ -10,7 +10,7 @@ public:
 	CSound();
 	virtual ~CSound();
 
-private:
+protected:
 	FMOD::Sound* m_pSound;
 	FMOD::Channel* m_pChannel;
 

@@ -21,7 +21,9 @@ public:
 	void Stop(CSound* pSound);
 	void Pause(CSound* pSound);
 	void Resume(CSound* pSound);
+	void Resume2(CSound* pSound,float volume=1.f);
 
+	//Sound* m_pBGM_Main_Sound;
 private:
 	void Init();
 	void Update();

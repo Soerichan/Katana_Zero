@@ -47,6 +47,10 @@ void CScene_file::Init()
 	CCameraController* pCamController = new CCameraController;
 
 	AddGameObject(pCamController);
+
+	m_pPaperSound = RESOURCE->LoadSound(L"PaperSound", L"Sound\\File.wav");
+	m_pFireSound = RESOURCE->LoadSound(L"FireSound", L"Sound\\FileFire.mp3");
+	m_pZippoSound = RESOURCE->LoadSound(L"ZippoSound", L"Sound\\Zippo.wav");
 }
 
 void CScene_file::Enter()
@@ -54,6 +58,8 @@ void CScene_file::Enter()
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);
+
+	SOUND->Play(m_pPaperSound, 0.5f);
 	
 }
 
@@ -65,6 +71,7 @@ void CScene_file::Update()
 		CZippo* pZippo = new CZippo;
 		pZippo->SetPos(1000, 600);
 		ADDOBJECT(pZippo);
+		SOUND->Play(m_pZippoSound);
 	}
 
 	if (m_bFire)
@@ -72,8 +79,19 @@ void CScene_file::Update()
 		m_fFireTimer -= DT;
 	}
 
-	if (m_fFireTimer<=2.f)
+	if (m_fFireTimer>2&&m_fFireTimer <= 4.f)
 	{
+		if (m_bFireSound == false)
+		{
+			SOUND->Play(m_pFireSound, 0.1f);
+			m_bFireSound = true;
+		}
+
+
+	}
+	if (m_fFireTimer<=2.f)
+	{	
+		SOUND->Pause(m_pFireSound);
 		CAMERA->FadeOut(0.25f);
 		DELAYCHANGESCENE(GroupScene::Scene000, 0.25f);
 	}

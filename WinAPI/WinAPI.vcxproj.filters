@@ -85,6 +85,9 @@
     <Filter Include="Engine\Asset\DANCE">
       <UniqueIdentifier>{5b7943f9-803c-428b-924d-058978e91355}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Asset\BGM">
+      <UniqueIdentifier>{d33d4552-114d-42cd-b787-9f7324c44e08}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -378,6 +381,15 @@
     <ClInclude Include="CareTaker.h">
       <Filter>Util</Filter>
     </ClInclude>
+    <ClInclude Include="BGM_Start.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BGM_Main.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="BGM_Boss.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -652,6 +664,15 @@
     </ClCompile>
     <ClCompile Include="CareTaker.cpp">
       <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="BGM_Start.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BGM_Main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BGM_Boss.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

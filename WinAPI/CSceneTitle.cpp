@@ -40,6 +40,8 @@ void CSceneTitle::Init()
 	
 	AddGameObject(m_pLayer04);
 
+	m_pTitleSound = RESOURCE->LoadSound(L"StartButton", L"Sound\\StartButton.wav");
+
 }
 
 void CSceneTitle::Enter()
@@ -58,7 +60,10 @@ void CSceneTitle::Update()
 		CHANGESCENE(GroupScene::Scene004);
 	}
 	if (BUTTONDOWN(VK_SPACE))
-	{
+	{	
+		//SOUND->Play(m_pTitleSound,0.5f);
+		SOUND->Pause(GAME->m_pBGM_Start_Sound);
+		SOUND->Pause(GAME->m_pBGM_Main_Sound);
 		CAMERA->FadeOut(0.25f);
 		DELAYCHANGESCENE(GroupScene::Scene_file, 0.25f);
 	}

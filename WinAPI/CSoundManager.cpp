@@ -68,8 +68,21 @@ void CSoundManager::Resume(CSound* pSound)
 	if (!pSound->IsPaused())
 		return;
 
-	FMOD_RESULT result = pSound->m_pChannel->setPaused(true);
+	FMOD_RESULT result = pSound->m_pChannel->setPaused(false);
 	assert(FMOD_OK == result && L"Resume failed");
+}
+
+void CSoundManager::Resume2(CSound* pSound, float volume)
+{
+	if (!pSound->IsPaused())
+		return;
+
+	FMOD_RESULT result = pSound->m_pChannel->setPaused(false);
+	assert(FMOD_OK == result && L"Resume failed");
+
+	result = pSound->m_pChannel->setVolume(volume);
+	assert(FMOD_OK == result && L"Set volume failed");
+
 }
 
 void CSoundManager::Init()
