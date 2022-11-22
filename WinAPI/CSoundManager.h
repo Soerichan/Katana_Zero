@@ -23,6 +23,8 @@ public:
 	void Resume(CSound* pSound);
 	void Resume2(CSound* pSound,float volume=1.f);
 
+	void SetPitch(CSound* pSound,float pitch=1.f);
+
 	//Sound* m_pBGM_Main_Sound;
 private:
 	void Init();

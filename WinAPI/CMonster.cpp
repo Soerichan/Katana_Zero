@@ -146,7 +146,7 @@ void CMonster::OnCollisionStay(CCollider* pOtherCollider)
 
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"Smoke"&&m_layer!=Layer::Corpse)
+	if (pTarget == L"Smoke"&&m_layer!=Layer::Corpse&&m_mState!=MonsterState::Die)
 	{
 		m_mState = MonsterState::Attention;
 		//물음표 이펙트

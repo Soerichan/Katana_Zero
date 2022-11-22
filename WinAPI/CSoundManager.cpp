@@ -6,6 +6,7 @@
 CSoundManager::CSoundManager()
 {
 	m_pSystem = nullptr;
+	
 }
 
 CSoundManager::~CSoundManager()
@@ -43,6 +44,8 @@ void CSoundManager::Play(CSound* pSound, float volume, bool loop)
 
 	result = pSound->m_pChannel->setVolume(volume);
 	assert(FMOD_OK == result && L"Set volume failed");
+	//pSound->m_pChannel ->setPitch()
+	
 }
 
 void CSoundManager::Stop(CSound* pSound)
@@ -83,6 +86,11 @@ void CSoundManager::Resume2(CSound* pSound, float volume)
 	result = pSound->m_pChannel->setVolume(volume);
 	assert(FMOD_OK == result && L"Set volume failed");
 
+}
+
+void CSoundManager::SetPitch(CSound* pSound,float pitch)
+{
+	pSound->m_pChannel->setPitch(pitch);
 }
 
 void CSoundManager::Init()
