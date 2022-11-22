@@ -26,6 +26,8 @@ public:
 	void SetMyCurAnimation(CAnimation* Ani);
 	void SetMyCurFrame(UINT Frame);
 	CAnimator* GetAnimator();
+
+	void PlayerRebound();
 private:
 	CSound* m_pReplaySound;
 	CAnimator* m_pAnimator;

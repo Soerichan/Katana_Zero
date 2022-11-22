@@ -24,8 +24,8 @@ void CCameraController::Update()
 		CAMERA->SetTargetPos(MOUSEWORLDPOS, 1);
 	}*/
 
-	Vector dir;
-	if (BUTTONSTAY('A'))
+	//Vector dir;
+	/*if (BUTTONSTAY('A'))
 	{
 		dir.x = -1;
 	}
@@ -40,7 +40,7 @@ void CCameraController::Update()
 	else
 		dir.y = 0;
 
-	CAMERA->Scroll(dir, m_fScrollSpeed);
+	CAMERA->Scroll(dir, m_fScrollSpeed);*/
 
 	if (CAMERA->readyTimer >= 0)
 	{

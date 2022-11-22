@@ -212,7 +212,7 @@ void CGangster::Update()
 
 		if (m_fAttackTimer <= 0)
 		{
-			m_fAimTimer = 0.5f;
+			m_fAimTimer = 1.f;
 			m_fAfterAttackTimer = 0.1f;
 			if (m_iBulletCount > 3)
 			{	

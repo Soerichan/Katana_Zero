@@ -4,7 +4,7 @@
 
 CDoor::CDoor()
 {
-	m_fTimer = 1.65f;
+	m_fTimer = 0.5f;
 	m_pOpenImage = nullptr;
 	m_pAnimationImage = nullptr;
 	m_pCloseImage = nullptr;

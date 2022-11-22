@@ -24,6 +24,7 @@ public:
 	bool CamRed;
 	bool InDanceFloor;
 	int m_iDeadMonster;
+	bool isCronos;
 
 	CSound* m_pBGM_Start_Sound;
 	CSound* m_pBGM_Main_Sound;

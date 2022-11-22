@@ -14,6 +14,8 @@ private:
 	void Update() override;
 	void Render() override;
 	void Release() override;
+	bool m_bBulletReflectChance;
+	bool m_bReboundChance;
 	
 
 	void AnimatorUpdate() override;

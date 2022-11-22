@@ -190,6 +190,9 @@ void CPlayer::Update()
 		
 		TIME->SetTimeScale(0.1f);
 		IsCronos = true;
+		GAME->isCronos = true;
+		SOUND->SetPitch(GAME->m_pBGM_Main_Sound, 0.5f);
+		SOUND->SetPitch(GAME->m_pBGM_BOSS_Sound, 0.5f);
 	}
 
 	if (IsCronos)
@@ -202,6 +205,9 @@ void CPlayer::Update()
 	{
 		IsCronos = false;
 		TIME->SetTimeScale(1.f);
+		GAME->isCronos = false;
+		SOUND->SetPitch(GAME->m_pBGM_Main_Sound, 1.f);
+		SOUND->SetPitch(GAME->m_pBGM_BOSS_Sound, 1.f);
 	}
 
 	if (m_fBatteryTimer <= 4.4f&&IsCronos==false)
@@ -352,11 +358,11 @@ void CPlayer::Update()
 #pragma region Run°ü·Ã
 	if (State == PlayerState::Run)
 	{
-		if (BUTTONUP(VK_LEFT))
+		if (BUTTONUP('A'))
 		{
 			State = PlayerState::Idle;
 		}
-		else if (BUTTONUP(VK_RIGHT))
+		else if (BUTTONUP('D'))
 		{
 			State = PlayerState::Idle;
 		}
@@ -545,7 +551,7 @@ void CPlayer::Update()
 
 		}
 	}
-	else if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_LEFT))
+	else if (!BUTTONSTAY('S') && BUTTONSTAY('A'))
 	{
 		switch (State)
 		{
@@ -610,7 +616,7 @@ void CPlayer::Update()
 	    }
 	
 	}
-	else if (!BUTTONSTAY(VK_DOWN) && BUTTONSTAY(VK_RIGHT))
+	else if (!BUTTONSTAY('S') && BUTTONSTAY('D'))
 	{
 		switch (State)
 		{
@@ -681,7 +687,7 @@ void CPlayer::Update()
 		//m_vecMoveDir.x = 0;
 	}
 
-	if (BUTTONDOWN(VK_UP))
+	if (BUTTONDOWN('W'))
 	{
 		switch (State)
 		{
@@ -750,13 +756,13 @@ void CPlayer::Update()
 		
 	}
 	
-	else if (BUTTONUP(VK_DOWN))
+	else if (BUTTONUP('S'))
 	{
 		//m_vecPos.y += m_fSpeed * DT;
 
 		m_vecMoveDir.y = 0;
 	}
-	else if (BUTTONSTAY(VK_DOWN) && BUTTONDOWN(VK_LEFT))
+	else if (BUTTONSTAY('S') && BUTTONDOWN('A'))
 	{	
 		switch (State)
 		{
@@ -795,7 +801,7 @@ void CPlayer::Update()
 		}
 		
 	}
-	else if (BUTTONSTAY(VK_DOWN)&&BUTTONDOWN(VK_RIGHT))
+	else if (BUTTONSTAY('S') && BUTTONDOWN('D'))
 	{
 		switch (State)
 		{
@@ -833,7 +839,7 @@ void CPlayer::Update()
 
 		}
 	}
-	else if (BUTTONSTAY(VK_DOWN))
+	else if (BUTTONSTAY('S'))
 	{
 	//m_vecPos.y += m_fSpeed * DT;
 	
@@ -1397,7 +1403,7 @@ void CPlayer::OnCollisionStay(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Platfoam")
 	{
-		if (State != PlayerState::Jump&&!BUTTONSTAY(VK_DOWN))
+		if (State != PlayerState::Jump&&!BUTTONSTAY('S'))
 		{
 			if (m_vecPos.y + m_vecScale.y / 2 - 1 < pOtherCollider->GetPos().y)//¶¥¹â°í ¼­ÀÖ±â
 			{
@@ -1495,6 +1501,18 @@ void CPlayer::SetMyCurFrame(UINT Frame)
 CAnimator* CPlayer::GetAnimator()
 {
 	return m_pAnimator;
+}
+
+void CPlayer::PlayerRebound()
+{
+	if (GAME->RightAttack)
+	{
+		m_vecPos.x -= 10;
+	}
+	else
+	{
+		m_vecPos.x += 10;
+	}
 }
 
 //void CPlayer::SaveMemento(Vector Playerpos)

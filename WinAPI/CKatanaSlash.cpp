@@ -11,6 +11,7 @@ CKatanaSlash::CKatanaSlash()
 	m_strName = L"KatanaSlash";
 	m_pTimer = 0;
 	m_fDegree = 0;
+	m_bBulletReflectChance = true;
 }
 
 CKatanaSlash::~CKatanaSlash()
@@ -85,7 +86,7 @@ void CKatanaSlash::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"Bullet")
+	if (pTarget == L"Bullet"&& m_bBulletReflectChance)
 	{
 		CBulletReflect* pBulletReflect = new CBulletReflect;
 		pBulletReflect->SetPos(m_vecPos.x, PLAYERPOSITION.y-15);
@@ -96,5 +97,10 @@ void CKatanaSlash::OnCollisionEnter(CCollider* pOtherCollider)
 		pBullet->SetxDir(GAME->RightAttack);
 		pBullet->SetLayer(Layer::Missile);
 		ADDOBJECT(pBullet);
+
+		m_bBulletReflectChance = false;
+		
 	}
+
+	
 }

@@ -41,7 +41,7 @@ void CSoundManager::Play(CSound* pSound, float volume, bool loop)
 
 	result = m_pSystem->playSound(pSound->m_pSound, nullptr, false, &(pSound->m_pChannel));
 	assert(FMOD_OK == result && L"Play sound failed");
-
+	//pSound->m_pChannel->getChannelGroup()
 	result = pSound->m_pChannel->setVolume(volume);
 	assert(FMOD_OK == result && L"Set volume failed");
 	//pSound->m_pChannel ->setPitch()

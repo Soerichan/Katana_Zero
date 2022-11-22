@@ -34,7 +34,8 @@ void CGameManager::Init()
 }
 
 void CGameManager::Update()
-{
+{	
+	//SOUND->GetSystem()->getMasterSoundGroup()
 	if (Remodeling)
 	{
 		CScene* nowScene = SCENE->GetCurScene();

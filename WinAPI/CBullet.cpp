@@ -51,11 +51,11 @@ void CBullet::Update()
 
 	if (m_bRight)
 	{
-		m_vecPos.x += 100 * (10.f-m_pTimer)* DT;
+		m_vecPos.x += 900 * DT;
 	}
 	else
 	{
-		m_vecPos.x -= 100 * (10.f - m_pTimer) * DT;
+		m_vecPos.x -= 900 * DT;
 	}
 }
 
