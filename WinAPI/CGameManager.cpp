@@ -30,6 +30,7 @@ void CGameManager::Init()
 	SOUND->Play(GAME->m_pBGM_Main_Sound,0.f);
 	
 	SOUND->Play(m_pBGM_Start_Sound);
+//	SOUND->SetPitch(m_pBGM_Start_Sound, 10.f);
 }
 
 void CGameManager::Update()
