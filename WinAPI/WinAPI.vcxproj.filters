@@ -363,32 +363,32 @@
     <ClInclude Include="CDanceFloor.h">
       <Filter>Engine\Asset\DANCE</Filter>
     </ClInclude>
-    <ClInclude Include="CBoss.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CBossMissile01.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CBossCMissile02.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="CBossCMissile03.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Memento.h">
       <Filter>Util</Filter>
     </ClInclude>
     <ClInclude Include="CareTaker.h">
       <Filter>Util</Filter>
     </ClInclude>
-    <ClInclude Include="BGM_Start.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CNoAttack.h">
+      <Filter>Engine\Asset\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="BGM_Main.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CNoise.h">
+      <Filter>Engine\Asset\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="BGM_Boss.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CElectro.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossMissile01.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossCMissile03.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossCMissile02.h">
+      <Filter>GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="CBoss.h">
+      <Filter>GameObject\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -647,32 +647,29 @@
     <ClCompile Include="CDanceFloor.cpp">
       <Filter>Engine\Asset\DANCE</Filter>
     </ClCompile>
-    <ClCompile Include="CBoss.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CBossMissile01.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CBossCMissile02.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="CBossCMissile03.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Memento.cpp">
       <Filter>Util</Filter>
     </ClCompile>
     <ClCompile Include="CareTaker.cpp">
       <Filter>Util</Filter>
     </ClCompile>
-    <ClCompile Include="BGM_Start.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CNoAttack.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="BGM_Main.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CNoise.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="BGM_Boss.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CBoss.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossCMissile02.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossCMissile03.cpp">
+      <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossMissile01.cpp">
+      <Filter>GameObject\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

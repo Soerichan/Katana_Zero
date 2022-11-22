@@ -43,6 +43,9 @@ public:
 	CImage* pSubWeapon_Mine01Image;
 	CImage* pSubWeapon_Mine02Image;
 
+	CImage* CronosBG;
+	CImage* ReplayBG;
+
 	float m_fTimer;
 
 	

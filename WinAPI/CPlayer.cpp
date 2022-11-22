@@ -10,6 +10,8 @@
 #include "CCollider.h"
 #include "CImage.h"
 #include "CAnimator.h"
+#include "CNoAttack.h"
+#include "CNoise.h"
 
 
 
@@ -435,6 +437,10 @@ void CPlayer::Update()
 		m_vecPos.x += m_vecLookDir.x * 50 * DT;
 		if (m_fDieTimer <= 0)
 		{
+			CNoise* newNoise = new CNoise;
+			newNoise->SetPos(m_vecPos);
+			ADDOBJECT(newNoise);
+
 			m_bReplay = true;
 			SOUND->Stop(GAME->m_pBGM_BOSS_Sound);
 			SOUND->Pause(GAME->m_pBGM_Main_Sound);
@@ -465,59 +471,67 @@ void CPlayer::Update()
 
 	//if(SCENE->GetCurScene()!= pScene000)
 	if (LMOUSEDOWN(false))
-	{	
-		switch (State)
+	{
+		if (SCENE->GetCurScene()->m_pbackGround->GetName() == L"000")
 		{
-		case PlayerState::Idle:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::Run:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::Attack:
-			//if (IsHit == false)
-			//{
-			//	State = PlayerState::Attack;
-			//	Attack();
-			//}
-			break;
-		case PlayerState::Roll:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::WallGrab:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::Stun:
-			break;
-		case PlayerState::Flip:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::Jump:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::Fall:
-			if (IsHit == false)
+			CNoAttack* newNoAttack = new CNoAttack;
+			ADDOBJECT(newNoAttack);
+		}
+		else
+		{
+			switch (State)
 			{
+			case PlayerState::Idle:
 				State = PlayerState::Attack;
 				Attack();
-			}
-			break;
-		case PlayerState::Dance:
-			State = PlayerState::Attack;
-			Attack();
-			break;
-		case PlayerState::Die:
-			break;
-		case PlayerState::DoorKick:
+				break;
+			case PlayerState::Run:
+				State = PlayerState::Attack;
+				Attack();
+				break;
+			case PlayerState::Attack:
+				//if (IsHit == false)
+				//{
+				//	State = PlayerState::Attack;
+				//	Attack();
+				//}
+				break;
+			case PlayerState::Roll:
+				State = PlayerState::Attack;
+				Attack();
+				break;
+			case PlayerState::WallGrab:
+				State = PlayerState::Attack;
+				Attack();
+				break;
+			case PlayerState::Stun:
+				break;
+			case PlayerState::Flip:
+				State = PlayerState::Attack;
+				Attack();
+				break;
+			case PlayerState::Jump:
+				State = PlayerState::Attack;
+				Attack();
+				break;
+			case PlayerState::Fall:
+				if (IsHit == false)
+				{
+					State = PlayerState::Attack;
+					Attack();
+				}
+				break;
+			case PlayerState::Dance:
+				State = PlayerState::Attack;
+				Attack();
+				break;
+			case PlayerState::Die:
+				break;
+			case PlayerState::DoorKick:
 
-			break;
-		
+				break;
+
+			}
 		}
 		
 	}
@@ -887,6 +901,7 @@ void CPlayer::Update()
 
 	if (m_bReplay)
 	{
+		GAME->isReplay = true;
 		m_fReplayTimer -= TIME->GetRealTime();
 
 		if (m_fReplayTimer <= 0)
@@ -895,6 +910,7 @@ void CPlayer::Update()
 			{	
 
 				m_bReplay = false;
+				GAME->isReplay = false;
 				SOUND->Resume(GAME->m_pBGM_Main_Sound);
 				SOUND->Stop(m_pReplaySound);
 				State = PlayerState::Idle;

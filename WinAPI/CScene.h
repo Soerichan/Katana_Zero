@@ -3,6 +3,7 @@
 
 class CBackGround;
 class CCursor;
+class CImage;
 
 class CSceneManager;
 class CEventManager;
@@ -26,6 +27,8 @@ public:
 
 	CBackGround* m_pbackGround;
 	CCursor* m_pCursor;
+	
+
 
 protected:
 	UINT m_iTileSizeX;

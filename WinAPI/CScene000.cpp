@@ -108,6 +108,7 @@ void CScene000::Init()
 
 	m_pbackGround = new CBackGround;
 	m_pbackGround->SetImage(RESOURCE->LoadImg(L"BackGround02", L"Image\\Stage\\ClubEnter.png"));
+	m_pbackGround->SetName(L"000");
 	AddGameObject(m_pbackGround);
 
 	//ShowCursor(false);
