@@ -112,7 +112,7 @@ void CScene006::Update()
 
 
 		CBoss* pB = new CBoss;
-		pB->SetPos(300, 897);
+		pB->SetPos(400, 897);
 		AddGameObject(pB);
 	}
 

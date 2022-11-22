@@ -72,7 +72,7 @@ void CScene005::Enter()
 	AddGameObject(pHUD);
 
 	CElectro* NEWElectro = new CElectro;
-	NEWElectro->SetPos(523, 462);
+	NEWElectro->SetPos(683, 456);
 	AddGameObject(NEWElectro);
 
 	CAMERA->readyTimer = 1.f;
@@ -92,7 +92,7 @@ void CScene005::Update()
 	if (m_fDeadMonsterCount005 == GAME->m_iDeadMonster && GAME->m_bClear == false)
 	{
 		CEntrance* pEntrance005 = new CEntrance;
-		pEntrance005->SetPos(398, 435);
+		pEntrance005->SetPos(348, 435);
 		pEntrance005->SetNextScene(GroupScene::Scene006);
 		AddGameObject(pEntrance005);
 

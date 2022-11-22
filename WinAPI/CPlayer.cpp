@@ -147,6 +147,9 @@ void CPlayer::Init()
 	m_pAnimator->CreateAnimation(L"WallGrabLeft", m_pWallGrabImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 2,false);
 	m_pAnimator->CreateAnimation(L"WallGrabRight", m_pWallGrabImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 2,false);
 
+	m_pAnimator->CreateAnimation(L"StruggleLeft", m_pWallGrabImage, Vector(1500.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 1,false);
+	m_pAnimator->CreateAnimation(L"StruggleRight", m_pWallGrabImage, Vector(1500.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.1f, 1,false);
+
 
 	m_pAnimator->CreateAnimation(L"RollLeft", m_pRollImage, Vector(0.f, 300.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 7,false);
 	m_pAnimator->CreateAnimation(L"RollRight", m_pRollImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.06f, 7,false);
@@ -190,6 +193,29 @@ void CPlayer::Update()
 	WhatIsMyState();//GAME에 상태 기록
 	MyBattery();//GAME에 배터리 기록
 	WhatIHave();//GAME에서 내 서브웨폰 정보를 갱신
+
+
+#pragma region Boss관련
+
+	if (GAME->isStruggleing)
+	{
+		State = PlayerState::Struggle;
+		Struggle = true;
+	}
+	else
+	{
+		if (Struggle)
+		{
+
+
+			State = PlayerState::Idle;
+			Struggle = false;
+		}
+	}
+
+	
+#pragma endregion 
+
 
 #pragma region Cronos관련
 
@@ -1168,6 +1194,12 @@ void CPlayer::AnimatorUpdate()
 
 	case PlayerState::Replay:
 		str += L"HurtFly";
+		if (m_vecLookDir.x > 0) str += L"Right";
+		else if (m_vecLookDir.x < 0) str += L"Left";
+		break;
+
+	case PlayerState::Struggle:
+		str += L"Struggle";
 		if (m_vecLookDir.x > 0) str += L"Right";
 		else if (m_vecLookDir.x < 0) str += L"Left";
 		break;

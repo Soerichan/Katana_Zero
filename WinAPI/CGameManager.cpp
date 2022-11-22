@@ -55,6 +55,10 @@ void CGameManager::Update()
 		Remodeling = false;
 	}
 	
+	if (isStruggleing)
+	{
+
+	}
 
 }
 

@@ -17,6 +17,7 @@ void CElectro::Init()
 	m_pImage = RESOURCE->LoadImg(L"ElectroImg", L"Image\\Electro.png");
 	m_pImage2 = RESOURCE->LoadImg(L"Electro2Img", L"Image\\Electro2.png");
 	m_pSound= RESOURCE->LoadSound(L"ElectroSound", L"Sound\\Kill.wav");
+	m_pSound2= RESOURCE->LoadSound(L"ElectroSound2", L"Sound\\Electro.wav");
 
 
 
@@ -38,6 +39,7 @@ void CElectro::Init()
 	AddComponent(m_pAnimator);
 
 	AddCollider(ColliderType::Rect, Vector(100, 100), Vector(0, 0));
+	SOUND->Play(m_pSound2, 2.f);
 }
 
 void CElectro::Update()
@@ -59,7 +61,7 @@ void CElectro::Update()
 		AddCollider(ColliderType::Rect, Vector(100, 100), Vector(0, 0));
 	}
 
-	if (m_vecPos.x > 200)
+	if (m_vecPos.x > 200&&Die==false)
 	{
 		m_vecPos.x -= 10 * DT;
 	}

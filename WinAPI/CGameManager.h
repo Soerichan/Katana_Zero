@@ -18,14 +18,18 @@ class CGameManager:  public SingleTon<CGameManager>
 public: 
 	Vector PlayerPos;
 	Vector PrevPlayerPos;
-	int Battery;
 	wstring SubWeaponName;
+	int Battery;
+	int m_iDeadMonster;
 	bool LaserOff;
 	bool CamRed;
 	bool InDanceFloor;
-	int m_iDeadMonster;
 	bool isCronos;
 	bool isReplay;
+	bool isStruggleing;
+	bool RightAttack;
+	bool Remodeling;
+	bool m_bClear;
 
 	CSound* m_pBGM_Start_Sound;
 	CSound* m_pBGM_Main_Sound;
@@ -41,9 +45,7 @@ public:
 	float m_fMementoTimer;*/
 
 	PlayerState PlayerNowState;
-	bool RightAttack;
-	bool Remodeling;
-	bool m_bClear;
+
 };
 
 #define GAME			CGameManager::GetInstance()

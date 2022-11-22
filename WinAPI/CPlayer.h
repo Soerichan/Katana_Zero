@@ -57,56 +57,58 @@ private:
 
 	Vector m_vecMoveDir;
 	Vector m_vecLookDir;
-	bool m_bIsMove;
 
-	float actionTimer;
 	PlayerState State;
-
+	
+	float actionTimer;
 	float m_fSpeed = 600.0f;
 
-	bool OnSlope;
+
 
 	
-	bool gravity;
+	float RollTimer;
 	float gravityPower;
+	float m_fBatteryTimer;
 	float resistance;
-	bool islanding;
+	float AttackAngle;
+	float AfterAttackTimer;
 	
 	float flyTimer;
 	
+	float m_fDieTimer;
+	float m_fDoorTimer;
+	float AttackTimer;
 	float unGravityTimer;
 
 	float velocity;
 	float accel;
 	float JumpTimer;
-	bool jumpAction;
 	
-	bool FlipAction;
 	float FlipTimer;
 	float WallGrabTimer;
-	CCollider* Isgrabed;
 	float FlipDir;
 
+	bool FlipAction;
+	bool jumpAction;
 	bool IsRolling;
-	float RollTimer;
 
 	bool IsAttacking;
+	bool OnSlope;
+	bool m_bIsMove;
 	bool IsHit;
-	float AttackTimer;
-	float AfterAttackTimer;
+	bool islanding;
+	bool gravity;
 	bool RightAttack;
-	float AttackAngle;
+	bool IsCronos;
+	bool Struggle;
 	Vector AttackPos;
 
-	float m_fDieTimer;
+	CCollider* Isgrabed;
 
-	float m_fBatteryTimer;
 	int m_iBattery;
-	bool IsCronos;
 
 	wstring m_strSubWeapon;
 
-	float m_fDoorTimer;
 
 private:
 	void Init() override;

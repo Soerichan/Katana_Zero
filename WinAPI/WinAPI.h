@@ -136,7 +136,8 @@ enum class PlayerState
 	Dance,
 	Die,
 	DoorKick,
-	Replay
+	Replay,
+	Struggle
 
 };
 

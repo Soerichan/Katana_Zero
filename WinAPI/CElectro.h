@@ -12,6 +12,7 @@ private:
 	CImage* m_pImage;
 	CImage* m_pImage2;
 	CSound* m_pSound;
+	CSound* m_pSound2;
 	float m_fTimer;
 	bool m_b1phase;
 	bool m_b2phase;
