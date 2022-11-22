@@ -9,6 +9,7 @@ public:
 
 private:
 	
+	CSound* m_pSound;
 	float m_pTimer;
 	void Init() override;
 	void Update() override;

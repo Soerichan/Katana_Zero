@@ -20,7 +20,7 @@ private:
     bool m_bRight;
     bool m_bCanHandle;
     state m_State;
-
+    CSound* m_pLaserSound;
     Vector m_vecDistance;
     float m_fDistance;
 

@@ -15,6 +15,7 @@ CSmoke::~CSmoke()
 void CSmoke::Init()
 {
 	pImage = RESOURCE->LoadImg(L"Smoke", L"Image\\Smoke\\Smoking1.png");
+	pSound= RESOURCE->LoadSound(L"SmokeSound", L"Sound\\Smoke.wav");
 	m_pAnimator = new CAnimator;
 
 	m_pAnimator->CreateAnimation(L"Smokebirth", pImage, Vector(0.f, 0.f), Vector(200.f, 200.f), Vector(300.f, 0.f), 0.2f, 3, false);
@@ -29,6 +30,7 @@ void CSmoke::Init()
 	AddComponent(m_pAnimator);
 
 	AddCollider(ColliderType::Rect, Vector(300, 300), Vector(0, 0));
+	SOUND->Play(pSound, 0.6f);
 }
 
 void CSmoke::Update()

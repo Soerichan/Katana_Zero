@@ -13,6 +13,7 @@
 #include "CGrunt.h"
 #include "CPomp.h"
 #include "CGangster.h"
+#include "CBoss.h"
 
 #include "CSubWeapon.h"
 #include "CLaser.h"
@@ -74,6 +75,18 @@ void CScene006::Enter()
 	pHUD->SetScale(1280, 46);
 	AddGameObject(pHUD);
 
+	CPomp* newPomp01 = new CPomp;
+	newPomp01->SetPos(1150, 524);
+	AddGameObject(newPomp01);
+
+	CPomp* newPomp02 = new CPomp;
+	newPomp02->SetPos(1250, 524);
+	AddGameObject(newPomp02);
+
+	CPomp* newPomp03 = new CPomp;
+	newPomp03->SetPos(1350, 524);
+	AddGameObject(newPomp03);
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);
@@ -91,19 +104,26 @@ void CScene006::Enter()
 
 void CScene006::Update()
 {	
-	if (GAME->m_iDeadMonster > 3&&m_bSoundChange==false)
+	if (GAME->m_iDeadMonster > 2&&m_bSoundChange==false&&PLAYERPOSITION.x<1300.f&&PLAYERPOSITION.y>908)
 	{
 		SOUND->Pause(GAME->m_pBGM_Main_Sound);
 		SOUND->Play(GAME->m_pBGM_BOSS_Sound,0.5f,true);
 		m_bSoundChange = true;
+
+
+		CBoss* pB = new CBoss;
+		pB->SetPos(300, 897);
+		AddGameObject(pB);
 	}
 
-	if (m_fDeadMonsterCount006 == GAME->m_iDeadMonster)
+	if (m_fDeadMonsterCount006 == GAME->m_iDeadMonster && GAME->m_bClear == false)
 	{
 		CEntrance* pEntrance005 = new CEntrance;
 		pEntrance005->SetPos(85, 897);
 		pEntrance005->SetNextScene(GroupScene::SceneEnding);
 		AddGameObject(pEntrance005);
+		SOUND->Play(m_pClearSound, 0.6f);
+		GAME->m_bClear = true;
 	}
 }
 

@@ -90,28 +90,29 @@ void CScene003::Enter()
 
 	CGangster* newGangster01 = new CGangster;
 	newGangster01->SetPos(1565,441);
+	newGangster01->SetReverse(true);
 	newGangster01->SetPatroller(true);
 	AddGameObject(newGangster01);
 
 	CGangster* newGangster02 = new CGangster;
-	newGangster02->SetPos(1991,441);
+	newGangster02->SetPos(2011,441);
 	//newGangster02->SetPatroller(true);
 	newGangster02->SetReverse(true);
 	AddGameObject(newGangster02);
 
 	CGangster* newGangster03 = new CGangster;
-	newGangster03->SetPos(2001,441);
+	newGangster03->SetPos(2021,441);
 	newGangster03->SetPatroller(true);
 	AddGameObject(newGangster03);
 
 	CGangster* newGangster04 = new CGangster;
-	newGangster04->SetPos(2015,441);
+	newGangster04->SetPos(2022,441);
 	newGangster04->SetPatroller(true);
 	//newGangster01->SetReverse(true);
 	AddGameObject(newGangster04);
 
 	CGangster* newGangster05 = new CGangster;
-	newGangster05->SetPos(2697,441);
+	newGangster05->SetPos(2597,441);
 	//newGangster05->SetPatroller(true);
 	AddGameObject(newGangster05);
 
@@ -141,13 +142,16 @@ void CScene003::Enter()
 
 void CScene003::Update()
 {
-	if (m_fDeadMonsterCount003 == GAME->m_iDeadMonster)
+	if (m_fDeadMonsterCount003 == GAME->m_iDeadMonster && GAME->m_bClear == false)
 	{
 		CEntrance* pEntrance001 = new CEntrance;
 		pEntrance001->SetPos(3244, 430);
 		pEntrance001->SetNextScene(GroupScene::Scene004);
 		AddGameObject(pEntrance001);
+		GAME->m_bClear = true;
+		SOUND->Play(m_pClearSound, 0.6f);
 	}
+
 }
 
 void CScene003::Render()

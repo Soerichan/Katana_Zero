@@ -59,6 +59,8 @@ void CLaserSwitch::Init()
 
 	m_pAnimator->Play(L"LaserSwitchLeftOn", true);
 	AddComponent(m_pAnimator);
+
+	m_pLaserSound = RESOURCE->LoadSound(L"LaserOffSound", L"Sound\\LaserOff.wav");
 	
 }
 
@@ -91,6 +93,7 @@ void CLaserSwitch::Update()
 			m_State = state::Off;
 			m_bOff = true;
 			GAME->LaserOff = true;
+			SOUND->Play(m_pLaserSound, 0.6f);
 		}
 	}
 }

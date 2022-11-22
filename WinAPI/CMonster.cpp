@@ -61,8 +61,14 @@ void CMonster::SetState(MonsterState state)
 //}
 
 void CMonster::Init()
-{
-	AddCollider(ColliderType::Rect, Vector(90, 90), Vector(0, 0));
+{	
+	m_pBluntSound = RESOURCE->LoadSound(L"BluntSound", L"Sound\\Blunt.wav");
+	m_pBluntHitSound = RESOURCE->LoadSound(L"BluntHitSound", L"Sound\\BluntHit.wav");
+	m_pMetalCollisiionSound = RESOURCE->LoadSound(L"MetalCollision", L"Sound\\MetalCollision.wav");
+	m_pGunSound = RESOURCE->LoadSound(L"GunSound", L"Sound\\Gun.wav");
+	m_pGunHitSound = RESOURCE->LoadSound(L"GunHitSound", L"Sound\\GunHit.wav");
+	m_pKatanaHitSound = RESOURCE->LoadSound(L"KatanaHitSound", L"Sound\\KatanaHit.wav");
+	AddCollider(ColliderType::Rect, Vector(40, 60), Vector(0, 0));
 }
 
 void CMonster::Update()
@@ -96,7 +102,7 @@ void CMonster::VisualSensor()
 	{
 		if (m_vecLookDir.x == 1)//øÏ√¯∫Ω
 		{
-			if ((PLAYERPOSITION.x > m_vecPos.x) && (PLAYERPOSITION.x < m_vecPos.x + 600) && m_bPlayerIsSameFloor)
+			if ((PLAYERPOSITION.x > m_vecPos.x) && (PLAYERPOSITION.x < m_vecPos.x + 450) && m_bPlayerIsSameFloor)
 			{
 				m_mState = MonsterState::Chase;
 				Sight();
@@ -104,7 +110,7 @@ void CMonster::VisualSensor()
 		}
 		else//¡¬√¯∫Ω
 		{
-			if ((PLAYERPOSITION.x < m_vecPos.x) && (PLAYERPOSITION.x > m_vecPos.x - 600) && m_bPlayerIsSameFloor)
+			if ((PLAYERPOSITION.x < m_vecPos.x) && (PLAYERPOSITION.x > m_vecPos.x - 450) && m_bPlayerIsSameFloor)
 			{
 				m_mState = MonsterState::Chase;
 				Sight();
@@ -146,7 +152,7 @@ void CMonster::OnCollisionStay(CCollider* pOtherCollider)
 
 	wstring pTarget = pOtherCollider->GetObjName();
 
-	if (pTarget == L"Smoke"&&m_layer!=Layer::Corpse&&m_mState!=MonsterState::Die)
+	if (pTarget == L"Smoke"&&m_layer!=Layer::Corpse&&m_mState!=MonsterState::Die && m_mState != MonsterState::Down)
 	{
 		m_mState = MonsterState::Attention;
 		//π∞¿Ω«• ¿Ã∆Â∆Æ

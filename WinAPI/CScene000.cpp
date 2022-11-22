@@ -51,9 +51,6 @@ void CScene000::Init()
 	pPlayer->SetPos(85, 897);
 	AddGameObject(pPlayer);
 
-	CBoss* pB = new CBoss;
-	pB->SetPos(300, 897);
-	AddGameObject(pB);
 
 	/*CCam* pCam = new CCam;
 	pCam->SetPos(453, 356);
@@ -163,7 +160,7 @@ void CScene000::Enter()
 
 	CAMERA->SetTargetPos({ 85,897 });
 
-	SOUND->Resume2(GAME->m_pBGM_Main_Sound,0.2f);
+	SOUND->Resume2(GAME->m_pBGM_Main_Sound,0.4f);
 }
 
 void CScene000::Update()

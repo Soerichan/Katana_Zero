@@ -342,7 +342,7 @@ void CPomp::OnCollisionEnter(CCollider* pOtherCollider)
 		{
 			if (m_bIsDie == false)
 			{
-
+				SOUND->Play(m_pKatanaHitSound, 1.f);
 				GAME->m_iDeadMonster++;
 				m_bIsDie = true;
 			}
@@ -358,7 +358,7 @@ void CPomp::OnCollisionEnter(CCollider* pOtherCollider)
 			{
 				pBluntEffect->SetPos(m_vecPos.x -60, m_vecPos.y);
 			}
-			
+			SOUND->Play(m_pMetalCollisiionSound, 0.8f);
 			ADDOBJECT(pBluntEffect);
 		}
 	
@@ -410,5 +410,6 @@ void CPomp::Attack()
 		pCPompSlash->SetDir(0);
 		pCPompSlash->SetPos(m_vecPos.x - 5, m_vecPos.y - 20);
 	}
+	SOUND->Play(m_pBluntSound, 0.8f);
 	ADDOBJECT(pCPompSlash);
 }

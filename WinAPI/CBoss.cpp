@@ -254,6 +254,7 @@ void CBoss::Update()
         m_fTimerStruggle -= DT;
         if (m_fTimerStruggle <= 0)
         {
+            SOUND->Stop(m_pMetalCollisiionSound);
             State = BossState::Recover;
             m_iStruggleCount++;
             m_fTimerStruggle = 1.f;
@@ -342,6 +343,7 @@ void CBoss::OnCollisionEnter(CCollider* pOtherCollider)
         {
             if ((PLAYERPOSITION.x < m_vecPos.x&&m_vecLookDir.x==1)|| (PLAYERPOSITION.x > m_vecPos.x && m_vecLookDir.x == -1))
             {
+                SOUND->Play(m_pKatanaHitSound, 0.6f);
                 State = BossState::Hurt;
             }
             else
@@ -350,16 +352,19 @@ void CBoss::OnCollisionEnter(CCollider* pOtherCollider)
                 {
                     m_vecLookDir.x = -1;
                     State = BossState::Block;
+                    SOUND->Play(m_pMetalCollisiionSound, 0.6f);
                 }
                 else
                 {
                     m_vecLookDir.x = +1;
                     State = BossState::Block;
+                    SOUND->Play(m_pMetalCollisiionSound, 0.6f);
                 }
             }
         }
         else if (State == BossState::Hurt)
         {
+            SOUND->Play(m_pMetalCollisiionSound, 0.6f,true);
             State = BossState::Struggle;
         }
         else if (State == BossState::Die)
@@ -372,11 +377,13 @@ void CBoss::OnCollisionEnter(CCollider* pOtherCollider)
             {
                 m_vecLookDir.x = -1;
                 State = BossState::Block;
+                SOUND->Play(m_pMetalCollisiionSound, 0.6f);
             }
             else
             {
                 m_vecLookDir.x = +1;
                 State = BossState::Block;
+                SOUND->Play(m_pMetalCollisiionSound, 0.6f);
             }
         }
     }

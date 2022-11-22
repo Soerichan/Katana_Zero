@@ -9,6 +9,7 @@ CLaser::CLaser()
 	m_fTimer = 0.01f;
 	m_fHitTimer = 1.0f;
 	m_fRemodelingTimer = 1.f;
+	
 }
 
 CLaser::~CLaser()
@@ -86,6 +87,8 @@ void CLaser::Init()
 	AddComponent(m_pAnimator);
 	//AddCollider(ColliderType::Rect, Vector(1, 200), Vector(0, 0));
 	m_fMoveTimer = 8.f;
+
+
 }
 
 void CLaser::Update()
@@ -111,11 +114,11 @@ void CLaser::Update()
 			m_fMoveTimer -= DT;
 			if (m_fMoveTimer >= 4.f)
 			{
-				m_vecPos.x += 30 * DT;
+				m_vecPos.x += 90 * DT;
 			}
 			else if(m_fMoveTimer < 4.f&& m_fMoveTimer >= 0)
 			{
-				m_vecPos.x -= 30 * DT;
+				m_vecPos.x -= 90 * DT;
 			}
 			else
 			{
@@ -134,6 +137,7 @@ void CLaser::Update()
 		m_fTimer -= DT;
 		if (m_fTimer <= 0)
 		{
+			
 			RemoveCollider();
 			m_pAnimator->Stop();
 		}

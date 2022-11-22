@@ -12,6 +12,7 @@ CKatanaSlash::CKatanaSlash()
 	m_pTimer = 0;
 	m_fDegree = 0;
 	m_bBulletReflectChance = true;
+
 }
 
 CKatanaSlash::~CKatanaSlash()
@@ -23,6 +24,7 @@ void CKatanaSlash::Init()
 	
 
 	m_pImage = RESOURCE->LoadImg(L"KatanaSlash", L"Image\\KatanaSlash.png");
+	m_pSound = RESOURCE->LoadSound(L"MetalCollisionSound", L"Sound\\MetalCollision.wav");
 	
 	
 
@@ -45,7 +47,7 @@ void CKatanaSlash::Init()
 
 	AddComponent(m_pAnimator);
 	m_pTimer = 0.35f;
-	AddCollider(ColliderType::Rect, Vector(300, 200), Vector(0, 0));
+	AddCollider(ColliderType::Rect, Vector(250, 100), Vector(0, 0));
 
 }
 
@@ -100,6 +102,7 @@ void CKatanaSlash::OnCollisionEnter(CCollider* pOtherCollider)
 
 		m_bBulletReflectChance = false;
 		
+		SOUND->Play(m_pSound, 0.6f);
 	}
 
 	

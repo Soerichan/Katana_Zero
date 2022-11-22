@@ -265,9 +265,12 @@ void CGrunt::Update()
 	if (m_mState == MonsterState::Die)
 	{
 		m_fDisapearTimer -= DT;
+		//TIME->SetTimeScale(0.1f);
+		//CAMERA->SetTargetPos(Vector(CAMERA->GetLookAt().x-1, CAMERA->GetLookAt().y - 1));
 		if (m_fDisapearTimer <= 0)
 		{
 			m_layer = Layer::Corpse;
+			//TIME->SetTimeScale(1.0f);
 			
 		}
 	}
@@ -346,7 +349,7 @@ void CGrunt::OnCollisionEnter(CCollider* pOtherCollider)
 	{
 		if (m_bIsDie == false)
 		{	
-
+			SOUND->Play(m_pKatanaHitSound, 1.f);
 			m_mState = MonsterState::Die;
 			m_bIsDie = true;
 			GAME->m_iDeadMonster++;
@@ -394,5 +397,6 @@ void CGrunt::Attack()
 		pCGruntSlash->SetDir(0);
 		pCGruntSlash->SetPos(m_vecPos.x - 5, m_vecPos.y - 20);
 	}
+	SOUND->Play(m_pBluntSound, 0.6f);
 		ADDOBJECT(pCGruntSlash);
 }

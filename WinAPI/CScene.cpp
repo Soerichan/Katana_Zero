@@ -18,6 +18,8 @@ CScene::CScene()
 {
 	m_iTileSizeX = 0;
 	m_iTileSizeY = 0;
+
+	
 }
 
 CScene::~CScene()
@@ -26,6 +28,7 @@ CScene::~CScene()
 
 void CScene::SceneInit()
 {
+	m_pClearSound = RESOURCE->LoadSound(L"ClearSound", L"Sound\\Clear.wav");
 	// 씬 내에 모든 게임오브젝트 초기화
 	for (int layer = 0; layer < (int)Layer::Size; layer++)
 	{
@@ -48,6 +51,7 @@ void CScene::SceneEnter()
 	externCareTaker.PopClear();
 	GAME->LaserOff = false;
 	GAME->m_iDeadMonster = 0;
+	GAME->m_bClear = false;
 	Enter();
 }
 

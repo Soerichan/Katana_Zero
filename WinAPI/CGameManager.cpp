@@ -13,6 +13,7 @@ CGameManager::CGameManager()
 	LaserOff = false;
 	Remodeling = false;
 	m_iDeadMonster = 0;
+	m_bClear = false;
 	
 	
 }

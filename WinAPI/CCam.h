@@ -9,6 +9,7 @@ public:
 
 private:
     CImage* pImage;
+    CSound* m_pCamSound;
     CAnimator* m_pAnimator;
     bool m_bRed;
 

@@ -13,7 +13,7 @@ public:
 
 private:
 	CPlayer* pPlayer;
-
+	float m_fDeadMonsterCount007;
 	//CImage* pSubWeapon_Bottle;
 
 

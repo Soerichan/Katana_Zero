@@ -8,6 +8,7 @@ public:
     virtual ~CSubWeapon();
     void SetDir(Vector dir);
 private:
+    CSound* m_pSound;
     Vector m_vecDir;
     float m_fDistance;
     void Init() override;

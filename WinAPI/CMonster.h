@@ -22,7 +22,12 @@ protected:
 	void Release() override;
 
 	void DieCount();
-
+	CSound* m_pBluntSound;
+	CSound* m_pGunSound;
+	CSound* m_pGunHitSound;
+	CSound* m_pKatanaHitSound;
+	CSound* m_pBluntHitSound;
+	CSound* m_pMetalCollisiionSound;
 	MonsterState m_mState;
 	Vector m_vecFixedPosition;
 	Vector m_vecLookDir;

@@ -102,8 +102,9 @@ void CScene004::Enter()
 	AddGameObject(newPomp01);
 
 	CGangster* newGangster01 = new CGangster;
-	newGangster01->SetPos(1401,966);
+	newGangster01->SetPos(1391,966);
 	newGangster01->SetPatroller(true);
+	newGangster01->SetReverse(true);
 	AddGameObject(newGangster01);
 
 	CGangster* newGangster02 = new CGangster;
@@ -196,12 +197,14 @@ void CScene004::Enter()
 void CScene004::Update()
 {
 
-	if (m_fDeadMonsterCount004 == GAME->m_iDeadMonster)
+	if (m_fDeadMonsterCount004 == GAME->m_iDeadMonster && GAME->m_bClear == false)
 	{
 		CEntrance* pEntrance004 = new CEntrance;
 		pEntrance004->SetPos(62, 396);
 		pEntrance004->SetNextScene(GroupScene::Stage01);
 		AddGameObject(pEntrance004);
+		SOUND->Play(m_pClearSound, 0.6f);
+		GAME->m_bClear = true;
 	}
 }
 

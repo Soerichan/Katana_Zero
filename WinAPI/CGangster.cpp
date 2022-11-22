@@ -161,6 +161,22 @@ void CGangster::Update()
 			{
 				m_fIdleTimer = 16.f;
 			}
+		
+		
+		}
+		else if (m_mState == MonsterState::Idle && Patroller)
+		{
+			if (PLAYERPOSITION.x < m_vecPos.x)
+			{
+				m_vecLookDir.x = +1;
+
+			}
+			else
+			{
+				m_vecLookDir.x = -1;
+
+			}
+			VisualSensor();
 		}
 	}
 
@@ -336,6 +352,7 @@ void CGangster::Attack()
 		pGunSpark->SetxDir(false);
 
 	}
+	SOUND->Play(m_pGunSound, 0.6f);
 	ADDOBJECT(pGunSpark);
 
 
@@ -367,6 +384,7 @@ void CGangster::OnCollisionEnter(CCollider* pOtherCollider)
 			GAME->m_iDeadMonster++;
 			m_mState = MonsterState::Die;
 			m_bIsDie = true;
+			SOUND->Play(m_pKatanaHitSound, 1.f);
 		}
 	}
 }

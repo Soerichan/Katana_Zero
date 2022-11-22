@@ -22,6 +22,7 @@ public:
     void SwitchLaser();
     void SetMove(bool move);
 private:
+   
     bool m_bMove;
     float m_fMoveTimer;
     void AnimatorUpdate();

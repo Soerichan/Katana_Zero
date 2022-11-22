@@ -9,6 +9,7 @@ public:
 
 private:
     CImage* pImage;
+    CSound* pSound;
     CAnimator* m_pAnimator;
     float m_fTimer;
 

@@ -172,6 +172,12 @@ void CPlayer::Init()
 	m_vecMoveDir.y = +1;
 
 	m_pReplaySound= RESOURCE->LoadSound(L"ReplaySound", L"Sound\\Replay.wav");
+	m_pDoor_KickSound= RESOURCE->LoadSound(L"DoorkickSound", L"Sound\\Doorkick.wav");
+	m_pKatanaSound= RESOURCE->LoadSound(L"KatanaSound", L"Sound\\Katana.wav");
+	m_pCronosSound= RESOURCE->LoadSound(L"CronosSound", L"Sound\\Cronos.mp3");
+	m_pRollSound= RESOURCE->LoadSound(L"RollSound", L"Sound\\Roll.wav");
+	m_pPickUpSound= RESOURCE->LoadSound(L"PickUpSound", L"Sound\\PickUp.wav");
+	m_pDieSound= RESOURCE->LoadSound(L"DieSound", L"Sound\\DieVoice.wav");
 }
 
 void CPlayer::Update()
@@ -191,6 +197,7 @@ void CPlayer::Update()
 		TIME->SetTimeScale(0.1f);
 		IsCronos = true;
 		GAME->isCronos = true;
+		SOUND->Play(m_pCronosSound, 0.5f);
 		SOUND->SetPitch(GAME->m_pBGM_Main_Sound, 0.5f);
 		SOUND->SetPitch(GAME->m_pBGM_BOSS_Sound, 0.5f);
 	}
@@ -345,7 +352,7 @@ void CPlayer::Update()
 
 		if (RollTimer >= 0)
 		{
-			m_vecPos.x += 1.5f*m_fSpeed * DT * m_vecMoveDir.x;
+			m_vecPos.x += m_fSpeed * DT * m_vecMoveDir.x;
 		}
 		else
 		{
@@ -401,6 +408,7 @@ void CPlayer::Update()
 		m_fDoorTimer -= DT;
 		if (m_fDoorTimer <= 0)
 		{
+			
 			State = PlayerState::Idle;
 			m_fDoorTimer = 1.f;
 		}
@@ -865,6 +873,7 @@ void CPlayer::Update()
 	AnimatorUpdate();
 
 	WhereWasI();
+
 #pragma region Memento°ü·Ã
 
 	m_fMementoTimer -= TIME->GetRealTime();
@@ -931,7 +940,7 @@ void CPlayer::Jump()
 	accel = 500;
 	velocity = 200;
 	m_vecMoveDir.y = +1;
-	
+	SOUND->Play(m_pRollSound, 0.1f);
 }
 
 void CPlayer::Flip()
@@ -954,8 +963,8 @@ void CPlayer::Flip()
 
 void CPlayer::Roll()
 {
-	RollTimer = 0.5f;
-	
+	RollTimer = 0.4f;
+	SOUND->Play(m_pRollSound, 0.1f);
 
 }
 
@@ -984,7 +993,7 @@ void CPlayer::Attack()
 	}
 	
 	
-
+	SOUND->Play(m_pKatanaSound, 1.f);
 	CreateMissile();
 	
 }
@@ -995,6 +1004,7 @@ void CPlayer::Throw()
 	if(m_strSubWeapon == L"None")
 	{
 		GAME->PickUpProcess();
+		SOUND->Play(m_pPickUpSound, 0.6f);
 	}
 	else
 	{
@@ -1018,6 +1028,7 @@ void CPlayer::Throw()
 		GAME->SubWeaponThrow();
 	}
 
+	
 }
 
 void CPlayer::Dance()
@@ -1246,7 +1257,7 @@ void CPlayer::CreateMissile()
 void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 {
 	wstring pTarget = pOtherCollider->GetObjName();
-
+	Layer pTargetLayer = pOtherCollider->GetOwner()->GetLayer();// == Layer::Missile
 	if (pTarget == L"Ground"&&pOtherCollider->GetPos().y>m_vecPos.y)
 	{	
 		
@@ -1283,7 +1294,13 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 	}
 	if (pTarget == L"Door")
 	{
+		SOUND->Play(m_pDoor_KickSound, 0.8f);
 		State = PlayerState::DoorKick;
+	}
+	if (pTargetLayer == Layer::EnemyMissile || pTargetLayer == Layer::Laser)
+	{
+		SOUND->Play(m_pDieSound, 0.8f);
+		State = PlayerState::Die;
 	}
 }
 

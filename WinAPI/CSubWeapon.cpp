@@ -24,6 +24,7 @@ void CSubWeapon::Init()
 		AddCollider(ColliderType::Rect, Vector(50, 50), Vector(0, 0));
 	}
 	m_vecScale = Vector(m_pImage->GetWidth(), m_pImage->GetHeight());
+	m_pSound= RESOURCE->LoadSound(L"SubWeaponSound", L"Sound\\CrushGlass.wav");
 }
 
 void CSubWeapon::Update()
@@ -75,6 +76,7 @@ void CSubWeapon::OnCollisionEnter(CCollider* pOtherCollider)
 			pSmoke0->SetPos(m_vecPos.x , m_vecPos.y );
 			ADDOBJECT(pSmoke0);
 		}
+		SOUND->Play(m_pSound, 0.6f);
 		DELETEOBJECT(this);
 	}
 }

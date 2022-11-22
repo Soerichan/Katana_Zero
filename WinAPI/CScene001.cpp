@@ -155,15 +155,18 @@ void CScene001::Update()
 		newPomp02->SetPos(62, 512);
 		newPomp02->SetState(MonsterState::Chase);
 		AddGameObject(newPomp02);
+
 		m_bOnce = true;
 	}
 
-	if (m_fDeadMonsterCount001 == GAME->m_iDeadMonster)
+	if (m_fDeadMonsterCount001 == GAME->m_iDeadMonster&& GAME->m_bClear == false)
 	{
 		CEntrance* pEntrance001 = new CEntrance;
 		pEntrance001->SetPos(2242, 458);
 		pEntrance001->SetNextScene(GroupScene::Scene002);
 		AddGameObject(pEntrance001);
+		SOUND->Play(m_pClearSound, 0.6f);
+		GAME->m_bClear = true;
 	}
 }
 

@@ -30,6 +30,12 @@ public:
 	void PlayerRebound();
 private:
 	CSound* m_pReplaySound;
+	CSound* m_pDoor_KickSound;
+	CSound* m_pKatanaSound;
+	CSound* m_pCronosSound;
+	CSound* m_pRollSound;
+	CSound* m_pPickUpSound;
+	CSound* m_pDieSound;
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
 	CImage* m_pMoveImage;
