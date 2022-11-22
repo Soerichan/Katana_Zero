@@ -11,6 +11,7 @@ CGameManager::CGameManager()
 	Battery = 0;
 	SubWeaponName = L"None";
 	LaserOff = false;
+	Remodeling = false;
 	
 }
 
@@ -24,7 +25,23 @@ void CGameManager::Init()
 
 void CGameManager::Update()
 {
+	if (Remodeling)
+	{
+		CScene* nowScene = SCENE->GetCurScene();
 
+		//nowScene->SceneExit();
+		nowScene->DeleteLayerObject(Layer::Laser);
+		nowScene->DeleteLayerObject(Layer::Monster);
+		nowScene->DeleteLayerObject(Layer::SubWeapon);
+		nowScene->DeleteLayerObject(Layer::Door);
+		nowScene->DeleteLayerObject(Layer::EnemyMissile);
+		nowScene->DeleteLayerObject(Layer::Corpse);
+		nowScene->DeleteLayerObject(Layer::Smoke);
+		nowScene->DeleteLayerObject(Layer::Effect);
+
+		nowScene->SceneEnter();
+		Remodeling = false;
+	}
 
 }
 

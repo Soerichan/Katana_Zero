@@ -38,7 +38,7 @@ public:
 	CImage* pSubWeapon_KnifeImage;
 	CImage* pSubWeapon_PotImage;
 	CImage* pSubWeapon_StatueImage;
-	CImage* pSubWeapon_SmokeImage;
+	CImage* pSubWeapon_SmokerImage;
 	CImage* pSubWeapon_LampImage;
 	CImage* pSubWeapon_Mine01Image;
 	CImage* pSubWeapon_Mine02Image;

@@ -36,6 +36,7 @@ private:
     float m_fDistance;
     float m_fHitTimer;
     CImage* m_pLaserImage;
+    float m_fRemodelingTimer;
    // CImage* m_pLaserSwitchImage;
    // CImage* m_pLaserSwitch2Image;
    // CImage* m_pSpace1Image;

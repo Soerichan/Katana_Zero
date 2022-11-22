@@ -66,7 +66,8 @@ void CSubWeapon::Release()
 
 void CSubWeapon::OnCollisionEnter(CCollider* pOtherCollider)
 {
-	if (pOtherCollider->GetOwner()->GetLayer() != Layer::Corpse)
+	wstring pTarget = pOtherCollider->GetObjName();
+	if (pOtherCollider->GetOwner()->GetLayer() != Layer::Corpse||pTarget!=L"Platfoam")
 	{
 		if (m_strName == L"Smoker")
 		{

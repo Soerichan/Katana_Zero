@@ -45,10 +45,7 @@ CScene000::~CScene000()
 
 void CScene000::Init()
 {
-	CHUD* pHUD = new CHUD;
-	pHUD->SetPos(0, 0);
-	pHUD->SetScale(1280, 46);
-	AddGameObject(pHUD);
+
 
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(85, 897);
@@ -125,6 +122,11 @@ void CScene000::Init()
 
 void CScene000::Enter()
 {
+	CHUD* pHUD = new CHUD;
+	pHUD->SetPos(0, 0);
+	pHUD->SetScale(1280, 46);
+	AddGameObject(pHUD);
+
 	CGangster* newGangster01 = new CGangster;
 	newGangster01->SetPos(1550,944);
 	newGangster01->SetReverse(true);
@@ -168,6 +170,8 @@ void CScene000::Render()
 
 void CScene000::Exit()
 {
+	
+
 }
 
 void CScene000::Release()

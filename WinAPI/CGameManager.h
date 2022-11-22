@@ -35,6 +35,7 @@ public:
 
 	PlayerState PlayerNowState;
 	bool RightAttack;
+	bool Remodeling;
 };
 
 #define GAME			CGameManager::GetInstance()

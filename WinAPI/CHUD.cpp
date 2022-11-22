@@ -45,7 +45,7 @@ void CHUD::Init()
 	pSubWeapon_KnifeImage = RESOURCE->LoadImg(L"SubWeapon_Knife", L"Image\\UI\\SubWeapon_Knife.png");
 	pSubWeapon_PotImage = RESOURCE->LoadImg(L"SubWeapon_Pot", L"Image\\UI\\SubWeapon_Pot.png");
 	pSubWeapon_StatueImage = RESOURCE->LoadImg(L"SubWeapon_Statue", L"Image\\UI\\SubWeapon_Statue.png");
-	pSubWeapon_SmokeImage = RESOURCE->LoadImg(L"SubWeapon_Smoke", L"Image\\UI\\SubWeapon_Smoke.png");
+	pSubWeapon_SmokerImage = RESOURCE->LoadImg(L"SubWeapon_Smoke", L"Image\\UI\\SubWeapon_Smoker.png");
 	pSubWeapon_LampImage = RESOURCE->LoadImg(L"SubWeapon_Lamp", L"Image\\UI\\SubWeapon_Lamp.png");
 	pSubWeapon_Mine01Image = RESOURCE->LoadImg(L"SubWeapon_Mine01", L"Image\\UI\\SubWeapon_Mine01.png");
 	pSubWeapon_Mine02Image = RESOURCE->LoadImg(L"SubWeapon_Mine02", L"Image\\UI\\SubWeapon_Mine02.png");
@@ -119,9 +119,9 @@ void CHUD::Render()
 	{
 		RENDER->Image(pSubWeapon_StatueImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
 	}
-	else if (GAME->SubWeaponName == L"Smoke")
+	else if (GAME->SubWeaponName == L"Smoker")
 	{
-		RENDER->Image(pSubWeapon_SmokeImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
+		RENDER->Image(pSubWeapon_SmokerImage, m_vecRenderPos.x + 1153, m_vecRenderPos.y + 4, m_vecRenderPos.x + 1265, m_vecRenderPos.y + 52);
 	}
 	else if (GAME->SubWeaponName == L"Lamp")
 	{

@@ -27,6 +27,11 @@ void CareTaker::PopDelete()
 	m_vector_Player_Memento.pop_back();
 }
 
+void CareTaker::PopClear()
+{
+	m_vector_Player_Memento.clear();
+}
+
 bool CareTaker::IsEmpty()
 {
 	return m_vector_Player_Memento.empty();

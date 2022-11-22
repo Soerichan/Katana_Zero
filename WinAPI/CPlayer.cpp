@@ -871,11 +871,13 @@ void CPlayer::Update()
 		if (m_fReplayTimer <= 0)
 		{
 			if (externCareTaker.IsEmpty() == true)
-			{
+			{	
+
 				m_bReplay = false;
 				State = PlayerState::Idle;
 				m_fDieTimer = 1.f;
 				AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));
+				GAME->Remodeling = true;
 			}
 			else
 			{

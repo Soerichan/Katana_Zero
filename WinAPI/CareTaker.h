@@ -22,7 +22,7 @@ public: CareTaker();
 
  Memento* Popplayer();
  void PopDelete();
-
+ void PopClear();
 
  bool IsEmpty();
 

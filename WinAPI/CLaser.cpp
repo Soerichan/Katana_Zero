@@ -8,6 +8,7 @@ CLaser::CLaser()
 	m_vecScale = Vector(2, 200);
 	m_fTimer = 0.01f;
 	m_fHitTimer = 1.0f;
+	m_fRemodelingTimer = 1.f;
 }
 
 CLaser::~CLaser()
@@ -83,12 +84,17 @@ void CLaser::Init()
 		
 	m_pAnimator->Play(L"LaserRed", true);
 	AddComponent(m_pAnimator);
-	AddCollider(ColliderType::Rect, Vector(1, 200), Vector(0, 0));
+	//AddCollider(ColliderType::Rect, Vector(1, 200), Vector(0, 0));
 	m_fMoveTimer = 8.f;
 }
 
 void CLaser::Update()
 {
+	if (m_fRemodelingTimer > -1)
+	{
+		m_fRemodelingTimer -= DT;
+	}
+
 	if (GAME->LaserOff==false)
 	{
 		m_State = LaserState::On;
@@ -117,7 +123,9 @@ void CLaser::Update()
 			}
 		}
 
+		if(m_fRemodelingTimer<=0)
 		AddCollider(ColliderType::Rect, Vector(1, 200), Vector(0, 0));
+
 		m_fTimer = 0.01f;
 		AnimatorUpdate();
 	}
