@@ -38,10 +38,7 @@ CScene004::~CScene004()
 
 void CScene004::Init()
 {
-	CHUD* pHUD = new CHUD;
-	pHUD->SetPos(0, 0);
-	pHUD->SetScale(1280, 46);
-	AddGameObject(pHUD);
+	
 
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(71, 1404);
@@ -69,6 +66,11 @@ void CScene004::Init()
 
 void CScene004::Enter()
 {
+	CHUD* pHUD = new CHUD;
+	pHUD->SetPos(0, 0);
+	pHUD->SetScale(1280, 46);
+	AddGameObject(pHUD);
+
 	CDoor* newDoor01 = new CDoor;
 	newDoor01->SetPos(1212,930);
 	AddGameObject(newDoor01);

@@ -91,7 +91,7 @@ void CScene_file::Update()
 	}
 	if (m_fFireTimer<=2.f)
 	{	
-		SOUND->Pause(m_pFireSound);
+		SOUND->Stop(m_pFireSound);
 		CAMERA->FadeOut(0.25f);
 		DELAYCHANGESCENE(GroupScene::Scene000, 0.25f);
 	}

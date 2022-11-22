@@ -170,6 +170,8 @@ void CPlayer::Init()
 
 	m_vecMoveDir.x = -1;
 	m_vecMoveDir.y = +1;
+
+	m_pReplaySound= RESOURCE->LoadSound(L"ReplaySound", L"Sound\\Replay.wav");
 }
 
 void CPlayer::Update()
@@ -420,6 +422,9 @@ void CPlayer::Update()
 		if (m_fDieTimer <= 0)
 		{
 			m_bReplay = true;
+			SOUND->Stop(GAME->m_pBGM_BOSS_Sound);
+			SOUND->Pause(GAME->m_pBGM_Main_Sound);
+			SOUND->Play(m_pReplaySound, 0.5f, true);
 			State = PlayerState::Replay;
 			RemoveCollider();
 		}
@@ -852,6 +857,7 @@ void CPlayer::Update()
 
 	if(State!=PlayerState::Replay)
 	AnimatorUpdate();
+
 	WhereWasI();
 #pragma region Memento°ü·Ã
 
@@ -874,6 +880,8 @@ void CPlayer::Update()
 			{	
 
 				m_bReplay = false;
+				SOUND->Resume(GAME->m_pBGM_Main_Sound);
+				SOUND->Stop(m_pReplaySound);
 				State = PlayerState::Idle;
 				m_fDieTimer = 1.f;
 				AddCollider(ColliderType::Rect, Vector(38, 55), Vector(0, 0));

@@ -163,7 +163,7 @@ void CScene000::Enter()
 
 	CAMERA->SetTargetPos({ 85,897 });
 
-	SOUND->Resume2(GAME->m_pBGM_Main_Sound,0.5f);
+	SOUND->Resume2(GAME->m_pBGM_Main_Sound,0.2f);
 }
 
 void CScene000::Update()

@@ -40,19 +40,16 @@ CScene006::~CScene006()
 
 void CScene006::Init()
 {
-	CHUD* pHUD = new CHUD;
-	pHUD->SetPos(0, 0);
-	pHUD->SetScale(1280, 46);
-	AddGameObject(pHUD);
+	
 
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(546, 548);
 	AddGameObject(pPlayer);
 
-	CEntrance* pEntrance005 = new CEntrance;
+	/*CEntrance* pEntrance005 = new CEntrance;
 	pEntrance005->SetPos(85, 897);
 	pEntrance005->SetNextScene(GroupScene::SceneEnding);
-	AddGameObject(pEntrance005);
+	AddGameObject(pEntrance005);*/
 
 	CCameraController* pCamController = new CCameraController;
 
@@ -72,6 +69,11 @@ void CScene006::Init()
 
 void CScene006::Enter()
 {
+	CHUD* pHUD = new CHUD;
+	pHUD->SetPos(0, 0);
+	pHUD->SetScale(1280, 46);
+	AddGameObject(pHUD);
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);
@@ -80,10 +82,22 @@ void CScene006::Enter()
 	LoadStageObject(GETPATH + L"Tile\\Tile000.tile");
 
 	CAMERA->SetTargetPos({ 546, 548 });
+
+	m_bSoundChange = false;
+
+	SOUND->Resume(GAME->m_pBGM_Main_Sound);
+	
 }
 
 void CScene006::Update()
-{
+{	
+	if (GAME->m_iDeadMonster > 3&&m_bSoundChange==false)
+	{
+		SOUND->Pause(GAME->m_pBGM_Main_Sound);
+		SOUND->Play(GAME->m_pBGM_BOSS_Sound,0.5f,true);
+		m_bSoundChange = true;
+	}
+
 	if (m_fDeadMonsterCount006 == GAME->m_iDeadMonster)
 	{
 		CEntrance* pEntrance005 = new CEntrance;
@@ -99,6 +113,7 @@ void CScene006::Render()
 
 void CScene006::Exit()
 {
+	SOUND->Stop(GAME->m_pBGM_BOSS_Sound);
 }
 
 void CScene006::Release()

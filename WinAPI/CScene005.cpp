@@ -39,10 +39,7 @@ CScene005::~CScene005()
 
 void CScene005::Init()
 {
-	CHUD* pHUD = new CHUD;
-	pHUD->SetPos(0, 0);
-	pHUD->SetScale(1280, 46);
-	AddGameObject(pHUD);
+	
 
 	pPlayer = new CPlayer();
 	pPlayer->SetPos(1250, 428);
@@ -69,6 +66,11 @@ void CScene005::Init()
 
 void CScene005::Enter()
 {
+	CHUD* pHUD = new CHUD;
+	pHUD->SetPos(0, 0);
+	pHUD->SetScale(1280, 46);
+	AddGameObject(pHUD);
+
 	CAMERA->readyTimer = 1.f;
 
 	CAMERA->FadeIn(1.f);

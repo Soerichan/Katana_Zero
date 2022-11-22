@@ -161,7 +161,20 @@ void CMonster::OnCollisionStay(CCollider* pOtherCollider)
 			m_vecPos.y = pOtherCollider->GetOwner()->GetPos().y - m_vecScale.y / 2 + 2;
 		}
 	}
+	if (pTarget == L"Wall" || pTarget == L"SD" ||pTarget==L"Door")
+	{
 
+
+
+		if (m_vecPos.x < pOtherCollider->GetPos().x)//왼쪽에서 부딪히기
+		{
+			m_vecPos.x = pOtherCollider->GetPos().x - pOtherCollider->GetScale().x / 2 - m_vecScale.x / 2;
+		}
+		else//오른쪽에서 부딪히기
+		{
+			m_vecPos.x = pOtherCollider->GetPos().x + pOtherCollider->GetScale().x / 2 + m_vecScale.x / 2;
+		}
+	}
 	if (pTarget == L"R_High_Slope")
 	{
 

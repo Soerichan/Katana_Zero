@@ -15,6 +15,7 @@ private:
 	CPlayer* pPlayer;
 	float m_fDeadMonsterCount006;
 
+	bool m_bSoundChange;
 	void Init()		override;
 	void Enter()	override;
 	void Update()	override;

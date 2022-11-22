@@ -27,6 +27,7 @@ public:
 	void SetMyCurFrame(UINT Frame);
 	CAnimator* GetAnimator();
 private:
+	CSound* m_pReplaySound;
 	CAnimator* m_pAnimator;
 	CImage* m_pIdleImage;
 	CImage* m_pMoveImage;

@@ -10,7 +10,7 @@ public:
 
 
 private:
-
+	CSound* m_pEndSound;
 
 	void Init()		override;
 	void Enter()	override;

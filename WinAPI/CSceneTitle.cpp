@@ -57,12 +57,12 @@ void CSceneTitle::Update()
 	}
 	if (BUTTONDOWN(VK_F2))
 	{
-		CHANGESCENE(GroupScene::Scene004);
+		CHANGESCENE(GroupScene::Scene006);
 	}
 	if (BUTTONDOWN(VK_SPACE))
 	{	
 		//SOUND->Play(m_pTitleSound,0.5f);
-		SOUND->Pause(GAME->m_pBGM_Start_Sound);
+		SOUND->Stop(GAME->m_pBGM_Start_Sound);
 		SOUND->Pause(GAME->m_pBGM_Main_Sound);
 		CAMERA->FadeOut(0.25f);
 		DELAYCHANGESCENE(GroupScene::Scene_file, 0.25f);

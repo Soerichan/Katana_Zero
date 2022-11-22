@@ -143,6 +143,8 @@ void CScene001::Enter()
 	LoadStageObject(GETPATH + L"Tile\\Tile001.tile");
 
 	CAMERA->SetTargetPos({ 38,512 });
+
+	m_bOnce = false;
 }
 
 void CScene001::Update()
