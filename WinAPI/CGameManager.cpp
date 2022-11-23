@@ -52,6 +52,7 @@ void CGameManager::Update()
 		nowScene->DeleteLayerObject(Layer::Corpse);
 		nowScene->DeleteLayerObject(Layer::Smoke);
 		nowScene->DeleteLayerObject(Layer::Effect);
+		nowScene->DeleteLayerObject(Layer::Ui);
 
 		nowScene->SceneEnter();
 		Remodeling = false;
