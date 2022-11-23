@@ -57,7 +57,7 @@ void CSceneTitle::Update()
 	}
 	if (BUTTONDOWN(VK_F2))
 	{
-		CHANGESCENE(GroupScene::Scene005);
+		CHANGESCENE(GroupScene::Scene003);
 		SOUND->Stop(GAME->m_pBGM_Start_Sound);
 	}
 	if (BUTTONDOWN(VK_SPACE))

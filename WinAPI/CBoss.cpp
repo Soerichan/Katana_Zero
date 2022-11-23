@@ -6,6 +6,7 @@
 
 CBoss::CBoss()
 {
+    m_strName = L"Boss";
 }
 
 CBoss::~CBoss()
@@ -47,10 +48,21 @@ void CBoss::Throw()
 
 void CBoss::Lundge()
 {
+    CBossCMissile03* pBMissile03 = new CBossCMissile03;
+    pBMissile03->SetPos(m_vecPos);
+    ADDOBJECT(pBMissile03);
 }
 
 void CBoss::Jump()
 {
+    CBossCMissile02* pBMissile02 = new CBossCMissile02;
+    pBMissile02->SetPos(m_vecPos);
+    ADDOBJECT(pBMissile02);
+}
+
+void CBoss::WhereBoss()
+{
+    GAME->BossPos = m_vecPos;
 }
 
 void CBoss::Attack()
@@ -111,11 +123,18 @@ void CBoss::Init()
 
     srand(time(NULL));
     AddCollider(ColliderType::Rect, Vector(100, 100), Vector(0, 0));
+
+    m_pAxeSound = RESOURCE->LoadSound(L"AxeSound", L"Sound\\Axe.wav");
+    m_pLundgeSound = RESOURCE->LoadSound(L"LundgeSound", L"Sound\\Lundge.wav");
 }
 
 void CBoss::Update()
 {   
-    m_vecPos.y += 1.f;
+    WhereBoss();
+    if (m_layer == Layer::Monster)
+    {
+        m_vecPos.y += 1.f;
+    }
 
     AnimatorUpdate();
     if (State == BossState::Idle)
@@ -143,32 +162,34 @@ void CBoss::Update()
 
         if (m_fIdleTimer <= 7.f)
         {
-            int todo = rand() % 3;
+            int todo = rand() % 2;
 
             switch (todo)
             {
             case 0:
                 State = BossState::Throw;
+                SOUND->Play(m_pAxeSound,1.f, true);
                 m_fIdleTimer = 10.f;
+                Throw();
                 break;
             case 1:
                 State = BossState::Lundge;
+               // m_strName = L"Lunge";
+                Lundge();
                 m_fIdleTimer = 10.f;
                 break;
-            case 2:
-                State = BossState::Jump;
-                m_fIdleTimer = 10.f;
-                break;
+         
             }
         }
     }
 
     if (State == BossState::Throw)
     {
-        Throw();
+      
         m_fTimerThrow -= DT;
         if (m_fTimerThrow <= 0)
         {
+            SOUND->Stop(m_pAxeSound);
             State = BossState::Idle;
             m_fTimerThrow = 4.f;
         }
@@ -178,11 +199,30 @@ void CBoss::Update()
 
     if (State == BossState::Lundge)
     {
-        Lundge();
+       // RemoveCollider();
+    
+      // m_layer = Layer::EnemyMissile;
+       // AddCollider(ColliderType::Rect, Vector(40, 60), Vector(0, 0));
+
+        if (m_vecLookDir.x == 1)
+        {
+            m_vecPos.x += 100*(3-m_fTimerLundge) * (3 - m_fTimerLundge) * DT;
+        }
+        else
+        {
+            m_vecPos.x -= 100 * (3 - m_fTimerLundge) * (3 - m_fTimerLundge) * DT;
+        }
+
         m_fTimerLundge -= DT;
+
         if (m_fTimerLundge <= 0)
         {
+           // RemoveCollider();
+           // m_layer = Layer::Monster;
+           // m_strName = L"Boss";
+           // AddCollider(ColliderType::Rect, Vector(40, 60), Vector(0, 0));
             State = BossState::Idle;
+            SOUND->Play(m_pLundgeSound, 1.f);
             m_fTimerLundge = 1.6f;
         }
 
@@ -191,10 +231,22 @@ void CBoss::Update()
 
     if (State == BossState::Jump)
     {
-        Jump();
+       
         m_fTimerJump -= DT;
-        if (m_fTimerJump <= 0)
+
+
+
+        if (m_fTimerJump >= 2.f)
         {
+            m_vecPos.y -= 250 * DT * m_fTimerJump;
+        }
+        else if (m_fTimerJump < 2.f && m_fTimerJump>0.f)
+        {
+            m_vecPos.y += 100 * DT * m_fTimerJump;
+        }
+        else
+        {
+            SOUND->Stop(m_pAxeSound);
             State = BossState::Idle;
             m_fTimerJump = 4.f;
         }
@@ -270,7 +322,7 @@ void CBoss::Update()
         GAME->m_iDeadMonster++;
     }
 
-
+    
 }
 
 void CBoss::Render()
@@ -351,13 +403,13 @@ void CBoss::OnCollisionEnter(CCollider* pOtherCollider)
             {
                 if (m_vecLookDir.x == 1)
                 {
-                    m_vecLookDir.x = -1;
+                    m_vecLookDir.x = 1;
                     State = BossState::Block;
                     SOUND->Play(m_pMetalCollisiionSound, 1.f);
                 }
                 else
                 {
-                    m_vecLookDir.x = +1;
+                    m_vecLookDir.x = -1;
                     State = BossState::Block;
                     SOUND->Play(m_pMetalCollisiionSound, 1.f);
                 }

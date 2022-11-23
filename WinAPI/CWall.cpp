@@ -25,9 +25,12 @@ void CWall::Update()
 
 void CWall::Render()
 {
-	CStageObject::Render();
-	RENDER->Text(L"Wall", m_vecPos.x, m_vecPos.y, m_vecPos.x + m_vecScale.x, m_vecPos.y + m_vecScale.y);
-	ComponentRender();
+	if (GAME->Godmod)
+	{
+		CStageObject::Render();
+		RENDER->Text(L"Wall", m_vecPos.x, m_vecPos.y, m_vecPos.x + m_vecScale.x, m_vecPos.y + m_vecScale.y);
+		ComponentRender();
+	}
 }
 
 void CWall::Release()

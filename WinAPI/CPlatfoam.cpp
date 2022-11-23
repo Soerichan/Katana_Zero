@@ -25,9 +25,15 @@ void CPlatfoam::Update()
 
 void CPlatfoam::Render()
 {
+
+	if (GAME->Godmod) 
+	{
+
+	
 	CStageObject::Render();
 	RENDER->Text(L"Platfoam", m_vecPos.x, m_vecPos.y, m_vecPos.x + m_vecScale.x, m_vecPos.y + m_vecScale.y);
 	ComponentRender();
+	}
 }
 
 void CPlatfoam::Release()

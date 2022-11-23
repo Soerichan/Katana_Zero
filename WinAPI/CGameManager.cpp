@@ -7,6 +7,8 @@
 
 CGameManager::CGameManager()
 {
+	Godmod = false;
+
 	PlayerPos = {};
 	Battery = 0;
 	SubWeaponName = L"None";
@@ -59,6 +61,19 @@ void CGameManager::Update()
 	{
 
 	}
+
+	if (BUTTONDOWN(VK_HOME)&&Godmod==false)
+	{
+		Godmod = true;
+	}
+
+
+	if (BUTTONDOWN(VK_HOME) && Godmod == true)
+	{
+		Godmod = false;
+	}
+
+	
 
 }
 

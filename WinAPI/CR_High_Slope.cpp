@@ -25,9 +25,12 @@ void CR_High_Slope::Update()
 
 void CR_High_Slope::Render()
 {
-	CStageObject::Render();
-	RENDER->Text(L"R_High_Slope", m_vecPos.x, m_vecPos.y, m_vecPos.x + m_vecScale.x, m_vecPos.y + m_vecScale.y);
-	ComponentRender();
+	if (GAME->Godmod)
+	{
+		CStageObject::Render();
+		RENDER->Text(L"R_High_Slope", m_vecPos.x, m_vecPos.y, m_vecPos.x + m_vecScale.x, m_vecPos.y + m_vecScale.y);
+		ComponentRender();
+	}
 }
 
 void CR_High_Slope::Release()

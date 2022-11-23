@@ -95,18 +95,18 @@ void CScene003::Enter()
 	AddGameObject(newGangster01);
 
 	CGangster* newGangster02 = new CGangster;
-	newGangster02->SetPos(2011,441);
-	//newGangster02->SetPatroller(true);
-	newGangster02->SetReverse(true);
+	newGangster02->SetPos(2041,441);
+	newGangster02->SetPatroller(true);
+	//newGangster02->SetReverse(true);
 	AddGameObject(newGangster02);
 
 	CGangster* newGangster03 = new CGangster;
-	newGangster03->SetPos(2021,441);
+	newGangster03->SetPos(2051,441);
 	newGangster03->SetPatroller(true);
 	AddGameObject(newGangster03);
 
 	CGangster* newGangster04 = new CGangster;
-	newGangster04->SetPos(2022,441);
+	newGangster04->SetPos(2032,441);
 	newGangster04->SetPatroller(true);
 	//newGangster01->SetReverse(true);
 	AddGameObject(newGangster04);

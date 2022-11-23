@@ -29,6 +29,9 @@ public:
 
 	void PlayerRebound();
 private:
+
+
+
 	CSound* m_pReplaySound;
 	CSound* m_pDoor_KickSound;
 	CSound* m_pKatanaSound;

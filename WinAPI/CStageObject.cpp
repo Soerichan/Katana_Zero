@@ -69,11 +69,14 @@ void CStageObject::Update()
 
 void CStageObject::Render()
 {
-	RENDER->FrameRect(
-		m_vecPos.x,
-		m_vecPos.y,
-		m_vecPos.x + m_vecScale.x,
-		m_vecPos.y + m_vecScale.y );
+	if (GAME->Godmod)
+	{
+		RENDER->FrameRect(
+			m_vecPos.x,
+			m_vecPos.y,
+			m_vecPos.x + m_vecScale.x,
+			m_vecPos.y + m_vecScale.y);
+	}
 }
 
 void CStageObject::Release()

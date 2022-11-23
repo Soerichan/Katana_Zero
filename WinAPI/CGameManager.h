@@ -16,8 +16,10 @@ class CGameManager:  public SingleTon<CGameManager>
 	
 
 public: 
+	bool Godmod;
 	Vector PlayerPos;
 	Vector PrevPlayerPos;
+	Vector BossPos;
 	wstring SubWeaponName;
 	int Battery;
 	int m_iDeadMonster;

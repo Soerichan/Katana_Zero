@@ -95,7 +95,10 @@ void CScene000::Init()
 	pDanceFloor10->SetPos(1266, 553);
 	AddGameObject(pDanceFloor10);
 
-
+	CDanceFloor* pDanceFloor11 = new CDanceFloor;
+	pDanceFloor11->SetPos(1000, 984);
+	pDanceFloor11->SetTwo(true);
+	AddGameObject(pDanceFloor11);
 
 	CEntrance* pEntrance000 = new CEntrance;
 	pEntrance000->SetPos(546, 548);
@@ -130,7 +133,7 @@ void CScene000::Enter()
 	AddGameObject(pHUD);
 
 	CGangster* newGangster01 = new CGangster;
-	newGangster01->SetPos(1550,944);
+	newGangster01->SetPos(1350,944);
 	newGangster01->SetReverse(true);
 	AddGameObject(newGangster01);
 

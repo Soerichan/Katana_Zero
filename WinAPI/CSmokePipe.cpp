@@ -77,15 +77,21 @@ void CSmokePipe::OnCollisionEnter(CCollider* pOtherCollider)
 	if (pOtherCollider->GetOwner()->GetLayer() == Layer::Missile)
 	{
 		m_bCrushed = true;
+		CSmoke* pSmoke0 = new CSmoke;
+		pSmoke0->SetPos(m_vecPos.x - 200, m_vecPos.y + 125);
+		ADDOBJECT(pSmoke0);
 		CSmoke* pSmoke1 = new CSmoke;
-		pSmoke1->SetPos(m_vecPos.x - 200, m_vecPos.y + 100);
+		pSmoke1->SetPos(m_vecPos.x - 100, m_vecPos.y + 100);
 		ADDOBJECT(pSmoke1);
 		CSmoke* pSmoke2 = new CSmoke;
 		pSmoke2->SetPos(m_vecPos.x, m_vecPos.y + 150);
 		ADDOBJECT(pSmoke2);
 		CSmoke* pSmoke3 = new CSmoke;
-		pSmoke3->SetPos(m_vecPos.x + 200, m_vecPos.y + 100);
+		pSmoke3->SetPos(m_vecPos.x + 100, m_vecPos.y + 100);
 		ADDOBJECT(pSmoke3);
+		CSmoke* pSmoke4 = new CSmoke;
+		pSmoke4->SetPos(m_vecPos.x + 200, m_vecPos.y  +125);
+		ADDOBJECT(pSmoke4);
 	}
 }
 

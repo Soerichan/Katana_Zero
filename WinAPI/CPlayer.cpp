@@ -25,6 +25,8 @@ CPlayer::CPlayer()
 {
 	
 
+	
+
 	m_vecPos = Vector(0, 0);
 	m_vecScale = Vector(38, 55);
 	m_layer = Layer::Player;
@@ -1345,10 +1347,17 @@ void CPlayer::OnCollisionEnter(CCollider* pOtherCollider)
 		SOUND->Play(m_pDoor_KickSound, 0.8f);
 		State = PlayerState::DoorKick;
 	}
-	if (pTargetLayer == Layer::EnemyMissile || pTargetLayer == Layer::Laser)
+
+	if (GAME->Godmod == false)
 	{
-		SOUND->Play(m_pDieSound, 0.8f);
-		State = PlayerState::Die;
+		if (State != PlayerState::Roll)
+		{
+			if (pTargetLayer == Layer::EnemyMissile || pTargetLayer == Layer::Laser || pTarget == L"Lundge")
+			{
+				SOUND->Play(m_pDieSound, 0.8f);
+				State = PlayerState::Die;
+			}
+		}
 	}
 }
 
