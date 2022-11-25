@@ -12,6 +12,7 @@
 #include "CAnimator.h"
 #include "CNoAttack.h"
 #include "CNoise.h"
+#include "CCronosEffect.h"
 
 
 
@@ -225,6 +226,9 @@ void CPlayer::Update()
 	{	
 		
 		TIME->SetTimeScale(0.1f);
+		CCronosEffect* newCronosEffect = new CCronosEffect;
+		newCronosEffect->SetPos(m_vecPos);
+		ADDOBJECT(newCronosEffect);
 		IsCronos = true;
 		GAME->isCronos = true;
 		SOUND->Play(m_pCronosSound, 0.5f);

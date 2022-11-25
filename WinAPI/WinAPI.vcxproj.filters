@@ -390,6 +390,9 @@
     <ClInclude Include="CBoss.h">
       <Filter>GameObject\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="CCronosEffect.h">
+      <Filter>Engine\Asset\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WinAPI.cpp">
@@ -673,6 +676,9 @@
     </ClCompile>
     <ClCompile Include="CElectro.cpp">
       <Filter>GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="CCronosEffect.cpp">
+      <Filter>Engine\Asset\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

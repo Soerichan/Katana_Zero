@@ -516,7 +516,7 @@ void CSceneTileTool::Enter()
 	AddGameObject(m_pImageObj);
 
 	CTilePanel* pTilePanel = new CTilePanel;
-	pTilePanel->SetScale(Vector(300.f, 400.f));
+	pTilePanel->SetScale(Vector(300.f, 500.f));
 	pTilePanel->SetPos(Vector(WINSIZEX - 450.f, 50.f));
 	AddGameObject(pTilePanel);
 }

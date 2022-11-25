@@ -74,7 +74,7 @@ void CGameManager::Update()
 		Godmod = false;
 	}
 
-	
+
 
 }
 

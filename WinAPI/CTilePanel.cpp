@@ -101,35 +101,35 @@ void CTilePanel::CreateTileTypeButton()
 
 	CButton* pGroundTypeButton = new CButton;
 	pGroundTypeButton->SetScale(100.f, 50.f);
-	pGroundTypeButton->SetPos(Vector(40.f, m_vecScale.y - 220.f));
+	pGroundTypeButton->SetPos(Vector(40.f, m_vecScale.y - 320.f));
 	pGroundTypeButton->SetText(L"Ground");
 	pGroundTypeButton->SetClickedCallback(click, (DWORD_PTR)pTileToolScene, (DWORD_PTR)TypeStageObject::Ground);
 	AddChildUI(pGroundTypeButton);
 
 	CButton* pWallTypeButton = new CButton;
 	pWallTypeButton->SetScale(100.f, 50.f);
-	pWallTypeButton->SetPos(Vector(170.f, m_vecScale.y - 220.f));
+	pWallTypeButton->SetPos(Vector(170.f, m_vecScale.y - 320.f));
 	pWallTypeButton->SetText(L"Wall");
 	pWallTypeButton->SetClickedCallback(click, (DWORD_PTR)pTileToolScene, (DWORD_PTR)TypeStageObject::Wall);
 	AddChildUI(pWallTypeButton);
 
 	CButton* pRSlopeTypeButton = new CButton;
 	pRSlopeTypeButton->SetScale(100.f, 50.f);
-	pRSlopeTypeButton->SetPos(Vector(40.f, m_vecScale.y - 120.f));
+	pRSlopeTypeButton->SetPos(Vector(40.f, m_vecScale.y - 220.f));
 	pRSlopeTypeButton->SetText(L"R_High_Slope");
 	pRSlopeTypeButton->SetClickedCallback(click, (DWORD_PTR)pTileToolScene, (DWORD_PTR)TypeStageObject::R_Hihg_Slope);
 	AddChildUI(pRSlopeTypeButton);
 
 	CButton* pLSlopeTypeButton = new CButton;
 	pLSlopeTypeButton->SetScale(100.f, 50.f);
-	pLSlopeTypeButton->SetPos(Vector(170.f, m_vecScale.y - 120.f));
+	pLSlopeTypeButton->SetPos(Vector(170.f, m_vecScale.y - 220.f));
 	pLSlopeTypeButton->SetText(L"L_High_Slope");
 	pLSlopeTypeButton->SetClickedCallback(click, (DWORD_PTR)pTileToolScene, (DWORD_PTR)TypeStageObject::L_Hihg_Slope);
 	AddChildUI(pLSlopeTypeButton);
 
 	CButton* pPlatfoamTypeButton = new CButton;
 	pPlatfoamTypeButton->SetScale(100.f, 50.f);
-	pPlatfoamTypeButton->SetPos(Vector(40.f, m_vecScale.y - 20.f));
+	pPlatfoamTypeButton->SetPos(Vector(40.f, m_vecScale.y - 120.f));
 	pPlatfoamTypeButton->SetText(L"Platfoam");
 	pPlatfoamTypeButton->SetClickedCallback(click, (DWORD_PTR)pTileToolScene, (DWORD_PTR)TypeStageObject::Platfoam);
 	AddChildUI(pPlatfoamTypeButton);

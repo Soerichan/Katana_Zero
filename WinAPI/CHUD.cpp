@@ -50,7 +50,7 @@ void CHUD::Init()
 	pSubWeapon_Mine01Image = RESOURCE->LoadImg(L"SubWeapon_Mine01", L"Image\\UI\\SubWeapon_Mine01.png");
 	pSubWeapon_Mine02Image = RESOURCE->LoadImg(L"SubWeapon_Mine02", L"Image\\UI\\SubWeapon_Mine02.png");
 
-	CronosBG= RESOURCE->LoadImg(L"CronosBG", L"Image\\UI\\CronosBG2.png");
+	//CronosBG= RESOURCE->LoadImg(L"CronosBG", L"Image\\UI\\CronosBG2.png");
 	ReplayBG = RESOURCE->LoadImg(L"ReplayBG", L"Image\\UI\\ReplayBG.png");
 
 
@@ -75,10 +75,10 @@ void CHUD::Update()
 void CHUD::Render()
 {
 	
-	if (GAME->isCronos)
+	/*if (GAME->isCronos)
 	{
 		RENDER->Image(CronosBG, m_vecRenderPos.x, m_vecRenderPos.y, m_vecRenderPos.x + 1280, m_vecRenderPos.y + 720);
-	}
+	}*/
 
 	/*if (GAME->isReplay)
 	{

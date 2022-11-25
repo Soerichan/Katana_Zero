@@ -159,6 +159,7 @@
     <ClInclude Include="CCollisionManager.h" />
     <ClInclude Include="CComponent.h" />
     <ClInclude Include="CCore.h" />
+    <ClInclude Include="CCronosEffect.h" />
     <ClInclude Include="CCursor.h" />
     <ClInclude Include="CDanceFloor.h" />
     <ClInclude Include="CDoor.h" />
@@ -261,6 +262,7 @@
     <ClCompile Include="CCollisionManager.cpp" />
     <ClCompile Include="CComponent.cpp" />
     <ClCompile Include="CCore.cpp" />
+    <ClCompile Include="CCronosEffect.cpp" />
     <ClCompile Include="CCursor.cpp" />
     <ClCompile Include="CDanceFloor.cpp" />
     <ClCompile Include="CDoor.cpp" />
